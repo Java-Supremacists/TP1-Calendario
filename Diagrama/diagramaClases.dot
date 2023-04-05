@@ -21,15 +21,30 @@ digraph graph_name { graph [
 		fillcolor=gray95
 	]
 	evento [color = "red"] //clase
+	evento[label = <{
+		<b>Evento</b>|
+		<br align="left"/>
+  		+ getComienzo<br align="left"/>
+  		+ getRepeticion<br align="left"/>
+  		- enum repeticion<br align="left"/>
+		<br align="left"/>}>]
+	
+
 	tarea [color = "red"]//clase
+	tarea[label = <{
+		<b>Tarea</b>|
+		<br align="left"/>
+		+ marcarCompleta<br align="left"/>
+		<br align="left"/>}>]
+
+
 	calendario [color = "red"]//clase
 	calendario[label = <{
 		<b>Calendario</b>|
 		<br align="left"/>
-		+ crearEvento<br align="left"/>
-		+ crearTarea<br align="left"/>
-		+ crearEvento<br align="left"/>
-		+ crearEvento<br align="left"/>
+		+ crearEvento(esCompleto?) Actividad <br align="left"/>
+		+ crearTarea(esCompleto?) Actividad<br align="left"/>
+		- arrayDeActividades<br align="left"/>
 		<br align="left"/>}>]
 
 	actividad [color = "green"]//interfaz
@@ -38,10 +53,11 @@ digraph graph_name { graph [
   		<br align="left"/>
   		getTitulo<br align="left"/>
   		getDescripcion<br align="left"/>
-  		getComienzo<br align="left"/>
   		getFinal<br align="left"/>
   		getAlarmas<br align="left"/>
+  		esDiaCompleto<br align="left"/>
   		<br align="left"/>}>]
+	actividad [comment = "green"]
 
 	evento -> actividad [style = dotted]
   	tarea -> actividad [style = dotted]
@@ -167,4 +183,29 @@ digraph graph_name { graph [
 /* 				...<br align="left"/> */
 /* 			}> */
 /* 	] */
+/* } */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* public Evento(titulo, descripcion, esCompleto, Comienzo, Final, Alarmas) { */
+
+/* 	this.titulo = titulo */
+/* 	this.descripcion = descripcion */
+/* 	this.esCompleto = esCompleto */
+/* 	if this.esCompleto == True { */
+/* 		this.Comienzo = (el dia que pasate a las 00) */
+/* 	} */
+/* 	this.Comienzo = Comienzo */
+
 /* } */
