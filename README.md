@@ -5,4 +5,4 @@ Alumnos:
 - Gerez Facundo
 - Orsi Tomas Fabrizio
 
-![Diagrama UML](diagramaClases.png)
+![Diagrama UML](Diagrama/diagramaClases.png)
