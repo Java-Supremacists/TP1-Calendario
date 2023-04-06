@@ -19,4 +19,24 @@ public class TareaTest {
 		assertEquals(false, tareaDePrueba.esDiaEntero());
 
 	}
+	@Test
+	public void marcarTareaCompleta() {
+		//arrange
+		Tarea tareaDePrueba = new Tarea("Nombre Tarea", "Descripcion Tarea", false);
+		//act
+		tareaDePrueba.marcarCompleta();
+		//assert
+		assertEquals(true, tareaDePrueba.estaCompleta());
+	}
+
+	@Test
+	public void marcarTareaCompletaDosVecesVuelveAIncompleta() {
+		//arrange
+		Tarea tareaDePrueba = new Tarea("Nombre Tarea", "Descripcion Tarea", false);
+		//act
+		tareaDePrueba.marcarCompleta();
+		tareaDePrueba.marcarCompleta();
+		//assert
+		assertEquals(false, tareaDePrueba.estaCompleta());
+	}
 }
