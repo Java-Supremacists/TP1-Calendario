@@ -1,20 +1,20 @@
 public class Tarea implements Actividad{
-    private final String name;
-    private final String description;
-    //private final LocalDateTime localDateTimeFinal;
-    // private final ArrayList<LocalDateTime> alarm;
-    private final boolean isComplete;
+	private final String nombre;
+	private final String description;
+	//private final LocalDateTime localDateTimeFinal;
+	// private final ArrayList<LocalDateTime> alarm;
+	private final boolean esDiaCompleto;
 
-    public Tarea(String name, String description, boolean isComplete) {
-        this.name = name;
-        this.description = description;
-        //this.localDateTimeFinal = localDateTimeFinal;
-        // this.alarm = alarm;
-        this.isComplete = isComplete;
-    }
+	public Tarea(String nombre, String description, boolean esDiaCompleto) {
+		this.nombre = nombre;
+		this.description = description;
+		//this.localDateTimeFinal = localDateTimeFinal;
+		// this.alarm = alarm;
+		this.esDiaCompleto = esDiaCompleto;
+	    }
 
 	public String getTitulo() {
-		return this.name;
+		return this.nombre;
 	}
 
 	public String getDescripcion(){
@@ -22,7 +22,7 @@ public class Tarea implements Actividad{
 	}
 
 	public boolean esDiaCompleto(){
-		return false;
+		return this.esDiaCompleto;
 	}
 
 
