@@ -18,8 +18,8 @@ public class TareaTest {
 		assertEquals("Descripcion Tarea", tareaDePrueba.getDescripcion());
 		assertEquals(false, tareaDePrueba.esDiaEntero());
 		assertEquals(false, tareaDePrueba.estaCompleta()); //Las tareas empiezan como incompletas
-
 	}
+
 	@Test
 	public void marcarTareaCompleta() {
 		//arrange
