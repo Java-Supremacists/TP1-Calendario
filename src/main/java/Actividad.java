@@ -5,6 +5,6 @@ public interface Actividad{
 
 	// java.time.LocalDateTime getFinal();
 
-	boolean esDiaCompleto();
+	boolean esDiaEntero();
 
 }
