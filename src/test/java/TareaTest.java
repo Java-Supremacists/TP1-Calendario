@@ -17,6 +17,7 @@ public class TareaTest {
 		assertEquals("Nombre Tarea", tareaDePrueba.getTitulo());
 		assertEquals("Descripcion Tarea", tareaDePrueba.getDescripcion());
 		assertEquals(false, tareaDePrueba.esDiaEntero());
+		assertEquals(false, tareaDePrueba.estaCompleta()); //Las tareas empiezan como incompletas
 
 	}
 	@Test
@@ -39,4 +40,5 @@ public class TareaTest {
 		//assert
 		assertEquals(false, tareaDePrueba.estaCompleta());
 	}
+
 }
