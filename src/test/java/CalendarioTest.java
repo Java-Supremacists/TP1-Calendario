@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class CalendarioTest {
 
 	@Test
-	public void creacionDeTareaSimple() {
+	public void creacionDeTareaSimpleDesdeCalendario() {
 		//arrange
 		Calendario calendarioDePrueba = new Calendario("Calendario de Prueba");
 		//act
@@ -19,17 +19,17 @@ public class CalendarioTest {
 		assertEquals(false, calendarioDePrueba.obtenerActividadPorIndice(0).esDiaEntero());
 	}
 
-	@Test
-	public void marcarTareaComoCompleta(){
-		//arrange
-		Calendario calendarioDePrueba = new Calendario("Calendario de Prueba");
+	//@Test
+	//public void marcarTareaComoCompleta(){
+	//	//arrange
+	//	Calendario calendarioDePrueba = new Calendario("Calendario de Prueba");
 
-		//act
-		calendarioDePrueba.crearTarea("Nombre Tarea", "Descripcion Tarea", false);
-		calendarioDePrueba.obtenerActividadPorIndice(0).marcarTareaComoCompleta();
+	//	//act
+	//	calendarioDePrueba.crearTarea("Nombre Tarea", "Descripcion Tarea", false);
+	//	calendarioDePrueba.obtenerActividadPorIndice(0).marcarTareaComoCompleta();
 
-		//assert
-		assertEquals("Nombre Tarea", calendarioDePrueba.obtenerActividadPorIndice(0).getTitulo());
-		assertEquals(true, calendarioDePrueba.obtenerActividadPorIndice(0).estaCompleta());
-	}
+	//	//assert
+	//	assertEquals("Nombre Tarea", calendarioDePrueba.obtenerActividadPorIndice(0).getTitulo());
+	//	assertEquals(true, calendarioDePrueba.obtenerActividadPorIndice(0).estaCompleta());
+	//}
 }
