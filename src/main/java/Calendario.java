@@ -1,25 +1,25 @@
+import java.util.ArrayList;
+
+
 public class Calendario {
 	private String nombre;
-	private Actividad[] listaActividades;
+	private ArrayList<Actividad> listaActividades = new ArrayList<Actividad>();
+	    // private int[] lanzamientos = new int[21];
 
 
-	public Calendario(String nombreCalendario, Actividad[] listaActividades) {
+	public Calendario(String nombreCalendario){ 
 		this.nombre = nombreCalendario;
-		this.listaActividades = listaActividades;
 	}
 
-	// public TAREOTA(String nombreCalendario) {
-	// 	this.nombre = nombreCalendario;
-		// this.listaActividades = listaActividades;
-	// }
 	
-	public String tituloPrimeraActividad(){
-		return this.listaActividades[0].getTitulo();
+
+	public void crearTarea(String nombre, String description, boolean esDiaCompleto){
+		var nuevaTarea = new Tarea(nombre, description, esDiaCompleto);
+		this.listaActividades.add(nuevaTarea);
 	}
 
-	public String tituloSegundaActividad(){
-		return this.listaActividades[1].getTitulo();
+	public Actividad obtenerActividadPorIndice(int ID){
+		return this.listaActividades.get(ID);
 	}
-
-
+	
 }

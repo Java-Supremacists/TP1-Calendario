@@ -9,9 +9,9 @@ public class Main {
 	array[0] = tarea;
 	array[1] = evento;
 
-	var cal = new Calendario("Nombre",array);
-	System.out.println(cal.tituloPrimeraActividad());
-	System.out.println(cal.tituloSegundaActividad());
+	// var cal = new Calendario("Nombre",array);
+	// System.out.println(cal.tituloPrimeraActividad());
+	// System.out.println(cal.tituloSegundaActividad());
 	
 
     }

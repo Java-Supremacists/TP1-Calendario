@@ -1,9 +1,9 @@
 public class Tarea implements Actividad{
 	private final String nombre;
 	private final String description;
+	private final boolean esDiaCompleto;
 	//private final LocalDateTime localDateTimeFinal;
 	// private final ArrayList<LocalDateTime> alarm;
-	private final boolean esDiaCompleto;
 
 	public Tarea(String nombre, String description, boolean esDiaCompleto) {
 		this.nombre = nombre;
