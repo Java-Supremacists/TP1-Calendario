@@ -1,29 +1,26 @@
-public class Tarea implements Actividad{
-    private final String name;
-    private final String description;
-    //private final LocalDateTime localDateTimeFinal;
-    // private final ArrayList<LocalDateTime> alarm;
-    private final boolean isComplete;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
-    public Tarea(String name, String description, boolean isComplete) {
-        this.name = name;
-        this.description = description;
-        //this.localDateTimeFinal = localDateTimeFinal;
-        // this.alarm = alarm;
-        this.isComplete = isComplete;
+public class Tarea extends Activities {
+    private final LocalDateTime termina;
+    public Tarea(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete, LocalDateTime termina) {
+        super(name, description, alarm, isComplete);
+        this.termina = termina;
     }
 
-	public String getTitulo() {
-		return this.name;
-	}
+    @Override
+    public LocalDateTime primeraAlarma() {
+        LocalDateTime maxAlarm = alarm.get(alarm.size()-1);
+        return termina.minus(maxAlarm);
+    }
 
-	public String getDescripcion(){
-		return this.description;
-	}
+    @Override
+    public void sonarPrimerAlarma() {
+        alarm.remove(alarm.size()-1);
+    }
 
-	public boolean esDiaCompleto(){
-		return false;
-	}
-
-
+    @Override
+    public tipo type() {
+        return tipo.TAREA;
+    }
 }

@@ -1,27 +1,27 @@
-public class Evento implements Actividad{
-    private final String name;
-    private final String description;
-    //private final LocalDateTime localDateTimeFinal;
-    // private final ArrayList<LocalDateTime> alarm;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
-    public Evento(String name, String description) {
-        this.name = name;
-        this.description = description;
-        //this.localDateTimeFinal = localDateTimeFinal;
-        // this.alarm = alarm;
-    }
-
-	public String getTitulo() {
-		return this.name;
+public class Evento extends Activities {
+	private final ArrayList<LocalDateTime> intervalo = new ArrayList<>();
+	public Evento(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete, LocalDateTime arranque, LocalDateTime termina) {
+		super(name, description, alarm, isComplete);
+		this.intervalo.add(arranque);
+		this.intervalo.add(termina);
+	}
+	//private final LocalDateTime localDateTimeFinal;
+	@Override
+	public LocalDateTime primeraAlarma() {
+		LocalDateTime maxAlarm = alarm.get(alarm.size()-1);
+		return this.intervalo.get(0).minus(maxAlarm);
 	}
 
-	public String getDescripcion(){
-		return this.description;
+	@Override
+	public void sonarPrimerAlarma() {
+		alarm.remove(alarm.size()-1);
 	}
 
-	public boolean esDiaCompleto(){
-		return false;
+	@Override
+	public tipo type() {
+		return tipo.EVENTO;
 	}
-
-
 }
