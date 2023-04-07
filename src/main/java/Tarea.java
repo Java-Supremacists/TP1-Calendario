@@ -30,7 +30,6 @@ public class Tarea extends Activities {
     public tipo type() {
         return tipo.TAREA;
     }
-
     
     public boolean estaCompleta(){
 	return this.estaCompletada;
@@ -39,5 +38,15 @@ public class Tarea extends Activities {
 
     public void marcarCompleta(){
 	this.estaCompletada = !this.estaCompletada; 
+    }
+
+    @Override
+    public LocalDateTime cuandoTermina() {
+        return termina;
+    }
+
+    @Override
+    public LocalDateTime cuandoEmpieza() {
+        return this.cuandoTermina();
     }
 }

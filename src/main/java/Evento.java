@@ -25,4 +25,13 @@ public class Evento extends Activities {
 	public tipo type() {
 		return tipo.EVENTO;
 	}
+
+	@Override
+	public LocalDateTime cuandoEmpieza(){
+		return intervalo.get(0);
+	}
+	@Override
+	public LocalDateTime cuandoTermina() {
+		return intervalo.get(1);
+	}
 }
