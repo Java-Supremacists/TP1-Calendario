@@ -25,7 +25,12 @@ public class Tarea extends Activities {
     }
 
     @Override
-    public LocalDateTime termina() {
+    public LocalDateTime cuandoTermina() {
         return termina;
+    }
+
+    @Override
+    public LocalDateTime cuandoEmpieza() {
+        return this.cuandoTermina();
     }
 }
