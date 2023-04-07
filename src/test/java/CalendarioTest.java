@@ -9,7 +9,7 @@ public class CalendarioTest {
 	@Test
 	public void creacionDeTareaSimpleDesdeCalendario() {
 		//arrange
-		Calendario calendarioDePrueba = new Calendario("Calendario de Prueba");
+		Calendario calendarioDePrueba = new Calendario();
 		//act
 		//calendarioDePrueba.crearTarea("Nombre Tarea", "Descripcion Tarea", false);
 

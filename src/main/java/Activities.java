@@ -3,13 +3,17 @@ import java.util.ArrayList;
 
 public abstract class Activities {
     //--------- Atributos ---------
+
     enum tipo {TAREA,EVENTO}
     protected final String name;
     protected final String description;
     protected ArrayList<LocalDateTime> alarm;
     protected final boolean isComplete;
+
     //--------- Atributos ---------
+
     //--------- Constructores ---------
+
     public Activities(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete) {
         this.name = name;
         this.description = description;
@@ -21,8 +25,11 @@ public abstract class Activities {
         this.description = description;
         this.isComplete = isComplete;
     }
+
     //--------- Constructores ---------
+
     //--------- Metodos ---------
+
     public abstract tipo type();
     public abstract LocalDateTime cuandoTermina();
     public abstract LocalDateTime cuandoEmpieza();
@@ -35,5 +42,6 @@ public abstract class Activities {
     public boolean esDiaEntero() {
         return isComplete;
     }
+
     //--------- Metodos ---------
 }

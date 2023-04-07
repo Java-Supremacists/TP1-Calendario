@@ -4,34 +4,36 @@ import java.util.ArrayList;
 
 public class Calendario {
     //--------- Atributos ---------
-
-    private String nombre;
-    private ArrayList<Evento> listaEventos = new ArrayList<Evento>();
-    private ArrayList<Tarea> listaTareas = new ArrayList<Tarea>();
+    private final ArrayList<Activities> listaActividades = new ArrayList<>();
 
     //--------- Atributos ---------
 
     //--------- Constructores ---------
 
-    public Calendario(String nombreCalendario){ 
-	    this.nombre = nombreCalendario;
-    }
-
     //--------- Constructores ---------
 
     //--------- Metodos ---------
     public void crearTarea(String nombre, String description, ArrayList<LocalDateTime> alarm,  boolean esDiaCompleto, LocalDateTime termina){
-	    var nuevaTarea = new Tarea(nombre, description, alarm,  esDiaCompleto, termina);
-	    this.listaTareas.add(nuevaTarea);
+        Tarea nuevaTarea;
+        if (alarm == null) {
+            nuevaTarea = new Tarea(nombre, description, esDiaCompleto, termina);
+        }else{
+            //mergesort(alarm);
+            nuevaTarea = new Tarea(nombre, description, alarm, esDiaCompleto, termina);
+        }
+        this.listaActividades.add(nuevaTarea);
+
     }
 
     public void crearEvento(String nombre, String description, ArrayList<LocalDateTime> alarm,  boolean esDiaCompleto,LocalDateTime arranque, LocalDateTime termina){
-	    var nuevoEvento = new Evento(nombre, description, alarm,  esDiaCompleto, arranque, termina);
-	    this.listaEventos.add(nuevoEvento);
-    }
-
-    public Tarea obtenerTareaPorIndice(int ID){
-	    return this.listaTareas.get(ID);
+        Evento nuevoEvento;
+        if (alarm == null){
+            nuevoEvento = new Evento(nombre, description, esDiaCompleto, arranque, termina);
+        }else {
+            //mergesort(alarm);
+            nuevoEvento = new Evento(nombre, description, alarm, esDiaCompleto, arranque, termina);
+        }
+        this.listaActividades.add(nuevoEvento);
     }
 	
 }
