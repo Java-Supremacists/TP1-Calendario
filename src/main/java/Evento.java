@@ -9,16 +9,17 @@ public class Evento extends Activities {
 		this.intervalo.add(termina);
 	}
 	//private final LocalDateTime localDateTimeFinal;
-	@Override
-	public LocalDateTime primeraAlarma() {
-		LocalDateTime maxAlarm = alarm.get(alarm.size()-1);
-		return this.intervalo.get(0).minus(maxAlarm);
-	}
 
-	@Override
-	public void sonarPrimerAlarma() {
-		alarm.remove(alarm.size()-1);
-	}
+	// @Override
+	// public LocalDateTime primeraAlarma() {
+	// 	LocalDateTime maxAlarm = alarm.get(alarm.size()-1);
+	// 	return this.intervalo.get(0).minus(maxAlarm);
+	// }
+
+	// @Override
+	// public void sonarPrimerAlarma() {
+	// 	alarm.remove(alarm.size()-1);
+	// }
 
 	@Override
 	public tipo type() {
