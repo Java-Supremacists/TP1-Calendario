@@ -2,11 +2,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Evento extends Activities {
-	private final ArrayList<LocalDateTime> intervalo = new ArrayList<>();
+	// private final ArrayList<LocalDateTime> intervalo = new ArrayList<>();
+
+	private LocalDateTime arranque;
+	private LocalDateTime termina;
+
+
 	public Evento(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete, LocalDateTime arranque, LocalDateTime termina) {
 		super(name, description, alarm, isComplete);
-		this.intervalo.add(arranque);
-		this.intervalo.add(termina);
+		this.arranque = arranque;
+		this.termina = termina;
 	}
 	//private final LocalDateTime localDateTimeFinal;
 
@@ -28,10 +33,10 @@ public class Evento extends Activities {
 
 	@Override
 	public LocalDateTime cuandoEmpieza(){
-		return intervalo.get(0);
+		return this.arranque;
 	}
 	@Override
 	public LocalDateTime cuandoTermina() {
-		return intervalo.get(1);
+		return this.termina;
 	}
 }
