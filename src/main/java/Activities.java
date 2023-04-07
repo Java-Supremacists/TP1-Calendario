@@ -1,13 +1,13 @@
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Activities {
-    private final String name;
-    private final String description;
+public abstract class Activities {
+    enum tipo {TAREA,EVENTO}
+    protected final String name;
+    protected final String description;
     //private final LocalDateTime localDateTimeFinal;
-    private final ArrayList<LocalDateTime> alarm;
-    private final boolean isComplete;
-
+    protected final ArrayList<LocalDateTime> alarm;
+    protected final boolean isComplete;
     public Activities(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete) {
         this.name = name;
         this.description = description;
@@ -15,19 +15,14 @@ public class Activities {
         this.alarm = alarm;
         this.isComplete = isComplete;
     }
-
+    public abstract LocalDateTime sonarPrimeraAlarma();
+    public abstract ArrayList<LocalDateTime> horariosAlarmas();
     public String getName() {
         return name;
     }
-
     public String getDescription() {
         return description;
     }
-
-    public ArrayList<LocalDateTime> getAlarm() {
-        return alarm;
-    }
-
     public boolean isComplete() {
         return isComplete;
     }
