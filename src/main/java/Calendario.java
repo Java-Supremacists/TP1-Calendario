@@ -11,8 +11,6 @@ public class Calendario {
 		this.nombre = nombreCalendario;
 	}
 
-	
-
 	public void crearTarea(String nombre, String description, boolean esDiaCompleto){
 		var nuevaTarea = new Tarea(nombre, description, esDiaCompleto);
 		this.listaActividades.add(nuevaTarea);
