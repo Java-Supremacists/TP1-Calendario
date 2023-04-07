@@ -9,13 +9,18 @@ public class Tarea extends Activities {
     }
 
     @Override
-    public LocalDateTime sonarPrimeraAlarma() {
-        LocalDateTime maxAlarm = alarm.get(alarm.size());
+    public LocalDateTime primeraAlarma() {
+        LocalDateTime maxAlarm = alarm.get(alarm.size()-1);
         return termina.minus(maxAlarm);
     }
 
     @Override
-    public ArrayList<LocalDateTime> horariosAlarmas() {
-        return null;
+    public void sonarPrimerAlarma() {
+        alarm.remove(alarm.size()-1);
+    }
+
+    @Override
+    public tipo type() {
+        return tipo.TAREA;
     }
 }

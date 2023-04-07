@@ -15,8 +15,9 @@ public abstract class Activities {
         this.alarm = alarm;
         this.isComplete = isComplete;
     }
-    public abstract LocalDateTime sonarPrimeraAlarma();
-    public abstract ArrayList<LocalDateTime> horariosAlarmas();
+    public abstract LocalDateTime primeraAlarma();
+    public abstract void sonarPrimerAlarma();
+    public abstract tipo type();
     public String getName() {
         return name;
     }

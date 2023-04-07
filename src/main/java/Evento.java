@@ -10,13 +10,18 @@ public class Evento extends Activities {
 	}
 	//private final LocalDateTime localDateTimeFinal;
 	@Override
-	public LocalDateTime sonarPrimeraAlarma() {
-		LocalDateTime maxAlarm = alarm.get(alarm.size());
+	public LocalDateTime primeraAlarma() {
+		LocalDateTime maxAlarm = alarm.get(alarm.size()-1);
 		return this.intervalo.get(0).minus(maxAlarm);
 	}
 
 	@Override
-	public ArrayList<LocalDateTime> horariosAlarmas() {
-		return null;
+	public void sonarPrimerAlarma() {
+		alarm.remove(alarm.size()-1);
+	}
+
+	@Override
+	public tipo type() {
+		return tipo.EVENTO;
 	}
 }
