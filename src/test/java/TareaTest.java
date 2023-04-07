@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -11,7 +12,7 @@ public class TareaTest {
 	@Test
 	public void creacionDeTarea() {
 		//arrange
-		Tarea tareaDePrueba = new Tarea("Nombre Tarea", "Descripcion Tarea", false);
+		Tarea tareaDePrueba = new Tarea("Nombre Tarea", "Descripcion Tarea", false, LocalDateTime.now());
 		//act
 		//assert
 		assertEquals("Nombre Tarea", tareaDePrueba.getTitulo());
@@ -23,7 +24,7 @@ public class TareaTest {
 	@Test
 	public void marcarTareaCompleta() {
 		//arrange
-		Tarea tareaDePrueba = new Tarea("Nombre Tarea", "Descripcion Tarea", false);
+		Tarea tareaDePrueba = new Tarea("Nombre Tarea", "Descripcion Tarea", false, LocalDateTime.now());
 		//act
 		tareaDePrueba.marcarCompleta();
 		//assert
@@ -33,7 +34,7 @@ public class TareaTest {
 	@Test
 	public void marcarTareaCompletaDosVecesVuelveAIncompleta() {
 		//arrange
-		Tarea tareaDePrueba = new Tarea("Nombre Tarea", "Descripcion Tarea", false);
+		Tarea tareaDePrueba = new Tarea("Nombre Tarea", "Descripcion Tarea", false, LocalDateTime.now());
 		//act
 		tareaDePrueba.marcarCompleta();
 		tareaDePrueba.marcarCompleta();

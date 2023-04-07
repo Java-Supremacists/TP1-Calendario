@@ -3,8 +3,15 @@ import java.util.ArrayList;
 
 public class Tarea extends Activities {
     private final LocalDateTime termina;
+    private boolean estaCompletada;
+
     public Tarea(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete, LocalDateTime termina) {
         super(name, description, alarm, isComplete);
+        this.termina = termina;
+    }
+
+    public Tarea(String name, String description, boolean isComplete, LocalDateTime termina) {
+        super(name, description, isComplete);
         this.termina = termina;
     }
 
@@ -22,5 +29,15 @@ public class Tarea extends Activities {
     @Override
     public tipo type() {
         return tipo.TAREA;
+    }
+
+    
+    public boolean estaCompleta(){
+	return this.estaCompletada;
+    }
+
+
+    public void marcarCompleta(){
+	this.estaCompletada = !this.estaCompletada; 
     }
 }
