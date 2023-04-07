@@ -23,4 +23,9 @@ public class Tarea extends Activities {
     public tipo type() {
         return tipo.TAREA;
     }
+
+    @Override
+    public LocalDateTime termina() {
+        return termina;
+    }
 }
