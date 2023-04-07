@@ -2,7 +2,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public abstract class Activities {
-    enum tipo {TAREA,EVENTO}
+    // enum tipo {TAREA,EVENTO}
 
 
     protected final String name;
