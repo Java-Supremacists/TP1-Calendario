@@ -18,7 +18,14 @@ public abstract class Activities {
     public abstract LocalDateTime primeraAlarma();
     public abstract void sonarPrimerAlarma();
     public abstract tipo type();
-    public abstract LocalDateTime termina();
+
+
+
+    public abstract LocalDateTime cuandoTermina();
+
+    public abstract LocalDateTime cuandoEmpieza();
+
+
     public String getName() {
         return name;
     }
