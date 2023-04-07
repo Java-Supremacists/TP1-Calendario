@@ -50,7 +50,7 @@ public abstract class Activities {
     public void cambiarDescripcion(String nuevaDescripcion) {
 	    this.description = nuevaDescripcion;
     }
-    public void cambiarDiaEntero() {
+    public void cambiarDiaEntero() { //Es probable que esto termine siendo un metodo abstracto porque hay que asignar un valor por defecto en las tareas y en los eventos hay que anadir dos valores por defecto
 	    this.isComplete = !this.isComplete;
     }
 }
