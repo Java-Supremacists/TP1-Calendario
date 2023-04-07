@@ -5,11 +5,12 @@ public abstract class Activities {
     enum tipo {TAREA,EVENTO}
 
 
-    protected final String name;
-    protected final String description;
+    protected String name;
+    protected String description;
+    protected boolean isComplete;
+
     //private final LocalDateTime localDateTimeFinal;
     protected ArrayList<LocalDateTime> alarm; //Le saque el final porque el array no es constante
-    protected final boolean isComplete;
     public Activities(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete) {
         this.name = name;
         this.description = description;
@@ -32,6 +33,7 @@ public abstract class Activities {
     // public abstract void sonarPrimerAlarma();      //creo que seria igual para los dos, tal vez
     // 						      //no hace falta que sea abstracto
     public abstract tipo type();
+
     public String getTitulo() {
         return name;
     }
@@ -40,5 +42,15 @@ public abstract class Activities {
     }
     public boolean esDiaEntero() {
         return isComplete;
+    }
+
+    public void cambiarTitulo(String nuevoTitulo) {
+	    this.name = nuevoTitulo;
+    }
+    public void cambiarDescripcion(String nuevaDescripcion) {
+	    this.description = nuevaDescripcion;
+    }
+    public void cambiarDiaEntero() {
+	    this.isComplete = !this.isComplete;
     }
 }
