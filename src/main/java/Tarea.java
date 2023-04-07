@@ -7,28 +7,14 @@ public class Tarea extends Activities {
         super(name, description, alarm, isComplete);
         this.termina = termina;
     }
-
-    @Override
-    public LocalDateTime primeraAlarma() {
-        LocalDateTime maxAlarm = alarm.get(alarm.size()-1);
-        return termina.minus(maxAlarm);
-    }
-
-    @Override
-    public void sonarPrimerAlarma() {
-        alarm.remove(alarm.size()-1);
-    }
-
     @Override
     public tipo type() {
         return tipo.TAREA;
     }
-
     @Override
     public LocalDateTime cuandoTermina() {
         return termina;
     }
-
     @Override
     public LocalDateTime cuandoEmpieza() {
         return this.cuandoTermina();

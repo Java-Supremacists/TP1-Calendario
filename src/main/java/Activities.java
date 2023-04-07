@@ -15,17 +15,10 @@ public abstract class Activities {
         this.alarm = alarm;
         this.isComplete = isComplete;
     }
-    public abstract LocalDateTime primeraAlarma();
-    public abstract void sonarPrimerAlarma();
     public abstract tipo type();
-
-
-
     public abstract LocalDateTime cuandoTermina();
 
     public abstract LocalDateTime cuandoEmpieza();
-
-
     public String getName() {
         return name;
     }
