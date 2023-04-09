@@ -1,5 +1,6 @@
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.time.DayOfWeek;
 
 
 public class Calendario {
@@ -25,13 +26,21 @@ public class Calendario {
 	    this.listaTareas.add(nuevaTarea);
     }
 
-    public void crearEvento(String nombre, String description, ArrayList<LocalDateTime> alarm,  boolean esDiaCompleto,LocalDateTime arranque, LocalDateTime termina){
-	    var nuevoEvento = new Evento(nombre, description, alarm,  esDiaCompleto, arranque, termina);
-	    this.listaEventos.add(nuevoEvento);
+    //Constructores con repeticion semanal
+    public void crearEvento(String nombre, String description, ArrayList<LocalDateTime> alarm,  boolean esDiaCompleto,LocalDateTime arranque, LocalDateTime termina, Frecuencia frecuencia){
+	var nuevoEvento = new Evento(nombre, description, alarm,  esDiaCompleto, arranque, termina, frecuencia);
+	this.listaEventos.add(nuevoEvento);
     }
 
     public Tarea obtenerTareaPorIndice(int ID){
 	    return this.listaTareas.get(ID);
     }
+
+    // public Evento hayEventosElDia(LocalDateTime diaEspecificio){
+	// for (int evento = 0; evento < this.listaEventos.size(); evento ++) {
+	    // dee
+	// }
+
+    // }
 	
 }
