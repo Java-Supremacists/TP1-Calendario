@@ -1,5 +1,5 @@
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit; //Libreria para formatear dias en LocalDateTime
+// import java.time.temporal.ChronoUnit; //Libreria para formatear dias en LocalDateTime
 import java.util.ArrayList;
 
 public class Evento extends Activities {
@@ -9,15 +9,15 @@ public class Evento extends Activities {
 	// private final int frecuencia;
 
 	private Frecuencia frecuencia;
-	private LocalDateTime finDeLasRepeticiones; //Puede que no sea absolutamente necesario
 	//--------- Atributos ---------
+
 	//--------- Constructores ---------
 	public Evento(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete, LocalDateTime arranque, LocalDateTime termina, Frecuencia frecuencia) {
-		super(name, description, alarm, isComplete);
-		this.arranque = arranque;
-		this.termina = termina;
-		this.frecuencia = frecuencia;
-		this.finDeLasRepeticiones = this.frecuencia.finDeLasRepeticionesDadaFecha();
+	    super(name, description, alarm, isComplete);
+	    this.arranque = arranque;
+	    this.termina = termina;
+	    this.frecuencia = frecuencia;
+		// this.finDeLasRepeticiones = this.frecuencia.finDeLasRepeticionesDadaFecha();
 	}
 
 
@@ -29,19 +29,19 @@ public class Evento extends Activities {
 	// 	this.frecuencia = repeticion;
 	// }
 	//--------- Constructores ---------
-	
+
 	//--------- Metodos ---------
 	@Override
 	public tipo type() {
-		return tipo.EVENTO;
+	    return tipo.EVENTO;
 	}
 	@Override
 	public LocalDateTime cuandoEmpieza(){
-		return this.arranque;
+	    return this.arranque;
 	}
 	@Override
 	public LocalDateTime cuandoTermina() {
-		return this.termina;
+	    return this.termina;
 	}
 
 	public boolean caeElDia(LocalDateTime diaEspecifico){
