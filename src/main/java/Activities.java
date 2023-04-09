@@ -33,6 +33,12 @@ public abstract class Activities {
     public abstract tipo type();
     public abstract LocalDateTime cuandoTermina();
     public abstract LocalDateTime cuandoEmpieza();
+    public LocalDateTime ultimaAlarma(){
+        return alarm.get(alarm.size()-1);
+    }
+    public void sonarUltimaAlarma(){
+        alarm.remove(alarm.size()-1);
+    }
     public String getTitulo() {
         return name;
     }

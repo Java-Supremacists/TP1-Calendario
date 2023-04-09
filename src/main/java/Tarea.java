@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Tarea extends Activities {
     //--------- Atributos ---------
 
-    private final LocalDateTime termina;
+    private LocalDateTime termina;
     private boolean estaCompletada;
 
     //--------- Atributos ---------
