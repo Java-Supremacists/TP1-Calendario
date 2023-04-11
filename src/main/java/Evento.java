@@ -38,6 +38,12 @@ public class Evento extends Activities {
 	public LocalDateTime cuandoTermina() {
 		return this.termina;
 	}
+	public void setArranque(LocalDateTime arranque) {
+		this.arranque = arranque;
+	}
+	public void setTermina(LocalDateTime termina) {
+		this.termina = termina;
+	}
 
 	//--------- Metodos ---------
 }

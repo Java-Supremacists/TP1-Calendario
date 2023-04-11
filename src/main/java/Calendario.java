@@ -16,7 +16,8 @@ public class Calendario {
             return 1;
         }
     };
-    private final ArrayList<Integer> proximaAlarma = new ArrayList<>();
+    private LocalDateTime maximaAlarmaActual;
+    private final ArrayList<Integer> proximasAlarmas = new ArrayList<>();
     //si las alarmas colisionan van a haber más de una alarma, este guarda los ID en el array
 
     //--------- Atributos ---------
@@ -54,8 +55,8 @@ public class Calendario {
         IDActual++;
         return retorno;
     }
-	public void proximasAlarmas(){
-        if (proximaAlarma.size() == 0){
+	public LocalDateTime proximasAlarmas(){
+        if (proximasAlarmas.size() == 0){
             LocalDateTime maxAlarma = null;
             for (Activities act : listaActividades.values()) {
                 if (act.quedanAlarmas()) {
@@ -66,24 +67,27 @@ public class Calendario {
                 }
             }
             if (maxAlarma != null){
-                for (int i = 0; i< listaActividades.size(); i++){
-                    if (listaActividades.get(i).quedanAlarmas()){
-                        var alarma = listaActividades.get(i).ultimaAlarma();
+                maximaAlarmaActual = maxAlarma;
+                for (int claves :listaActividades.keySet()){
+                    if (listaActividades.get(claves).quedanAlarmas()){
+                        var alarma = listaActividades.get(claves).ultimaAlarma();
                         if (alarma.equals(maxAlarma)){
-                            proximaAlarma.add(i);
+                            proximasAlarmas.add(claves);
                         }
                     }
                 }
             }
 
         }
+        return maximaAlarmaActual;
 
     }
     public ArrayList<Activities> sonarAlarmas(){
         ArrayList<Activities> retorno = new ArrayList<>();
-        for (int id: proximaAlarma){
+        for (int id: proximasAlarmas){
             retorno.add(listaActividades.get(id));
         }
+        maximaAlarmaActual = null;
         return retorno;
     }
 }

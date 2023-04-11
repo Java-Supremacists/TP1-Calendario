@@ -5,10 +5,10 @@ public abstract class Activities {
     //--------- Atributos ---------
 
     enum tipo {TAREA,EVENTO}
-    protected final String name;
-    protected final String description;
+    protected String name;
+    protected String description;
     protected ArrayList<LocalDateTime> alarm;
-    protected final boolean isComplete;
+    protected boolean isComplete;
 
     //--------- Atributos ---------
 
@@ -50,6 +50,18 @@ public abstract class Activities {
     }
     public boolean esDiaEntero() {
         return isComplete;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public void setAlarm(ArrayList<LocalDateTime> alarm) {
+        this.alarm = alarm;
+    }
+    public void setComplete(boolean complete) {
+        isComplete = complete;
     }
 
     //--------- Metodos ---------
