@@ -4,7 +4,13 @@ import java.time.LocalDateTime;
  */
 public interface Frecuencia{
 
-    LocalDateTime finDeLasRepeticionesDadaFecha(LocalDateTime fechaComienzo);
+    // enum FinRepeticion{
+	// INFINITA,
+	// FECHA,
+	// CANTIDAD
+    // }
+
+    // LocalDateTime finDeLasRepeticionesDadaFecha(LocalDateTime fechaComienzo);
 
     boolean dadoComienzoCaeElDia(LocalDateTime inicioEvento, LocalDateTime diaEspecifico);
 

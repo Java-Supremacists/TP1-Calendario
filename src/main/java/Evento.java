@@ -47,5 +47,6 @@ public class Evento extends Activities {
 	public boolean caeElDia(LocalDateTime diaEspecifico){
 	    return this.frecuencia.dadoComienzoCaeElDia(this.arranque, diaEspecifico);
 	}
+
 	//--------- Metodos ---------
 }
