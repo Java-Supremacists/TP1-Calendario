@@ -42,4 +42,68 @@ public class TareaTest {
 		assertEquals(false, tareaDePrueba.estaCompleta());
 	}
 
+	@Test
+	public void estaCompleta() {
+	}
+
+	@Test
+	public void marcarCompleta() {
+	}
+
+
+	@Test
+	public void setTermina() {
+	}
+
+	@Test
+	public void type() {
+	}
+
+	@Test
+	public void cuandoTermina() {
+	}
+
+	@Test
+	public void cuandoEmpieza() {
+	}
+
+	@Test
+	public void quedanAlarmas() {
+	}
+
+	@Test
+	public void ultimaAlarma() {
+	}
+
+	@Test
+	public void sonarUltimaAlarma() {
+	}
+
+	@Test
+	public void getTitulo() {
+	}
+
+	@Test
+	public void getDescripcion() {
+	}
+
+	@Test
+	public void esDiaEntero() {
+	}
+
+	@Test
+	public void setName() {
+	}
+
+	@Test
+	public void setDescription() {
+	}
+
+	@Test
+	public void setAlarm() {
+	}
+
+	@Test
+	public void setComplete() {
+	}
 }

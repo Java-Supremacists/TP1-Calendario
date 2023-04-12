@@ -41,7 +41,6 @@ public class Calendario {
         return retorno;
 
     }
-
     public int crearEvento(String nombre, String description, ArrayList<LocalDateTime> alarm,  boolean esDiaCompleto,LocalDateTime arranque, LocalDateTime termina){
         Evento nuevoEvento;
         if (alarm == null){
@@ -89,5 +88,8 @@ public class Calendario {
         }
         maximaAlarmaActual = null;
         return retorno;
+    }
+    public Activities obtenerActividad(int ID) throws IllegalAccessError{
+        return listaActividades.get(ID);
     }
 }

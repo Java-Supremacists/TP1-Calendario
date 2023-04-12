@@ -34,7 +34,7 @@ public abstract class Activities {
     public abstract LocalDateTime cuandoTermina();
     public abstract LocalDateTime cuandoEmpieza();
     public boolean quedanAlarmas(){
-        return alarm.size()==0;
+        return !(alarm == null || alarm.size() == 0);
     }
     public LocalDateTime ultimaAlarma(){
         return alarm.get(alarm.size()-1);
