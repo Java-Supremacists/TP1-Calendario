@@ -15,5 +15,13 @@ public class RepeticionFecha{
 	return true;
     }
 
+    //Esta funcion ignora todos los argumentos que le pasas, esto esta diseniado
+    //para que la funcion pueda ser polimorfica con la clase RepeticionCantVeces
+    //No me parece ideal, pero creo que queda mejor que un par de "ifs"
+    public LocalDateTime finDeLasRepeticionesDadaFechaREPETICION(LocalDateTime fechaComienzo, int cadaCuantosDias) {
+	return this.fechaFinRepeticion;
+	
+    }
+
 	
 }
