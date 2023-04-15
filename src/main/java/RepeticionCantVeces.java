@@ -12,6 +12,48 @@ public class RepeticionCantVeces {
 	this.cantidadDeRepeticiones = cantidadDeRepeticiones;
     }
 
+    public LocalDateTime finDeLasRepeticionesDadaFechaREPETICION(LocalDateTime fechaComienzo, int cadaCuantosDias) {
+	int cantidadDeDiasASumar = cadaCuantosDias + this.cantidadDeRepeticiones; //Esto nos da la cantidad de dias extra que para llegar al ultimo dia
+
+	LocalDateTime fechaFinal = fechaComienzo.plusDays(cantidadDeDiasASumar);
+	
+	return fechaFinal;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public boolean laRepeticionSigue(LocalDateTime fechaComienzo, LocalDateTime diaEspecifico) {
 	long cantDiasHastaDiaPedido = fechaComienzo.until(diaEspecifico, ChronoUnit.DAYS); //Se fija cuantos dias hay hasta el dia pasado como argumento
 	
@@ -21,6 +63,10 @@ public class RepeticionCantVeces {
 
 	return true;
     }
+
+
+
+
 
 	
 }

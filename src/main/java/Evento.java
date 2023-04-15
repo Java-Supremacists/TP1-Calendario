@@ -6,18 +6,19 @@ public class Evento extends Activities {
 	//--------- Atributos ---------
 	private LocalDateTime arranque;
 	private LocalDateTime termina;
+	private LocalDateTime ultimaDiaDelEvento;
 	// private final int frecuencia;
 
 	private Frecuencia frecuencia;
+	// private Repeticion repeticion;
 	//--------- Atributos ---------
 
 	//--------- Constructores ---------
-	public Evento(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete, LocalDateTime arranque, LocalDateTime termina, Frecuencia frecuencia) {
+	public Evento(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete, LocalDateTime arranque, LocalDateTime termina, Frecuencia frecuencia, Repeticion repeticion) {
 	    super(name, description, alarm, isComplete);
 	    this.arranque = arranque;
 	    this.termina = termina;
 	    this.frecuencia = frecuencia;
-		// this.finDeLasRepeticiones = this.frecuencia.finDeLasRepeticionesDadaFecha();
 	}
 
 

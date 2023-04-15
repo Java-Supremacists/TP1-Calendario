@@ -9,20 +9,24 @@ import java.time.format.TextStyle; //Libreria para darle formato al dia de la se
 public class FrecuenciaSemanal implements Frecuencia {
 
     private String[] diasDeLaSemana; //arrays de dias de la semana en ingles
-    private Repeticion repeticion;
+    // private Repeticion repeticion;
+    private LocalDateTime finFrecuencia;
 
-    public FrecuenciaSemanal (String[] diasDeLaSemana, Repeticion repeticion){
-	this.diasDeLaSemana = diasDeLaSemana;
+    public FrecuenciaSemanal(int cadaCuantosDias, Repeticion repeticion){
+	// this.tipo = tipo;
+	// this.fin = fin;
+	this.cadaCuantosDias = cadaCuantosDias;
 	this.repeticion = repeticion;
 
     }
 
 
     public LocalDateTime finDeLasRepeticionesDadaFecha(LocalDateTime fechaComienzo){
+	return fechaComienzo;
     }
 
     public boolean dadoComienzoCaeElDia(LocalDateTime fechaComienzo, LocalDateTime diaEspecifico){
-    }
+    
 
 
 
@@ -42,7 +46,7 @@ public class FrecuenciaSemanal implements Frecuencia {
 
 	//     }
 
-	}
+	
 
 
 
