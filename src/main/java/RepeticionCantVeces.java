@@ -11,16 +11,20 @@ public class RepeticionCantVeces implements Repeticion{
     }
 
     public LocalDateTime finDeLaRepeticion(LocalDateTime fechaComienzo, int cadaCuantosDias) {
-	int cantidadDeDiasASumar = cadaCuantosDias + this.cantidadDeRepeticiones; //Esto nos da la cantidad de dias extra que para llegar al ultimo dia
+	//Esto nos da la cantidad de dias extra que para llegar al ultimo dia
+	int cantidadDeDiasASumar = cadaCuantosDias + this.cantidadDeRepeticiones; 
 
-	LocalDateTime fechaFinal = fechaComienzo.plusDays(cantidadDeDiasASumar); //Le sumamos esos dias a la fecha que nos pasaron
+	//Le sumamos esos dias a la fecha que nos pasaron
+	LocalDateTime fechaFinal = fechaComienzo.plusDays(cantidadDeDiasASumar);
+
 	
 	return fechaFinal;
     }
 
     public LocalDateTime finDeLaRepeticion(LocalDateTime fechaComienzo, DayOfWeek[] diasDeLaSemana) {
 
-	//La idea de este for loop es que te diga en que dia DE LA SEMANA cae el ultimo dia
+	//La idea de este for loop es que te diga en que dia DE LA SEMANA cae 
+	//el ultimo dia
 	int diaDeLaSemana = 0;
 	int cantidadDeRepeticiones = 1;
 	for (int i = 0; i < this.cantidadDeRepeticiones; i ++) {
@@ -37,12 +41,17 @@ public class RepeticionCantVeces implements Repeticion{
 	LocalDateTime offsetDiaDeLaSemana = fechaComienzo;
 	DayOfWeek diaDeLaSemanaDeInicio = diasDeLaSemana[diaDeLaSemana];
 
-	while (offsetDiaDeLaSemana.getDayOfWeek() != diaDeLaSemanaDeInicio) { //Cuando estos dos sean iguales significa que llegamos al dia mas proximo con el dia de la semana que necesitamos
-	    offsetDiaDeLaSemana = offsetDiaDeLaSemana.plusDays(1); //Le sumamos esos dias a la fecha que nos pasaron
+	//Cuando estos dos sean iguales significa que llegamos al dia mas 
+	//proximo con el dia de la semana que necesitamos
+	while (offsetDiaDeLaSemana.getDayOfWeek() != diaDeLaSemanaDeInicio) { 
+	    offsetDiaDeLaSemana = offsetDiaDeLaSemana.plusDays(1);
 	}
 
 	LocalDateTime fechaFinal;
-	fechaFinal = offsetDiaDeLaSemana.plusDays(cantidadDeRepeticiones * 7); //7 Harcodeado porque hay 7 dias entre dos fechas con el mismo dia de la semana (ej: 7 dias entre el martes 4 y martes 11)
+
+	//7 Harcodeado porque hay 7 dias entre dos fechas con el mismo dia de 
+	//la semana (ej: 7 dias entre el martes 4 y martes 11)
+	fechaFinal = offsetDiaDeLaSemana.plusDays(cantidadDeRepeticiones * 7); 
 	
 	return fechaFinal;
 

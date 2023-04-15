@@ -1,5 +1,4 @@
 import java.time.LocalDateTime;
-// import java.time.temporal.ChronoUnit; //Libreria para formatear dias en LocalDateTime
 import java.util.ArrayList;
 
 public class Evento extends Activities {
@@ -38,10 +37,13 @@ public class Evento extends Activities {
 
 	public boolean caeElDia(LocalDateTime diaEspecifico){
 	    if (diaEspecifico.isAfter(this.ultimaDiaDelEvento) == true) {
-		return false; //Si cae DESPUES del ultimo dia, entonces ni nos molestamos en calcular si  la frecuencia hace que caiga el dia que me piden
+		return false; //Si cae DESPUES del ultimo dia, entonces ni nos 
+			      //molestamos en calcular si  la frecuencia hace 
+			      //que caiga el dia que me piden
 		}
 
-	    boolean caeElDiaPedido = this.frecuencia.dadoComienzoCaeElDia(this.arranque, diaEspecifico); //Averiguo si la frecuencia hace que el evento caiga el dia pedido
+	    //Averiguo si la frecuencia hace que el evento caiga el dia pedido
+	    boolean caeElDiaPedido = this.frecuencia.dadoComienzoCaeElDia(this.arranque, diaEspecifico); 
 	    return caeElDiaPedido;
 	}
 
