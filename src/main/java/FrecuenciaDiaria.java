@@ -21,7 +21,7 @@ public class FrecuenciaDiaria implements Frecuencia{
     }
 
     public LocalDateTime finDeLasRepeticionesDadaFecha(LocalDateTime fechaComienzo){
-	this.repeticion.finDeLasRepeticionesDadaFechaREPETICION(fechaComienzo, this.cadaCuantosDias);
+	this.repeticion.finDeLaRepeticion(fechaComienzo, this.cadaCuantosDias);
 
     };
     

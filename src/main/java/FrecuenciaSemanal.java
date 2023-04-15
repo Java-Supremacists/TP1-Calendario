@@ -25,7 +25,7 @@ public class FrecuenciaSemanal implements Frecuencia {
 
 
     public LocalDateTime finDeLasRepeticionesDadaFecha(LocalDateTime fechaComienzo){
-	this.repeticion.finDeLasRepeticionesDadaFechaREPETICION(fechaComienzo, this.diasDeLaSemana);
+	this.repeticion.finDeLaRepeticion(fechaComienzo, this.diasDeLaSemana);
     }
 
     public boolean dadoComienzoCaeElDia(LocalDateTime fechaComienzo, LocalDateTime diaEspecifico){

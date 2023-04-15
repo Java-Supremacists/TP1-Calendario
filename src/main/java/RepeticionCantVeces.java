@@ -4,7 +4,7 @@ import java.time.DayOfWeek;
 /**
  * RepeticionCantVeces
  */
-public class RepeticionCantVeces {
+public class RepeticionCantVeces implements Repeticion{
     private int cantidadDeRepeticiones;
 
     private LocalDateTime fechaFinRepeticion;
@@ -13,7 +13,7 @@ public class RepeticionCantVeces {
 	this.cantidadDeRepeticiones = cantidadDeRepeticiones;
     }
 
-    public LocalDateTime finDeLasRepeticionesDadaFechaREPETICION(LocalDateTime fechaComienzo, int cadaCuantosDias) {
+    public LocalDateTime finDeLaRepeticion(LocalDateTime fechaComienzo, int cadaCuantosDias) {
 	int cantidadDeDiasASumar = cadaCuantosDias + this.cantidadDeRepeticiones; //Esto nos da la cantidad de dias extra que para llegar al ultimo dia
 
 	LocalDateTime fechaFinal = fechaComienzo.plusDays(cantidadDeDiasASumar); //Le sumamos esos dias a la fecha que nos pasaron
@@ -21,7 +21,7 @@ public class RepeticionCantVeces {
 	return fechaFinal;
     }
 
-    public LocalDateTime finDeLasRepeticionesDadaFechaREPETICION(LocalDateTime fechaComienzo, DayOfWeek[] diasDeLaSemana) {
+    public LocalDateTime finDeLaRepeticion(LocalDateTime fechaComienzo, DayOfWeek[] diasDeLaSemana) {
 
 	//La idea de este for loop es que te diga en que dia DE LA SEMANA cae el
 	//ultimo dia
@@ -36,7 +36,6 @@ public class RepeticionCantVeces {
 	}
 	//Esto tal vez se puede hacer con un modulo
 	//TODO: Conseguir a alguien inteligente que sepa hacer esto con un modulo
-	
 
 	
 	LocalDateTime offsetDiaDeLaSemana = fechaComienzo;
@@ -52,54 +51,14 @@ public class RepeticionCantVeces {
 	return fechaFinal;
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public boolean laRepeticionSigue(LocalDateTime fechaComienzo, LocalDateTime diaEspecifico) {
-	long cantDiasHastaDiaPedido = fechaComienzo.until(diaEspecifico, ChronoUnit.DAYS); //Se fija cuantos dias hay hasta el dia pasado como argumento
+    // public boolean laRepeticionSigue(LocalDateTime fechaComienzo, LocalDateTime diaEspecifico) {
+	// long cantDiasHastaDiaPedido = fechaComienzo.until(diaEspecifico, ChronoUnit.DAYS); //Se fija cuantos dias hay hasta el dia pasado como argumento
 	
-	if (cantidadDeRepeticionesRequeridas > cantidadDeRepeticiones) {
-	    return false; //Si el evento necesita mas repeticiones de las que tengo disponibles, no cae ese dia
-	}
+	// if (cantidadDeRepeticionesRequeridas > cantidadDeRepeticiones) {
+	    // return false; //Si el evento necesita mas repeticiones de las que tengo disponibles, no cae ese dia
+	// }
 
-	return true;
-    }
-
-
-
-
-
+	// return true;
+    // }
 	
 }

@@ -1,9 +1,12 @@
 import java.time.LocalDateTime;
+import java.time.DayOfWeek;
 /**
  * Repeticion
  */
 public interface Repeticion {
-    public boolean laRepeticionTermina(LocalDateTime fechaCominezo, LocalDateTime fechaFin);
+    public LocalDateTime finDeLaRepeticion(LocalDateTime fechaCominezo, int cadaCuantosDias);
+
+    public LocalDateTime finDeLaRepeticion(LocalDateTime fechaCominezo, DayOfWeek[] diasDeLaSemana);
 
 
 	
