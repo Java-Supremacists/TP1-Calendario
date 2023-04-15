@@ -25,20 +25,14 @@ public class FrecuenciaSemanal implements Frecuencia {
 
 
     public LocalDateTime finDeLasRepeticionesDadaFecha(LocalDateTime fechaComienzo){
-	this.repeticion.finDeLaRepeticion(fechaComienzo, this.diasDeLaSemana);
+	LocalDateTime finDeLaRepeticion = this.repeticion.finDeLaRepeticion(fechaComienzo, this.diasDeLaSemana);
+	return finDeLaRepeticion;
     }
 
     public boolean dadoComienzoCaeElDia(LocalDateTime fechaComienzo, LocalDateTime diaEspecifico){
-    
-
-
-
-
-
-
 	// String diasDeLaSemanaDelDiaEspecifico = diaEspecifico.getDayOfWeek().getDisplayName(TextStyle.SHORT,Locale.ENGLISH);
 	// boolean esUnDiaDeRepeticion = Arrays.asList(this.diasDeLaSemana).contains(diasDeLaSemanaDelDiaEspecifico); //Va a buscar si el dia de la semana del evento cae en uno de los dias repetidos
-	int diferenciaEnDiasDeSemana = fechaComienzo.getDayOfWeek().getValue() - diaEspecifico.getDayOfWeek().getValue();
+	// int diferenciaEnDiasDeSemana = fechaComienzo.getDayOfWeek().getValue() - diaEspecifico.getDayOfWeek().getValue();
 
 	
 	//
@@ -48,12 +42,20 @@ public class FrecuenciaSemanal implements Frecuencia {
 	// 	fechaComienzoPivote = 
 
 	//     }
+	DayOfWeek diasDeLaSemanaDelDiaEspecifico = diaEspecifico.getDayOfWeek();
 
-	
+	boolean estaEnElDiaDeLaSemana = false;
+	//Seguro esto se puede hacer con un keyword de java, como ene python que
+	//podes hacer if value in array
+	//TODO: Conseguir a alguien inteligente que sepa de Java para que ponga las palabras magicas del lenguaje
+	for (int i = 0; i < this.diasDeLaSemana.length; i++) {
+	    if (this.diasDeLaSemana[i] == diasDeLaSemanaDelDiaEspecifico) {
+		estaEnElDiaDeLaSemana = true;
+		break;
+	    }
+	}
 
-
-
-	return true;
+	return estaEnElDiaDeLaSemana;
     }
 	
 }
