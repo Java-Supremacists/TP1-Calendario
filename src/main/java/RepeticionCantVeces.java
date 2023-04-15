@@ -1,4 +1,4 @@
-import java.time.temporal.ChronoUnit; //Libreria para formatear dias en LocalDateTime
+// import java.time.temporal.ChronoUnit; //Libreria para formatear dias en LocalDateTime
 import java.time.LocalDateTime;
 import java.time.DayOfWeek;
 /**
@@ -7,9 +7,7 @@ import java.time.DayOfWeek;
 public class RepeticionCantVeces implements Repeticion{
     private int cantidadDeRepeticiones;
 
-    private LocalDateTime fechaFinRepeticion;
-    
-    public RepeticionCantVeces(int cantidadDeRepeticiones, LocalDateTime diaComienzo) {
+    public RepeticionCantVeces(int cantidadDeRepeticiones) {
 	this.cantidadDeRepeticiones = cantidadDeRepeticiones;
     }
 
