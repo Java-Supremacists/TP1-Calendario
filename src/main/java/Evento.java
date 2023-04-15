@@ -4,13 +4,12 @@ import java.util.ArrayList;
 
 public class Evento extends Activities {
 	//--------- Atributos ---------
+
 	private LocalDateTime arranque;
 	private LocalDateTime termina;
 	private LocalDateTime ultimaDiaDelEvento;
-	// private final int frecuencia;
-
 	private Frecuencia frecuencia;
-	// private Repeticion repeticion;
+	
 	//--------- Atributos ---------
 
 	//--------- Constructores ---------
@@ -22,16 +21,6 @@ public class Evento extends Activities {
 
 	    this.ultimaDiaDelEvento = this.frecuencia.finDeLasRepeticionesDadaFecha(this.arranque);
 	}
-
-
-	//Constructor con frecuencia
-	// public Evento(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete, LocalDateTime arranque, LocalDateTime termina, String frecuencia) {
-	// 	super(name, description, alarm, isComplete);
-	// 	this.arranque = arranque;
-	// 	this.termina = termina;
-	// 	this.frecuencia = repeticion;
-	// }
-	//--------- Constructores ---------
 
 	//--------- Metodos ---------
 	@Override

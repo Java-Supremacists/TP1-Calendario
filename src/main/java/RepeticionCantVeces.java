@@ -1,4 +1,3 @@
-// import java.time.temporal.ChronoUnit; //Libreria para formatear dias en LocalDateTime
 import java.time.LocalDateTime;
 import java.time.DayOfWeek;
 /**
@@ -21,8 +20,7 @@ public class RepeticionCantVeces implements Repeticion{
 
     public LocalDateTime finDeLaRepeticion(LocalDateTime fechaComienzo, DayOfWeek[] diasDeLaSemana) {
 
-	//La idea de este for loop es que te diga en que dia DE LA SEMANA cae el
-	//ultimo dia
+	//La idea de este for loop es que te diga en que dia DE LA SEMANA cae el ultimo dia
 	int diaDeLaSemana = 0;
 	int cantidadDeRepeticiones = 1;
 	for (int i = 0; i < this.cantidadDeRepeticiones; i ++) {
@@ -49,14 +47,5 @@ public class RepeticionCantVeces implements Repeticion{
 	return fechaFinal;
 
     }
-    // public boolean laRepeticionSigue(LocalDateTime fechaComienzo, LocalDateTime diaEspecifico) {
-	// long cantDiasHastaDiaPedido = fechaComienzo.until(diaEspecifico, ChronoUnit.DAYS); //Se fija cuantos dias hay hasta el dia pasado como argumento
-	
-	// if (cantidadDeRepeticionesRequeridas > cantidadDeRepeticiones) {
-	    // return false; //Si el evento necesita mas repeticiones de las que tengo disponibles, no cae ese dia
-	// }
-
-	// return true;
-    // }
 	
 }
