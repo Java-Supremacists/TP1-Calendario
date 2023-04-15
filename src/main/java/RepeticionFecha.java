@@ -1,5 +1,6 @@
 import java.time.temporal.ChronoUnit; //Libreria para formatear dias en LocalDateTime
 import java.time.LocalDateTime;
+import java.time.DayOfWeek;
 /**
  * RepeticionCantVeces
  */
@@ -23,5 +24,9 @@ public class RepeticionFecha{
 	
     }
 
+    public LocalDateTime finDeLasRepeticionesDadaFechaREPETICION(LocalDateTime fechaComienzo, DayOfWeek[] diasDeLaSemana) {
+	return this.fechaFinRepeticion;
+
+    }
 	
 }

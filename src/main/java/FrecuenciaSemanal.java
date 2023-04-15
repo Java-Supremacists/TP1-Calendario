@@ -3,26 +3,29 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit; //Libreria para formatear dias en LocalDateTime
 import java.util.Locale; //Libreria que indica el output del idioma del dia de la semana
 import java.time.format.TextStyle; //Libreria para darle formato al dia de la semana
+import java.time.DayOfWeek;
+
+
 /**
  * FrecuenciaSemanal
  */
 public class FrecuenciaSemanal implements Frecuencia {
 
-    private String[] diasDeLaSemana; //arrays de dias de la semana en ingles
+    private DayOfWeek[] diasDeLaSemana; //arrays de dias de la semana en ingles. Estan en orden y el primer dia que aparece es el mismo dia que el comienzo del evento
     // private Repeticion repeticion;
-    private LocalDateTime finFrecuencia;
+    // private LocalDateTime finFrecuencia;
+    private Repeticion repeticion;
 
-    public FrecuenciaSemanal(int cadaCuantosDias, Repeticion repeticion){
+    public FrecuenciaSemanal(DayOfWeek[] diasDeLaSemana, Repeticion repeticion){
 	// this.tipo = tipo;
 	// this.fin = fin;
-	this.cadaCuantosDias = cadaCuantosDias;
+	this.diasDeLaSemana = diasDeLaSemana;
 	this.repeticion = repeticion;
-
     }
 
 
     public LocalDateTime finDeLasRepeticionesDadaFecha(LocalDateTime fechaComienzo){
-	return fechaComienzo;
+	this.repeticion.finDeLasRepeticionesDadaFechaREPETICION(fechaComienzo, this.diasDeLaSemana);
     }
 
     public boolean dadoComienzoCaeElDia(LocalDateTime fechaComienzo, LocalDateTime diaEspecifico){
