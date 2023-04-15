@@ -12,7 +12,7 @@ public class RepeticionCantVeces implements Repeticion{
 
     public LocalDateTime finDeLaRepeticion(LocalDateTime fechaComienzo, int cadaCuantosDias) {
 	//Esto nos da la cantidad de dias extra que para llegar al ultimo dia
-	int cantidadDeDiasASumar = cadaCuantosDias + this.cantidadDeRepeticiones; 
+	int cantidadDeDiasASumar = cadaCuantosDias * this.cantidadDeRepeticiones; 
 
 	//Le sumamos esos dias a la fecha que nos pasaron
 	LocalDateTime fechaFinal = fechaComienzo.plusDays(cantidadDeDiasASumar);
