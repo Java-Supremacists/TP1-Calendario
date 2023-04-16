@@ -55,11 +55,9 @@ public class RepeticionCantVeces implements Repeticion{
 	}
 
 
-	LocalDateTime fechaFinal;
-
 	//7 Harcodeado porque hay 7 dias entre dos fechas con el mismo dia de 
 	//la semana (ej: 7 dias entre el martes 4 y martes 11)
-	fechaFinal = offsetDiaDeLaSemana.plusDays(cantidadDeRepeticionesSemanales * 7); 
+	LocalDateTime fechaFinal = offsetDiaDeLaSemana.plusDays(cantidadDeRepeticionesSemanales * 7); 
 	
 	return fechaFinal;
     }
