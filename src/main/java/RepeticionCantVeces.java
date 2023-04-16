@@ -11,9 +11,9 @@ public class RepeticionCantVeces implements Repeticion{
     }
 
     public LocalDateTime finDeLaRepeticion(LocalDateTime fechaComienzo, int cadaCuantosDias) {
-	//Esto nos da la cantidad de dias extra que para llegar al ultimo dia
-	//Le restamos uno a cantidadDeRepeticionesMaximas porque el dia en el que estamos
-	//cuenta como una repeticion
+	//Esto nos da la cantidad de dias extra para llegar al ultimo dia
+	//Le restamos uno a cantidadDeRepeticionesMaximas porque el dia en el 
+	//que estamos cuenta como una repeticion
 	int cantidadDeDiasASumar = cadaCuantosDias * (this.cantidadDeRepeticionesMaximas - 1);
 
 	//Le sumamos esos dias a la fecha que nos pasaron
@@ -40,7 +40,6 @@ public class RepeticionCantVeces implements Repeticion{
 		diaDeLaSemana = 0;
 		cantidadDeRepeticionesSemanales++;
 	    }
-
 	}
 	//Esto de aca arriba tal vez se puede hacer con un modulo
 	//TODO: Conseguir a alguien inteligente que sepa hacer esto con un modulo

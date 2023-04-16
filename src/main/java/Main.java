@@ -15,7 +15,7 @@ public class Main {
 	// System.out.println(cal.tituloSegundaActividad());
 
 	LocalDateTime fechaComienzoRepeticion = LocalDateTime.of(2023, 4, 4, 7, 45, 55);
-	int maximaCantidadDeRepeticiones = 2;
+	int maximaCantidadDeRepeticiones = 4;
 	DayOfWeek[] diasDeLaSemana = {DayOfWeek.TUESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY}; 
 	RepeticionCantVeces repeticionCantVecesDePrueba = new RepeticionCantVeces(maximaCantidadDeRepeticiones);
 
