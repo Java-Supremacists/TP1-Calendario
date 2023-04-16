@@ -25,8 +25,6 @@ public class RepeticionCantVeces implements Repeticion{
 
     public LocalDateTime finDeLaRepeticion(LocalDateTime fechaComienzo, DayOfWeek[] diasDeLaSemana) {
 
-	System.out.println(fechaComienzo);
-
 	//La idea de este for loop es que te diga en que dia DE LA SEMANA cae 
 	//el ultimo dia
 	int diaDeLaSemana = -1; //Arranca en -1 porque lo primero que hace es 
@@ -39,25 +37,16 @@ public class RepeticionCantVeces implements Repeticion{
 
 	    diaDeLaSemana++;
 	    if (diaDeLaSemana == diasDeLaSemana.length ) {
-		// System.out.println("ENTRE AL IF");
 		diaDeLaSemana = 0;
 		cantidadDeRepeticionesSemanales++;
-		// continue;
 	    }
-	    // System.out.println(diaDeLaSemana);
 
 	}
 	//Esto tal vez se puede hacer con un modulo
 	//TODO: Conseguir a alguien inteligente que sepa hacer esto con un modulo
 
-	
-	// System.out.println(diaDeLaSemana);
-
 	LocalDateTime offsetDiaDeLaSemana = fechaComienzo;
 	DayOfWeek diaDeLaSemanaDeInicio = diasDeLaSemana[diaDeLaSemana];
-
-
-	// System.out.println(diaDeLaSemanaDeInicio);
 
 	//Cuando estos dos sean iguales significa que llegamos al dia mas 
 	//proximo con el dia de la semana que necesitamos
@@ -72,14 +61,7 @@ public class RepeticionCantVeces implements Repeticion{
 	//la semana (ej: 7 dias entre el martes 4 y martes 11)
 	fechaFinal = offsetDiaDeLaSemana.plusDays(cantidadDeRepeticionesSemanales * 7); 
 	
-	System.out.println(fechaFinal);
 	return fechaFinal;
-
-
-	//RETURN DE DEBUGEO
-	//TODO: Borrar al terminar
-	// return fechaComienzo;
-
     }
 	
 }
