@@ -1,4 +1,5 @@
-// import Calendario;
+import java.time.LocalDateTime;
+import java.time.DayOfWeek;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,5 +13,15 @@ public class Main {
 	// var cal = new Calendario("Nombre",array);
 	// System.out.println(cal.tituloPrimeraActividad());
 	// System.out.println(cal.tituloSegundaActividad());
+
+	LocalDateTime fechaComienzoRepeticion = LocalDateTime.of(2023, 4, 4, 7, 45, 55);
+	int maximaCantidadDeRepeticiones = 2;
+	DayOfWeek[] diasDeLaSemana = {DayOfWeek.TUESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY}; 
+	RepeticionCantVeces repeticionCantVecesDePrueba = new RepeticionCantVeces(maximaCantidadDeRepeticiones);
+
+	// Esta fecha es la que cae si haces la cuenta manualmente
+	// (Sumarle 2 dias 4 veces a fechaComienzoRepeticion)
+	LocalDateTime fechaFinRepeticion = LocalDateTime.of(2023, 4, 13, 7, 45, 55);
+	repeticionCantVecesDePrueba.finDeLaRepeticion(fechaComienzoRepeticion, diasDeLaSemana);
     }
 }

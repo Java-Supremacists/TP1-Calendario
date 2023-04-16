@@ -31,7 +31,7 @@ public class RepeticionCantVeces implements Repeticion{
 	//el ultimo dia
 	int diaDeLaSemana = -1; //Arranca en -1 porque lo primero que hace es 
 				//sumar, y tiene que arrancar siendo 0
-	int cantidadDeRepeticionesSemanales = 1;
+	int cantidadDeRepeticionesSemanales = 0;
 	for (int i = 0; i < this.cantidadDeRepeticionesMaximas; i ++) {
 	    //Cuando esto se cumple, significa que dio una vuelta completa a la
 	    //cantidad de dias. Le sumo un dia porque el if "le tiene que ganar"
@@ -65,20 +65,20 @@ public class RepeticionCantVeces implements Repeticion{
 	    offsetDiaDeLaSemana = offsetDiaDeLaSemana.plusDays(1);
 	}
 
-	System.out.println(offsetDiaDeLaSemana);
 
-	//LocalDateTime fechaFinal;
+	LocalDateTime fechaFinal;
 
-	////7 Harcodeado porque hay 7 dias entre dos fechas con el mismo dia de 
-	////la semana (ej: 7 dias entre el martes 4 y martes 11)
-	//fechaFinal = offsetDiaDeLaSemana.plusDays(cantidadDeRepeticionesMaximas * 7); 
+	//7 Harcodeado porque hay 7 dias entre dos fechas con el mismo dia de 
+	//la semana (ej: 7 dias entre el martes 4 y martes 11)
+	fechaFinal = offsetDiaDeLaSemana.plusDays(cantidadDeRepeticionesSemanales * 7); 
 	
-	//return fechaFinal;
+	System.out.println(fechaFinal);
+	return fechaFinal;
 
 
 	//RETURN DE DEBUGEO
 	//TODO: Borrar al terminar
-	return fechaComienzo;
+	// return fechaComienzo;
 
     }
 	
