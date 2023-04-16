@@ -42,7 +42,7 @@ public class RepeticionCantVeces implements Repeticion{
 	    }
 
 	}
-	//Esto tal vez se puede hacer con un modulo
+	//Esto de aca arriba tal vez se puede hacer con un modulo
 	//TODO: Conseguir a alguien inteligente que sepa hacer esto con un modulo
 
 	LocalDateTime offsetDiaDeLaSemana = fechaComienzo;
