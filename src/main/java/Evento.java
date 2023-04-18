@@ -18,7 +18,7 @@ public class Evento extends Activities {
 	    this.termina = termina;
 	    this.frecuencia = frecuencia;
 
-	    this.ultimaDiaDelEvento = this.frecuencia.finDeLasRepeticionesDadaFecha(this.arranque);
+	    // this.ultimaDiaDelEvento = this.frecuencia.finDeLasRepeticionesDadaFecha(this.arranque);
 	}
 
 	//--------- Metodos ---------
@@ -36,11 +36,11 @@ public class Evento extends Activities {
 	}
 
 	public boolean caeElDia(LocalDateTime diaEspecifico){
-	    if (diaEspecifico.isAfter(this.ultimaDiaDelEvento) == true) {
-		return false; //Si cae DESPUES del ultimo dia, entonces ni nos 
-			      //molestamos en calcular si  la frecuencia hace 
-			      //que caiga el dia que me piden
-		}
+	    //if (diaEspecifico.isAfter(this.ultimaDiaDelEvento) == true) {
+		//return false; //Si cae DESPUES del ultimo dia, entonces ni nos 
+			      ////molestamos en calcular si  la frecuencia hace 
+			      ////que caiga el dia que me piden
+		//}
 
 	    //Averiguo si la frecuencia hace que el evento caiga el dia pedido
 	    boolean caeElDiaPedido = this.frecuencia.dadoComienzoCaeElDia(this.arranque, diaEspecifico); 

@@ -60,5 +60,11 @@ public class RepeticionCantVeces implements Repeticion{
 	
 	return fechaFinal;
     }
+
+    @Override
+    public boolean estaDentroDeRepeticiones(LocalDateTime fechaPedida) {
+    	// TODO Auto-generated method stub
+    	return false;
+    }
 	
 }
