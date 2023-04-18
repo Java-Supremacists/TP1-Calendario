@@ -6,7 +6,7 @@ public class Evento extends Activities {
 
 	private LocalDateTime arranque;
 	private LocalDateTime termina;
-	private LocalDateTime ultimaDiaDelEvento;
+	// private LocalDateTime ultimaDiaDelEvento;
 	private Frecuencia frecuencia;
 	
 	//--------- Atributos ---------
