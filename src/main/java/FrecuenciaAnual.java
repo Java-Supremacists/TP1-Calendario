@@ -14,10 +14,6 @@ public class FrecuenciaAnual implements Frecuencia {
 
     }
 
-    // Dado un dia de comienzo y un dia en especifico, te dice si hay manera 
-    // de que la repeticion haga que "caiga" en ese dia
-    // Ej: Si tenes repeticion cada 2 dias, tu comienzo es el 10 y tu fin el 12,
-    // devuelve True. Si fuese cada 3 dias y le pasas los mismos dias devuelve False
     public boolean dadoComienzoCaeElDia(LocalDateTime fechaComienzo, LocalDateTime diaEspecifico){
 	if (this.repeticion.estaDentroDeRepeticiones(diaEspecifico) == false) {
 	    return false; //Si cae DESPUES del ultimo dia, entonces ni nos 
