@@ -10,19 +10,6 @@ public class RepeticionFecha implements Repeticion{
 	this.fechaFinRepeticion = fechaFinRepeticion;
     }
 
-    //Esta funcion ignora todos los argumentos que le pasas, esto esta diseniado
-    //para que la funcion pueda ser polimorfica con la clase RepeticionCantVeces
-    //No me parece ideal, pero creo que queda mejor que un par de "ifs"
-    // public LocalDateTime finDeLaRepeticion(LocalDateTime fechaComienzo, int cadaCuantosDias) {
-	// return this.fechaFinRepeticion;
-	
-    // }
-
-    // public LocalDateTime finDeLaRepeticion(LocalDateTime fechaComienzo, DayOfWeek[] diasDeLaSemana) {
-	// return this.fechaFinRepeticion;
-
-    // }
-
     @Override
     public boolean estaDentroDeRepeticiones(LocalDateTime fechaPedida) {
 	boolean estaDespuesDelLimite = fechaPedida.isBefore(this.fechaFinRepeticion);

@@ -4,33 +4,29 @@ import java.time.DayOfWeek;
  * RepeticionCantVeces
  */
 public class RepeticionCantVeces implements Repeticion{
-    private int cantidadDeRepeticionesMaximas;
+    private LocalDateTime fechaFinRepeticion;
+    // private int cantidadDeRepeticionesMaximas;
 
-    public RepeticionCantVeces(int cantidadDeRepeticionesMaximas) {
-	this.cantidadDeRepeticionesMaximas = cantidadDeRepeticionesMaximas;
-    }
-
-    public LocalDateTime finDeLaRepeticion(LocalDateTime fechaComienzo, int cadaCuantosDias) {
+    public RepeticionCantVeces(int cantidadDeRepeticionesMaximas, int cadaCuantosDias, LocalDateTime fechaComienzo) {
 	//Esto nos da la cantidad de dias extra para llegar al ultimo dia
 	//Le restamos uno a cantidadDeRepeticionesMaximas porque el dia en el 
 	//que estamos cuenta como una repeticion
-	int cantidadDeDiasASumar = cadaCuantosDias * (this.cantidadDeRepeticionesMaximas - 1);
+	int cantidadDeDiasASumar = cadaCuantosDias * (cantidadDeRepeticionesMaximas - 1);
 
 	//Le sumamos esos dias a la fecha que nos pasaron
 	LocalDateTime fechaFinal = fechaComienzo.plusDays(cantidadDeDiasASumar);
 
 	
-	return fechaFinal;
+	this.fechaFinRepeticion = fechaFinal;
     }
 
-    public LocalDateTime finDeLaRepeticion(LocalDateTime fechaComienzo, DayOfWeek[] diasDeLaSemana) {
-
+    public RepeticionCantVeces(int cantidadDeRepeticionesMaximas, LocalDateTime fechaComienzo, DayOfWeek[] diasDeLaSemana) {
 	//La idea de este for loop es que te diga en que dia DE LA SEMANA cae 
 	//el ultimo dia
 	int diaDeLaSemana = -1; //Arranca en -1 porque lo primero que hace es 
 				//sumar, y tiene que arrancar siendo 0
 	int cantidadDeRepeticionesSemanales = 0;
-	for (int i = 0; i < this.cantidadDeRepeticionesMaximas; i ++) {
+	for (int i = 0; i < cantidadDeRepeticionesMaximas; i ++) {
 	    //Cuando esto se cumple, significa que dio una vuelta completa a la
 	    //cantidad de dias. Le sumo un dia porque el if "le tiene que ganar"
 	    //al for en la siguiente iteracion
@@ -58,13 +54,13 @@ public class RepeticionCantVeces implements Repeticion{
 	//la semana (ej: 7 dias entre el martes 4 y martes 11)
 	LocalDateTime fechaFinal = offsetDiaDeLaSemana.plusDays(cantidadDeRepeticionesSemanales * 7); 
 	
-	return fechaFinal;
+	this.fechaFinRepeticion = fechaFinal;
     }
 
     @Override
     public boolean estaDentroDeRepeticiones(LocalDateTime fechaPedida) {
-    	// TODO Auto-generated method stub
-    	return false;
+	boolean estaDespuesDelLimite = fechaPedida.isBefore(this.fechaFinRepeticion);
+    	return estaDespuesDelLimite;
     }
 	
 }
