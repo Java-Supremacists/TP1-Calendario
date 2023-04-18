@@ -1,7 +1,8 @@
+import java.time.LocalDateTime;
 /**
  * RepeticionInfinita
  */
-public class RepeticionInfinita {
+public class RepeticionInfinita implements Repeticion{
 
     public RepeticionInfinita() {
     }
