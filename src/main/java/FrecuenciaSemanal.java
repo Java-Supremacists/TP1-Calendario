@@ -19,12 +19,15 @@ public class FrecuenciaSemanal implements Frecuencia {
     }
 
 
-    // public LocalDateTime finDeLasRepeticionesDadaFecha(LocalDateTime fechaComienzo){
-	// LocalDateTime finDeLaRepeticion = this.repeticion.finDeLaRepeticion(fechaComienzo, this.diasDeLaSemana);
-	// return finDeLaRepeticion;
-    // }
-
     public boolean dadoComienzoCaeElDia(LocalDateTime fechaComienzo, LocalDateTime diaEspecifico){
+	if (this.repeticion.estaDentroDeRepeticiones(diaEspecifico) == false) {
+	    return false; //Si cae DESPUES del ultimo dia, entonces ni nos 
+			  //molestamos en calcular si  la frecuencia hace 
+			  //que caiga el dia que me piden
+	}
+
+
+
 	//Averiguo el dia de la semana del evento que me piden
 	DayOfWeek diasDeLaSemanaDelDiaEspecifico = diaEspecifico.getDayOfWeek();
 
