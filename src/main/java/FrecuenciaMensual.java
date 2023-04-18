@@ -8,8 +8,7 @@ public class FrecuenciaMensual implements Frecuencia {
     private final int cadaCuantosDias = 30; //Cada 3 dias, cada 5 dias
     private Repeticion repeticion;
 
-    public FrecuenciaAnual(int cadaCuantosDias, Repeticion repeticion){
-	// this.cadaCuantosDias = cadaCuantosDias;
+    public FrecuenciaMensual(Repeticion repeticion){
 	this.repeticion = repeticion;
 
     }
