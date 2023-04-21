@@ -80,11 +80,56 @@ public class AlarmasTest {
     public void agregarAlarmasIdenticas() {
         Alarmas a1 = new Alarmas();
         Alarmas a2 = new Alarmas(true);
+
+
+
     }
     @Test
     public void agregarMuchasAlarmas() {
         Alarmas a1 = new Alarmas();
         Alarmas a2 = new Alarmas(true);
+        LocalDateTime agregar;
+        for (int i = 0 ; i < 1000 ; i++ ){
+            agregar = LocalDateTime.of(3022-i,4,24,23,59);
+
+            assertEquals(i,a1.size());
+            a1.agregarAlarma(agregar);
+            assertEquals(i+1,a1.size());
+            assertTrue(a1.existeAlarma(agregar));
+            assertTrue(a1.quedanAlarmas());
+            assertEquals(agregar,a1.primerAlarmaASonar());
+
+            a2.agregarAlarma(agregar);
+            assertTrue(a2.existeAlarma(agregar));
+            assertTrue(a2.quedanAlarmas());
+            assertEquals(agregar,a2.primerAlarmaASonar());
+        }
+        for (int j = 0 ; j < 1000 ; j++ ){
+            agregar = LocalDateTime.of(2023+j,4,24,23,59);
+
+            assertEquals(agregar,a1.primerAlarmaASonar());
+            assertTrue(a1.existeAlarma(agregar));
+            assertEquals(1000-j,a1.size());
+            a1.sonarAlarma();
+            assertEquals(999-j,a1.size());
+            assertFalse(a1.existeAlarma(agregar));
+            a1.agregarAlarma(agregar);
+            a1.eliminarAlarma(agregar);
+            assertEquals(999-j,a1.size());
+            assertFalse(a1.existeAlarma(agregar));
+
+            assertEquals(agregar,a2.primerAlarmaASonar());
+            assertTrue(a2.existeAlarma(agregar));
+            assertEquals(1000-j,a2.size());
+            a2.sonarAlarma();
+            assertEquals(999-j,a2.size());
+            assertFalse(a2.existeAlarma(agregar));
+            a2.agregarAlarma(agregar);
+            a2.eliminarAlarma(agregar);
+            assertEquals(999-j,a2.size());
+            assertFalse(a2.existeAlarma(agregar));
+
+        }
     }
 /*
 *
