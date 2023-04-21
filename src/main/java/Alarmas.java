@@ -1,3 +1,4 @@
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -29,7 +30,23 @@ public class Alarmas {
     //--------- Constructores ---------
 
     //--------- Metodos ---------
+    public int size(){
+        return alarmas.size();
+    }
+    public void actualizarAlarmas(Duration cantidadASumar){
+        if (cantidadASumar != null && alarmas.size()==0 && mantenerAlarmas){
+            for (LocalDateTime alarm : alarmasYaSonadas){
+                LocalDateTime nuevaAlarm = alarm.plus(cantidadASumar);
+                alarmasYaSonadas.remove(alarm);
+                alarmasYaSonadas.add(nuevaAlarm);
+            }
+            alarmas.addAll(alarmasYaSonadas);
+        }
+    }
     public void agregarAlarma(LocalDateTime alarmaParaAgregar){
+        if (alarmaParaAgregar== null){
+            return;
+        }
         alarmas.add(alarmaParaAgregar);
         if (mantenerAlarmas){
             alarmasYaSonadas.add(alarmaParaAgregar);
@@ -58,11 +75,14 @@ public class Alarmas {
         return alarmas.size()!= 0;
     }
     public boolean existeAlarma(LocalDateTime a1){
-        return alarmas.contains(a1) || alarmasYaSonadas.contains(a1);
+        return alarmas.contains(a1);
     }
     public void eliminarAlarma(LocalDateTime paraEliminar){
         alarmas.remove(paraEliminar);
         alarmasYaSonadas.remove(paraEliminar);
+        if (paraEliminar!= null && paraEliminar.equals(alarmaMasTemprana)){
+            alarmaMasTemprana = null;
+        }
     }
     public LocalDateTime primerAlarmaASonar(){
         if (alarmaMasTemprana == null){
@@ -77,14 +97,14 @@ public class Alarmas {
         return alarmaMasTemprana;
     }
     public void sonarAlarma(){
+        if (alarmaMasTemprana == null){
+            this.primerAlarmaASonar();
+        }
         if (alarmaMasTemprana != null){
             alarmas.remove(alarmaMasTemprana);
             alarmaMasTemprana = null;
-            if (alarmas.size()==0 && mantenerAlarmas){
-                alarmas.addAll(alarmasYaSonadas);
-            }
         }//else {
-            //error
+          //error
         //}
     }
 
