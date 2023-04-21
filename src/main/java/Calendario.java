@@ -33,6 +33,38 @@ public class Calendario {
         IDActual++"""
         return nuevoEvento.hashCode();
     }
+    public Activities obtenerActividad(int ID) throws IllegalAccessError{
+        for (Evento e: listaEventos){
+            if (e.hashCode() == ID)){
+                return e
+            }
+        }
+        for (Tarea t: listaEventos){
+            if (t.hashCode() == ID)){
+                return t
+            }
+        }
+        return null
+    }
+    public void modificarActividadNombre(int ID,String nombre){
+        var act = this.obtenerActividad(ID)
+        act.setName(nombre)
+    }
+    public void modificarActividadDescripcion(int ID, String descripcion){
+        var act = this.obtenerActividad(ID)
+        act.setDescription(descripcion)
+    }
+    public void modificarActividadEsDiaEntero(int ID, boolean esDiaCompleto){
+        var act = this.obtenerActividad(ID)
+        act.setComplete(esDiaCompleto)
+    }
+    public void modificarActividadAgregarAlarma(int ID, String duracion){
+        Duration tiempoAnterior = PlazoAnterior.elHorarioEstablecido(duracion)
+        var act = this.obtenerActividad(ID)
+        LocalDateTime arranca = act.cuandoEmpieza()
+        LocalDateTime alarma = arranca.minus(tiempoAnterior)
+        act.getAlarmas().agregarAlarma(alarma)
+    }
      */
     public int crearTarea(String nombre, String description, ArrayList<LocalDateTime> alarm,  boolean esDiaCompleto, LocalDateTime termina){
         Tarea nuevaTarea = new Tarea(nombre, description, alarm, esDiaCompleto, termina);
