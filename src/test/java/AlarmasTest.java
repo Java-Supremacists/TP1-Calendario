@@ -1,6 +1,7 @@
 import org.junit.Test;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -21,7 +22,6 @@ public class AlarmasTest {
         assertNull(a2.primerAlarmaASonar());
         assertEquals(0,a2.size());
     }
-
     @Test
     public void AlarmaConNull() {
         Alarmas a1 = new Alarmas();
@@ -41,9 +41,44 @@ public class AlarmasTest {
         a2.eliminarAlarma(null);
         a2.sonarAlarma();
     }
-
     @Test
-    public void agregarUnaAlarma() {
+    public void quedanAlarmas() {
+        Alarmas a1 = new Alarmas();
+        LocalDateTime agregar;
+        ArrayList<LocalDateTime> array = new ArrayList<>();
+
+        assertFalse(a1.quedanAlarmas());
+        a1.agregarAlarma(array);
+        assertFalse(a1.quedanAlarmas());
+        for (int i = 0 ; i < 1000 ; i++ ){
+            agregar = LocalDateTime.of(3022-i,4,24,23,59);
+            a1.agregarAlarma(agregar);
+            assertTrue(a1.quedanAlarmas());
+        }
+        for (int j = 0 ; j < 1000 ; j++ ){
+            agregar = LocalDateTime.of(2023+j,4,24,23,59);
+            assertTrue(a1.quedanAlarmas());
+            a1.eliminarAlarma(agregar);
+        }
+    }
+    @Test
+    public void primerAlarmaYSonarAlarma() {
+        Alarmas a1 = new Alarmas();
+        LocalDateTime agregar;
+        ArrayList<LocalDateTime> array = new ArrayList<>();
+        for (int i = 12 ; i > 0 ; i-- ){
+            agregar = LocalDateTime.of(i,i,i,i,i);
+            array.add(agregar);
+        }
+        a1.agregarAlarma(array);
+        for (int i = 1 ; i < 13 ; i++ ){
+            agregar = LocalDateTime.of(i,i,i,i,i);
+            assertEquals(agregar,a1.primerAlarmaASonar());
+            a1.sonarAlarma();
+        }
+    }
+    @Test
+    public void AgregarUnaAlarmaPruebaCompleta() {
         Alarmas a1 = new Alarmas();
         Alarmas a2 = new Alarmas(true);
         LocalDateTime agregar = LocalDateTime.of(2023,4,24,23,59);
@@ -77,15 +112,59 @@ public class AlarmasTest {
         assertNull(a2.primerAlarmaASonar());
     }
     @Test
-    public void agregarAlarmasIdenticas() {
+    public void AgregarArrayVacio() {
         Alarmas a1 = new Alarmas();
         Alarmas a2 = new Alarmas(true);
+        ArrayList<LocalDateTime> array = new ArrayList<>();
 
-
-
+        a1.agregarAlarma(array);
+        a2.agregarAlarma(array);
+        assertEquals(0,a1.size());
+        assertEquals(0,a2.size());
+        assertFalse(a1.existeAlarma(null));
+        assertFalse(a2.existeAlarma(null));
+        assertFalse(a1.quedanAlarmas());
+        assertFalse(a2.quedanAlarmas());
+        assertNull(a1.primerAlarmaASonar());
+        assertNull(a2.primerAlarmaASonar());
     }
     @Test
-    public void agregarMuchasAlarmas() {
+    public void AgregarArrayAlarmasCompleto() {
+        Alarmas a1 = new Alarmas();
+        Alarmas a2 = new Alarmas(true);
+        ArrayList<LocalDateTime> array = new ArrayList<>();
+        LocalDateTime agregar;
+
+        for (int i = 0 ; i < 1000 ; i++ ){
+            agregar = LocalDateTime.of(2023+i,4,24,23,59);
+            array.add(agregar);
+        }
+        a1.agregarAlarma(array);
+        a2.agregarAlarma(array);
+        assertEquals(1000,a1.size());
+        assertEquals(1000,a2.size());
+        assertTrue(a1.existeAlarma(LocalDateTime.of(2023,4,24,23,59)));
+        assertTrue(a2.existeAlarma(LocalDateTime.of(2023,4,24,23,59)));
+        assertTrue(a1.quedanAlarmas());
+        assertTrue(a2.quedanAlarmas());
+        assertEquals(LocalDateTime.of(2023,4,24,23,59),a1.primerAlarmaASonar());
+        assertEquals(LocalDateTime.of(2023,4,24,23,59),a2.primerAlarmaASonar());
+    }
+    @Test
+    public void AgregarAlarmasIdenticas() {
+        Alarmas a1 = new Alarmas();
+        Alarmas a2 = new Alarmas(true);
+        LocalDateTime agregar = LocalDateTime.of(2023,4,24,23,59);
+        for (int i = 0 ; i < 100 ; i++ ){
+            a1.agregarAlarma(agregar);
+            assertEquals(1,a1.size());
+
+            a2.agregarAlarma(agregar);
+            assertEquals(1,a2.size());
+        }
+    }
+    @Test
+    public void AgregarMuchasAlarmasPruebaCompleta() {
         Alarmas a1 = new Alarmas();
         Alarmas a2 = new Alarmas(true);
         LocalDateTime agregar;
@@ -131,27 +210,6 @@ public class AlarmasTest {
 
         }
     }
-/*
-*
-    @Test
-    public void quedanAlarmas() {
-    }
 
-    @Test
-    public void existeAlarma() {
-    }
 
-    @Test
-    public void eliminarAlarma() {
-    }
-
-    @Test
-    public void primerAlarmaASonar() {
-    }
-
-    @Test
-    public void sonarAlarma() {
-    }
-
- */
 }

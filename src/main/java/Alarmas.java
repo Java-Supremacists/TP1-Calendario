@@ -58,6 +58,9 @@ public class Alarmas {
     public void agregarAlarma(List<LocalDateTime> alarmasParaAgregar){
         if (alarmasParaAgregar!=null){
             for (LocalDateTime alarm : alarmasParaAgregar){
+                if (alarm== null){
+                    continue;
+                }
                 alarmas.add(alarm);
                 if (mantenerAlarmas){
                     alarmasYaSonadas.add(alarm);
