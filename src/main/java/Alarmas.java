@@ -4,10 +4,16 @@ import java.util.List;
 import java.util.Set;
 
 public class Alarmas {
+    //--------- Atributos ---------
+
     private final Set<LocalDateTime> alarmas;
     private LocalDateTime alarmaMasTemprana;
     private final Set<LocalDateTime> alarmasYaSonadas;
     private boolean mantenerAlarmas = false;
+
+    //--------- Atributos ---------
+
+    //--------- Constructores ---------
     public Alarmas() {
         alarmaMasTemprana = null;
         alarmas = new HashSet<>();
@@ -19,6 +25,10 @@ public class Alarmas {
         mantenerAlarmas = mantener;
         alarmasYaSonadas = new HashSet<>();
     }
+
+    //--------- Constructores ---------
+
+    //--------- Metodos ---------
     public void agregarAlarma(LocalDateTime alarmaParaAgregar){
         alarmas.add(alarmaParaAgregar);
         if (mantenerAlarmas){
@@ -77,4 +87,6 @@ public class Alarmas {
             //error
         //}
     }
+
+    //--------- Metodos ---------
 }
