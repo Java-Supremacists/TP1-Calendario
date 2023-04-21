@@ -4,43 +4,58 @@ import java.util.ArrayList;
 public abstract class Activities {
     //--------- Atributos ---------
 
-    enum tipo {TAREA,EVENTO}
+    enum tipo {TAREA,EVENTO} //nisiquiera usariamos Type
     protected String name;
     protected String description;
-    protected ArrayList<LocalDateTime> alarm;
+    protected final Alarmas alarm = new Alarmas();
     protected boolean isComplete;
 
     //--------- Atributos ---------
 
     //--------- Constructores ---------
+    /*
+    * public Activities() {
+        this.name = "";
+        this.description = "";
+        this.isComplete = false;
+    }*/
 
     public Activities(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete) {
         this.name = name;
         this.description = description;
-        this.alarm = alarm;
+        this.alarm.agregarAlarma(alarm);
         this.isComplete = isComplete;
     }
-    public Activities(String name, String description, boolean isComplete) {
+    /*
+    * public Activities(String name, String description, boolean isComplete) {
         this.name = name;
         this.description = description;
         this.isComplete = isComplete;
     }
+     */
 
     //--------- Constructores ---------
 
     //--------- Metodos ---------
 
-    public abstract tipo type();
+    public abstract tipo type(); //ni tampoco esta funcion
     public abstract LocalDateTime cuandoTermina();
     public abstract LocalDateTime cuandoEmpieza();
-    public boolean quedanAlarmas(){
-        return !(alarm == null || alarm.size() == 0);
-    }
     public LocalDateTime ultimaAlarma(){
-        return alarm.get(alarm.size()-1);
+        if (alarm.quedanAlarmas()){
+            return alarm.primerAlarmaASonar();
+        }
+        return null;
     }
     public void sonarUltimaAlarma(){
-        alarm.remove(alarm.size()-1);
+        if (alarm.quedanAlarmas()){
+            alarm.sonarAlarma();
+        }//else
+            //error
+        //}
+    }
+    public Alarmas getAlarm() {
+        return alarm;
     }
     public String getTitulo() {
         return name;
@@ -56,9 +71,6 @@ public abstract class Activities {
     }
     public void setDescription(String description) {
         this.description = description;
-    }
-    public void setAlarm(ArrayList<LocalDateTime> alarm) {
-        this.alarm = alarm;
     }
     public void setComplete(boolean complete) {
         isComplete = complete;

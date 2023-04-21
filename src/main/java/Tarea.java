@@ -10,13 +10,13 @@ public class Tarea extends Activities {
     //--------- Atributos ---------
 
     //--------- Constructores ---------
-    public Tarea(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete, LocalDateTime termina) {
-        super(name, description, alarm, isComplete);
+    /*
+    * public Tarea(LocalDateTime termina) {
         this.termina = termina;
     }
-
-    public Tarea(String name, String description, boolean isComplete, LocalDateTime termina) {
-        super(name, description, isComplete);
+     */
+    public Tarea(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete, LocalDateTime termina) {
+        super(name, description, alarm, isComplete);
         this.termina = termina;
     }
     //--------- Constructores ---------

@@ -10,14 +10,14 @@ public class Evento extends Activities {
 	//--------- Atributos ---------
 
 	//--------- Constructores ---------
-
-	public Evento(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete, LocalDateTime arranque, LocalDateTime termina) {
-		super(name, description, alarm, isComplete);
+	/*
+	* public Evento(LocalDateTime arranque, LocalDateTime termina) {
 		this.arranque = arranque;
 		this.termina = termina;
 	}
-	public Evento(String name, String description, boolean isComplete, LocalDateTime arranque, LocalDateTime termina) {
-		super(name, description, isComplete);
+	 */
+	public Evento(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete, LocalDateTime arranque, LocalDateTime termina) {
+		super(name, description, alarm, isComplete);
 		this.arranque = arranque;
 		this.termina = termina;
 	}
