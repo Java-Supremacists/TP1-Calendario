@@ -14,7 +14,7 @@ public class EventoTest {
     public void crearEventoVacio() {
         var arranca = LocalDateTime.of(2023,12,8,0,0);
         var termina = LocalDateTime.of(2023,12,9,0,0);
-        var even1 = new Evento("","",null,false,arranca,termina);
+        var even1 = new Evento("","",null,false,arranca,termina,null);
 
 
         assertEquals(Activities.tipo.EVENTO, even1.type());
@@ -49,8 +49,8 @@ public class EventoTest {
         var termina = LocalDateTime.of(2023,12,8,0,0);
 
 
-        var even1 = new Evento("Nombre1","Descripcion1",alarmas,true,arranca,termina);
-        var even2 = new Evento("Nombre2","Descripcion2",null,false,arranca,termina);
+        var even1 = new Evento("Nombre1","Descripcion1",alarmas,true,arranca,termina,null);
+        var even2 = new Evento("Nombre2","Descripcion2",null,false,arranca,termina,null);
 
 
         assertEquals("Nombre1", even1.getTitulo());

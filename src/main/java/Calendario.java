@@ -9,15 +9,11 @@ public class Calendario {
     private final HashMap<Integer,Activities> listaActividades = new HashMap<>();
     private int IDActual = 0; //En lo comentado digo de ni usar esto
     private LocalDateTime maximaAlarmaActual = null;
-    private String nombre;
     //si las alarmas colisionan van a haber más de una alarma, este guarda los ID en el array
 
     //--------- Atributos ---------
 
     //--------- Constructores ---------
-    public Calendario(String nombreCalendario){ 
-	    this.nombre = nombreCalendario;
-    }
 
     //--------- Constructores ---------
 

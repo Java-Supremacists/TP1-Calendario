@@ -25,7 +25,7 @@ public class CalendarioTest {
 		var tarea = (Tarea) calendarioDePrueba.obtenerActividad(indice);
 		assertEquals("Nombre Tarea", tarea.getTitulo());
 		assertEquals("Descripcion Tarea", tarea.getDescripcion());
-		assertEquals(false, tarea.esDiaEntero());
+		assertTrue(tarea.esDiaEntero());
 	}
 
 	//@Test
