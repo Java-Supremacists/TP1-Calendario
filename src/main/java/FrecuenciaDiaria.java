@@ -32,5 +32,12 @@ public class FrecuenciaDiaria implements Frecuencia{
 	boolean eventoCaeElDiaPedidio = (cantDiasHastaDiaPedido % this.cadaCuantosDias == 0);
 	return eventoCaeElDiaPedidio;
     }
+
+    @Override
+    public LocalDateTime proximoEventoMasCercanoAFechaEspecifica(LocalDateTime inicioEvento,
+    		LocalDateTime diaEspecifico) {
+    	// TODO Auto-generated method stub
+    	return null;
+    }
     
 }

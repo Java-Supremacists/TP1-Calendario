@@ -1,5 +1,6 @@
 import java.time.LocalDateTime;
 import java.time.DayOfWeek;
+import java.util.Arrays;
 
 
 /**
@@ -28,10 +29,10 @@ public class FrecuenciaSemanal implements Frecuencia {
 
 
 
-	//Averiguo el dia de la semana del evento que me piden
+	//Averiguamos el dia de la semana del evento que me piden
 	DayOfWeek diasDeLaSemanaDelDiaEspecifico = diaEspecifico.getDayOfWeek();
 
-	//En este loop me fijo si el dia de la semana del dia que que me 
+	//En este loop nos fijamos si el dia de la semana del dia que que me 
 	//piden esta en mi lista original
 	//TODO: Se podria hacer con un is value in List
 	boolean estaEnElDiaDeLaSemana = false;
@@ -44,5 +45,35 @@ public class FrecuenciaSemanal implements Frecuencia {
 
 	return estaEnElDiaDeLaSemana;
     }
+
+    @Override
+    public LocalDateTime proximoEventoMasCercanoAFechaEspecifica(LocalDateTime inicioEvento, LocalDateTime diaEspecifico) {
+	if (this.repeticion.estaDentroDeRepeticiones(diaEspecifico) == false) {
+	    return diaEspecifico; //Si cae DESPUES del ultimo dia,
+				  //devolvevemos el dia pedido
+	    }
+
+
+	LocalDateTime proximoEvento = diaEspecifico;
+	//7 hardcodeado porque en 7 dias ya ves todos los dias de la semana
+	for (int i = 0; i <= 7; i++) {
+	    proximoEvento = diaEspecifico.plusDays(i);
+
+	    //Debugeo
+	    // System.out.println(proximoEvento);
+
+	    //El primer evento que cumpla la siguiente condicion es el evento 
+	    //mas proximo al dia al pedido. Como i arranca en 0, incluye al 
+	    //dia mismo. Este if SI O SI tiene que cumplirse, porque abarca los
+	    //7 dias de la semana.
+	    boolean proxEventoCaeEnLaSemana = Arrays.asList(this.diasDeLaSemana).contains(proximoEvento.getDayOfWeek());
+	    if (proxEventoCaeEnLaSemana == true) {
+		break;
+	    }
+	}
+
+    	return proximoEvento;
+    }
+
 	
 }

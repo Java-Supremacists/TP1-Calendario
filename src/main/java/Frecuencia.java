@@ -6,7 +6,6 @@ public interface Frecuencia{
 
     boolean dadoComienzoCaeElDia(LocalDateTime inicioEvento, LocalDateTime diaEspecifico);
 
-    // LocalDateTime finDeLasRepeticionesDadaFecha(LocalDateTime fechaComienzo);
-
+    LocalDateTime proximoEventoMasCercanoAFechaEspecifica(LocalDateTime inicioEvento, LocalDateTime diaEspecifico);
     
 }

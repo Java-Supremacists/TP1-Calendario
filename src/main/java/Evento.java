@@ -41,6 +41,12 @@ public class Evento extends Activities {
 	    return caeElDiaPedido;
 	}
 
+	public LocalDateTime proximoEventoMasCercanoAFechaEspecifica(LocalDateTime diaEspecifico) {
+	    LocalDateTime proximoEvento;
+	    proximoEvento = this.frecuencia.proximoEventoMasCercanoAFechaEspecifica(this.arranque, diaEspecifico);
+	    return proximoEvento;
+	}
+
 	public void setArranque(LocalDateTime arranque) {
 		this.arranque = arranque;
 	}
