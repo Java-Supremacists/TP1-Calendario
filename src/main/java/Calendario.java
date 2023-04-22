@@ -92,8 +92,8 @@ public class Calendario {
 
     // }
 	
-    public int crearEvento(String nombre, String description, ArrayList<LocalDateTime> alarm,  boolean esDiaCompleto,LocalDateTime arranque, LocalDateTime termina){
-        Evento nuevoEvento = new Evento(nombre, description, alarm, esDiaCompleto, arranque, termina);
+    public int crearEvento(String nombre, String description, ArrayList<LocalDateTime> alarm,  boolean esDiaCompleto,LocalDateTime arranque, LocalDateTime termina, Frecuencia frecuencia){
+        Evento nuevoEvento = new Evento(nombre, description, alarm, esDiaCompleto, arranque, termina, frecuencia);
         listaActividades.put(IDActual,nuevoEvento);
         int retorno = IDActual;
         IDActual++;
