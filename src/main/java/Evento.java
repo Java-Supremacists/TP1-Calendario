@@ -6,6 +6,7 @@ public class Evento extends Activities {
 
 	private LocalDateTime arranque;
 	private LocalDateTime termina;
+<<<<<<< HEAD
 	// private LocalDateTime ultimaDiaDelEvento;
 	private Frecuencia frecuencia;
 	
@@ -21,7 +22,28 @@ public class Evento extends Activities {
 	    // this.ultimaDiaDelEvento = this.frecuencia.finDeLasRepeticionesDadaFecha(this.arranque);
 	}
 
+=======
+
+	//--------- Atributos ---------
+
+	//--------- Constructores ---------
+	/*
+	* public Evento(LocalDateTime arranque, LocalDateTime termina) {
+		this.arranque = arranque;
+		this.termina = termina;
+	}
+	 */
+	public Evento(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete, LocalDateTime arranque, LocalDateTime termina) {
+		super(name, description, alarm, isComplete);
+		this.arranque = arranque;
+		this.termina = termina;
+	}
+
+	//--------- Constructores ---------
+
+>>>>>>> pre-main
 	//--------- Metodos ---------
+
 	@Override
 	public tipo type() {
 	    return tipo.EVENTO;
@@ -34,6 +56,7 @@ public class Evento extends Activities {
 	public LocalDateTime cuandoTermina() {
 	    return this.termina;
 	}
+<<<<<<< HEAD
 
 	public boolean caeElDia(LocalDateTime diaEspecifico){
 	    //if (diaEspecifico.isAfter(this.ultimaDiaDelEvento) == true) {
@@ -45,6 +68,13 @@ public class Evento extends Activities {
 	    //Averiguo si la frecuencia hace que el evento caiga el dia pedido
 	    boolean caeElDiaPedido = this.frecuencia.dadoComienzoCaeElDia(this.arranque, diaEspecifico); 
 	    return caeElDiaPedido;
+=======
+	public void setArranque(LocalDateTime arranque) {
+		this.arranque = arranque;
+	}
+	public void setTermina(LocalDateTime termina) {
+		this.termina = termina;
+>>>>>>> pre-main
 	}
 
 	//--------- Metodos ---------
