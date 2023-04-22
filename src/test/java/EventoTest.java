@@ -84,4 +84,17 @@ public class EventoTest {
 	// assertEquals(false, eventoDePrueba.caeElDia(LocalDateTime.of(2023, 4, 20, 7, 45, 55)));
     }
 
+    @Test
+    public void cuandoEmpiezaTest(){
+
+    }
+    @Test
+    public void cuandoTerminaTest(){
+
+    }
+    @Test
+    public void UltimaAlarmaYSonarUltimaAlarma(){
+
+    }
+
 }
