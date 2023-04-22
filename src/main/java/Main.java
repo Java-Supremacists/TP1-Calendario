@@ -1,3 +1,4 @@
+import java.lang.Math;
 import java.time.LocalDateTime;
 import java.time.DayOfWeek;
 
@@ -41,6 +42,10 @@ public class Main {
 	LocalDateTime fechaMasCercana = LocalDateTime.of(2023, 4, 13, 7, 45, 55);
 
 	frecuenciaSemanal.proximoEventoMasCercanoAFechaEspecifica(fechaComienzo, fechaFinal);
+
+
+	int cantidadRepsHastaProxEvento = (int) Math.ceil((double)9 / 2);
+	System.out.println(cantidadRepsHastaProxEvento);
 
     }
 }

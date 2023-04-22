@@ -59,9 +59,6 @@ public class FrecuenciaSemanal implements Frecuencia {
 	for (int i = 0; i <= 7; i++) {
 	    proximoEvento = diaEspecifico.plusDays(i);
 
-	    //Debugeo
-	    // System.out.println(proximoEvento);
-
 	    //El primer evento que cumpla la siguiente condicion es el evento 
 	    //mas proximo al dia al pedido. Como i arranca en 0, incluye al 
 	    //dia mismo. Este if SI O SI tiene que cumplirse, porque abarca los

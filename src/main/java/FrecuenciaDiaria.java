@@ -1,5 +1,6 @@
 import java.time.temporal.ChronoUnit; //Libreria para formatear dias en LocalDateTime
 import java.time.LocalDateTime;
+import java.lang.Math;
 /**
  * Frecuencia
  */
@@ -34,10 +35,24 @@ public class FrecuenciaDiaria implements Frecuencia{
     }
 
     @Override
-    public LocalDateTime proximoEventoMasCercanoAFechaEspecifica(LocalDateTime inicioEvento,
-    		LocalDateTime diaEspecifico) {
-    	// TODO Auto-generated method stub
-    	return null;
+    public LocalDateTime proximoEventoMasCercanoAFechaEspecifica(LocalDateTime inicioEvento, LocalDateTime diaEspecifico) {
+	if (this.repeticion.estaDentroDeRepeticiones(diaEspecifico) == false) {
+	    return diaEspecifico; //Si cae DESPUES del ultimo dia,
+				  //devolvevemos el dia pedido
+	    }
+
+	//Se fija cuantos dias hay hasta el dia pasado como argumento
+	long cantDiasHastaDiaPedido = inicioEvento.until(diaEspecifico, ChronoUnit.DAYS);
+
+	//Esta funcion me devuelve la division redondeada para arriba. 
+	//Esto nos sirve para calcular la cantidad de repeticiones (pasandose,
+	//dado el caso) que necesitamos para hallar el evento mas proximo
+	//Funcion sacada de: https://stackoverflow.com/a/17149572/13683575
+	int cantidadRepsHastaProxEvento = (int) Math.ceil((double)cantDiasHastaDiaPedido / this.cadaCuantosDias);
+
+	LocalDateTime proximoEvento = inicioEvento.plusDays(cantidadRepsHastaProxEvento * this.cadaCuantosDias);
+
+    	return proximoEvento;
     }
     
 }
