@@ -1,5 +1,6 @@
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+// import java.time.DayOfWeek;
 import java.util.HashMap;
 
 
@@ -8,11 +9,15 @@ public class Calendario {
     private final HashMap<Integer,Activities> listaActividades = new HashMap<>();
     private int IDActual = 0; //En lo comentado digo de ni usar esto
     private LocalDateTime maximaAlarmaActual = null;
+    private String nombre;
     //si las alarmas colisionan van a haber más de una alarma, este guarda los ID en el array
 
     //--------- Atributos ---------
 
     //--------- Constructores ---------
+    public Calendario(String nombreCalendario){ 
+	    this.nombre = nombreCalendario;
+    }
 
     //--------- Constructores ---------
 
@@ -24,8 +29,13 @@ public class Calendario {
         """int retorno = IDActual;//estas lineas borradas, ya que no vamos a usar un ID-ACTUAL
         IDActual++"""
         return nuevaTarea.hashCode();
-
+    //
+    //Constructores con repeticion semanal
+    public void crearEvento(String nombre, String description, ArrayList<LocalDateTime> alarm,  boolean esDiaCompleto,LocalDateTime arranque, LocalDateTime termina, Frecuencia frecuencia){
+	var nuevoEvento = new Evento(nombre, description, alarm,  esDiaCompleto, arranque, termina, frecuencia);
+	this.listaEventos.add(nuevoEvento);
     }
+
     public int crearEvento(LocalDateTime arranque, LocalDateTime termina){
         Evento nuevoEvento = new Evento( arranque,  termina);
         listaEventos.add(nuevoEvento); //que sea un array
@@ -74,6 +84,14 @@ public class Calendario {
         return retorno;
 
     }
+
+    // public Evento hayEventosElDia(LocalDateTime diaEspecificio){
+	// for (int evento = 0; evento < this.listaEventos.size(); evento ++) {
+	    // dee
+	// }
+
+    // }
+	
     public int crearEvento(String nombre, String description, ArrayList<LocalDateTime> alarm,  boolean esDiaCompleto,LocalDateTime arranque, LocalDateTime termina){
         Evento nuevoEvento = new Evento(nombre, description, alarm, esDiaCompleto, arranque, termina);
         listaActividades.put(IDActual,nuevoEvento);
