@@ -10,15 +10,48 @@ import static org.junit.Assert.*;
 public class TareaTest {
 
 	@Test
+	public void creacionDeTareaVacia() {
+		//arrange
+		LocalDateTime termina = LocalDateTime.of(2023,4,24,23,59);
+		Tarea tar = new Tarea("", "", null,false, termina);
+		//act
+
+		//assert
+
+		assertEquals(Activities.tipo.TAREA, tar.type());
+		assertEquals(termina, tar.cuandoEmpieza());
+		assertEquals(termina, tar.cuandoTermina());
+		termina = LocalDateTime.of(2023,4,25,23,59);
+		tar.setTermina(termina);
+		assertEquals(termina, tar.cuandoEmpieza());
+		assertEquals(termina, tar.cuandoTermina());
+		assertNull(tar.ultimaAlarma());
+		assertEquals("", tar.getDescripcion());
+		assertEquals("", tar.getTitulo());
+		assertFalse(tar.esDiaEntero());
+		tar.setComplete(true);
+		tar.setName("Nombre1");
+		tar.setDescription("Descripcion1");
+		assertEquals("Descripcion1", tar.getDescripcion());
+		assertEquals("Nombre1", tar.getTitulo());
+		assertTrue(tar.esDiaEntero());
+	}
+
+	@Test
 	public void creacionDeTarea() {
 		//arrange
-		Tarea tareaDePrueba = new Tarea("Nombre Tarea", "Descripcion Tarea", null,false, LocalDateTime.now());
+		LocalDateTime termina = LocalDateTime.of(2023,4,24,23,59);
+		Tarea tar = new Tarea("Nombre Tarea", "Descripcion Tarea", null,false, termina);
 		//act
 		//assert
-		assertEquals("Nombre Tarea", tareaDePrueba.getTitulo());
-		assertEquals("Descripcion Tarea", tareaDePrueba.getDescripcion());
-		assertFalse(tareaDePrueba.esDiaEntero());
-		assertFalse(tareaDePrueba.estaCompleta()); //Las tareas empiezan como incompletas
+		assertEquals("Nombre Tarea", tar.getTitulo());
+		assertEquals("Descripcion Tarea", tar.getDescripcion());
+		assertFalse(tar.esDiaEntero());
+		assertFalse(tar.estaCompleta()); //Las tareas empiezan como incompletas
+		assertEquals(Activities.tipo.TAREA, tar.type());
+		assertEquals(termina, tar.cuandoEmpieza());
+		assertEquals(termina, tar.cuandoTermina());
+		assertNull(tar.ultimaAlarma());
 	}
 
 	@Test
@@ -42,68 +75,4 @@ public class TareaTest {
 		assertFalse(tareaDePrueba.estaCompleta());
 	}
 
-	@Test
-	public void estaCompleta() {
-	}
-
-	@Test
-	public void marcarCompleta() {
-	}
-
-
-	@Test
-	public void setTermina() {
-	}
-
-	@Test
-	public void type() {
-	}
-
-	@Test
-	public void cuandoTermina() {
-	}
-
-	@Test
-	public void cuandoEmpieza() {
-	}
-
-	@Test
-	public void quedanAlarmas() {
-	}
-
-	@Test
-	public void ultimaAlarma() {
-	}
-
-	@Test
-	public void sonarUltimaAlarma() {
-	}
-
-	@Test
-	public void getTitulo() {
-	}
-
-	@Test
-	public void getDescripcion() {
-	}
-
-	@Test
-	public void esDiaEntero() {
-	}
-
-	@Test
-	public void setName() {
-	}
-
-	@Test
-	public void setDescription() {
-	}
-
-	@Test
-	public void setAlarm() {
-	}
-
-	@Test
-	public void setComplete() {
-	}
 }
