@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+
 import static org.junit.Assert.*;
 /**
  * CalendarioTest
@@ -7,16 +9,23 @@ import static org.junit.Assert.*;
 public class CalendarioTest {
 
 	@Test
-	public void creacionDeTareaSimpleDesdeCalendario() {
+	public void creacionDeCalendario() {
+		//arrange
+		Calendario calendarioDePrueba = new Calendario();
+	}
+	@Test
+	public void creacionDeTareaEnCalendario() {
 		//arrange
 		Calendario calendarioDePrueba = new Calendario();
 		//act
-		//calendarioDePrueba.crearTarea("Nombre Tarea", "Descripcion Tarea", false);
+		LocalDateTime termina = LocalDateTime.of(2002,1,1,0,0);
+		var indice = calendarioDePrueba.crearTarea("Nombre Tarea", "Descripcion Tarea",null,true,termina);
 
 		////assert
-		//assertEquals("Nombre Tarea", calendarioDePrueba.obtenerActividadPorIndice(0).getTitulo());
-		//assertEquals("Descripcion Tarea", calendarioDePrueba.obtenerActividadPorIndice(0).getDescripcion());
-		//assertEquals(false, calendarioDePrueba.obtenerActividadPorIndice(0).esDiaEntero());
+		var tarea = (Tarea) calendarioDePrueba.obtenerActividad(indice);
+		assertEquals("Nombre Tarea", tarea.getTitulo());
+		assertEquals("Descripcion Tarea", tarea.getDescripcion());
+		assertEquals(false, tarea.esDiaEntero());
 	}
 
 	//@Test
