@@ -32,16 +32,9 @@ public class FrecuenciaSemanal implements Frecuencia {
 	//Averiguamos el dia de la semana del evento que me piden
 	DayOfWeek diasDeLaSemanaDelDiaEspecifico = diaEspecifico.getDayOfWeek();
 
-	//En este loop nos fijamos si el dia de la semana del dia que que me 
-	//piden esta en mi lista original
-	//TODO: Se podria hacer con un is value in List
-	boolean estaEnElDiaDeLaSemana = false;
-	for (int i = 0; i < this.diasDeLaSemana.length; i++) {
-	    if (this.diasDeLaSemana[i] == diasDeLaSemanaDelDiaEspecifico) {
-		estaEnElDiaDeLaSemana = true;
-		break;
-	    }
-	}
+	//Nos fijamos si el dia de la semana del dia que que me piden esta 
+	//en mi lista original
+	boolean estaEnElDiaDeLaSemana = Arrays.asList(this.diasDeLaSemana).contains(diasDeLaSemanaDelDiaEspecifico);
 
 	return estaEnElDiaDeLaSemana;
     }
