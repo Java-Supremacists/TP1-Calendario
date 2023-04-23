@@ -33,6 +33,16 @@ public class Alarmas {
     public int size(){
         return alarmas.size();
     }
+    public void actualizarAlarmas(LocalDateTime dif){
+        if (dif != null && alarmas.size()==0 && mantenerAlarmas){
+            for (LocalDateTime alarm : alarmasYaSonadas){
+                LocalDateTime nuevaAlarm = alarm.plusYears(dif.getYear()).plusMonths(dif.getMonthValue()).plusDays(dif.getDayOfMonth()).plusHours(dif.getHour()).plusMinutes(dif.getMinute());
+                alarmasYaSonadas.remove(alarm);
+                alarmasYaSonadas.add(nuevaAlarm);
+            }
+            alarmas.addAll(alarmasYaSonadas);
+        }
+    }
     public void actualizarAlarmas(Duration cantidadASumar){
         if (cantidadASumar != null && alarmas.size()==0 && mantenerAlarmas){
             for (LocalDateTime alarm : alarmasYaSonadas){
