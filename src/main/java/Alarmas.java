@@ -43,10 +43,10 @@ public class Alarmas {
             alarmas.addAll(alarmasYaSonadas);
         }
     }
-    public void actualizarAlarmas(Duration cantidadASumar){
-        if (cantidadASumar != null && alarmas.size()==0 && mantenerAlarmas){
+    public void actualizarAlarmas(long cantidadDiasASumar){
+        if (cantidadDiasASumar != 0 && alarmas.size()==0 && mantenerAlarmas){
             for (LocalDateTime alarm : alarmasYaSonadas){
-                LocalDateTime nuevaAlarm = alarm.plus(cantidadASumar);
+                LocalDateTime nuevaAlarm = alarm.plusDays(cantidadDiasASumar);
                 alarmasYaSonadas.remove(alarm);
                 alarmasYaSonadas.add(nuevaAlarm);
             }
