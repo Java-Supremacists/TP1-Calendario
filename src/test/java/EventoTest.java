@@ -66,7 +66,6 @@ public class EventoTest {
     @Test
     public void CreacionEventosVariado() {
     }
-
     @Test
     public void eventoCaeDiaPedido(){
 
@@ -80,18 +79,14 @@ public class EventoTest {
 	// assertEquals(false, eventoDePrueba.caeElDia(LocalDateTime.of(2023, 4, 21, 7, 45, 55)));
 	// assertEquals(false, eventoDePrueba.caeElDia(LocalDateTime.of(2023, 4, 20, 7, 45, 55)));*/
     }
-
     @Test
     public void cuandoEmpiezaTest(){
-
     }
     @Test
     public void cuandoTerminaTest(){
-
     }
     @Test
     public void UltimaAlarmaYSonarUltimaAlarma(){
-
     }
 
 }
