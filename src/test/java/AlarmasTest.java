@@ -1,12 +1,10 @@
 import org.junit.Test;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
 public class AlarmasTest {
-
     @Test
     public void CrearAlarmaVacia() {
         Alarmas a1 = new Alarmas();
@@ -210,6 +208,41 @@ public class AlarmasTest {
 
         }
     }
+    @Test
+    public void actualizarAlarmaTest() {
+        Alarmas a1 = new Alarmas(true);
+        LocalDateTime diaDelEvento = LocalDateTime.of(2023,4,4,23,1);
+        LocalDateTime agregar;
 
+        a1.actualizarAlarmas(10L);//no hace nada porque no hay alarmas
+
+        for (int i = 0;i<23;i++){
+            agregar  = LocalDateTime.of(2023,4,4,1+i,0);
+            a1.agregarAlarma(agregar);
+        }
+
+        a1.actualizarAlarmas(10L);//no hace nada porque no paso el evento(No sonaron todas las alarmas)
+
+        for (int i = 0;i<23;i++){
+            agregar  = LocalDateTime.of(2023,4,4,1+i,0);
+            LocalDateTime primeraAlarma = a1.primerAlarmaASonar();
+            a1.sonarAlarma();
+            assertEquals(agregar,primeraAlarma);
+            assertTrue(diaDelEvento.isAfter(primeraAlarma));
+        }
+
+        //Hora de actualizarlas a una fecha (Ya no hay más alarmas y se terminó el evento)
+
+        diaDelEvento = LocalDateTime.of(2023,4,8,23,1);//el evento se repite el día 8 ahora
+        a1.actualizarAlarmas(4L);
+
+        for (int i = 0;i<23;i++){
+            agregar  = LocalDateTime.of(2023,4,8,1+i,0);
+            LocalDateTime primeraAlarma = a1.primerAlarmaASonar();
+            a1.sonarAlarma();
+            assertEquals(agregar,primeraAlarma);
+            assertTrue(diaDelEvento.isAfter(primeraAlarma));
+        }
+    }
 
 }

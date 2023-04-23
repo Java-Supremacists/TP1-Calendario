@@ -1,4 +1,4 @@
-import java.time.Duration;
+//import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -30,10 +30,9 @@ public class Alarmas {
     //--------- Constructores ---------
 
     //--------- Metodos ---------
-    public int size(){
-        return alarmas.size();
-    }
-    public void actualizarAlarmas(LocalDateTime dif){
+
+    /*
+    *public void actualizarAlarmas(LocalDateTime dif){
         if (dif != null && alarmas.size()==0 && mantenerAlarmas){
             for (LocalDateTime alarm : alarmasYaSonadas){
                 LocalDateTime nuevaAlarm = alarm.plusYears(dif.getYear()).plusMonths(dif.getMonthValue()).plusDays(dif.getDayOfMonth()).plusHours(dif.getHour()).plusMinutes(dif.getMinute());
@@ -42,15 +41,18 @@ public class Alarmas {
             }
             alarmas.addAll(alarmasYaSonadas);
         }
+    }*/
+    public int size(){
+        return alarmas.size();
     }
     public void actualizarAlarmas(long cantidadDiasASumar){
         if (cantidadDiasASumar != 0 && alarmas.size()==0 && mantenerAlarmas){
             for (LocalDateTime alarm : alarmasYaSonadas){
                 LocalDateTime nuevaAlarm = alarm.plusDays(cantidadDiasASumar);
-                alarmasYaSonadas.remove(alarm);
-                alarmasYaSonadas.add(nuevaAlarm);
+                alarmas.add(nuevaAlarm);
             }
-            alarmas.addAll(alarmasYaSonadas);
+            alarmasYaSonadas.clear();
+            alarmasYaSonadas.addAll(alarmas);
         }
     }
     public void agregarAlarma(LocalDateTime alarmaParaAgregar){
