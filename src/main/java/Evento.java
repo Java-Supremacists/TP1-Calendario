@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit; //Libreria para formatear dias en LocalDateTime
 import java.util.ArrayList;
 
 public class Evento extends Activities {
@@ -62,7 +63,11 @@ public class Evento extends Activities {
 			/*if (){
 				alarm.actualizarAlarmas();
 			}else{*/
-			LocalDateTime diferenciaArranques = arranqueActual.minusYears(fechaAnteriorInicio.getYear()).minusMonths(fechaAnteriorInicio.getMonthValue()).minusDays(fechaAnteriorInicio.getDayOfMonth()).minusHours(fechaAnteriorInicio.getHour()).minusMinutes(fechaAnteriorInicio.getMinute());
+			// LocalDateTime diferenciaArranques = arranqueActual.minusYears(fechaAnteriorInicio.getYear()).minusMonths(fechaAnteriorInicio.getMonthValue()).minusDays(fechaAnteriorInicio.getDayOfMonth()).minusHours(fechaAnteriorInicio.getHour()).minusMinutes(fechaAnteriorInicio.getMinute());
+
+			long diferenciaArranques = fechaAnteriorInicio.until(arranqueActual, ChronoUnit.DAYS);
+
+			// long cantDiasHastaDiaPedido = fechaComienzo.until(, ChronoUnit.DAYS);
 			alarm.actualizarAlarmas(diferenciaArranques);
 		}
 	}
