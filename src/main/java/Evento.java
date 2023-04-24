@@ -1,6 +1,5 @@
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit; //Libreria para formatear dias en LocalDateTime
-import java.util.ArrayList;
+import java.time.temporal.ChronoUnit;
 
 public class Evento extends Activities {
 	//--------- Atributos ---------
@@ -33,7 +32,7 @@ public class Evento extends Activities {
 		return this.terminaActual;
 	}
 	public boolean caeElDia(LocalDateTime diaEspecifico){
-		//Averiguo si la frecuencia hace que el evento caiga el dia pedido
+		//Averiguo si la frecuencia hace que el evento caiga el día pedido
 		boolean caeElDiaPedido = this.frecuencia.dadoComienzoCaeElDia(this.arranquePrincipio, diaEspecifico);
 		return caeElDiaPedido;
 	}
