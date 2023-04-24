@@ -25,10 +25,6 @@ public class Evento extends Activities {
 	//--------- Metodos ---------
 
 	@Override
-	public tipo type() {
-		return tipo.EVENTO;
-	}
-	@Override
 	public LocalDateTime cuandoEmpieza(){
 		return this.arranqueActual;
 	}

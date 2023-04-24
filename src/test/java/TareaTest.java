@@ -17,7 +17,6 @@ public class TareaTest {
 
 		//assert
 
-		assertEquals(Activities.tipo.TAREA, tar.type());
 		assertEquals(termina, tar.cuandoEmpieza());
 		assertEquals(termina, tar.cuandoTermina());
 		termina = LocalDateTime.of(2023,4,25,23,59);
@@ -49,7 +48,6 @@ public class TareaTest {
 		assertEquals("Descripcion Tarea", tar.getDescripcion());
 		assertFalse(tar.esDiaEntero());
 		assertFalse(tar.estaCompleta()); //Las tareas empiezan como incompletas
-		assertEquals(Activities.tipo.TAREA, tar.type());
 		assertEquals(termina, tar.cuandoEmpieza());
 		assertEquals(termina, tar.cuandoTermina());
 		assertNull(tar.ultimaAlarma());

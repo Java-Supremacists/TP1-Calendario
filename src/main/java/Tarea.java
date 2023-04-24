@@ -22,10 +22,7 @@ public class Tarea extends Activities {
     //--------- Constructores ---------
 
     //--------- Metodos ---------
-    @Override
-    public tipo type() {
-        return tipo.TAREA;
-    }
+
     public boolean estaCompleta(){
 	return this.estaCompletada;
     }

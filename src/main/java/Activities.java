@@ -1,11 +1,9 @@
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Activities {
     //--------- Atributos ---------
 
-    enum tipo {TAREA,EVENTO} //nisiquiera usariamos Type
     protected String name;
     protected String description;
     protected final Alarmas alarm = new Alarmas();
@@ -25,7 +23,6 @@ public abstract class Activities {
 
     //--------- Metodos ---------
 
-    public abstract tipo type(); //ni tampoco esta funcion
     public abstract LocalDateTime cuandoTermina();
     public abstract LocalDateTime cuandoEmpieza();
     public LocalDateTime ultimaAlarma(){
@@ -40,9 +37,6 @@ public abstract class Activities {
         }//else
             //error
         //}
-    }
-    public Alarmas getAlarm() {
-        return alarm;
     }
     public String getTitulo() {
         return name;
@@ -67,6 +61,9 @@ public abstract class Activities {
     }
     public void agregarAlarmas(List<LocalDateTime> alarmasNuevas) {
 	this.alarm.agregarAlarma(alarmasNuevas);
+    }
+    public void eliminarAlarma(LocalDateTime alarmaNueva) {
+        this.alarm.eliminarAlarma(alarmaNueva);
     }
 
     //--------- Metodos ---------

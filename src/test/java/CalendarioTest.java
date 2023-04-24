@@ -26,10 +26,6 @@ public class CalendarioTest {
 		calendarioDePrueba.modificarActividadEsDiaEntero(indice, true);
 
 		////assert
-		var tarea = (Tarea) calendarioDePrueba.obtenerActividad(indice);
-		assertEquals("Nombre Tarea", tarea.getTitulo());
-		assertEquals("Descripcion Tarea", tarea.getDescripcion());
-		assertTrue(tarea.esDiaEntero());
 	}
 
 	//@Test

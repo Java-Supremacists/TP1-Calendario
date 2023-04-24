@@ -15,7 +15,6 @@ public class EventoTest {
         var even1 = new Evento(arranca,termina);
 
 
-        assertEquals(Activities.tipo.EVENTO, even1.type());
         assertEquals(arranca, even1.cuandoEmpieza());
         assertEquals(termina, even1.cuandoTermina());
         arranca = LocalDateTime.of(2023,12,9,0,0);
@@ -66,13 +65,11 @@ public class EventoTest {
         assertEquals("Nombre1", even1.getTitulo());
         assertEquals("Descripcion1", even1.getDescripcion());
         assertTrue(even1.esDiaEntero());
-        assertEquals(Activities.tipo.EVENTO, even1.type());
         assertEquals(arranca, even1.cuandoEmpieza());
         assertEquals(termina, even1.cuandoTermina());
         assertEquals("Nombre2", even2.getTitulo());
         assertEquals("Descripcion2", even2.getDescripcion());
         assertFalse(even2.esDiaEntero());
-        assertEquals(Activities.tipo.EVENTO, even2.type());
         assertEquals(arranca, even2.cuandoEmpieza());
         assertEquals(termina, even2.cuandoTermina());
     }
