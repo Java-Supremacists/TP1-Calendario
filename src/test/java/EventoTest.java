@@ -109,7 +109,7 @@ public class EventoTest {
         var hascodeEven2 =even2.hashCode();
         assertNotEquals(hascodeEven1,hascodeEven2 );
         even1.setName("Distinto 1");
-        assertNotEquals(hascodeEven1,even1.hashCode() );
+        assertEquals(hascodeEven1,even1.hashCode() );
         // https://stackoverflow.com/a/32450295/13683575
     }
 }
