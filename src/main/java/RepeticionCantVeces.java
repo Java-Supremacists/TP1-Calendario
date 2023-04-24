@@ -62,7 +62,8 @@ public class RepeticionCantVeces implements Repeticion{
     public boolean estaDentroDeRepeticiones(LocalDateTime fechaPedida) {
 	boolean estaDespuesDelLimite = fechaPedida.isBefore(this.fechaFinRepeticion);
 	boolean esJustoElLimite = fechaPedida.isEqual(this.fechaFinRepeticion);
-    	return (estaDespuesDelLimite || esJustoElLimite);
+	boolean estaDentro = (estaDespuesDelLimite || esJustoElLimite);
+    	return estaDentro;
     }
 	
 }
