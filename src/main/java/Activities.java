@@ -62,5 +62,13 @@ public abstract class Activities {
         isComplete = complete;
     }
 
+    public void agregarAlarma(LocalDateTime alarmaNueva) {
+	this.alarm.agregarAlarma(alarmaNueva);
+    }
+
+    public void agregarAlarmas(List<LocalDateTime> alarmasNuevas) {
+	this.alarm.agregarAlarma(alarmasNuevas);
+    }
+
     //--------- Metodos ---------
 }
