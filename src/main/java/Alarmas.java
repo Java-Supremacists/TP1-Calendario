@@ -122,6 +122,12 @@ public class Alarmas {
           //error
         //}
     }
+    public boolean repiteLasAlarmas() {
+        return mantenerAlarmas;
+    }
+    public void mantenerAlarmas(boolean mantenerAlarmas) {
+        this.mantenerAlarmas = mantenerAlarmas;
+    }
 
     //--------- Metodos ---------
 }

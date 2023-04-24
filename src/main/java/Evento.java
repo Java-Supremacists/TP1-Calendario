@@ -42,7 +42,7 @@ public class Evento extends Activities {
 		return proximoEvento;
 	}
 	public void actualizarEvento(){
-		if (LocalDateTime.now().isAfter(this.terminaActual)){
+		if (LocalDateTime.now().isAfter(this.terminaActual)&& alarm.repiteLasAlarmas()){
 			if (alarm.quedanAlarmas()){
 				while (alarm.quedanAlarmas()){
 					alarm.sonarAlarma();
@@ -52,14 +52,7 @@ public class Evento extends Activities {
 			var fechaAnteriorFinal = this.terminaActual;
 			this.arranqueActual = this.proximoEventoMasCercanoAFechaEspecifica(fechaAnteriorInicio);
 			this.terminaActual = this.proximoEventoMasCercanoAFechaEspecifica(fechaAnteriorFinal);
-			/*if (){
-				alarm.actualizarAlarmas();
-			}else{*/
-			// LocalDateTime diferenciaArranques = arranqueActual.minusYears(fechaAnteriorInicio.getYear()).minusMonths(fechaAnteriorInicio.getMonthValue()).minusDays(fechaAnteriorInicio.getDayOfMonth()).minusHours(fechaAnteriorInicio.getHour()).minusMinutes(fechaAnteriorInicio.getMinute());
-
 			long diferenciaArranques = fechaAnteriorInicio.until(arranqueActual, ChronoUnit.DAYS);
-
-			// long cantDiasHastaDiaPedido = fechaComienzo.until(, ChronoUnit.DAYS);
 			alarm.actualizarAlarmas(diferenciaArranques);
 		}
 	}
@@ -73,6 +66,9 @@ public class Evento extends Activities {
 	}
 	public void setFrecuencia(Frecuencia frecuenciaNueva){
 		frecuencia = frecuenciaNueva;
+		if (frecuenciaNueva!=null){
+			alarm.mantenerAlarmas(true);
+		}
 	}
 
 	//--------- Metodos ---------
