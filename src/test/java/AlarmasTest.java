@@ -258,7 +258,7 @@ public class AlarmasTest {
 
         //Hora de actualizarlas a una fecha (Ya no hay más alarmas y se terminó el evento)
         diaDelEvento = LocalDateTime.of(2024,5,8,23,1);//el evento se repite el día 8 pero dentro de un AÑO ahora
-        a1.actualizarAlarmas(366L);//esta exactitud de cuando cae la calcula un modulo exportado
+        a1.actualizarAlarmas(366L);//esta exactitud de cuando cae la calcula un módulo exportado
 
         for (int i = 0;i<23;i++){
             agregar  = LocalDateTime.of(2024,5,8,1+i,0);

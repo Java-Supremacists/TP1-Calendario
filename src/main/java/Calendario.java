@@ -130,6 +130,12 @@ public class Calendario {
             t.setTermina(terminaNuevo);
         }
     }
+    public void modificarTareaCompletarODescompletar(int ID){
+        var t = this.obtenerTarea(ID);
+        if (t != null){
+            t.marcarCompleta();
+        }
+    }
     public void modificarActividadAgregarAlarma(int ID, String s){
         var act = this.obtenerActividad(ID);
         var duracionAnterior = PlazoAnterior.compararHorariosDescriptos(s);

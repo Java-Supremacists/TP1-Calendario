@@ -19,6 +19,7 @@ public class Evento extends Activities {
 		this.arranqueActual = arranque;
 		this.terminaPrincipio = termina;
 		this.terminaActual = termina;
+		frecuencia = null;
 	}
 
 	//--------- Metodos ---------

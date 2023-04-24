@@ -17,6 +17,7 @@ public class Tarea extends Activities {
     public Tarea(LocalDateTime termina) {
         super();
         this.termina = termina;
+        estaCompletada = false;
     }
     //--------- Constructores ---------
 
