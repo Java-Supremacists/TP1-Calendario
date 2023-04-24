@@ -66,9 +66,7 @@ public class Evento extends Activities {
 	}
 	public void setFrecuencia(Frecuencia frecuenciaNueva){
 		frecuencia = frecuenciaNueva;
-		if (frecuenciaNueva!=null){
-			alarm.mantenerAlarmas(true);
-		}
+		alarm.mantenerAlarmas(frecuenciaNueva != null);
 	}
 
 	//--------- Metodos ---------
