@@ -12,7 +12,8 @@ public class RepeticionFecha implements Repeticion{
     @Override
     public boolean estaDentroDeRepeticiones(LocalDateTime fechaPedida) {
 	boolean estaDespuesDelLimite = fechaPedida.isBefore(this.fechaFinRepeticion);
-    	return estaDespuesDelLimite;
+	boolean esJustoElLimite = fechaPedida.isEqual(this.fechaFinRepeticion);
+    	return (estaDespuesDelLimite || esJustoElLimite);
     }
 	
 }
