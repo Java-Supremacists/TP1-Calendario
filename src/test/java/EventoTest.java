@@ -46,20 +46,20 @@ public class EventoTest {
         var termina = LocalDateTime.of(2023,12,8,0,0);
 
 
-	// TODO: Sacar comentario de la creacio nde la version anterior
+        // TODO: Sacar comentario de la creacio nde la version anterior
         // var even1 = new Evento("Nombre1","Descripcion1",alarmas,true,arranca,termina,null);
         var even1 = new Evento(arranca,termina);
-	even1.setName("Nombre1");
-	even1.setDescription("Descripcion1");
-	even1.agregarAlarmas(alarmas);
-	even1.setComplete(true);
+        even1.setName("Nombre1");
+        even1.setDescription("Descripcion1");
+        even1.agregarAlarmas(alarmas);
+        even1.setComplete(true);
 
-	// TODO: Sacar comentario de la creacio nde la version anterior
+        // TODO: Sacar comentario de la creacio nde la version anterior
         // var even2 = new Evento("Nombre2","Descripcion2",null,false,arranca,termina,null);
         var even2 = new Evento(arranca,termina);
-	even2.setName("Nombre2");
-	even2.setDescription("Descripcion2");
-	even2.setComplete(false);
+        even2.setName("Nombre2");
+        even2.setDescription("Descripcion2");
+        even2.setComplete(false);
 
 
         assertEquals("Nombre1", even1.getTitulo());
@@ -79,7 +79,7 @@ public class EventoTest {
     @Test
     public void eventoCaeDiaPedido(){
 
-	/*arrange
+    /*arrange
 	//ArrayList<LocalDateTime> alarmas = new ArrayList<LocalDateTime>();
 	//of(int year, int month, int dayOfMonth, int hour, int minute) 
 	// Evento eventoDePrueba = new Evento("Evento de prueba", "Descripcion de prueba", alarmas, false, LocalDateTime.of(2023, 4, 10, 7, 45, 55), LocalDateTime.of(2024, 3, 10, 7, 45, 55));
@@ -108,5 +108,17 @@ public class EventoTest {
         even1.setName("Distinto 1");
         assertEquals(hascodeEven1,even1.hashCode() );
         // https://stackoverflow.com/a/32450295/13683575
+    }
+    @Test
+    public void caeElDia() {
+    }
+    @Test
+    public void proximoEventoMasCercanoAFechaEspecifica() {
+    }
+    @Test
+    public void actualizarEvento() {
+    }
+    @Test
+    public void setFrecuencia() {
     }
 }
