@@ -24,23 +24,23 @@ public class RepeticionCantVecesTest {
 	//assert
 	assertEquals(true, repeticionCantVecesDePrueba.estaDentroDeRepeticiones(fechaFinRepeticion));
     }
+
+    @Test
+    public void finDeLaRepeticionPorFechaArrayDaysOfWeek(){
+	//arrange
+	LocalDateTime fechaComienzoRepeticion = LocalDateTime.of(2023, 4, 4, 7, 45, 55);
+	int maximaCantidadDeRepeticiones = 4;
+	DayOfWeek[] diasDeLaSemana = {DayOfWeek.TUESDAY, DayOfWeek.THURSDAY}; 
+	RepeticionCantVeces repeticionCantVecesDePrueba = new RepeticionCantVeces(maximaCantidadDeRepeticiones, fechaComienzoRepeticion, diasDeLaSemana);
+
+	// Esta fecha es la que cae si haces la cuenta manualmente
+	// (Martes 4, Jueves 6, Martes 11 y Jueves 13)
+	LocalDateTime fechaFinRepeticion = LocalDateTime.of(2023, 4, 13, 7, 45, 55);
+
+	//assert
+	assertEquals(true, repeticionCantVecesDePrueba.estaDentroDeRepeticiones(fechaFinRepeticion));
+    }
 }
-
-    //@Test
-    //public void finDeLaRepeticionPorFechaArrayDaysOfWeek(){
-	////arrange
-	//LocalDateTime fechaComienzoRepeticion = LocalDateTime.of(2023, 4, 4, 7, 45, 55);
-	//int maximaCantidadDeRepeticiones = 4;
-	//DayOfWeek[] diasDeLaSemana = {DayOfWeek.TUESDAY, DayOfWeek.THURSDAY}; 
-	//RepeticionCantVeces repeticionCantVecesDePrueba = new RepeticionCantVeces(maximaCantidadDeRepeticiones);
-
-	//// Esta fecha es la que cae si haces la cuenta manualmente
-	//// (Martes 4, Jueves 6, Martes 11 y Jueves 13)
-	//LocalDateTime fechaFinRepeticion = LocalDateTime.of(2023, 4, 13, 7, 45, 55);
-
-	////assert
-	//assertEquals(fechaFinRepeticion, repeticionCantVecesDePrueba.finDeLaRepeticion(fechaComienzoRepeticion, diasDeLaSemana));
-    //}
 
     //@Test
     //public void finDeLaRepeticionPorFechaArrayDaysOfWeekMismaSemana(){
