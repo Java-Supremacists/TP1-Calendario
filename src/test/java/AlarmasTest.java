@@ -11,11 +11,13 @@ public class AlarmasTest {
         Alarmas a2 = new Alarmas(true);
 
         assertFalse(a1.existeAlarma(null));
+        assertFalse(a1.repiteLasAlarmas());
         assertFalse(a1.quedanAlarmas());
         assertNull(a1.primerAlarmaASonar());
         assertEquals(0,a1.size());
 
         assertFalse(a2.existeAlarma(null));
+        assertTrue(a2.repiteLasAlarmas());
         assertFalse(a2.quedanAlarmas());
         assertNull(a2.primerAlarmaASonar());
         assertEquals(0,a2.size());
@@ -29,10 +31,12 @@ public class AlarmasTest {
         assertFalse(a1.existeAlarma(null));
         assertFalse(a1.quedanAlarmas());
         assertNull(a1.primerAlarmaASonar());
+        assertFalse(a1.repiteLasAlarmas());
         a1.eliminarAlarma(null);
         a1.sonarAlarma();
 
         a2.agregarAlarma((LocalDateTime) null);
+        assertTrue(a2.repiteLasAlarmas());
         assertFalse(a2.existeAlarma(null));
         assertFalse(a2.quedanAlarmas());
         assertNull(a2.primerAlarmaASonar());
@@ -82,6 +86,7 @@ public class AlarmasTest {
         LocalDateTime agregar = LocalDateTime.of(2023,4,24,23,59);
 
         a1.agregarAlarma(agregar);
+        assertFalse(a1.repiteLasAlarmas());
         assertTrue(a1.existeAlarma(agregar));
         assertTrue(a1.quedanAlarmas());
         assertEquals(agregar,a1.primerAlarmaASonar());
@@ -96,6 +101,7 @@ public class AlarmasTest {
         assertNull(a1.primerAlarmaASonar());
 
         a2.agregarAlarma(agregar);
+        assertTrue(a2.repiteLasAlarmas());
         assertTrue(a2.existeAlarma(agregar));
         assertTrue(a2.quedanAlarmas());
         assertEquals(agregar,a2.primerAlarmaASonar());

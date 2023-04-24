@@ -31,15 +31,20 @@ public class Calendario {
     public LocalDateTime proximaAlarma(){
         if (maximaAlarmaActual == null){
             for (Evento ev : listaEventos){
-                LocalDateTime alarmaProxima = ev.ultimaAlarma();
-                if (maximaAlarmaActual.isAfter(alarmaProxima)){
-                    maximaAlarmaActual = alarmaProxima;
+                LocalDateTime alarm = ev.ultimaAlarma();
+                if (maximaAlarmaActual==null){
+                    maximaAlarmaActual = alarm;
+                } else if (maximaAlarmaActual.isAfter(alarm)) {
+                    maximaAlarmaActual = alarm;
                 }
+
             }
             for (Tarea t : listaTareas){
-                LocalDateTime alarmaProxima = t.ultimaAlarma();
-                if (maximaAlarmaActual.isAfter(alarmaProxima)){
-                    maximaAlarmaActual = alarmaProxima;
+                LocalDateTime alarm = t.ultimaAlarma();
+                if (maximaAlarmaActual==null){
+                    maximaAlarmaActual = alarm;
+                } else if (maximaAlarmaActual.isAfter(alarm)) {
+                    maximaAlarmaActual = alarm;
                 }
             }
         }
@@ -53,18 +58,21 @@ public class Calendario {
                 LocalDateTime alarmaProxima = ev.ultimaAlarma();
                 if (alarmaProxima.equals(maximaAlarmaActual)){
                     retorno.add(ev);
+                    ev.sonarUltimaAlarma();
                 }
             }
             for (Tarea t : listaTareas){
                 LocalDateTime alarmaProxima = t.ultimaAlarma();
                 if (alarmaProxima.equals(maximaAlarmaActual)){
                     retorno.add(t);
+                    t.sonarUltimaAlarma();
                 }
             }
+            maximaAlarmaActual = null;
         }
         return retorno;
     }
-    private Activities obtenerActividad(int ID){
+    public Activities obtenerActividad(int ID){
         for (Evento e: listaEventos){
             if (e.hashCode() == ID){
                 return e;
@@ -77,7 +85,7 @@ public class Calendario {
         }
         return null;
     }
-    private Evento obtenerEvento(int ID){
+    public Evento obtenerEvento(int ID){
         for (Evento e: listaEventos){
             if (e.hashCode() == ID){
                 return e;
@@ -85,7 +93,7 @@ public class Calendario {
         }
         return null;
     }
-    private Tarea obtenerTarea(int ID){
+    public Tarea obtenerTarea(int ID){
         for (Tarea t: listaTareas){
             if (t.hashCode() == ID){
                 return t;
@@ -160,6 +168,14 @@ public class Calendario {
     public void modificarActividadEliminarAlarma(int ID, LocalDateTime alarma){
         var act = this.obtenerActividad(ID);
         if (act != null){
+            act.eliminarAlarma(alarma);
+        }
+    }
+    public void modificarActividadEliminarAlarma(int ID, String s){
+        var act = this.obtenerActividad(ID);
+        var duracionAnterior = PlazoAnterior.compararHorariosDescriptos(s);
+        if (act!= null && duracionAnterior!= null){
+            var alarma = act.cuandoEmpieza().minus(duracionAnterior.elHorarioEstablecido());
             act.eliminarAlarma(alarma);
         }
     }
