@@ -1,5 +1,6 @@
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Activities {
     //--------- Atributos ---------
@@ -61,11 +62,9 @@ public abstract class Activities {
     public void setComplete(boolean complete) {
         isComplete = complete;
     }
-
     public void agregarAlarma(LocalDateTime alarmaNueva) {
 	this.alarm.agregarAlarma(alarmaNueva);
     }
-
     public void agregarAlarmas(List<LocalDateTime> alarmasNuevas) {
 	this.alarm.agregarAlarma(alarmasNuevas);
     }
