@@ -19,7 +19,11 @@ public class CalendarioTest {
 		Calendario calendarioDePrueba = new Calendario();
 		//act
 		LocalDateTime termina = LocalDateTime.of(2002,1,1,0,0);
-		var indice = calendarioDePrueba.crearTarea("Nombre Tarea", "Descripcion Tarea",null,true,termina);
+		// var indice = calendarioDePrueba.crearTarea("Nombre Tarea", "Descripcion Tarea",null,true,termina);
+		var indice = calendarioDePrueba.crearTarea(termina);
+		calendarioDePrueba.modificarActividadNombre(indice, "Nombre Tarea");
+		calendarioDePrueba.modificarActividadDescripcion(indice, "Descripcion Tarea");
+		calendarioDePrueba.modificarActividadEsDiaEntero(indice, true);
 
 		////assert
 		var tarea = (Tarea) calendarioDePrueba.obtenerActividad(indice);
