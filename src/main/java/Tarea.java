@@ -15,8 +15,8 @@ public class Tarea extends Activities {
         this.termina = termina;
     }
      */
-    public Tarea(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete, LocalDateTime termina) {
-        super(name, description, alarm, isComplete);
+    public Tarea(LocalDateTime termina) {
+        super();
         this.termina = termina;
     }
     //--------- Constructores ---------

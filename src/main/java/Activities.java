@@ -13,26 +13,12 @@ public abstract class Activities {
     //--------- Atributos ---------
 
     //--------- Constructores ---------
-    /*
-    * public Activities() {
+
+    public Activities() {
         this.name = "";
         this.description = "";
         this.isComplete = false;
-    }*/
-
-    public Activities(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete) {
-        this.name = name;
-        this.description = description;
-        this.alarm.agregarAlarma(alarm);
-        this.isComplete = isComplete;
     }
-    /*
-    * public Activities(String name, String description, boolean isComplete) {
-        this.name = name;
-        this.description = description;
-        this.isComplete = isComplete;
-    }
-     */
 
     //--------- Constructores ---------
 

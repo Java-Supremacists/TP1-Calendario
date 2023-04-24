@@ -14,15 +14,12 @@ public class Evento extends Activities {
 	//--------- Atributos ---------
 
 	//--------- Constructores ---------
-	public Evento(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete, LocalDateTime arranque, LocalDateTime termina, Frecuencia frecuencia) {
-		super(name, description, alarm, isComplete);
+	public Evento(LocalDateTime arranque, LocalDateTime termina ) {
+		super();
 		this.arranquePrincipio = arranque;
 		this.arranqueActual = arranque;
 		this.terminaPrincipio = termina;
 		this.terminaActual = termina;
-		this.frecuencia = frecuencia;
-
-		// this.ultimaDiaDelEvento = this.frecuencia.finDeLasRepeticionesDadaFecha(this.arranque);
 	}
 
 	//--------- Metodos ---------
@@ -78,6 +75,9 @@ public class Evento extends Activities {
 	public void setTermina(LocalDateTime termina) {
 		this.terminaPrincipio = termina;
 		this.terminaActual = termina;
+	}
+	public void setFrecuencia(Frecuencia frecuenciaNueva){
+		frecuencia = frecuenciaNueva;
 	}
 
 	//--------- Metodos ---------

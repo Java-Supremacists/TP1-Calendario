@@ -87,6 +87,28 @@ public class EventoTest {
     }
     @Test
     public void UltimaAlarmaYSonarUltimaAlarma(){
+        var arranca = LocalDateTime.of(2023,12,8,0,0);
+        var termina = LocalDateTime.of(2023,12,8,0,0);
+        var even1 = new Evento(arranca,termina);
+        var even2 = new Evento(arranca,termina);
+
+        var hascodeEven1 =even1.hashCode();
+        var hascodeEven2 =even2.hashCode();
+        assertNotEquals(hascodeEven1,hascodeEven2 );
+        even1.setName("Distinto 1");
+        assertNotEquals(hascodeEven1,even1.hashCode() );
     }
 
+    @Test
+    public void UltimaAlarmaYSonarUltimaAlarma(){
+        var arranca = LocalDateTime.of(2023,12,8,0,0);
+        var termina = LocalDateTime.of(2023,12,8,0,0);
+        var even1 = new Evento("","",null,false,arranca,termina,null);
+        var even2 = new Evento("","",null,false,arranca,termina,null);
+        var hascodeEven1 =even1.hashCode();
+        var hascodeEven2 =even2.hashCode();
+        assertNotEquals(hascodeEven1,hascodeEven2 );
+        even1.setName("Distinto 1");
+        assertEquals(hascodeEven1,even1.hashCode() );
+        // https://stackoverflow.com/a/32450295/13683575
 }
