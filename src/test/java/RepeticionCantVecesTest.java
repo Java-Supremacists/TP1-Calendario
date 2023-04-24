@@ -40,7 +40,6 @@ public class RepeticionCantVecesTest {
 	//assert
 	assertEquals(true, repeticionCantVecesDePrueba.estaDentroDeRepeticiones(fechaFinRepeticion));
     }
-}
 
     //@Test
     //public void finDeLaRepeticionPorFechaArrayDaysOfWeekMismaSemana(){
@@ -57,6 +56,7 @@ public class RepeticionCantVecesTest {
 	////assert
 	//assertEquals(fechaFinRepeticion, repeticionCantVecesDePrueba.finDeLaRepeticion(fechaComienzoRepeticion, diasDeLaSemana));
     //}
+}
 
     //@Test
     //public void finDeLaRepeticionPorFechaArrayDaysOfWeekCantidadImparDeDias(){
