@@ -1,6 +1,5 @@
 import java.time.LocalDateTime;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 
@@ -13,7 +12,7 @@ public class TareaTest {
 	public void creacionDeTareaVacia() {
 		//arrange
 		LocalDateTime termina = LocalDateTime.of(2023,4,24,23,59);
-		Tarea tar = new Tarea("", "", null,false, termina);
+		Tarea tar = new Tarea(termina);
 		//act
 
 		//assert
@@ -41,7 +40,9 @@ public class TareaTest {
 	public void creacionDeTarea() {
 		//arrange
 		LocalDateTime termina = LocalDateTime.of(2023,4,24,23,59);
-		Tarea tar = new Tarea("Nombre Tarea", "Descripcion Tarea", null,false, termina);
+		Tarea tar = new Tarea(termina);
+		tar.setName("Nombre Tarea");
+		tar.setDescription("Descripcion Tarea");
 		//act
 		//assert
 		assertEquals("Nombre Tarea", tar.getTitulo());
@@ -57,7 +58,9 @@ public class TareaTest {
 	@Test
 	public void marcarTareaCompleta() {
 		//arrange
-		Tarea tareaDePrueba = new Tarea("Nombre Tarea", "Descripcion Tarea", null,false, LocalDateTime.now());
+		Tarea tareaDePrueba = new Tarea(LocalDateTime.now());
+		tareaDePrueba.setDescription("Descripcion Tarea");
+		tareaDePrueba.setName("Nombre Tarea");
 		//act
 		tareaDePrueba.marcarCompleta();
 		//assert
@@ -67,7 +70,9 @@ public class TareaTest {
 	@Test
 	public void marcarTareaCompletaDosVecesVuelveAIncompleta() {
 		//arrange
-		Tarea tareaDePrueba = new Tarea("Nombre Tarea", "Descripcion Tarea", null,false, LocalDateTime.now());
+		Tarea tareaDePrueba = new Tarea(LocalDateTime.now());
+		tareaDePrueba.setName("Nombre Tarea");
+		tareaDePrueba.setDescription("Descripcion Tarea");
 		//act
 		tareaDePrueba.marcarCompleta();
 		tareaDePrueba.marcarCompleta();
