@@ -1,6 +1,6 @@
 import java.time.LocalDateTime;
 /**
- * RepeticionCantVeces
+ * RepeticionFecha
  */
 public class RepeticionFecha implements Repeticion{
     private LocalDateTime fechaFinRepeticion;
