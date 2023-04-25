@@ -156,21 +156,21 @@ public class EventoTest {
 	    assertEquals(false, even1.caeElDia(fechaQueNoCae));
     }
      
-    //@Test
-    //public void testProximoEventoMasCercanoFrecuenciaDiaria(){
-	    //int cadaCuantosdias = 2;
-	    //var arranca = LocalDateTime.of(2023, 4, 4, 0, 0, 0)
-	    //var termina = LocalDateTime.of(2023, 4, 13, 0, 0, 0)
-	    //var fechaMasCercana = LocalDateTime.of(2023, 4, 14, 0, 0, 0)
+    @Test
+    public void testProximoEventoMasCercanoFrecuenciaDiaria(){
+	    int cadaCuantosdias = 2;
+	    var arranca = LocalDateTime.of(2023, 4, 4, 0, 0, 0);
+	    var termina = LocalDateTime.of(2023, 4, 13, 0, 0, 0);
+	    var fechaMasCercana = LocalDateTime.of(2023, 4, 14, 0, 0, 0);
      
-	    //var repeticionInfinita = RepeticionInfinita();
-	    //var frecuenciadiaria = FrecuenciaDiaria(cadaCuantosdias, repeticionInfinita);
-	    ////Copiar fechas de test de frecuencia
+	    var repeticionInfinita = new RepeticionInfinita();
+	    var frecuenciadiaria = new FrecuenciaDiaria(cadaCuantosdias, repeticionInfinita);
+	    //Copiar fechas de test de frecuencia
      
-	    //var even1 = new Evento(arranca, termina);
-	    //var even1.setFrecuencia(frecuenciadiaria) //Cambiamos la frecuencia para ver si sigue funcionando
+	    var even1 = new Evento(arranca, termina);
+	    even1.setFrecuencia(frecuenciadiaria);
      
-	    //assertEquals(fechaMasCercana, even1.proximoEvento(fechaQueCae));
-    //}
+	    assertEquals(fechaMasCercana, even1.proximoEventoMasCercanoAFechaEspecifica(termina));
+    }
 
 }
