@@ -116,30 +116,4 @@ public class FrecuenciaDiariaTest {
 	    assertEquals(fechaMasCercana, frecuenciadiaria.proximoEventoMasCercanoAFechaEspecifica(arranca, fechaObjetivo));
     }
      
-     
-    // @Test
-    // public void testFrecuenciaAnualCaeElDia(){
-	    // int cadaCuantosdias = 365;
-	    // var arranca = LocalDateTime.of(2023, 4, 4, 0, 0, 0)
-	    // var termina = LocalDateTime.of(2023, 4, 13, 0, 0, 0)
-	    // var repeticionInfinita = RepeticionInfinita();
-	    // var frecuenciadiaria = FrecuenciaDiaria(cadaCuantosdias, repeticionInfinita);
-     
-	    // assertEquals(true, even1.caeElDia(fechaQueCae));
-    // }
-     
-    // @Test
-    // public void testFrecuenciaAnualCaeElDia(){
-	    // int cadaCuantosdias = 365;
-	    // var arranca = LocalDateTime.of(2023, 4, 4, 0, 0, 0)
-	    // var termina = LocalDateTime.of(2023, 4, 13, 0, 0, 0)
-	    // var fechaMasCercana = LocalDateTime.of(2023, 4, 14, 0, 0, 0)
-     
-	    // var repeticionInfinita = RepeticionInfinita();
-	    // var frecuenciadiaria = FrecuenciaDiaria(cadaCuantosdias, repeticionInfinita);
-     
-	    // assertEquals(true, even1.dadoComienzo(fechaQueCae));
-    // }
- 
-	
 }
