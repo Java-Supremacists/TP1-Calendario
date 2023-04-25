@@ -111,10 +111,6 @@ public class EventoTest {
     }
 
     @Test
-    public void actualizarEvento() {
-    }
-
-    @Test
     public void testDeCaeElDia(){
 	    var arranca = LocalDateTime.of(2023, 4,4,5,0);
 	    var termina = LocalDateTime.of(2023, 4,4,12,0);
