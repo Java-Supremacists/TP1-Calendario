@@ -109,16 +109,63 @@ public class EventoTest {
         assertEquals(hascodeEven1,even1.hashCode() );
         // https://stackoverflow.com/a/32450295/13683575
     }
-    @Test
-    public void caeElDia() {
-    }
-    @Test
-    public void proximoEventoMasCercanoAFechaEspecifica() {
-    }
+
     @Test
     public void actualizarEvento() {
     }
+
     @Test
-    public void setFrecuencia() {
+    public void testDeCaeElDia(){
+	    var arranca = LocalDateTime.of(2023, 4,4,5,0);
+	    var termina = LocalDateTime.of(2023, 4,4,12,0);
+	    //Copiar fechas de test de frecuencia
+     
+	    var even1 = new Evento(arranca, termina);
+
+	    int cadaCuantosDias = 2;
+	    var repeticionInfinita = new RepeticionInfinita();
+	    FrecuenciaDiaria frecuenciaDiaria = new FrecuenciaDiaria(cadaCuantosDias, repeticionInfinita);
+
+	    even1.setFrecuencia(frecuenciaDiaria);
+	    var fechaQueCae = LocalDateTime.of(2023, 4, 12, 5, 0);
+	    var fechaQueNoCae = LocalDateTime.of(2023, 4, 13, 5, 0);
+     
+	    assertEquals(true, even1.caeElDia(fechaQueCae));
+	    assertEquals(false, even1.caeElDia(fechaQueNoCae));
     }
+     
+    //@Test
+    //public void testDeSetFrecuencia(){
+	    //var arranca;
+	    //var termina;
+	    ////Copiar fechas de test de frecuencia
+     
+	    //var even1 = new Evento(arranca, termina);
+	    //var even1.setFrecuencia() //Copiar Frecuencia de test de frecuencia
+	    //var even1.setFrecuencia() //Cambiamos la frecuencia para ver si sigue funcionando
+     
+	    //var fechaQueCae = LocalDateTime.of(2023, 4, 12, 0, 0);
+	    //var fechaQueNoCae = LocalDateTime.of(2023, 4, 13, 0, 0);
+     
+	    //assertEquals(true, even1.caeElDia(fechaQueCae));
+	    //assertEquals(false, even1.caeElDia(fechaQueCae));
+    //}
+     
+    //@Test
+    //public void testProximoEventoMasCercanoFrecuenciaDiaria(){
+	    //int cadaCuantosdias = 2;
+	    //var arranca = LocalDateTime.of(2023, 4, 4, 0, 0, 0)
+	    //var termina = LocalDateTime.of(2023, 4, 13, 0, 0, 0)
+	    //var fechaMasCercana = LocalDateTime.of(2023, 4, 14, 0, 0, 0)
+     
+	    //var repeticionInfinita = RepeticionInfinita();
+	    //var frecuenciadiaria = FrecuenciaDiaria(cadaCuantosdias, repeticionInfinita);
+	    ////Copiar fechas de test de frecuencia
+     
+	    //var even1 = new Evento(arranca, termina);
+	    //var even1.setFrecuencia(frecuenciadiaria) //Cambiamos la frecuencia para ver si sigue funcionando
+     
+	    //assertEquals(fechaMasCercana, even1.proximoEvento(fechaQueCae));
+    //}
+
 }
