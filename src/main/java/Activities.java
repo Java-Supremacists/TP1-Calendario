@@ -1,31 +1,43 @@
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Activities {
     //--------- Atributos ---------
-    enum tipo {TAREA,EVENTO}
-    protected final String name;
-    protected final String description;
-    protected ArrayList<LocalDateTime> alarm;
-    protected final boolean isComplete;
+
+    protected String name;
+    protected String description;
+    protected final Alarmas alarm = new Alarmas();
+    protected boolean isComplete;
+
     //--------- Atributos ---------
+
     //--------- Constructores ---------
-    public Activities(String name, String description, ArrayList<LocalDateTime> alarm, boolean isComplete) {
-        this.name = name;
-        this.description = description;
-        this.alarm = alarm;
-        this.isComplete = isComplete;
+
+    public Activities() {
+        this.name = "";
+        this.description = "";
+        this.isComplete = false;
     }
-    public Activities(String name, String description, boolean isComplete) {
-        this.name = name;
-        this.description = description;
-        this.isComplete = isComplete;
-    }
+
     //--------- Constructores ---------
+
     //--------- Metodos ---------
-    public abstract tipo type();
+
     public abstract LocalDateTime cuandoTermina();
     public abstract LocalDateTime cuandoEmpieza();
+    public LocalDateTime ultimaAlarma(){
+        if (alarm.quedanAlarmas()){
+            return alarm.primerAlarmaASonar();
+        }
+        return null;
+    }
+    public void sonarUltimaAlarma(){
+        if (alarm.quedanAlarmas()){
+            alarm.sonarAlarma();
+        }//else
+            //error
+        //}
+    }
     public String getTitulo() {
         return name;
     }
@@ -35,5 +47,24 @@ public abstract class Activities {
     public boolean esDiaEntero() {
         return isComplete;
     }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public void setComplete(boolean complete) {
+        isComplete = complete;
+    }
+    public void agregarAlarma(LocalDateTime alarmaNueva) {
+	this.alarm.agregarAlarma(alarmaNueva);
+    }
+    public void agregarAlarmas(List<LocalDateTime> alarmasNuevas) {
+	this.alarm.agregarAlarma(alarmasNuevas);
+    }
+    public void eliminarAlarma(LocalDateTime alarmaNueva) {
+        this.alarm.eliminarAlarma(alarmaNueva);
+    }
+
     //--------- Metodos ---------
 }
