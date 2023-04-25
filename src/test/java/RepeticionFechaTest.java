@@ -1,5 +1,4 @@
 import java.time.LocalDateTime;
-import java.time.DayOfWeek;
 
 import org.junit.Test;
 import static org.junit.Assert.*;

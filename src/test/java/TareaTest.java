@@ -77,16 +77,4 @@ public class TareaTest {
 		//assert
 		assertFalse(tareaDePrueba.estaCompleta());
 	}
-	@Test
-	public void cuandoEmpiezaTest(){
-
-	}
-	@Test
-	public void cuandoTerminaTest(){
-
-	}
-	@Test
-	public void UltimaAlarmaYSonarUltimaAlarma(){
-
-	}
 }
