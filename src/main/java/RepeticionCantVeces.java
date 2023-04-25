@@ -6,8 +6,9 @@ import java.time.DayOfWeek;
 public class RepeticionCantVeces implements Repeticion{
     private LocalDateTime fechaFinRepeticion;
 
-    //No estoy totalmente contento con la presencia de dos constructores 
-    //distintos, sin 
+    //No estamos totalmente contentos con la presencia de dos constructores 
+    //distintos, sin embargo, fue la mejor manera que se nos ocurrio de poder
+    //encapsular dos casos distinto en 1
     public RepeticionCantVeces(int cantidadDeRepeticionesMaximas, int cadaCuantosDias, LocalDateTime fechaComienzo) {
 	//Esto nos da la cantidad de dias extra para llegar al ultimo dia
 	//Le restamos uno a cantidadDeRepeticionesMaximas porque el dia en el 
@@ -16,7 +17,6 @@ public class RepeticionCantVeces implements Repeticion{
 
 	//Le sumamos esos dias a la fecha que nos pasaron
 	LocalDateTime fechaFinal = fechaComienzo.plusDays(cantidadDeDiasASumar);
-
 	
 	this.fechaFinRepeticion = fechaFinal;
     }
@@ -38,8 +38,8 @@ public class RepeticionCantVeces implements Repeticion{
 		cantidadDeRepeticionesSemanales++;
 	    }
 	}
-	//Esto de aca arriba tal vez se puede hacer con un modulo
-	//TODO: Conseguir a alguien inteligente que sepa hacer esto con un modulo
+	//TODO: Esto de aca arriba tal vez se puede hacer con la funcion modulo
+	//No estamos seguro si es el caso.
 
 	LocalDateTime offsetDiaDeLaSemana = fechaComienzo;
 	DayOfWeek diaDeLaSemanaDeInicio = diasDeLaSemana[diaDeLaSemana];
