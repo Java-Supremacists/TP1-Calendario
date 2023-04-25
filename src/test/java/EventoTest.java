@@ -1,5 +1,5 @@
 import org.junit.Test;
-
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -118,7 +118,6 @@ public class EventoTest {
     public void testDeCaeElDia(){
 	    var arranca = LocalDateTime.of(2023, 4,4,5,0);
 	    var termina = LocalDateTime.of(2023, 4,4,12,0);
-	    //Copiar fechas de test de frecuencia
      
 	    var even1 = new Evento(arranca, termina);
 
@@ -134,22 +133,28 @@ public class EventoTest {
 	    assertEquals(false, even1.caeElDia(fechaQueNoCae));
     }
      
-    //@Test
-    //public void testDeSetFrecuencia(){
-	    //var arranca;
-	    //var termina;
-	    ////Copiar fechas de test de frecuencia
+    @Test
+    public void testDeSetFrecuencia(){
+	    var arranca = LocalDateTime.of(2023, 4,4,5,0);
+	    var termina = LocalDateTime.of(2023, 4,4,12,0);
      
-	    //var even1 = new Evento(arranca, termina);
-	    //var even1.setFrecuencia() //Copiar Frecuencia de test de frecuencia
-	    //var even1.setFrecuencia() //Cambiamos la frecuencia para ver si sigue funcionando
+	    var even1 = new Evento(arranca, termina);
+
+	    int cadaCuantosDias = 2;
+	    var repeticionInfinita = new RepeticionInfinita();
+	    FrecuenciaDiaria frecuenciaDiaria = new FrecuenciaDiaria(cadaCuantosDias, repeticionInfinita);
+	    even1.setFrecuencia(frecuenciaDiaria);
+
+	    DayOfWeek[] diasDeLaSemana = {DayOfWeek.TUESDAY, DayOfWeek.THURSDAY};
+	    FrecuenciaSemanal frecuenciaSemanal = new FrecuenciaSemanal(diasDeLaSemana, repeticionInfinita);
+	    even1.setFrecuencia(frecuenciaSemanal);//Actualizo la frecuencia
+
+	    var fechaQueCae = LocalDateTime.of(2023, 4, 11, 5, 0);
+	    var fechaQueNoCae = LocalDateTime.of(2023, 4, 12, 5, 0);
      
-	    //var fechaQueCae = LocalDateTime.of(2023, 4, 12, 0, 0);
-	    //var fechaQueNoCae = LocalDateTime.of(2023, 4, 13, 0, 0);
-     
-	    //assertEquals(true, even1.caeElDia(fechaQueCae));
-	    //assertEquals(false, even1.caeElDia(fechaQueCae));
-    //}
+	    assertEquals(true, even1.caeElDia(fechaQueCae));
+	    assertEquals(false, even1.caeElDia(fechaQueNoCae));
+    }
      
     //@Test
     //public void testProximoEventoMasCercanoFrecuenciaDiaria(){
