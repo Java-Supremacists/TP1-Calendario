@@ -9,13 +9,14 @@ public class Tarea extends Activities {
     //--------- Atributos ---------
 
     //--------- Constructores ---------
-    /*
-    * public Tarea(LocalDateTime termina) {
-        this.termina = termina;
-    }
-     */
+
     public Tarea(LocalDateTime termina) {
         super();
+        this.termina = termina;
+        estaCompletada = false;
+    }
+    public Tarea(String nombre, String descripcion, boolean esCompleto,LocalDateTime termina) {
+        super(nombre, descripcion, esCompleto);
         this.termina = termina;
         estaCompletada = false;
     }

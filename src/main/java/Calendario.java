@@ -28,6 +28,16 @@ public class Calendario {
         listaEventos.add(nuevoEvento);
         return nuevoEvento.hashCode();
     }
+    public int crearTarea(String nombre, String descripcion, boolean esCompleto,LocalDateTime termina){
+        Tarea nuevaTarea = new Tarea(nombre,descripcion,esCompleto,termina);
+        listaTareas.add(nuevaTarea);
+        return nuevaTarea.hashCode();
+    }
+    public int crearEvento(String nombre, String descripcion, boolean esCompleto,LocalDateTime arranque, LocalDateTime termina){
+        Evento nuevoEvento = new Evento(nombre,descripcion,esCompleto,arranque,termina);
+        listaEventos.add(nuevoEvento);
+        return nuevoEvento.hashCode();
+    }
     public LocalDateTime proximaAlarma(){
         if (maximaAlarmaActual == null){
             for (Evento ev : listaEventos){
@@ -116,7 +126,7 @@ public class Calendario {
     public void modificarActividadEsDiaEntero(int ID, boolean esDiaCompleto){
         var act = this.obtenerActividad(ID);
         if (act!= null) {
-            act.setComplete(esDiaCompleto);
+            act.setEsDiaCompleto(esDiaCompleto);
         }
     }
     public void modificarEventoPlazoTemporal(int ID, LocalDateTime arrancaNuevo, LocalDateTime terminaNuevo){

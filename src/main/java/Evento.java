@@ -21,6 +21,14 @@ public class Evento extends Activities {
 		this.terminaActual = termina;
 		frecuencia = null;
 	}
+	public Evento(String nombre, String descripcion, boolean esCompleto,LocalDateTime arranque, LocalDateTime termina ) {
+		super(nombre, descripcion, esCompleto);
+		this.arranquePrincipio = arranque;
+		this.arranqueActual = arranque;
+		this.terminaPrincipio = termina;
+		this.terminaActual = termina;
+		frecuencia = null;
+	}
 
 	//--------- Metodos ---------
 

@@ -7,7 +7,7 @@ public abstract class Activities {
     protected String name;
     protected String description;
     protected final Alarmas alarm = new Alarmas();
-    protected boolean isComplete;
+    protected boolean esDiaCompleto;
 
     //--------- Atributos ---------
 
@@ -16,7 +16,12 @@ public abstract class Activities {
     public Activities() {
         this.name = "";
         this.description = "";
-        this.isComplete = false;
+        this.esDiaCompleto = false;
+    }
+    public Activities(String nombre, String descripcion, boolean esCompleto) {
+        this.name = nombre;
+        this.description = descripcion;
+        this.esDiaCompleto = esCompleto;
     }
 
     //--------- Constructores ---------
@@ -45,7 +50,7 @@ public abstract class Activities {
         return description;
     }
     public boolean esDiaEntero() {
-        return isComplete;
+        return esDiaCompleto;
     }
     public void setName(String name) {
         this.name = name;
@@ -53,8 +58,8 @@ public abstract class Activities {
     public void setDescription(String description) {
         this.description = description;
     }
-    public void setComplete(boolean complete) {
-        isComplete = complete;
+    public void setEsDiaCompleto(boolean esDiaCompleto) {
+        this.esDiaCompleto = esDiaCompleto;
     }
     public void agregarAlarma(LocalDateTime alarmaNueva) {
 	this.alarm.agregarAlarma(alarmaNueva);

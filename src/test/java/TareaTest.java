@@ -27,7 +27,7 @@ public class TareaTest {
 		assertEquals("", tar.getDescripcion());
 		assertEquals("", tar.getTitulo());
 		assertFalse(tar.esDiaEntero());
-		tar.setComplete(true);
+		tar.setEsDiaCompleto(true);
 		tar.setName("Nombre1");
 		tar.setDescription("Descripcion1");
 		assertEquals("Descripcion1", tar.getDescripcion());

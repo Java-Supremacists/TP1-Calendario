@@ -27,7 +27,7 @@ public class EventoTest {
         assertEquals("", even1.getDescripcion());
         assertEquals("", even1.getTitulo());
         assertFalse(even1.esDiaEntero());
-        even1.setComplete(true);
+        even1.setEsDiaCompleto(true);
         even1.setName("Nombre1");
         even1.setDescription("Descripcion1");
         assertEquals("Descripcion1", even1.getDescripcion());
@@ -52,14 +52,14 @@ public class EventoTest {
         even1.setName("Nombre1");
         even1.setDescription("Descripcion1");
         even1.agregarAlarmas(alarmas);
-        even1.setComplete(true);
+        even1.setEsDiaCompleto(true);
 
         // TODO: Sacar comentario de la creacio nde la version anterior
         // var even2 = new Evento("Nombre2","Descripcion2",null,false,arranca,termina,null);
         var even2 = new Evento(arranca,termina);
         even2.setName("Nombre2");
         even2.setDescription("Descripcion2");
-        even2.setComplete(false);
+        even2.setEsDiaCompleto(false);
 
 
         assertEquals("Nombre1", even1.getTitulo());
