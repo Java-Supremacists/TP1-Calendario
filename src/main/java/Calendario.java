@@ -144,11 +144,10 @@ public class Calendario {
             t.marcarCompleta();
         }
     }
-    public void modificarActividadAgregarAlarma(int ID, String s){
+    public void modificarActividadAgregarAlarma(int ID, PlazoAnterior s){
         var act = this.obtenerActividad(ID);
-        var duracionAnterior = PlazoAnterior.compararHorariosDescriptos(s);
-        if (act!= null && duracionAnterior!= null){
-            var alarma = act.cuandoEmpieza().minus(duracionAnterior.elHorarioEstablecido());
+        if (act!= null && s!= null){
+            var alarma = act.cuandoEmpieza().minus(s.elHorarioEstablecido());
             act.agregarAlarma(alarma);
         }
     }
@@ -171,11 +170,10 @@ public class Calendario {
             act.eliminarAlarma(alarma);
         }
     }
-    public void modificarActividadEliminarAlarma(int ID, String s){
+    public void modificarActividadEliminarAlarma(int ID, PlazoAnterior s){
         var act = this.obtenerActividad(ID);
-        var duracionAnterior = PlazoAnterior.compararHorariosDescriptos(s);
-        if (act!= null && duracionAnterior!= null){
-            var alarma = act.cuandoEmpieza().minus(duracionAnterior.elHorarioEstablecido());
+        if (act!= null && s!= null){
+            var alarma = act.cuandoEmpieza().minus(s.elHorarioEstablecido());
             act.eliminarAlarma(alarma);
         }
     }

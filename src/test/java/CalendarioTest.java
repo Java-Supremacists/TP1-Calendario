@@ -17,7 +17,7 @@ public class CalendarioTest {
 
 		assertNull(calendario.proximaAlarma());
 		assertEquals(0, calendario.sonarAlarmas().size());
-		calendario.modificarActividadAgregarAlarma(123,"1 Dia Antes");
+		calendario.modificarActividadAgregarAlarma(123,PlazoAnterior.DIAANTES);
 		assertNull(calendario.proximaAlarma());
 		assertEquals(0, calendario.sonarAlarmas().size());
 		calendario.modificarActividadNombre(123,"Nombre1");
@@ -59,7 +59,7 @@ public class CalendarioTest {
 		var indice = calendarioDePrueba.crearTarea(termina);
 		var tarea = calendarioDePrueba.obtenerTarea(indice);
 
-		calendarioDePrueba.modificarActividadEliminarAlarma(indice,"1 Dia Antes");
+		calendarioDePrueba.modificarActividadEliminarAlarma(indice,PlazoAnterior.DIAANTES);
 		calendarioDePrueba.modificarActividadEliminarAlarma(indice,termina);
 
 		LocalDateTime alarm = LocalDateTime.of(2002,1,1,0,0);
@@ -67,7 +67,7 @@ public class CalendarioTest {
 		for (int i = 1; i<23;i++){
 			array.add(LocalDateTime.of(2002,1,1,i,0));
 		}
-		calendarioDePrueba.modificarActividadAgregarAlarma(indice,"1 Hora Antes");
+		calendarioDePrueba.modificarActividadAgregarAlarma(indice,PlazoAnterior.HORAANTES);
 		calendarioDePrueba.modificarActividadAgregarAlarma(indice,alarm);
 		calendarioDePrueba.modificarActividadAgregarAlarma(indice,array);
 		for (int i = 0 ; i <= 23; i++){
