@@ -32,6 +32,15 @@ astyle src/test/java/* &> /dev/null
 echo "Borro los archivos viejos de test"
 rm src/test/java/*.orig &> /dev/null
 
+seCambioAlgo=$(git diff | wc -l)
+if [ ${seCambioAlgo} -eq 0 ]
+then
+	echo "Nada fue formateado"
+	echo "No hago mas"
+	exit 2
+fi
+
+
 echo "Hago el commit de los archivos formateos"
 git add .
 git commit -m "Commit de formateo, nada de codigo cambiando"
@@ -48,6 +57,13 @@ echo "" >> .git-blame-ignore-revs
 echo "Hago el commit de lo anadido al archivo .git-blame-ignore-revs"
 git add .
 git commit -m "Anado hash a .git-blame-ignore-revs"
+
+
+
+
+
+
+
 
 
 
