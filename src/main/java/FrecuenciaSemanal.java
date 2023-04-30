@@ -30,7 +30,7 @@ public class FrecuenciaSemanal implements Frecuencia {
 
 
         //Averiguamos el dia de la semana del evento que me piden
-        DayOfWeek diasDeLaSemanaDelDiaEspecifico = diaEspecifico.getDayOfWeek();
+		    DayOfWeek diasDeLaSemanaDelDiaEspecifico = diaEspecifico.getDayOfWeek();
 
         //Nos fijamos si el dia de la semana del dia que que me piden esta
         //en mi lista original
