@@ -9,10 +9,7 @@ then
 	exit 2
 fi
 
-
-
 archivosSinComitear=$(git status -s | wc -l)
-
 if [ ${archivosSinComitear} -ne 0 ]
 then
 	echo "Tenes cosas sin comitear"
@@ -23,3 +20,6 @@ fi
 
 echo "Formateo los archivos main"
 astyle src/main/java/*
+
+echo "Borro los archivos viejos"
+rm src/main/java/*.orig
