@@ -1,4 +1,5 @@
 #!/bin/sh
+#TODO: Esto no chequea que se hayan formateado archivos. Deberia chequearlo
 
 which astyle &> /dev/null
 tenesAstyle=$(echo $?)
