@@ -2,14 +2,14 @@ import java.time.temporal.ChronoUnit; //Libreria para formatear dias en LocalDat
 import java.time.LocalDateTime;
 import java.lang.Math;
 /**
- * FrecuenciaMensual
+ * FrecuenciaAnual
  */
-public class FrecuenciaMensual implements Frecuencia{
+public class FrecuenciaAnual implements Frecuencia{
 
-    private final int cadaCuantosDias = 30;
+    private final int cadaCuantosDias = 365; 
     private Repeticion repeticion;
 
-    public FrecuenciaMensual(Repeticion repeticion){
+    public FrecuenciaAnual(Repeticion repeticion){
 	this.repeticion = repeticion;
 
     }
@@ -56,3 +56,4 @@ public class FrecuenciaMensual implements Frecuencia{
     }
     
 }
+
