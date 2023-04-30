@@ -67,9 +67,9 @@ public abstract class Activities {
     public void agregarAlarmas(List<LocalDateTime> alarmasNuevas) {
         this.alarm.agregarAlarma(alarmasNuevas);
     }
-    public void eliminarAlarma(LocalDateTime alarmaNueva) {
-        this.alarm.eliminarAlarma(alarmaNueva);
-    }
+				public void eliminarAlarma(LocalDateTime alarmaNueva) {
+	    this.alarm.eliminarAlarma(alarmaNueva);
+	}
 
     //--------- Metodos ---------
 }
