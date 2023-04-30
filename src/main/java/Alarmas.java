@@ -31,12 +31,12 @@ public class Alarmas {
 
     //--------- Metodos ---------
 
-    public int size(){
+    public int size() {
         return alarmas.size();
     }
-    public void actualizarAlarmas(long cantidadDiasASumar){
-        if (cantidadDiasASumar != 0 && alarmas.size()==0 && mantenerAlarmas){
-            for (LocalDateTime alarm : alarmasYaSonadas){
+    public void actualizarAlarmas(long cantidadDiasASumar) {
+        if (cantidadDiasASumar != 0 && alarmas.size()==0 && mantenerAlarmas) {
+            for (LocalDateTime alarm : alarmasYaSonadas) {
                 LocalDateTime nuevaAlarm = alarm.plusDays(cantidadDiasASumar);
                 alarmas.add(nuevaAlarm);
             }
@@ -44,26 +44,26 @@ public class Alarmas {
             alarmasYaSonadas.addAll(alarmas);
         }
     }
-    public void agregarAlarma(LocalDateTime alarmaParaAgregar){
-        if (alarmaParaAgregar== null){
+    public void agregarAlarma(LocalDateTime alarmaParaAgregar) {
+        if (alarmaParaAgregar== null) {
             return;
         }
         alarmas.add(alarmaParaAgregar);
-        if (mantenerAlarmas){
+        if (mantenerAlarmas) {
             alarmasYaSonadas.add(alarmaParaAgregar);
         }
         if ((alarmaMasTemprana != null) && alarmaMasTemprana.isAfter(alarmaParaAgregar)) {
             alarmaMasTemprana = alarmaParaAgregar;
         }
     }
-    public void agregarAlarma(List<LocalDateTime> alarmasParaAgregar){
-        if (alarmasParaAgregar!=null){
-            for (LocalDateTime alarm : alarmasParaAgregar){
-                if (alarm== null){
+    public void agregarAlarma(List<LocalDateTime> alarmasParaAgregar) {
+        if (alarmasParaAgregar!=null) {
+            for (LocalDateTime alarm : alarmasParaAgregar) {
+                if (alarm== null) {
                     continue;
                 }
                 alarmas.add(alarm);
-                if (mantenerAlarmas){
+                if (mantenerAlarmas) {
                     alarmasYaSonadas.add(alarm);
                 }
                 if ((alarmaMasTemprana != null) && alarmaMasTemprana.isAfter(alarm)) {
@@ -74,24 +74,24 @@ public class Alarmas {
 
 
     }
-    public boolean quedanAlarmas(){
+    public boolean quedanAlarmas() {
         //devuelve true si todavia quedan
         return alarmas.size()!= 0;
     }
-    public boolean existeAlarma(LocalDateTime a1){
+    public boolean existeAlarma(LocalDateTime a1) {
         return alarmas.contains(a1);
     }
-    public void eliminarAlarma(LocalDateTime paraEliminar){
+    public void eliminarAlarma(LocalDateTime paraEliminar) {
         alarmas.remove(paraEliminar);
         alarmasYaSonadas.remove(paraEliminar);
-        if (paraEliminar!= null && paraEliminar.equals(alarmaMasTemprana)){
+        if (paraEliminar!= null && paraEliminar.equals(alarmaMasTemprana)) {
             alarmaMasTemprana = null;
         }
     }
-    public LocalDateTime primerAlarmaASonar(){
-        if (alarmaMasTemprana == null){
-            for (LocalDateTime alarm : alarmas){
-                if (alarmaMasTemprana == null){
+    public LocalDateTime primerAlarmaASonar() {
+        if (alarmaMasTemprana == null) {
+            for (LocalDateTime alarm : alarmas) {
+                if (alarmaMasTemprana == null) {
                     alarmaMasTemprana = alarm;
                 } else if (alarmaMasTemprana.isAfter(alarm)) {
                     alarmaMasTemprana = alarm;
@@ -100,15 +100,15 @@ public class Alarmas {
         }
         return alarmaMasTemprana;
     }
-    public void sonarAlarma(){
-        if (alarmaMasTemprana == null){
+    public void sonarAlarma() {
+        if (alarmaMasTemprana == null) {
             this.primerAlarmaASonar();
         }
-        if (alarmaMasTemprana != null){
+        if (alarmaMasTemprana != null) {
             alarmas.remove(alarmaMasTemprana);
             alarmaMasTemprana = null;
         }//else {
-          //error
+        //error
         //}
     }
     public boolean repiteLasAlarmas() {

@@ -14,12 +14,12 @@ public enum PlazoAnterior {
         horarios = s;
         tiempo = t;
     }
-    public Duration elHorarioEstablecido(){
+    public Duration elHorarioEstablecido() {
         return tiempo;
     }
-    public static PlazoAnterior compararHorariosDescriptos(String s){
-        for (PlazoAnterior p: PlazoAnterior.values()){
-            if (s.equals(p.horarios)){
+    public static PlazoAnterior compararHorariosDescriptos(String s) {
+        for (PlazoAnterior p: PlazoAnterior.values()) {
+            if (s.equals(p.horarios)) {
                 return p;
             }
         }
