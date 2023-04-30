@@ -22,15 +22,25 @@ fi
 echo "Formateo los archivos main"
 astyle src/main/java/* &> /dev/null
 
-echo "Borro los archivos viejos de main"
-rm src/main/java/*.orig &> /dev/null
+archivosABorrar=$(find src/main/java/ -type f -name "*.orig" | wc -l)
+echo "Formatee ${archivosABorrar} archivos"
+if [ ${archivosABorrar} -ne 0 ]
+then
+	echo "Borro los archivos viejos de main"
+	rm src/main/java/*.orig &> /dev/null
+fi
 
 
 echo "Formateo los archivos test"
 astyle src/test/java/* &> /dev/null
 
-echo "Borro los archivos viejos de test"
-rm src/test/java/*.orig &> /dev/null
+archivosABorrar=$(find src/test/java/ -type f -name "*.orig" | wc -l)
+echo "Formatee ${archivosABorrar} archivos"
+if [ ${archivosABorrar} -ne 0 ]
+then
+	echo "Borro los archivos viejos de test"
+	rm src/test/java/*.orig &> /dev/null
+fi
 
 seCambioAlgo=$(git diff | wc -l)
 if [ ${seCambioAlgo} -eq 0 ]
