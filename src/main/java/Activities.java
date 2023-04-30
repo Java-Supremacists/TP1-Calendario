@@ -49,25 +49,25 @@ public abstract class Activities {
     public String getDescripcion() {
         return description;
     }
-	public boolean esDiaEntero() {
-	    return esDiaCompleto;
-	}
-	public void setName(String name) {
-	    this.name = name;
-	}
-	public void setDescription(String description) {
-	    this.description = description;
-	}
-	public void setEsDiaCompleto(boolean esDiaCompleto) {
-	    this.esDiaCompleto = esDiaCompleto;
-	}
-	public void agregarAlarma(LocalDateTime alarmaNueva) {
-	    this.alarm.agregarAlarma(alarmaNueva);
-	}
-	public void agregarAlarmas(List<LocalDateTime> alarmasNuevas) {
-	    this.alarm.agregarAlarma(alarmasNuevas);
-	}
-	public void eliminarAlarma(LocalDateTime alarmaNueva) {
+    public boolean esDiaEntero() {
+        return esDiaCompleto;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public void setEsDiaCompleto(boolean esDiaCompleto) {
+        this.esDiaCompleto = esDiaCompleto;
+    }
+    public void agregarAlarma(LocalDateTime alarmaNueva) {
+        this.alarm.agregarAlarma(alarmaNueva);
+    }
+    public void agregarAlarmas(List<LocalDateTime> alarmasNuevas) {
+        this.alarm.agregarAlarma(alarmasNuevas);
+    }
+    public void eliminarAlarma(LocalDateTime alarmaNueva) {
         this.alarm.eliminarAlarma(alarmaNueva);
     }
 
