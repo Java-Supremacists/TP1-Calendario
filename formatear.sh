@@ -21,5 +21,23 @@ fi
 echo "Formateo los archivos main"
 astyle src/main/java/*
 
-echo "Borro los archivos viejos"
+echo "Borro los archivos viejos de main"
 rm src/main/java/*.orig
+
+
+echo "Formateo los archivos test"
+astyle src/test/java/*
+
+echo "Borro los archivos viejos de test"
+rm src/test/java/*.orig
+
+echo "Hago el commit de los archivos formateos"
+git add .
+git commit -m "Commit de formateo, nada de codigo cambiando"
+hashCommit=$(git rev-parse HEAD)
+
+firmaFormateo="Formateo del codigo"
+firma+=$(date)
+echo ${firma} >> .git-blame-ignore-revs
+echo ${hashCommit} >> .git-blame-ignore-revs
+echo "" >> .git-blame-ignore-revs
