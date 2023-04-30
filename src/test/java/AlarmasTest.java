@@ -52,12 +52,12 @@ public class AlarmasTest {
         assertFalse(a1.quedanAlarmas());
         a1.agregarAlarma(array);
         assertFalse(a1.quedanAlarmas());
-        for (int i = 0 ; i < 1000 ; i++ ){
+        for (int i = 0 ; i < 1000 ; i++ ) {
             agregar = LocalDateTime.of(3022-i,4,24,23,59);
             a1.agregarAlarma(agregar);
             assertTrue(a1.quedanAlarmas());
         }
-        for (int j = 0 ; j < 1000 ; j++ ){
+        for (int j = 0 ; j < 1000 ; j++ ) {
             agregar = LocalDateTime.of(2023+j,4,24,23,59);
             assertTrue(a1.quedanAlarmas());
             a1.eliminarAlarma(agregar);
@@ -68,12 +68,12 @@ public class AlarmasTest {
         Alarmas a1 = new Alarmas();
         LocalDateTime agregar;
         ArrayList<LocalDateTime> array = new ArrayList<>();
-        for (int i = 12 ; i > 0 ; i-- ){
+        for (int i = 12 ; i > 0 ; i-- ) {
             agregar = LocalDateTime.of(i,i,i,i,i);
             array.add(agregar);
         }
         a1.agregarAlarma(array);
-        for (int i = 1 ; i < 13 ; i++ ){
+        for (int i = 1 ; i < 13 ; i++ ) {
             agregar = LocalDateTime.of(i,i,i,i,i);
             assertEquals(agregar,a1.primerAlarmaASonar());
             a1.sonarAlarma();
@@ -139,7 +139,7 @@ public class AlarmasTest {
         ArrayList<LocalDateTime> array = new ArrayList<>();
         LocalDateTime agregar;
 
-        for (int i = 0 ; i < 1000 ; i++ ){
+        for (int i = 0 ; i < 1000 ; i++ ) {
             agregar = LocalDateTime.of(2023+i,4,24,23,59);
             array.add(agregar);
         }
@@ -159,7 +159,7 @@ public class AlarmasTest {
         Alarmas a1 = new Alarmas();
         Alarmas a2 = new Alarmas(true);
         LocalDateTime agregar = LocalDateTime.of(2023,4,24,23,59);
-        for (int i = 0 ; i < 100 ; i++ ){
+        for (int i = 0 ; i < 100 ; i++ ) {
             a1.agregarAlarma(agregar);
             assertEquals(1,a1.size());
 
@@ -172,7 +172,7 @@ public class AlarmasTest {
         Alarmas a1 = new Alarmas();
         Alarmas a2 = new Alarmas(true);
         LocalDateTime agregar;
-        for (int i = 0 ; i < 1000 ; i++ ){
+        for (int i = 0 ; i < 1000 ; i++ ) {
             agregar = LocalDateTime.of(3022-i,4,24,23,59);
 
             assertEquals(i,a1.size());
@@ -187,7 +187,7 @@ public class AlarmasTest {
             assertTrue(a2.quedanAlarmas());
             assertEquals(agregar,a2.primerAlarmaASonar());
         }
-        for (int j = 0 ; j < 1000 ; j++ ){
+        for (int j = 0 ; j < 1000 ; j++ ) {
             agregar = LocalDateTime.of(2023+j,4,24,23,59);
 
             assertEquals(agregar,a1.primerAlarmaASonar());
@@ -222,14 +222,14 @@ public class AlarmasTest {
 
         a1.actualizarAlarmas(10L);//no hace nada porque no hay alarmas
 
-        for (int i = 0;i<23;i++){
+        for (int i = 0; i<23; i++) {
             agregar  = LocalDateTime.of(2023,4,4,1+i,0);
             a1.agregarAlarma(agregar);
         }
 
         a1.actualizarAlarmas(10L);//no hace nada porque no paso el evento(No sonaron todas las alarmas)
 
-        for (int i = 0;i<23;i++){
+        for (int i = 0; i<23; i++) {
             agregar  = LocalDateTime.of(2023,4,4,1+i,0);
             LocalDateTime primeraAlarma = a1.primerAlarmaASonar();
             a1.sonarAlarma();
@@ -242,7 +242,7 @@ public class AlarmasTest {
         diaDelEvento = LocalDateTime.of(2023,4,8,23,1);//el evento se repite el día 8 ahora
         a1.actualizarAlarmas(4L);
 
-        for (int i = 0;i<23;i++){
+        for (int i = 0; i<23; i++) {
             agregar  = LocalDateTime.of(2023,4,8,1+i,0);
             LocalDateTime primeraAlarma = a1.primerAlarmaASonar();
             a1.sonarAlarma();
@@ -254,7 +254,7 @@ public class AlarmasTest {
         diaDelEvento = LocalDateTime.of(2023,5,8,23,1);//el evento se repite el día 8 pero dentro de un mes ahora
         a1.actualizarAlarmas(30L);
 
-        for (int i = 0;i<23;i++){
+        for (int i = 0; i<23; i++) {
             agregar  = LocalDateTime.of(2023,5,8,1+i,0);
             LocalDateTime primeraAlarma = a1.primerAlarmaASonar();
             a1.sonarAlarma();
@@ -266,7 +266,7 @@ public class AlarmasTest {
         diaDelEvento = LocalDateTime.of(2024,5,8,23,1);//el evento se repite el día 8 pero dentro de un AÑO ahora
         a1.actualizarAlarmas(366L);//esta exactitud de cuando cae la calcula un módulo exportado
 
-        for (int i = 0;i<23;i++){
+        for (int i = 0; i<23; i++) {
             agregar  = LocalDateTime.of(2024,5,8,1+i,0);
             LocalDateTime primeraAlarma = a1.primerAlarmaASonar();
             a1.sonarAlarma();
