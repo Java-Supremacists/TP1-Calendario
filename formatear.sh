@@ -19,17 +19,17 @@ then
 fi
 
 echo "Formateo los archivos main"
-astyle src/main/java/*
+astyle src/main/java/* &> /dev/null
 
 echo "Borro los archivos viejos de main"
-rm src/main/java/*.orig
+rm src/main/java/*.orig &> /dev/null
 
 
 echo "Formateo los archivos test"
-astyle src/test/java/*
+astyle src/test/java/* &> /dev/null
 
 echo "Borro los archivos viejos de test"
-rm src/test/java/*.orig
+rm src/test/java/*.orig &> /dev/null
 
 echo "Hago el commit de los archivos formateos"
 git add .
@@ -41,3 +41,8 @@ firma+=$(date)
 echo ${firma} >> .git-blame-ignore-revs
 echo ${hashCommit} >> .git-blame-ignore-revs
 echo "" >> .git-blame-ignore-revs
+
+
+echo "Hago el commit de lo anadido al archivo .git-blame-ignore-revs"
+git add .
+git commit -m "Anado hash a .git-blame-ignore-revs"
