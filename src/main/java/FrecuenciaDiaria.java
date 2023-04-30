@@ -21,19 +21,19 @@ public class FrecuenciaDiaria implements Frecuencia {
     // devuelve True. Si fuese cada 3 dias y le pasas los mismos dias devuelve False
     @Override
     public boolean dadoComienzoCaeElDia(LocalDateTime fechaComienzo, LocalDateTime diaEspecifico) {
-        if (this.repeticion.estaDentroDeRepeticiones(diaEspecifico) == false) {
-            return false; //Si cae DESPUES del ultimo dia, entonces ni nos
-            //molestamos en calcular si  la frecuencia hace
-            //que caiga el dia que me piden
-        }
+			if (this.repeticion.estaDentroDeRepeticiones(diaEspecifico) == false) {
+			    return false; //Si cae DESPUES del ultimo dia, entonces ni nos
+			    //molestamos en calcular si  la frecuencia hace
+			    //que caiga el dia que me piden
+			}
 
-        //Se fija cuantos dias hay hasta el dia pasado como argumento
-        long cantDiasHastaDiaPedido = fechaComienzo.until(diaEspecifico, ChronoUnit.DAYS);
+			//Se fija cuantos dias hay hasta el dia pasado como argumento
+			long cantDiasHastaDiaPedido = fechaComienzo.until(diaEspecifico, ChronoUnit.DAYS);
 
-        //True: El evento tiene una "aparicion" ese dia. False: no.
-        boolean eventoCaeElDiaPedidio = (cantDiasHastaDiaPedido % this.cadaCuantosDias == 0);
-        return eventoCaeElDiaPedidio;
-    }
+			//True: El evento tiene una "aparicion" ese dia. False: no.
+			boolean eventoCaeElDiaPedidio = (cantDiasHastaDiaPedido % this.cadaCuantosDias == 0);
+			return eventoCaeElDiaPedidio;
+		    }
 
     @Override
     public LocalDateTime proximoEventoMasCercanoAFechaEspecifica(LocalDateTime inicioEvento, LocalDateTime diaEspecifico) {
