@@ -48,3 +48,7 @@ echo "" >> .git-blame-ignore-revs
 echo "Hago el commit de lo anadido al archivo .git-blame-ignore-revs"
 git add .
 git commit -m "Anado hash a .git-blame-ignore-revs"
+
+
+
+
