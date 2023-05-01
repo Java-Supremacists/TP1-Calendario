@@ -1,3 +1,9 @@
+/*
+ * Este codigo es una copia de FrecuenciaDiaria. Lo mas probable es que lo 
+ * terminemos sacando. Para dejarlo como estaba antes
+*/
+
+
 import java.time.temporal.ChronoUnit; //Libreria para formatear dias en LocalDateTime
 import java.time.LocalDateTime;
 import java.lang.Math;
