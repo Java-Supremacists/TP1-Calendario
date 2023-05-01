@@ -216,10 +216,10 @@ public class Calendario {
             for (int i = 0 ; i < cantDias ; i++ ) {
                 diaAChequear = diaAChequear.plusDays(i);
                 if (evento.caeElDia(diaAChequear) == false) {
-		    continue;
+                    continue;
                 }
-		listaEventosEnRango.add(evento);
-		break;
+                listaEventosEnRango.add(evento);
+                break;
             }
         }
         return listaEventosEnRango;
