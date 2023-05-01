@@ -204,28 +204,28 @@ public class Calendario {
     //Esta funcion va a devolver un array de ints que representan el id
     //de todos los eventos que estan dentro del rango
     //Esta funcion no es la mas eficiente del mundo, es un doble for
-    //se podria implementar una funcion llamada "esta en el rango" parecida a 
+    //se podria implementar una funcion llamada "esta en el rango" parecida a
     //"cae el dia"
     public ArrayList<Evento> eventosEnRango(LocalDateTime comienzo, LocalDateTime fin) {
-	var listaEventosEnRango = new ArrayList<Evento>();
+        var listaEventosEnRango = new ArrayList<Evento>();
 
         long cantDias = comienzo.until(fin, ChronoUnit.DAYS);
 
-	for (Evento evento : this.listaEventos) {
+        for (Evento evento : this.listaEventos) {
 
-	    //Chequeo todos los dias que hay entre comienzo y fin
-	    LocalDateTime diaAChequear = comienzo;
-	    for (int i = 0 ; i < cantDias ; i++ ) {
-		 diaAChequear = diaAChequear.plusDays(i);
-		 if (evento.caeElDia(diaAChequear) == true) {
-		     listaEventosEnRango.add(evento);
-		     break;
-		 }
+            //Chequeo todos los dias que hay entre comienzo y fin
+            LocalDateTime diaAChequear = comienzo;
+            for (int i = 0 ; i < cantDias ; i++ ) {
+                diaAChequear = diaAChequear.plusDays(i);
+                if (evento.caeElDia(diaAChequear) == true) {
+                    listaEventosEnRango.add(evento);
+                    break;
+                }
 
-    }
+            }
 
-    } 
-    return listaEventosEnRango;
+        }
+        return listaEventosEnRango;
     }
 
 }
