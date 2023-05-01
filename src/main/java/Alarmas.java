@@ -1,10 +1,10 @@
-//import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Alarmas {
+    public Notificacion notificaciones;
     //--------- Atributos ---------
 
     private final Set<LocalDateTime> alarmas;
@@ -19,12 +19,14 @@ public class Alarmas {
         alarmaMasTemprana = null;
         alarmas = new HashSet<>();
         alarmasYaSonadas = new HashSet<>();
+        notificaciones = null;
     }
-    public Alarmas(boolean mantener) {
+    public Alarmas(boolean mantener,Notificacion notificacionesUsuario) {
         alarmaMasTemprana = null;
         alarmas = new HashSet<>();
         mantenerAlarmas = mantener;
         alarmasYaSonadas = new HashSet<>();
+        notificaciones = notificacionesUsuario;
     }
 
     //--------- Constructores ---------
