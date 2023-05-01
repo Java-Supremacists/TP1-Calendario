@@ -30,17 +30,17 @@ public abstract class Activities {
 
     public abstract LocalDateTime cuandoTermina();
     public abstract LocalDateTime cuandoEmpieza();
-    public LocalDateTime ultimaAlarma(){
-        if (alarm.quedanAlarmas()){
+    public LocalDateTime ultimaAlarma() {
+        if (alarm.quedanAlarmas()) {
             return alarm.primerAlarmaASonar();
         }
         return null;
     }
-    public void sonarUltimaAlarma(){
-        if (alarm.quedanAlarmas()){
+    public void sonarUltimaAlarma() {
+        if (alarm.quedanAlarmas()) {
             alarm.sonarAlarma();
         }//else
-            //error
+        //error
         //}
     }
     public String getTitulo() {
@@ -62,10 +62,10 @@ public abstract class Activities {
         this.esDiaCompleto = esDiaCompleto;
     }
     public void agregarAlarma(LocalDateTime alarmaNueva) {
-	this.alarm.agregarAlarma(alarmaNueva);
+        this.alarm.agregarAlarma(alarmaNueva);
     }
     public void agregarAlarmas(List<LocalDateTime> alarmasNuevas) {
-	this.alarm.agregarAlarma(alarmasNuevas);
+        this.alarm.agregarAlarma(alarmasNuevas);
     }
     public void eliminarAlarma(LocalDateTime alarmaNueva) {
         this.alarm.eliminarAlarma(alarmaNueva);

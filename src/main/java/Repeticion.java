@@ -5,5 +5,5 @@ import java.time.LocalDateTime;
 public interface Repeticion {
 
     public boolean estaDentroDeRepeticiones(LocalDateTime fechaPedida);
-	
+
 }

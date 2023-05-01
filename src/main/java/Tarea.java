@@ -24,11 +24,11 @@ public class Tarea extends Activities {
 
     //--------- Metodos ---------
 
-    public boolean estaCompleta(){
-	return this.estaCompletada;
+    public boolean estaCompleta() {
+        return this.estaCompletada;
     }
-    public void marcarCompleta(){
-	this.estaCompletada = !this.estaCompletada; 
+    public void marcarCompleta() {
+        this.estaCompletada = !this.estaCompletada;
     }
     @Override
     public LocalDateTime cuandoTermina() {

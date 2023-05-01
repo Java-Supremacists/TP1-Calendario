@@ -11,7 +11,6 @@ public class EventoTest {
     public void crearEventoVacio() {
         var arranca = LocalDateTime.of(2023,12,8,0,0);
         var termina = LocalDateTime.of(2023,12,9,0,0);
-        // var even1 = new Evento("","",null,false,arranca,termina,null);
         var even1 = new Evento(arranca,termina);
 
 
@@ -46,16 +45,12 @@ public class EventoTest {
         var termina = LocalDateTime.of(2023,12,8,0,0);
 
 
-        // TODO: Sacar comentario de la creacio nde la version anterior
-        // var even1 = new Evento("Nombre1","Descripcion1",alarmas,true,arranca,termina,null);
         var even1 = new Evento(arranca,termina);
         even1.setName("Nombre1");
         even1.setDescription("Descripcion1");
         even1.agregarAlarmas(alarmas);
         even1.setEsDiaCompleto(true);
 
-        // TODO: Sacar comentario de la creacio nde la version anterior
-        // var even2 = new Evento("Nombre2","Descripcion2",null,false,arranca,termina,null);
         var even2 = new Evento(arranca,termina);
         even2.setName("Nombre2");
         even2.setDescription("Descripcion2");
@@ -73,30 +68,9 @@ public class EventoTest {
         assertEquals(arranca, even2.cuandoEmpieza());
         assertEquals(termina, even2.cuandoTermina());
     }
-    @Test
-    public void CreacionEventosVariado() {
-    }
-    @Test
-    public void eventoCaeDiaPedido(){
 
-    /*arrange
-	//ArrayList<LocalDateTime> alarmas = new ArrayList<LocalDateTime>();
-	//of(int year, int month, int dayOfMonth, int hour, int minute) 
-	// Evento eventoDePrueba = new Evento("Evento de prueba", "Descripcion de prueba", alarmas, false, LocalDateTime.of(2023, 4, 10, 7, 45, 55), LocalDateTime.of(2024, 3, 10, 7, 45, 55));
-
-	//assert
-	// assertEquals(true, eventoDePrueba.caeElDia(LocalDateTime.of(2023, 4, 22, 7, 45, 55)));
-	// assertEquals(false, eventoDePrueba.caeElDia(LocalDateTime.of(2023, 4, 21, 7, 45, 55)));
-	// assertEquals(false, eventoDePrueba.caeElDia(LocalDateTime.of(2023, 4, 20, 7, 45, 55)));*/
-    }
     @Test
-    public void cuandoEmpiezaTest(){
-    }
-    @Test
-    public void cuandoTerminaTest(){
-    }
-    @Test
-    public void UltimaAlarmaYSonarUltimaAlarma(){
+    public void UltimaAlarmaYSonarUltimaAlarma() {
         var arranca = LocalDateTime.of(2023,12,8,0,0);
         var termina = LocalDateTime.of(2023,12,8,0,0);
         var even1 = new Evento(arranca,termina);
@@ -111,62 +85,61 @@ public class EventoTest {
     }
 
     @Test
-    public void testDeCaeElDia(){
-	    var arranca = LocalDateTime.of(2023, 4,4,5,0);
-	    var termina = LocalDateTime.of(2023, 4,4,12,0);
-     
-	    var even1 = new Evento(arranca, termina);
+    public void testDeCaeElDia() {
+        var arranca = LocalDateTime.of(2023, 4,4,5,0);
+        var termina = LocalDateTime.of(2023, 4,4,12,0);
 
-	    int cadaCuantosDias = 2;
-	    var repeticionInfinita = new RepeticionInfinita();
-	    FrecuenciaDiaria frecuenciaDiaria = new FrecuenciaDiaria(cadaCuantosDias, repeticionInfinita);
+        var even1 = new Evento(arranca, termina);
 
-	    even1.setFrecuencia(frecuenciaDiaria);
-	    var fechaQueCae = LocalDateTime.of(2023, 4, 12, 5, 0);
-	    var fechaQueNoCae = LocalDateTime.of(2023, 4, 13, 5, 0);
-     
-	    assertEquals(true, even1.caeElDia(fechaQueCae));
-	    assertEquals(false, even1.caeElDia(fechaQueNoCae));
+        int cadaCuantosDias = 2;
+        var repeticionInfinita = new RepeticionInfinita();
+        FrecuenciaDiaria frecuenciaDiaria = new FrecuenciaDiaria(cadaCuantosDias, repeticionInfinita);
+
+        even1.setFrecuencia(frecuenciaDiaria);
+        var fechaQueCae = LocalDateTime.of(2023, 4, 12, 5, 0);
+        var fechaQueNoCae = LocalDateTime.of(2023, 4, 13, 5, 0);
+
+        assertEquals(true, even1.caeElDia(fechaQueCae));
+        assertEquals(false, even1.caeElDia(fechaQueNoCae));
     }
-     
+
     @Test
-    public void testDeSetFrecuencia(){
-	    var arranca = LocalDateTime.of(2023, 4,4,5,0);
-	    var termina = LocalDateTime.of(2023, 4,4,12,0);
-     
-	    var even1 = new Evento(arranca, termina);
+    public void testDeSetFrecuencia() {
+        var arranca = LocalDateTime.of(2023, 4,4,5,0);
+        var termina = LocalDateTime.of(2023, 4,4,12,0);
 
-	    int cadaCuantosDias = 2;
-	    var repeticionInfinita = new RepeticionInfinita();
-	    FrecuenciaDiaria frecuenciaDiaria = new FrecuenciaDiaria(cadaCuantosDias, repeticionInfinita);
-	    even1.setFrecuencia(frecuenciaDiaria);
+        var even1 = new Evento(arranca, termina);
 
-	    DayOfWeek[] diasDeLaSemana = {DayOfWeek.TUESDAY, DayOfWeek.THURSDAY};
-	    FrecuenciaSemanal frecuenciaSemanal = new FrecuenciaSemanal(diasDeLaSemana, repeticionInfinita);
-	    even1.setFrecuencia(frecuenciaSemanal);//Actualizo la frecuencia
+        int cadaCuantosDias = 2;
+        var repeticionInfinita = new RepeticionInfinita();
+        FrecuenciaDiaria frecuenciaDiaria = new FrecuenciaDiaria(cadaCuantosDias, repeticionInfinita);
+        even1.setFrecuencia(frecuenciaDiaria);
 
-	    var fechaQueCae = LocalDateTime.of(2023, 4, 11, 5, 0);
-	    var fechaQueNoCae = LocalDateTime.of(2023, 4, 12, 5, 0);
-     
-	    assertEquals(true, even1.caeElDia(fechaQueCae));
-	    assertEquals(false, even1.caeElDia(fechaQueNoCae));
+        DayOfWeek[] diasDeLaSemana = {DayOfWeek.TUESDAY, DayOfWeek.THURSDAY};
+        FrecuenciaSemanal frecuenciaSemanal = new FrecuenciaSemanal(diasDeLaSemana, repeticionInfinita);
+        even1.setFrecuencia(frecuenciaSemanal);//Actualizo la frecuencia
+
+        var fechaQueCae = LocalDateTime.of(2023, 4, 11, 5, 0);
+        var fechaQueNoCae = LocalDateTime.of(2023, 4, 12, 5, 0);
+
+        assertEquals(true, even1.caeElDia(fechaQueCae));
+        assertEquals(false, even1.caeElDia(fechaQueNoCae));
     }
-     
+
     @Test
-    public void testProximoEventoMasCercanoFrecuenciaDiaria(){
-	    int cadaCuantosdias = 2;
-	    var arranca = LocalDateTime.of(2023, 4, 4, 0, 0, 0);
-	    var termina = LocalDateTime.of(2023, 4, 13, 0, 0, 0);
-	    var fechaMasCercana = LocalDateTime.of(2023, 4, 14, 0, 0, 0);
-     
-	    var repeticionInfinita = new RepeticionInfinita();
-	    var frecuenciadiaria = new FrecuenciaDiaria(cadaCuantosdias, repeticionInfinita);
-	    //Copiar fechas de test de frecuencia
-     
-	    var even1 = new Evento(arranca, termina);
-	    even1.setFrecuencia(frecuenciadiaria);
-     
-	    assertEquals(fechaMasCercana, even1.proximoEventoMasCercanoAFechaEspecifica(termina));
+    public void testProximoEventoMasCercanoFrecuenciaDiaria() {
+        int cadaCuantosdias = 2;
+        var arranca = LocalDateTime.of(2023, 4, 4, 0, 0, 0);
+        var termina = LocalDateTime.of(2023, 4, 13, 0, 0, 0);
+        var fechaMasCercana = LocalDateTime.of(2023, 4, 14, 0, 0, 0);
+
+        var repeticionInfinita = new RepeticionInfinita();
+        var frecuenciadiaria = new FrecuenciaDiaria(cadaCuantosdias, repeticionInfinita);
+
+        var even1 = new Evento(arranca, termina);
+        even1.setFrecuencia(frecuenciadiaria);
+
+        assertEquals(fechaMasCercana, even1.proximoEventoMasCercanoAFechaEspecifica(termina));
     }
 
 }
