@@ -78,4 +78,9 @@ public class CalendarioTest {
         }
     }
 
+    @Test
+    public void eventosDadoRangoDeFechas() {
+
+    }
+
 }
