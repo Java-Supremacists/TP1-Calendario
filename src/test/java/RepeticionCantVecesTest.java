@@ -41,7 +41,7 @@ public class RepeticionCantVecesTest {
         LocalDateTime fechaComienzoRepeticion = LocalDateTime.of(2023, 4, 4, 7, 45, 55);
         int maximaCantidadDeRepeticiones = 4;
         DayOfWeek[] diasDeLaSemana = {DayOfWeek.TUESDAY, DayOfWeek.THURSDAY};
-        RepeticionCantVeces repeticionCantVecesDePrueba = new RepeticionCantVeces(maximaCantidadDeRepeticiones, fechaComienzoRepeticion, diasDeLaSemana);
+        RepeticionCantVeces repeticionCantVecesDePrueba = new RepeticionCantVeces(maximaCantidadDeRepeticiones, diasDeLaSemana, fechaComienzoRepeticion);
 
         // Esta fecha es la que cae si haces la cuenta manualmente
         // (Martes 4, Jueves 6, Martes 11 y Jueves 13)
