@@ -216,8 +216,8 @@ public class Calendario {
             for (int i = 0 ; i < cantDias ; i++ ) {
                 diaAChequear = diaAChequear.plusDays(i);
                 if (evento.caeElDia(diaAChequear) == true) {
-		    listaEventosEnRango.add(evento);
-		    break;
+                    listaEventosEnRango.add(evento);
+                    break;
                 }
             }
         }

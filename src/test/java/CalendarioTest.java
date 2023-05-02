@@ -84,26 +84,26 @@ public class CalendarioTest {
 
         LocalDateTime comienzo = LocalDateTime.of(2023, 4, 13, 7, 45, 55);
         LocalDateTime fin = LocalDateTime.of(2023, 4, 13, 10, 45, 55);
-	var indice = calendarioDePrueba.crearEvento(comienzo, fin);
+        var indice = calendarioDePrueba.crearEvento(comienzo, fin);
         RepeticionInfinita repeticionInfinita = new RepeticionInfinita();
         FrecuenciaDiaria frecuenciaDiaria = new FrecuenciaDiaria(1, repeticionInfinita);
-	String descripcion = "Evento en rango";
-	calendarioDePrueba.modificarEventoFrecuencia(indice, frecuenciaDiaria);
-	calendarioDePrueba.modificarActividadDescripcion(indice, descripcion);
+        String descripcion = "Evento en rango";
+        calendarioDePrueba.modificarEventoFrecuencia(indice, frecuenciaDiaria);
+        calendarioDePrueba.modificarActividadDescripcion(indice, descripcion);
 
         LocalDateTime comienzoFuera = LocalDateTime.of(2024, 4, 13, 7, 45, 55);
         LocalDateTime finFuera = LocalDateTime.of(2024, 4, 13, 10, 45, 55);
-	var indiceFuera = calendarioDePrueba.crearEvento(comienzoFuera, finFuera);
+        var indiceFuera = calendarioDePrueba.crearEvento(comienzoFuera, finFuera);
         RepeticionInfinita repeticionInfinitaFuera = new RepeticionInfinita();
         FrecuenciaDiaria frecuenciaDiariaFuera = new FrecuenciaDiaria(1, repeticionInfinitaFuera);
-	String descripcionFuera = "Evento fuera de rango";
-	calendarioDePrueba.modificarEventoFrecuencia(indiceFuera, frecuenciaDiariaFuera);
-	calendarioDePrueba.modificarActividadDescripcion(indiceFuera, descripcionFuera);
+        String descripcionFuera = "Evento fuera de rango";
+        calendarioDePrueba.modificarEventoFrecuencia(indiceFuera, frecuenciaDiariaFuera);
+        calendarioDePrueba.modificarActividadDescripcion(indiceFuera, descripcionFuera);
 
-	var eventosEnRangoDeLaFecha = calendarioDePrueba.eventosEnRango(LocalDateTime.of(2023, 4, 11, 7, 45, 55), LocalDateTime.of(2023, 4, 15, 7, 45, 55));
+        var eventosEnRangoDeLaFecha = calendarioDePrueba.eventosEnRango(LocalDateTime.of(2023, 4, 11, 7, 45, 55), LocalDateTime.of(2023, 4, 15, 7, 45, 55));
 
-	assertEquals(descripcion, eventosEnRangoDeLaFecha.get(0).getDescripcion());
-	assertEquals(1, eventosEnRangoDeLaFecha.size()); //Solo  tiene que tener un evento, el otro evento no deberia formar parte
+        assertEquals(descripcion, eventosEnRangoDeLaFecha.get(0).getDescripcion());
+        assertEquals(1, eventosEnRangoDeLaFecha.size()); //Solo  tiene que tener un evento, el otro evento no deberia formar parte
 
 
 
