@@ -215,11 +215,10 @@ public class Calendario {
             //Chequeo todos los dias que hay entre comienzo y fin
             for (int i = 0 ; i < cantDias ; i++ ) {
                 diaAChequear = diaAChequear.plusDays(i);
-                if (evento.caeElDia(diaAChequear) == false) {
-                    continue;
+                if (evento.caeElDia(diaAChequear) == true) {
+		    listaEventosEnRango.add(evento);
+		    break;
                 }
-                listaEventosEnRango.add(evento);
-                break;
             }
         }
         return listaEventosEnRango;
