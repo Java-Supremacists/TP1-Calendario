@@ -36,13 +36,6 @@ public abstract class Activities {
         }
         return null;
     }
-    public void sonarUltimaAlarma() {
-        if (alarm.quedanAlarmas()) {
-            alarm.sonarAlarma();
-        }//else
-        //error
-        //}
-    }
     public String getTitulo() {
         return name;
     }

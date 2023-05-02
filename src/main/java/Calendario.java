@@ -68,14 +68,14 @@ public class Calendario {
                 LocalDateTime alarmaProxima = ev.ultimaAlarma();
                 if (alarmaProxima.equals(maximaAlarmaActual)) {
                     retorno.add(ev);
-                    ev.sonarUltimaAlarma();
+                    ev.eliminarAlarma(maximaAlarmaActual);
                 }
             }
             for (Tarea t : listaTareas) {
                 LocalDateTime alarmaProxima = t.ultimaAlarma();
                 if (alarmaProxima.equals(maximaAlarmaActual)) {
                     retorno.add(t);
-                    t.sonarUltimaAlarma();
+                    t.eliminarAlarma(maximaAlarmaActual);
                 }
             }
             maximaAlarmaActual = null;

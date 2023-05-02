@@ -102,17 +102,6 @@ public class Alarmas {
         }
         return alarmaMasTemprana;
     }
-    public void sonarAlarma() {
-        if (alarmaMasTemprana == null) {
-            this.primerAlarmaASonar();
-        }
-        if (alarmaMasTemprana != null) {
-            alarmas.remove(alarmaMasTemprana);
-            alarmaMasTemprana = null;
-        }//else {
-        //error
-        //}
-    }
     public boolean repiteLasAlarmas() {
         return mantenerAlarmas;
     }

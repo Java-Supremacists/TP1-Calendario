@@ -50,21 +50,6 @@ public class Evento extends Activities {
         proximoEvento = this.frecuencia.proximoEventoMasCercanoAFechaEspecifica(this.arranquePrincipio, diaEspecifico);
         return proximoEvento;
     }
-    public void actualizarEvento() {
-        if (LocalDateTime.now().isAfter(this.terminaActual)&& alarm.repiteLasAlarmas()) {
-            if (alarm.quedanAlarmas()) {
-                while (alarm.quedanAlarmas()) {
-                    alarm.sonarAlarma();
-                }
-            }
-            var fechaAnteriorInicio = this.arranqueActual;
-            var fechaAnteriorFinal = this.terminaActual;
-            this.arranqueActual = this.proximoEventoMasCercanoAFechaEspecifica(fechaAnteriorInicio);
-            this.terminaActual = this.proximoEventoMasCercanoAFechaEspecifica(fechaAnteriorFinal);
-            long diferenciaArranques = fechaAnteriorInicio.until(arranqueActual, ChronoUnit.DAYS);
-            alarm.actualizarAlarmas(diferenciaArranques);
-        }
-    }
     public void setArranque(LocalDateTime arranque) {
         this.arranquePrincipio = arranque;
         this.arranqueActual = arranque;
