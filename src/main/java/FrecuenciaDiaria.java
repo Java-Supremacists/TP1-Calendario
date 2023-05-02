@@ -29,6 +29,9 @@ public class FrecuenciaDiaria implements Frecuencia {
 
         //Se fija cuantos dias hay hasta el dia pasado como argumento
         long cantDiasHastaDiaPedido = fechaComienzo.until(diaEspecifico, ChronoUnit.DAYS);
+        if (cantDiasHastaDiaPedido < 0) {
+            return false; //Si es negativo, no puede caer
+        }
 
         //True: El evento tiene una "aparicion" ese dia. False: no.
         boolean eventoCaeElDiaPedidio = (cantDiasHastaDiaPedido % this.cadaCuantosDias == 0);

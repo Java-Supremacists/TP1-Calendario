@@ -21,7 +21,7 @@ public class RepeticionCantVeces implements Repeticion {
         this.fechaFinRepeticion = fechaFinal;
     }
 
-    public RepeticionCantVeces(int cantidadDeRepeticionesMaximas, LocalDateTime fechaComienzo, DayOfWeek[] diasDeLaSemana) {
+    public RepeticionCantVeces(int cantidadDeRepeticionesMaximas, DayOfWeek[] diasDeLaSemana, LocalDateTime fechaComienzo) {
         //La idea de este for loop es que te diga en que dia DE LA SEMANA cae
         //el ultimo dia
         int diaDeLaSemana = -1; //Arranca en -1 porque lo primero que hace es

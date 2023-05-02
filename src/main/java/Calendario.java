@@ -1,3 +1,4 @@
+import java.time.temporal.ChronoUnit; //Libreria para formatear dias en LocalDateTime
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -198,6 +199,29 @@ public class Calendario {
         if (t!=null) {
             listaTareas.remove(t);
         }
+    }
+
+    //Esta funcion va a devolver un array de ints que representan el id
+    //de todos los eventos que estan dentro del rango
+    //Esta funcion no es la mas eficiente del mundo, es un doble for
+    //se podria implementar una funcion llamada "esta en el rango" parecida a
+    //"cae el dia"
+    public ArrayList<Evento> eventosEnRango(LocalDateTime comienzo, LocalDateTime fin) {
+        var listaEventosEnRango = new ArrayList<Evento>();
+
+        long cantDias = comienzo.until(fin, ChronoUnit.DAYS);
+        for (Evento evento : this.listaEventos) {
+            LocalDateTime diaAChequear = comienzo;
+            //Chequeo todos los dias que hay entre comienzo y fin
+            for (int i = 0 ; i < cantDias ; i++ ) {
+                diaAChequear = diaAChequear.plusDays(i);
+                if (evento.caeElDia(diaAChequear) == true) {
+                    listaEventosEnRango.add(evento);
+                    break;
+                }
+            }
+        }
+        return listaEventosEnRango;
     }
 
 }
