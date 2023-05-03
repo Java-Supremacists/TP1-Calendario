@@ -1,4 +1,4 @@
-public class SonidoNotificacion extends BaseDecoradaNotificacion{
+public class SonidoNotificacion extends BaseDecoradaNotificacion {
     public SonidoNotificacion(Usuario usuario, Notificacion siguienteNotificacion) {
         super(usuario, siguienteNotificacion);
     }

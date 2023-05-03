@@ -109,4 +109,29 @@ public class CalendarioTest {
 
     }
 
+    @Test
+    public void seCambianTodas() {
+        Calendario calendarioDePrueba = new Calendario();
+
+        LocalDateTime comienzo = LocalDateTime.of(2023, 4, 13, 7, 45, 55);
+        LocalDateTime fin = LocalDateTime.of(2023, 4, 13, 10, 45, 55);
+        var indice = calendarioDePrueba.crearEvento(comienzo, fin);
+        RepeticionInfinita repeticionInfinita = new RepeticionInfinita();
+        FrecuenciaDiaria frecuenciaDiaria = new FrecuenciaDiaria(2, repeticionInfinita);
+        calendarioDePrueba.modificarEventoFrecuencia(indice, frecuenciaDiaria);
+
+
+        //Cambio la descripcion
+        String descripcion = "Evento en rango";
+        calendarioDePrueba.modificarActividadDescripcion(indice, descripcion);
+        var eventosEnRangoDeLaFecha = calendarioDePrueba.eventosEnRango(LocalDateTime.of(2023, 4, 11, 7, 45, 55), LocalDateTime.of(2023, 4, 15, 7, 45, 55));
+        assertEquals(descripcion, eventosEnRangoDeLaFecha.get(0).getDescripcion());
+
+        //Voy a ver si la descripcion del siguiente evento en el calendario
+        //es el mismo que el anterior. Deberia serlo
+        var eventosEnRangoDeLaFecha2 = calendarioDePrueba.eventosEnRango(LocalDateTime.of(2023, 4, 13, 7, 45, 55), LocalDateTime.of(2023, 4, 17, 7, 45, 55));
+        assertEquals(descripcion, eventosEnRangoDeLaFecha2.get(0).getDescripcion());
+
+    }
+
 }

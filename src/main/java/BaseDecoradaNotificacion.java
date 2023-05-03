@@ -1,4 +1,4 @@
-public class BaseDecoradaNotificacion extends Notificacion{
+public class BaseDecoradaNotificacion extends Notificacion {
     public Notificacion wrapper;
     public BaseDecoradaNotificacion(Usuario usuario,Notificacion siguienteNotificacion) {
         super(usuario);
