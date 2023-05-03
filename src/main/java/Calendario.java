@@ -210,11 +210,12 @@ public class Calendario {
         var listaEventosEnRango = new ArrayList<Evento>();
 
         long cantDias = comienzo.until(fin, ChronoUnit.DAYS);
-        for (Evento evento : this.listaEventos) {
+        for (int j = 0; j < this.listaEventos.size(); j++) {
+	    var evento = this.listaEventos.get(j);
             LocalDateTime diaAChequear = comienzo;
             //Chequeo todos los dias que hay entre comienzo y fin
             for (int i = 0 ; i < cantDias ; i++ ) {
-                diaAChequear = diaAChequear.plusDays(i);
+                diaAChequear = diaAChequear.plusDays(1);
                 if (evento.caeElDia(diaAChequear) == true) {
                     listaEventosEnRango.add(evento);
                     break;
