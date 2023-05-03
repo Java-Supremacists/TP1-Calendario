@@ -1,4 +1,4 @@
-public class EmailNotificacion extends BaseDecoradaNotificacion{
+public class EmailNotificacion extends BaseDecoradaNotificacion {
     public EmailNotificacion(Usuario usuario, Notificacion siguienteNotificacion) {
         super(usuario, siguienteNotificacion);
     }

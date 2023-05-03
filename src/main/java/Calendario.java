@@ -211,7 +211,7 @@ public class Calendario {
 
         long cantDias = comienzo.until(fin, ChronoUnit.DAYS);
         for (int j = 0; j < this.listaEventos.size(); j++) {
-	    var evento = this.listaEventos.get(j);
+            var evento = this.listaEventos.get(j);
             LocalDateTime diaAChequear = comienzo;
             //Chequeo todos los dias que hay entre comienzo y fin
             for (int i = 0 ; i < cantDias ; i++ ) {
