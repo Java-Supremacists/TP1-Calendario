@@ -155,7 +155,7 @@ public class Calendario {
             t.marcarCompleta();
         }
     }
-    public void modificarActividadAgregarAlarma(int ID, PlazoAnterior s) {
+    public void modificarActividadAgregarAlarma(int ID, Plazo s) {
         var act = this.obtenerActividad(ID);
         if (act!= null && s!= null) {
             var alarma = act.cuandoEmpieza().minus(s.elHorarioEstablecido());
@@ -181,7 +181,7 @@ public class Calendario {
             act.eliminarAlarma(alarma);
         }
     }
-    public void modificarActividadEliminarAlarma(int ID, PlazoAnterior s) {
+    public void modificarActividadEliminarAlarma(int ID, Plazo s) {
         var act = this.obtenerActividad(ID);
         if (act!= null && s!= null) {
             var alarma = act.cuandoEmpieza().minus(s.elHorarioEstablecido());
