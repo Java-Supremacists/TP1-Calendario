@@ -1,0 +1,99 @@
+digraph graph_name { graph [
+    charset = "UTF-8";
+    label = "Diagrama de clases",
+    labelloc = "t",
+    labeljust = "c",
+    fontcolor = white,
+    fontsize = 18,
+    style = "filled",
+    rankdir = TB,
+    margin = 0.2,
+    splines = spline,
+    ranksep = 1.0,
+    nodesep = 0.9
+    /* layout = neato */
+  ];
+
+	node [
+		fontname="Helvetica,Arial,sans-serif"
+		shape=record
+		style=filled
+		fillcolor=gray95
+	]
+	evento [color = "red"] //clase
+	evento[label = <{
+		<b>Evento</b>|
+		<br align="left"/>
+  		+ getComienzo<br align="left"/>
+  		+ getRepeticion<br align="left"/>
+  		- enum repeticion<br align="left"/>
+		<br align="left"/>}>]
+	
+
+	tarea [color = "red"]//clase
+	tarea[label = <{
+		<b>Tarea</b>|
+		<br align="left"/>
+		+ marcarCompleta<br align="left"/>
+		<br align="left"/>}>]
+
+
+	calendario [color = "red"]//clase
+	calendario[label = <{
+		<b>Calendario</b>|
+		<br align="left"/>
+		+ crearEvento(esCompleto?) Actividad <br align="left"/>
+		+ crearTarea(esCompleto?) Actividad<br align="left"/>
+		- arrayDeActividades<br align="left"/>
+		<br align="left"/>}>]
+
+	actividad [color = "green"]//interfaz
+	actividad[label = <{
+  		<b>Actividad</b>|
+  		<br align="left"/>
+  		getTitulo<br align="left"/>
+  		getDescripcion<br align="left"/>
+  		getFinal<br align="left"/>
+  		getAlarmas<br align="left"/>
+  		esDiaCompleto<br align="left"/>
+  		<br align="left"/>}>]
+	actividad [comment = "green"]
+
+	frecuencia [color = "green"]//interfaz
+	frecuencia[label = <{
+  		<b>Frecuencia</b>|
+  		<br align="left"/>
+  		dadoComienzoCaeDia<br align="left"/>
+  		proximoEventoMasCercanoAFecha<br align="left"/>
+  		<br align="left"/>}>]
+
+	repeticion [color = "green"]//interfaz
+	repeticion[label = <{
+  		<b>Repeticion</b>|
+  		<br align="left"/>
+  		estaDentroDeRepeticiones<br align="left"/>
+  		<br align="left"/>}>]
+
+	alarmas [color = "red"]//interfaz
+	alarmas[label = <{
+  		<b>Alarmas</b>|
+  		<br align="left"/>
+  		actualizarAlarmas<br align="left"/>
+  		agregarAlarmas<br align="left"/>
+  		<br align="left"/>}>]
+
+	evento -> actividad [style = dotted]
+  	tarea -> actividad [style = dotted]
+  	calendario -> actividad [label = "Tiene"]
+
+	frecuencia -> evento [arrowhead = diamond]
+
+	repeticion -> frecuencia [arrowhead = diamond]
+
+
+	alarmas -> actividad [arrowhead = diamond]
+
+
+  
+}
+
