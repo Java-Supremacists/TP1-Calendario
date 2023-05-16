@@ -1,3 +1,6 @@
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -60,6 +63,27 @@ public class Evento extends Activities {
     }
     public void setFrecuencia(Frecuencia frecuenciaNueva) {
         frecuencia = frecuenciaNueva;
+    }
+    @Override
+    public void guardar(Element estructura, Document doc){
+        super.guardar(estructura,doc);
+        Element FechaInicio1 = doc.createElement("ArranquePrincipio");
+        FechaInicio1.appendChild(doc.createTextNode(arranquePrincipio.toString()));
+        estructura.appendChild(FechaInicio1);
+
+        Element FechaFinal1 = doc.createElement("TerminaPrincipio");
+        FechaFinal1.appendChild(doc.createTextNode(terminaPrincipio.toString()));
+        estructura.appendChild(FechaFinal1);
+
+        Element FechaInicio2 = doc.createElement("ArranqueActual");
+        FechaInicio2.appendChild(doc.createTextNode(arranqueActual.toString()));
+        estructura.appendChild(FechaInicio2);
+
+        Element FechaFinal2 = doc.createElement("TerminaActual");
+        FechaFinal2.appendChild(doc.createTextNode(terminaActual.toString()));
+        estructura.appendChild(FechaFinal2);
+
+        //frecuencia.guardar()
     }
 
     //--------- Metodos ---------

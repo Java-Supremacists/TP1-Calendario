@@ -1,4 +1,16 @@
-import java.time.temporal.ChronoUnit; //Libreria para formatear dias en LocalDateTime
+import org.w3c.dom.DOMException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.time.temporal.ChronoUnit; //Libreria para formatear días en LocalDateTime
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -231,18 +243,18 @@ public class Calendario {
         }
     }
 
-    //Esta funcion va a devolver un array de ints que representan el id
-    //de todos los eventos que estan dentro del rango
-    //Esta funcion no es la mas eficiente del mundo, es un doble for
-    //se podria implementar una funcion llamada "esta en el rango" parecida a
-    //"cae el dia"
+    //Esta funcion va a devolver un array de ints que representan el ID
+    //de todos los eventos que están dentro del rango
+    //Esta funcion no es la más eficiente del mundo, es un doble for
+    //se podria implementar una funcion llamada "está en el rango" parecida a
+    //"cae el día"
     public ArrayList<Evento> eventosEnRango(LocalDateTime comienzo, LocalDateTime fin) {
         var listaEventosEnRango = new ArrayList<Evento>();
 
         long cantDias = comienzo.until(fin, ChronoUnit.DAYS);
         for (Evento e :listaEventos.keySet()) {
             LocalDateTime diaAChequear = comienzo;
-            //Chequeo todos los dias que hay entre comienzo y fin
+            //Chequeo todos los días que hay entre comienzo y fin
             for (int i = 0 ; i < cantDias ; i++ ) {
                 diaAChequear = diaAChequear.plusDays(1);
                 if (e.caeElDia(diaAChequear)) {
@@ -252,6 +264,43 @@ public class Calendario {
             }
         }
         return listaEventosEnRango;
+    }
+    public void guardado(String direccionDeArchivoConNombre){
+        DocumentBuilderFactory creador = DocumentBuilderFactory.newInstance();
+
+
+        try {
+            // Create a DocumentBuilder
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+            // Create a new XML document
+            Document doc = docBuilder.newDocument();
+            Element calendario = doc.createElement("Calendario");
+
+            for (Evento ev : listaEventos.keySet()){
+                Element eventElement = doc.createElement("Evento");
+                Alarmas r = listaEventos.get(ev);
+                ev.guardar(eventElement,doc);
+                r.guardar(eventElement,doc);
+                calendario.appendChild(eventElement);
+            }
+
+            //aca va la implementacion de guardado de Tarea
+
+            doc.appendChild(calendario);
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(direccionDeArchivoConNombre );
+            transformer.transform(source, result);
+
+            System.out.println("XML file created successfully.");
+        } catch (TransformerException | DOMException | ParserConfigurationException e) {
+            //algo salió mal en la creacion o en la transformacion
+            e.printStackTrace();
+        }
     }
 
 }

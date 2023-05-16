@@ -1,3 +1,6 @@
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -107,6 +110,37 @@ public class Alarmas {
     }
     public void mantenerAlarmas(boolean mantenerAlarmas) {
         this.mantenerAlarmas = mantenerAlarmas;
+    }
+    public void guardar(Element estructura, Document doc) {
+        Element Alarmas = doc.createElement("Clase_Alarmas");
+
+        Element MantenerAlarma = doc.createElement("MantenerAlarma");
+        MantenerAlarma.appendChild(doc.createTextNode("%b".formatted(mantenerAlarmas)));
+        Alarmas.appendChild(MantenerAlarma);
+
+        Element SetAlarmas = doc.createElement("Alarmas");
+        int i = 0;
+        for (LocalDateTime alarm : alarmas){
+            i+=1;
+            Element alarma = doc.createElement("alarma%d".formatted(i));
+            alarma.appendChild(doc.createTextNode(alarm.toString()));
+            SetAlarmas.appendChild(alarma);
+        }
+        Alarmas.appendChild(SetAlarmas);
+
+        if (mantenerAlarmas){
+            Element SetAlarmasMantenidas = doc.createElement("AlarmasMantenidas");
+            int j = 0;
+            for (LocalDateTime alarm : alarmasYaSonadas){
+                j+=1;
+                Element alarma = doc.createElement("alarmaYaSonada%d".formatted(i));
+                alarma.appendChild(doc.createTextNode(alarm.toString()));
+                SetAlarmasMantenidas.appendChild(alarma);
+            }
+            Alarmas.appendChild(SetAlarmasMantenidas);
+        }
+
+        estructura.appendChild(Alarmas);
     }
 
     //--------- Metodos ---------

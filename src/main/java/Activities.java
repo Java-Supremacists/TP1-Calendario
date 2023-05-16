@@ -1,3 +1,6 @@
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -46,6 +49,19 @@ public abstract class Activities {
     }
     public void setEsDiaCompleto(boolean esDiaCompleto) {
         this.esDiaCompleto = esDiaCompleto;
+    }
+    public void guardar(Element estructura, Document doc){
+        Element nombreActividad = doc.createElement("Nombre");
+        nombreActividad.appendChild(doc.createTextNode(name));
+        estructura.appendChild(nombreActividad);
+
+        Element descripcionActividad = doc.createElement("Descripcion");
+        descripcionActividad.appendChild(doc.createTextNode(description));
+        estructura.appendChild(descripcionActividad);
+
+        Element esDiaCompletoLaActividad = doc.createElement("DeDiaCOmpleto");
+        esDiaCompletoLaActividad.appendChild(doc.createTextNode("%b".formatted(esDiaCompleto)));
+        estructura.appendChild(esDiaCompletoLaActividad);
     }
 
     //--------- Metodos ---------
