@@ -1,8 +1,6 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
 import java.time.LocalDateTime;
-import java.util.List;
 
 public abstract class Activities {
     //--------- Atributos ---------
