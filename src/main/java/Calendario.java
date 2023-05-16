@@ -1,14 +1,15 @@
 import java.time.temporal.ChronoUnit; //Libreria para formatear dias en LocalDateTime
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
 public class Calendario {
     //--------- Atributos ---------
 
-    private final ArrayList<Tarea> listaTareas = new ArrayList<>();
-    private final ArrayList<Evento> listaEventos = new ArrayList<>();
+    private final HashMap<Tarea,Alarmas> listaTareas = new HashMap<>();
+    private final HashMap<Evento,Alarmas> listaEventos = new HashMap<>();
     private LocalDateTime maximaAlarmaActual = null;
 
     //--------- Atributos ---------
@@ -21,28 +22,31 @@ public class Calendario {
 
     public int crearTarea(LocalDateTime termina) {
         Tarea nuevaTarea = new Tarea(termina);
-        listaTareas.add(nuevaTarea);
+        listaTareas.put(nuevaTarea,new Alarmas());
         return nuevaTarea.hashCode();
     }
     public int crearEvento(LocalDateTime arranque, LocalDateTime termina) {
         Evento nuevoEvento = new Evento(arranque,termina);
-        listaEventos.add(nuevoEvento);
+        listaEventos.put(nuevoEvento,new Alarmas());
         return nuevoEvento.hashCode();
     }
     public int crearTarea(String nombre, String descripcion, boolean esCompleto,LocalDateTime termina) {
         Tarea nuevaTarea = new Tarea(nombre,descripcion,esCompleto,termina);
-        listaTareas.add(nuevaTarea);
+        listaTareas.put(nuevaTarea,new Alarmas());
         return nuevaTarea.hashCode();
     }
     public int crearEvento(String nombre, String descripcion, boolean esCompleto,LocalDateTime arranque, LocalDateTime termina) {
         Evento nuevoEvento = new Evento(nombre,descripcion,esCompleto,arranque,termina);
-        listaEventos.add(nuevoEvento);
+        listaEventos.put(nuevoEvento,new Alarmas());
         return nuevoEvento.hashCode();
     }
     public LocalDateTime proximaAlarma() {
         if (maximaAlarmaActual == null) {
-            for (Evento ev : listaEventos) {
-                LocalDateTime alarm = ev.ultimaAlarma();
+            for (Alarmas r : listaEventos.values()) {
+                if (!r.quedanAlarmas()){
+                    continue;
+                }
+                LocalDateTime alarm = r.primerAlarmaASonar();
                 if (maximaAlarmaActual==null) {
                     maximaAlarmaActual = alarm;
                 } else if (maximaAlarmaActual.isAfter(alarm)) {
@@ -50,8 +54,11 @@ public class Calendario {
                 }
 
             }
-            for (Tarea t : listaTareas) {
-                LocalDateTime alarm = t.ultimaAlarma();
+            for (Alarmas r : listaTareas.values()) {
+                if (!r.quedanAlarmas()){
+                    continue;
+                }
+                LocalDateTime alarm = r.primerAlarmaASonar();
                 if (maximaAlarmaActual==null) {
                     maximaAlarmaActual = alarm;
                 } else if (maximaAlarmaActual.isAfter(alarm)) {
@@ -65,18 +72,20 @@ public class Calendario {
     public ArrayList<Activities> sonarAlarmas() {
         ArrayList<Activities> retorno = new ArrayList<>();
         if (maximaAlarmaActual != null) {
-            for (Evento ev : listaEventos) {
-                LocalDateTime alarmaProxima = ev.ultimaAlarma();
+            for (Evento ev : listaEventos.keySet()) {
+                Alarmas r = listaEventos.get(ev);
+                LocalDateTime alarmaProxima = r.primerAlarmaASonar();
                 if (alarmaProxima.equals(maximaAlarmaActual)) {
                     retorno.add(ev);
-                    ev.eliminarAlarma(maximaAlarmaActual);
+                    r.eliminarAlarma(maximaAlarmaActual);
                 }
             }
-            for (Tarea t : listaTareas) {
-                LocalDateTime alarmaProxima = t.ultimaAlarma();
+            for (Tarea t : listaTareas.keySet()) {
+                Alarmas r = listaTareas.get(t);
+                LocalDateTime alarmaProxima = r.primerAlarmaASonar();
                 if (alarmaProxima.equals(maximaAlarmaActual)) {
                     retorno.add(t);
-                    t.eliminarAlarma(maximaAlarmaActual);
+                    r.eliminarAlarma(maximaAlarmaActual);
                 }
             }
             maximaAlarmaActual = null;
@@ -84,12 +93,12 @@ public class Calendario {
         return retorno;
     }
     public Activities obtenerActividad(int ID) {
-        for (Evento e: listaEventos) {
+        for (Evento e: listaEventos.keySet()) {
             if (e.hashCode() == ID) {
                 return e;
             }
         }
-        for (Tarea t: listaTareas) {
+        for (Tarea t: listaTareas.keySet()) {
             if (t.hashCode() == ID) {
                 return t;
             }
@@ -97,7 +106,7 @@ public class Calendario {
         return null;
     }
     public Evento obtenerEvento(int ID) {
-        for (Evento e: listaEventos) {
+        for (Evento e: listaEventos.keySet()) {
             if (e.hashCode() == ID) {
                 return e;
             }
@@ -105,7 +114,7 @@ public class Calendario {
         return null;
     }
     public Tarea obtenerTarea(int ID) {
-        for (Tarea t: listaTareas) {
+        for (Tarea t: listaTareas.keySet()) {
             if (t.hashCode() == ID) {
                 return t;
             }
@@ -141,6 +150,7 @@ public class Calendario {
         var ev = this.obtenerEvento(ID);
         if (ev!= null) {
             ev.setFrecuencia(frecuenciaNueva);
+            listaEventos.get(ev).mantenerAlarmas(frecuenciaNueva != null);
         }
     }
     public void modificarTareaPlazoTemporal(int ID,LocalDateTime terminaNuevo) {
@@ -159,33 +169,53 @@ public class Calendario {
         var act = this.obtenerActividad(ID);
         if (act!= null && s!= null) {
             var alarma = act.cuandoEmpieza().minus(s.elHorarioEstablecido());
-            act.agregarAlarma(alarma);
+            if (listaEventos.containsKey(act)){
+                listaEventos.get(act).agregarAlarma(alarma);
+            }else {
+                listaTareas.get(act).agregarAlarma(alarma);
+            }
         }
     }
     public void modificarActividadAgregarAlarma(int ID, LocalDateTime alarma) {
         var act = this.obtenerActividad(ID);
         if (act!= null) {
-            act.agregarAlarma(alarma);
+            if (listaEventos.containsKey(act)){
+                listaEventos.get(act).agregarAlarma(alarma);
+            }else {
+                listaTareas.get(act).agregarAlarma(alarma);
+            }
         }
 
     }
     public void modificarActividadAgregarAlarma(int ID, List<LocalDateTime> alarma) {
         var act = this.obtenerActividad(ID);
         if (act!= null) {
-            act.agregarAlarmas(alarma);
+            if (listaEventos.containsKey(act)){
+                listaEventos.get(act).agregarAlarma(alarma);
+            }else {
+                listaTareas.get(act).agregarAlarma(alarma);
+            }
         }
     }
     public void modificarActividadEliminarAlarma(int ID, LocalDateTime alarma) {
         var act = this.obtenerActividad(ID);
         if (act != null) {
-            act.eliminarAlarma(alarma);
+            if (listaEventos.containsKey(act)){
+                listaEventos.get(act).eliminarAlarma(alarma);
+            }else {
+                listaTareas.get(act).eliminarAlarma(alarma);
+            }
         }
     }
     public void modificarActividadEliminarAlarma(int ID, Plazo s) {
         var act = this.obtenerActividad(ID);
         if (act!= null && s!= null) {
             var alarma = act.cuandoEmpieza().minus(s.elHorarioEstablecido());
-            act.eliminarAlarma(alarma);
+            if (listaEventos.containsKey(act)){
+                listaEventos.get(act).eliminarAlarma(alarma);
+            }else {
+                listaTareas.get(act).eliminarAlarma(alarma);
+            }
         }
     }
     public void eliminarEvento(int ID) {
@@ -210,14 +240,13 @@ public class Calendario {
         var listaEventosEnRango = new ArrayList<Evento>();
 
         long cantDias = comienzo.until(fin, ChronoUnit.DAYS);
-        for (int j = 0; j < this.listaEventos.size(); j++) {
-            var evento = this.listaEventos.get(j);
+        for (Evento e :listaEventos.keySet()) {
             LocalDateTime diaAChequear = comienzo;
             //Chequeo todos los dias que hay entre comienzo y fin
             for (int i = 0 ; i < cantDias ; i++ ) {
                 diaAChequear = diaAChequear.plusDays(1);
-                if (evento.caeElDia(diaAChequear) == true) {
-                    listaEventosEnRango.add(evento);
+                if (e.caeElDia(diaAChequear)) {
+                    listaEventosEnRango.add(e);
                     break;
                 }
             }

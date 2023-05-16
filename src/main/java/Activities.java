@@ -6,7 +6,6 @@ public abstract class Activities {
 
     protected String name;
     protected String description;
-    protected final Alarmas alarm = new Alarmas();
     protected boolean esDiaCompleto;
 
     //--------- Atributos ---------
@@ -30,12 +29,6 @@ public abstract class Activities {
 
     public abstract LocalDateTime cuandoTermina();
     public abstract LocalDateTime cuandoEmpieza();
-    public LocalDateTime ultimaAlarma() {
-        if (alarm.quedanAlarmas()) {
-            return alarm.primerAlarmaASonar();
-        }
-        return null;
-    }
     public String getTitulo() {
         return name;
     }
@@ -53,15 +46,6 @@ public abstract class Activities {
     }
     public void setEsDiaCompleto(boolean esDiaCompleto) {
         this.esDiaCompleto = esDiaCompleto;
-    }
-    public void agregarAlarma(LocalDateTime alarmaNueva) {
-        this.alarm.agregarAlarma(alarmaNueva);
-    }
-    public void agregarAlarmas(List<LocalDateTime> alarmasNuevas) {
-        this.alarm.agregarAlarma(alarmasNuevas);
-    }
-    public void eliminarAlarma(LocalDateTime alarmaNueva) {
-        this.alarm.eliminarAlarma(alarmaNueva);
     }
 
     //--------- Metodos ---------

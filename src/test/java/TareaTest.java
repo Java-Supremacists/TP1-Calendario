@@ -23,7 +23,6 @@ public class TareaTest {
         tar.setTermina(termina);
         assertEquals(termina, tar.cuandoEmpieza());
         assertEquals(termina, tar.cuandoTermina());
-        assertNull(tar.ultimaAlarma());
         assertEquals("", tar.getDescripcion());
         assertEquals("", tar.getTitulo());
         assertFalse(tar.esDiaEntero());
@@ -50,7 +49,6 @@ public class TareaTest {
         assertFalse(tar.estaCompleta()); //Las tareas empiezan como incompletas
         assertEquals(termina, tar.cuandoEmpieza());
         assertEquals(termina, tar.cuandoTermina());
-        assertNull(tar.ultimaAlarma());
     }
 
     @Test
