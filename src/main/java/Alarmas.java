@@ -133,7 +133,7 @@ public class Alarmas {
             int j = 0;
             for (LocalDateTime alarm : alarmasYaSonadas){
                 j+=1;
-                Element alarma = doc.createElement("alarmaYaSonada%d".formatted(i));
+                Element alarma = doc.createElement("alarmaYaSonada%d".formatted(j));
                 alarma.appendChild(doc.createTextNode(alarm.toString()));
                 SetAlarmasMantenidas.appendChild(alarma);
             }

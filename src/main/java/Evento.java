@@ -2,7 +2,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 public class Evento extends Activities {
     //--------- Atributos ---------
@@ -45,8 +44,7 @@ public class Evento extends Activities {
     }
     public boolean caeElDia(LocalDateTime diaEspecifico) {
         //Averiguo si la frecuencia hace que el evento caiga el día pedido
-        boolean caeElDiaPedido = this.frecuencia.dadoComienzoCaeElDia(this.arranquePrincipio, diaEspecifico);
-        return caeElDiaPedido;
+        return this.frecuencia.dadoComienzoCaeElDia(this.arranquePrincipio, diaEspecifico);
     }
     public LocalDateTime proximoEventoMasCercanoAFechaEspecifica(LocalDateTime diaEspecifico) {
         LocalDateTime proximoEvento;
