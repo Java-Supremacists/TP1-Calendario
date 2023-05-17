@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Alarmas {
+public class Alarmas implements XmlGuardador{
     public Notificacion notificaciones;
     //--------- Atributos ---------
 

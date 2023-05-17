@@ -2,7 +2,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import java.time.LocalDateTime;
 
-public abstract class Activities {
+public abstract class Activities implements XmlGuardador{
     //--------- Atributos ---------
 
     protected String name;

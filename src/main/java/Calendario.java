@@ -1,23 +1,14 @@
-import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import java.time.temporal.ChronoUnit; //Libreria para formatear días en LocalDateTime
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 
-public class Calendario {
+public class Calendario implements XmlGuardador{
     //--------- Atributos ---------
 
     private final HashMap<Tarea,Alarmas> listaTareas = new HashMap<>();
@@ -265,42 +256,15 @@ public class Calendario {
         }
         return listaEventosEnRango;
     }
-    public void guardado(String direccionDeArchivoConNombre){
-        DocumentBuilderFactory creador = DocumentBuilderFactory.newInstance();
-
-
-        try {
-            // Create a DocumentBuilder
-            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-
-            // Create a new XML document
-            Document doc = docBuilder.newDocument();
-            Element calendario = doc.createElement("Calendario");
-
-            for (Evento ev : listaEventos.keySet()){
-                Element eventElement = doc.createElement("Evento");
-                Alarmas r = listaEventos.get(ev);
-                ev.guardar(eventElement,doc);
-                r.guardar(eventElement,doc);
-                calendario.appendChild(eventElement);
-            }
-
-            //aca va la implementacion de guardado de Tarea
-
-            doc.appendChild(calendario);
-
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(direccionDeArchivoConNombre );
-            transformer.transform(source, result);
-
-            System.out.println("XML file created successfully.");
-        } catch (TransformerException | DOMException | ParserConfigurationException e) {
-            //algo salió mal en la creacion o en la transformacion
-            e.printStackTrace();
+    public void guardar(Element calendario, Document doc){
+        for (Evento ev : listaEventos.keySet()){
+            Element eventElement = doc.createElement("Evento");
+            Alarmas r = listaEventos.get(ev);
+            ev.guardar(eventElement,doc);
+            r.guardar(eventElement,doc);
+            calendario.appendChild(eventElement);
         }
+        //Aca va la implementacion para tarea ahora
     }
 
 }
