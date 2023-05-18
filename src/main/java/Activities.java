@@ -61,6 +61,16 @@ public abstract class Activities implements XmlGuardador{
         esDiaCompletoLaActividad.appendChild(doc.createTextNode("%b".formatted(esDiaCompleto)));
         estructura.appendChild(esDiaCompletoLaActividad);
     }
+    @Override
+    public void cargar(Element Actividad) {
+        Element nombre = (Element) Actividad.getElementsByTagName("Nombre");
+        this.name = nombre.getTextContent();
 
+        Element descripcion = (Element) Actividad.getElementsByTagName("Descripcion");
+        this.description = descripcion.getTextContent();
+
+        Element diaCompleto = (Element) Actividad.getElementsByTagName("DeDiaCOmpleto");
+        this.esDiaCompleto = diaCompleto.getTextContent().startsWith("t");
+    }
     //--------- Metodos ---------
 }

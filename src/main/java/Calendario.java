@@ -1,6 +1,6 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
+import org.w3c.dom.NodeList;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -265,6 +265,27 @@ public class Calendario implements XmlGuardador{
             calendario.appendChild(eventElement);
         }
         //Aca va la implementacion para tarea ahora
+    }
+    @Override
+    public void cargar(Element calendario) {
+        NodeList ActividadesCalendario = calendario.getChildNodes();
+
+        // Itera sobre las actividades y les deja que ellos se carguen a si mismos
+        for (int i = 0; i < ActividadesCalendario.getLength(); i++) {
+            if (ActividadesCalendario.item(i) instanceof Element Actividad) {
+                switch (Actividad.getNodeName()) {
+                    case "Evento":
+                        var ev = new Evento(null,null);
+                        var r = new Alarmas();
+                        ev.cargar(Actividad);
+                        Element alarma = (Element) Actividad.getElementsByTagName("Clase_Alarmas");
+                        r.cargar(alarma);
+
+                    case "Tarea":
+                        //implementacion Tarea
+                }
+            }
+        }
     }
 
 }

@@ -1,7 +1,7 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Evento extends Activities {
     //--------- Atributos ---------
@@ -83,6 +83,24 @@ public class Evento extends Activities {
 
         //frecuencia.guardar()
     }
+    @Override
+    public void cargar(Element Evento) {
+        super.cargar(Evento);
+        DateTimeFormatter formateadorDeStringALocaldatetime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
+        Element arranqueAlinicio = (Element) Evento.getElementsByTagName("ArranquePrincipio");
+        arranquePrincipio = LocalDateTime.parse(arranqueAlinicio.getTextContent(), formateadorDeStringALocaldatetime);
+
+        Element terminaAlinicio = (Element) Evento.getElementsByTagName("TerminaPrincipio");
+        terminaPrincipio = LocalDateTime.parse(terminaAlinicio.getTextContent(), formateadorDeStringALocaldatetime);
+
+        Element arranqueActualizado = (Element) Evento.getElementsByTagName("ArranqueActual");
+        arranqueActual = LocalDateTime.parse(arranqueActualizado.getTextContent(), formateadorDeStringALocaldatetime);
+
+        Element terminaActualizado = (Element) Evento.getElementsByTagName("ArranqueActual");
+        terminaActual = LocalDateTime.parse(terminaActualizado.getTextContent(), formateadorDeStringALocaldatetime);
+
+        //frecuencia.cargar()
+    }
     //--------- Metodos ---------
 }

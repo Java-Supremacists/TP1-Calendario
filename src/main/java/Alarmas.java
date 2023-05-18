@@ -1,7 +1,8 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
+import org.w3c.dom.NodeList;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -141,6 +142,32 @@ public class Alarmas implements XmlGuardador{
         }
 
         estructura.appendChild(Alarmas);
+    }
+    @Override
+    public void cargar(Element Alarma) {
+        DateTimeFormatter formateadorDeStringALocaldatetime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+
+        Element posibleMantener = (Element) Alarma.getElementsByTagName("MantenerAlarma");
+        mantenerAlarmas = posibleMantener.getTextContent().startsWith("t");
+
+        Element setAlarmas = (Element) Alarma.getElementsByTagName("Alarmas");
+        NodeList listaAlarmas1 = setAlarmas.getChildNodes();
+        for (int i = 0; i < listaAlarmas1.getLength(); i++) {
+            if (listaAlarmas1.item(i) instanceof Element alarm) {
+                alarmas.add(LocalDateTime.parse(alarm.getTextContent(), formateadorDeStringALocaldatetime));
+            }
+        }
+
+        if (mantenerAlarmas){
+            Element setAlarmasYaSonadas = (Element) Alarma.getElementsByTagName("AlarmasMantenidas");
+            NodeList listaAlarmas2 = setAlarmasYaSonadas.getChildNodes();
+            for (int i = 0; i < listaAlarmas2.getLength(); i++) {
+                if (listaAlarmas2.item(i) instanceof Element alarm) {
+                    alarmasYaSonadas.add(LocalDateTime.parse(alarm.getTextContent(), formateadorDeStringALocaldatetime));
+                }
+            }
+        }
+
     }
 
     //--------- Metodos ---------
