@@ -31,12 +31,12 @@ public class Calendario implements XmlGuardador{
     public int crearEvento(LocalDateTime arranque, LocalDateTime termina) {
         Evento nuevoEvento = new Evento(arranque,termina);
         listaEventos.put(nuevoEvento,new Alarmas());
-        return nuevoEvento.hashCode();
+        return nuevoEvento.getID();
     }
     public int crearTarea(String nombre, String descripcion, boolean esCompleto,LocalDateTime termina) {
         Tarea nuevaTarea = new Tarea(nombre,descripcion,esCompleto,termina);
         listaTareas.put(nuevaTarea,new Alarmas());
-        return nuevaTarea.hashCode();
+        return nuevaTarea.getID();
     }
     public int crearEvento(String nombre, String descripcion, boolean esCompleto,LocalDateTime arranque, LocalDateTime termina) {
         Evento nuevoEvento = new Evento(nombre,descripcion,esCompleto,arranque,termina);
@@ -97,12 +97,12 @@ public class Calendario implements XmlGuardador{
     }
     public Activities obtenerActividad(int ID) {
         for (Evento e: listaEventos.keySet()) {
-            if (e.hashCode() == ID) {
+            if (e.getID() == ID) {
                 return e;
             }
         }
         for (Tarea t: listaTareas.keySet()) {
-            if (t.hashCode() == ID) {
+            if (t.getID() == ID) {
                 return t;
             }
         }
@@ -110,7 +110,7 @@ public class Calendario implements XmlGuardador{
     }
     public Evento obtenerEvento(int ID) {
         for (Evento e: listaEventos.keySet()) {
-            if (e.hashCode() == ID) {
+            if (e.getID() == ID) {
                 return e;
             }
         }
@@ -118,7 +118,7 @@ public class Calendario implements XmlGuardador{
     }
     public Tarea obtenerTarea(int ID) {
         for (Tarea t: listaTareas.keySet()) {
-            if (t.hashCode() == ID) {
+            if (t.getID() == ID) {
                 return t;
             }
         }

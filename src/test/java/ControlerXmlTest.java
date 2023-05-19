@@ -98,7 +98,11 @@ public class ControlerXmlTest {
         xmlManejador.cargarXml(calendario2,cargarArchivo);
 
         assertEquals(calendario1.proximaAlarma(),calendario2.proximaAlarma());
-        assertEquals(calendario1.obtenerEvento(ID1),calendario2.obtenerEvento(ID1));
-        assertEquals(calendario1.obtenerEvento(ID2),calendario2.obtenerEvento(ID2));
+        assertEquals(calendario1.obtenerEvento(ID1).getTitulo(),calendario2.obtenerEvento(ID1).getTitulo());
+        assertEquals(calendario1.obtenerEvento(ID1).getDescripcion(),calendario2.obtenerEvento(ID1).getDescripcion());
+        assertEquals(calendario1.obtenerEvento(ID1).esDiaEntero(),calendario2.obtenerEvento(ID1).esDiaEntero());
+        assertEquals(calendario1.obtenerEvento(ID2).getTitulo(),calendario2.obtenerEvento(ID2).getTitulo());
+        assertEquals(calendario1.obtenerEvento(ID2).getDescripcion(),calendario2.obtenerEvento(ID2).getDescripcion());
+        assertEquals(calendario1.obtenerEvento(ID2).esDiaEntero(),calendario2.obtenerEvento(ID2).esDiaEntero());
     }
 }

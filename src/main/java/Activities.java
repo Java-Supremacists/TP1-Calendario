@@ -8,6 +8,7 @@ public abstract class Activities implements XmlGuardador{
     protected String name;
     protected String description;
     protected boolean esDiaCompleto;
+    protected int ID = this.hashCode();
 
     //--------- Atributos ---------
 
@@ -32,6 +33,9 @@ public abstract class Activities implements XmlGuardador{
     public abstract LocalDateTime cuandoEmpieza();
     public String getTitulo() {
         return name;
+    }
+    public int getID(){
+        return ID;
     }
     public String getDescripcion() {
         return description;
@@ -60,6 +64,10 @@ public abstract class Activities implements XmlGuardador{
         Element esDiaCompletoLaActividad = doc.createElement("DeDiaCompleto");
         esDiaCompletoLaActividad.appendChild(doc.createTextNode("%b".formatted(esDiaCompleto)));
         estructura.appendChild(esDiaCompletoLaActividad);
+
+        Element idDelObjeto = doc.createElement("IDE");
+        idDelObjeto.appendChild(doc.createTextNode("%d".formatted(ID)));
+        estructura.appendChild(idDelObjeto);
     }
     @Override
     public void cargar(Element Actividad) {
@@ -70,6 +78,7 @@ public abstract class Activities implements XmlGuardador{
                     case "Nombre" -> this.name = elementoInterno.getTextContent();
                     case "Descripcion" -> this.description = elementoInterno.getTextContent();
                     case "DeDiaCompleto" -> this.esDiaCompleto = elementoInterno.getTextContent().startsWith("t");
+                    case "IDE" -> this.ID = Integer.parseInt(elementoInterno.getTextContent());
                 }
             }
         }
