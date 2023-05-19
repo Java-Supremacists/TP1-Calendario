@@ -283,10 +283,16 @@ public class Calendario implements XmlGuardador{
                         var ev = new Evento(null,null);
                         var r = new Alarmas();
                         ev.cargar(Actividad);
-                        Element alarma = (Element) Actividad.getElementsByTagName("Clase_Alarmas");
-                        r.cargar(alarma);
+                        var elementosEvento = Actividad.getChildNodes();
+                        for (int j = 0; j < elementosEvento.getLength(); j++) {
+                            if (elementosEvento.item(j) instanceof Element elemento) {
+                                if (elemento.getNodeName().equals("Clase_Alarmas")) {
+                                    r.cargar(elemento);
+                                }
+                            }
+                        }
+                        listaEventos.put(ev,r);
                         break;
-
                     case "Tarea":
                         //implementacion Tarea
                         break;

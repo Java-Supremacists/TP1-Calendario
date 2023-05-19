@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
@@ -70,5 +69,36 @@ public class ControlerXmlTest {
     }
     @Test
     public void testConGuardadoDeCalendarios() {
+        var calendario1 = new Calendario();
+        var calendario2 = new Calendario();
+
+
+        var inicia1 = LocalDateTime.of(2023,5,19,10,30);
+        var termina1 = LocalDateTime.of(2023,5,19,20,0);
+        var inicia2 = LocalDateTime.of(2023,5,23,10,30);
+        var termina2 = LocalDateTime.of(2023,5,24,10,0);
+        int ID1 = calendario1.crearEvento("Evento1","Descripcion1",true,inicia1,termina1);
+        int ID2 = calendario1.crearEvento("Evento2","Descripcion2",false,inicia2,termina2);
+
+        calendario1.modificarActividadAgregarAlarma(ID1,Plazo.HORAANTES);
+        calendario1.modificarActividadAgregarAlarma(ID1,Plazo.DIAANTES);
+        calendario1.modificarActividadAgregarAlarma(ID1,LocalDateTime.of(2023,5,2,8,30));
+        calendario1.modificarActividadAgregarAlarma(ID1,LocalDateTime.of(2023,3,30,20,30));
+
+        calendario1.modificarActividadAgregarAlarma(ID2,Plazo.HORAANTES);
+        calendario1.modificarActividadAgregarAlarma(ID2,Plazo.DIAANTES);
+        calendario1.modificarActividadAgregarAlarma(ID2,LocalDateTime.of(2023,5,19,8,30));
+        calendario1.modificarActividadAgregarAlarma(ID2,LocalDateTime.of(2023,1,30,11,0));
+
+        ByteArrayOutputStream archivo = new ByteArrayOutputStream();
+        var xmlManejador = new ControlerXml();
+
+        xmlManejador.generateXml(calendario1,"Calendario",archivo);
+        InputStream cargarArchivo = new ByteArrayInputStream(archivo.toByteArray());
+        xmlManejador.cargarXml(calendario2,cargarArchivo);
+
+        assertEquals(calendario1.proximaAlarma(),calendario2.proximaAlarma());
+        assertEquals(calendario1.obtenerEvento(ID1),calendario2.obtenerEvento(ID1));
+        assertEquals(calendario1.obtenerEvento(ID2),calendario2.obtenerEvento(ID2));
     }
 }
