@@ -258,10 +258,15 @@ public class Calendario implements XmlGuardador{
     }
     public void guardar(Element calendario, Document doc){
         for (Evento ev : listaEventos.keySet()){
-            Element eventElement = doc.createElement("Evento");
             Alarmas r = listaEventos.get(ev);
+
+            Element eventElement = doc.createElement("Evento");
             ev.guardar(eventElement,doc);
-            r.guardar(eventElement,doc);
+
+            Element elementoAlarma = doc.createElement("Clase_Alarmas");
+            r.guardar(elementoAlarma,doc);
+
+            eventElement.appendChild(elementoAlarma);
             calendario.appendChild(eventElement);
         }
         //Aca va la implementacion para tarea ahora
@@ -280,9 +285,11 @@ public class Calendario implements XmlGuardador{
                         ev.cargar(Actividad);
                         Element alarma = (Element) Actividad.getElementsByTagName("Clase_Alarmas");
                         r.cargar(alarma);
+                        break;
 
                     case "Tarea":
                         //implementacion Tarea
+                        break;
                 }
             }
         }
