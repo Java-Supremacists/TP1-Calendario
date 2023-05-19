@@ -86,20 +86,18 @@ public class Evento extends Activities {
     @Override
     public void cargar(Element Evento) {
         super.cargar(Evento);
-        DateTimeFormatter formateadorDeStringALocaldatetime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
-        Element arranqueAlinicio = (Element) Evento.getElementsByTagName("ArranquePrincipio");
-        arranquePrincipio = LocalDateTime.parse(arranqueAlinicio.getTextContent(), formateadorDeStringALocaldatetime);
-
-        Element terminaAlinicio = (Element) Evento.getElementsByTagName("TerminaPrincipio");
-        terminaPrincipio = LocalDateTime.parse(terminaAlinicio.getTextContent(), formateadorDeStringALocaldatetime);
-
-        Element arranqueActualizado = (Element) Evento.getElementsByTagName("ArranqueActual");
-        arranqueActual = LocalDateTime.parse(arranqueActualizado.getTextContent(), formateadorDeStringALocaldatetime);
-
-        Element terminaActualizado = (Element) Evento.getElementsByTagName("ArranqueActual");
-        terminaActual = LocalDateTime.parse(terminaActualizado.getTextContent(), formateadorDeStringALocaldatetime);
-
+        var elementosDelEvento = Evento.getChildNodes();
+        for (int i = 0; i< elementosDelEvento.getLength(); i++){
+            if (elementosDelEvento.item(i) instanceof Element elementoInterno){
+                switch (elementoInterno.getTagName()) {
+                    case "ArranquePrincipio" -> arranquePrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
+                    case "TerminaPrincipio" -> terminaPrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
+                    case "ArranqueActual" -> arranqueActual = LocalDateTime.parse(elementoInterno.getTextContent());
+                    case "TerminaActual" -> terminaActual = LocalDateTime.parse(elementoInterno.getTextContent());
+                }
+            }
+        }
         //frecuencia.cargar()
     }
     //--------- Metodos ---------

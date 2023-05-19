@@ -57,20 +57,22 @@ public abstract class Activities implements XmlGuardador{
         descripcionActividad.appendChild(doc.createTextNode(description));
         estructura.appendChild(descripcionActividad);
 
-        Element esDiaCompletoLaActividad = doc.createElement("DeDiaCOmpleto");
+        Element esDiaCompletoLaActividad = doc.createElement("DeDiaCompleto");
         esDiaCompletoLaActividad.appendChild(doc.createTextNode("%b".formatted(esDiaCompleto)));
         estructura.appendChild(esDiaCompletoLaActividad);
     }
     @Override
     public void cargar(Element Actividad) {
-        Element nombre = (Element) Actividad.getElementsByTagName("Nombre");
-        this.name = nombre.getTextContent();
-
-        Element descripcion = (Element) Actividad.getElementsByTagName("Descripcion");
-        this.description = descripcion.getTextContent();
-
-        Element diaCompleto = (Element) Actividad.getElementsByTagName("DeDiaCOmpleto");
-        this.esDiaCompleto = diaCompleto.getTextContent().startsWith("t");
+        var hijosActividad = Actividad.getChildNodes();
+        for (int i=0;i<hijosActividad.getLength();i++){
+            if (hijosActividad.item(i) instanceof Element elementoInterno){
+                switch (elementoInterno.getTagName()) {
+                    case "Nombre" -> this.name = elementoInterno.getTextContent();
+                    case "Descripcion" -> this.description = elementoInterno.getTextContent();
+                    case "DeDiaCompleto" -> this.esDiaCompleto = elementoInterno.getTextContent().startsWith("t");
+                }
+            }
+        }
     }
     //--------- Metodos ---------
 }
