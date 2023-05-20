@@ -2,6 +2,9 @@ import java.time.LocalDateTime;
 import java.time.DayOfWeek;
 import java.util.Arrays;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 
 /**
  * FrecuenciaSemanal
@@ -63,6 +66,12 @@ public class FrecuenciaSemanal implements Frecuencia {
         }
 
         return proximoEvento;
+    }
+
+    @Override
+    public void guardar(Element estructura, Document doc) {
+    	// TODO Auto-generated method stub
+    	
     }
 
 

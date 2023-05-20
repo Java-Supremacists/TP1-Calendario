@@ -1,4 +1,8 @@
 import java.time.temporal.ChronoUnit; //Libreria para formatear dias en LocalDateTime
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import java.time.LocalDateTime;
 import java.lang.Math;
 /**
@@ -57,6 +61,12 @@ public class FrecuenciaDiaria implements Frecuencia {
         LocalDateTime proximoEvento = inicioEvento.plusDays(cantidadRepsHastaProxEvento * this.cadaCuantosDias);
 
         return proximoEvento;
+    }
+
+    @Override
+    public void guardar(Element estructura, Document doc) {
+    	// TODO Auto-generated method stub
+    	
     }
 
 }
