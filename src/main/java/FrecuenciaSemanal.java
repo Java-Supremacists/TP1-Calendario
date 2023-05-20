@@ -70,7 +70,11 @@ public class FrecuenciaSemanal implements Frecuencia {
 
     @Override
     public void guardar(Element estructura, Document doc) {
-    	// TODO Auto-generated method stub
+        Element Frecuencia = doc.createElement("FrecuenciaSemanal");
+        Frecuencia.appendChild(doc.createTextNode(String.valueOf(this.diasDeLaSemana)));
+        estructura.appendChild(Frecuencia);
+    	
+	this.repeticion.guardar(estructura, doc);
     	
     }
 

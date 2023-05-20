@@ -10,6 +10,9 @@ import java.time.DayOfWeek;
 public class RepeticionCantVeces implements Repeticion {
     private LocalDateTime fechaFinRepeticion;
 
+    //Lo guardamos solamente para que lo podamos gurdar en un archivo despues
+    private int cantidadDeRepeticionesMaximas;
+
     //No estamos totalmente contentos con la presencia de dos constructores
     //distintos, sin embargo, fue la mejor manera que se nos ocurrio de poder
     //encapsular dos casos distinto en 1
@@ -23,6 +26,10 @@ public class RepeticionCantVeces implements Repeticion {
         LocalDateTime fechaFinal = fechaComienzo.plusDays(cantidadDeDiasASumar);
 
         this.fechaFinRepeticion = fechaFinal;
+
+	this.cantidadDeRepeticionesMaximas = cantidadDeRepeticionesMaximas;
+
+
     }
 
     public RepeticionCantVeces(int cantidadDeRepeticionesMaximas, DayOfWeek[] diasDeLaSemana, LocalDateTime fechaComienzo) {
@@ -60,6 +67,8 @@ public class RepeticionCantVeces implements Repeticion {
         LocalDateTime fechaFinal = offsetDiaDeLaSemana.plusDays(cantidadDeRepeticionesSemanales * 7);
 
         this.fechaFinRepeticion = fechaFinal;
+
+	this.cantidadDeRepeticionesMaximas = cantidadDeRepeticionesMaximas;
     }
 
     @Override
@@ -72,7 +81,9 @@ public class RepeticionCantVeces implements Repeticion {
 
     @Override
     public void guardar(Element estructura, Document doc) {
-    	// TODO Auto-generated method stub
+        Element Repeticion = doc.createElement("RepeticionCantVeces");
+        Repeticion.appendChild(doc.createTextNode(String.valueOf(this.cantidadDeRepeticionesMaximas)));
+        estructura.appendChild(Repeticion);
     	
     }
 }

@@ -22,7 +22,9 @@ public class RepeticionFecha implements Repeticion {
 
     @Override
     public void guardar(Element estructura, Document doc) {
-    	// TODO Auto-generated method stub
+        Element Repeticion = doc.createElement("RepeticionFecha");
+        Repeticion.appendChild(doc.createTextNode(String.valueOf(this.fechaFinRepeticion)));
+        estructura.appendChild(Repeticion);
     	
     }
 }

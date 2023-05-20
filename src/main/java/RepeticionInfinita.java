@@ -17,7 +17,8 @@ public class RepeticionInfinita implements Repeticion {
 
     @Override
     public void guardar(Element estructura, Document doc) {
-    	// TODO Auto-generated method stub
-    	
+        Element Repeticion = doc.createElement("RepeticionInfinita");
+        Repeticion.appendChild(doc.createTextNode("inf"));
+        estructura.appendChild(Repeticion);
     }
 }
