@@ -71,7 +71,19 @@ public class FrecuenciaSemanal implements Frecuencia {
     @Override
     public void guardar(Element estructura, Document doc) {
         Element Frecuencia = doc.createElement("FrecuenciaSemanal");
-        Frecuencia.appendChild(doc.createTextNode(String.valueOf(this.diasDeLaSemana)));
+
+	String dias = "";
+	for (int i = 0; i < this.diasDeLaSemana.length; i++) {
+	    //Le ponemos coma (,) a todos los elementos (excepto al primero) 
+	    //para evitar que quede: ,MONDAY,THURSDAY
+	    if (i != 0) {
+		dias += ","; 
+	    }
+	    System.out.println(i);
+	    dias += this.diasDeLaSemana[i].toString();
+		
+	}
+        Frecuencia.appendChild(doc.createTextNode(dias));
         estructura.appendChild(Frecuencia);
     	
 	this.repeticion.guardar(estructura, doc);
