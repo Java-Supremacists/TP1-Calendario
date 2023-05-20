@@ -270,6 +270,17 @@ public class Calendario implements XmlGuardador {
             calendario.appendChild(eventElement);
         }
         //Aca va la implementacion para tarea ahora
+
+        for (Tarea tarea : listaTareas.keySet()) {
+            Element tareaElement = doc.createElement("Tarea");
+            // tarea.guardar(eventElement,doc);
+
+            // Element elementoAlarma = doc.createElement("Clase_Alarmas");
+            // r.guardar(elementoAlarma,doc);
+
+            // eventElement.appendChild(elementoAlarma);
+            // calendario.appendChild(eventElement);
+        }
     }
     @Override
     public void cargar(Element calendario) {
