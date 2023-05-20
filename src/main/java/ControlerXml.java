@@ -13,7 +13,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class ControlerXml {
-    public void generateXml(XmlGuardador objeto,String nombreObjeto ,OutputStream out){
+    public void generateXml(XmlGuardador objeto,String nombreObjeto,OutputStream out) {
 
         try {
             // Crear un DocumentBuilder
@@ -41,7 +41,7 @@ public class ControlerXml {
         }
 
     }
-    public void cargarXml(XmlGuardador objeto, InputStream in){
+    public void cargarXml(XmlGuardador objeto, InputStream in) {
         try {
             // Crea el objeto DocumentBuilder
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

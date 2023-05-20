@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class Calendario implements XmlGuardador{
+public class Calendario implements XmlGuardador {
     //--------- Atributos ---------
 
     private final HashMap<Tarea,Alarmas> listaTareas = new HashMap<>();
@@ -46,7 +46,7 @@ public class Calendario implements XmlGuardador{
     public LocalDateTime proximaAlarma() {
         if (maximaAlarmaActual == null) {
             for (Alarmas r : listaEventos.values()) {
-                if (!r.quedanAlarmas()){
+                if (!r.quedanAlarmas()) {
                     continue;
                 }
                 LocalDateTime alarm = r.primerAlarmaASonar();
@@ -58,7 +58,7 @@ public class Calendario implements XmlGuardador{
 
             }
             for (Alarmas r : listaTareas.values()) {
-                if (!r.quedanAlarmas()){
+                if (!r.quedanAlarmas()) {
                     continue;
                 }
                 LocalDateTime alarm = r.primerAlarmaASonar();
@@ -172,9 +172,9 @@ public class Calendario implements XmlGuardador{
         var act = this.obtenerActividad(ID);
         if (act!= null && s!= null) {
             var alarma = act.cuandoEmpieza().minus(s.elHorarioEstablecido());
-            if (listaEventos.containsKey(act)){
+            if (listaEventos.containsKey(act)) {
                 listaEventos.get(act).agregarAlarma(alarma);
-            }else {
+            } else {
                 listaTareas.get(act).agregarAlarma(alarma);
             }
         }
@@ -182,9 +182,9 @@ public class Calendario implements XmlGuardador{
     public void modificarActividadAgregarAlarma(int ID, LocalDateTime alarma) {
         var act = this.obtenerActividad(ID);
         if (act!= null) {
-            if (listaEventos.containsKey(act)){
+            if (listaEventos.containsKey(act)) {
                 listaEventos.get(act).agregarAlarma(alarma);
-            }else {
+            } else {
                 listaTareas.get(act).agregarAlarma(alarma);
             }
         }
@@ -193,9 +193,9 @@ public class Calendario implements XmlGuardador{
     public void modificarActividadAgregarAlarma(int ID, List<LocalDateTime> alarma) {
         var act = this.obtenerActividad(ID);
         if (act!= null) {
-            if (listaEventos.containsKey(act)){
+            if (listaEventos.containsKey(act)) {
                 listaEventos.get(act).agregarAlarma(alarma);
-            }else {
+            } else {
                 listaTareas.get(act).agregarAlarma(alarma);
             }
         }
@@ -203,9 +203,9 @@ public class Calendario implements XmlGuardador{
     public void modificarActividadEliminarAlarma(int ID, LocalDateTime alarma) {
         var act = this.obtenerActividad(ID);
         if (act != null) {
-            if (listaEventos.containsKey(act)){
+            if (listaEventos.containsKey(act)) {
                 listaEventos.get(act).eliminarAlarma(alarma);
-            }else {
+            } else {
                 listaTareas.get(act).eliminarAlarma(alarma);
             }
         }
@@ -214,9 +214,9 @@ public class Calendario implements XmlGuardador{
         var act = this.obtenerActividad(ID);
         if (act!= null && s!= null) {
             var alarma = act.cuandoEmpieza().minus(s.elHorarioEstablecido());
-            if (listaEventos.containsKey(act)){
+            if (listaEventos.containsKey(act)) {
                 listaEventos.get(act).eliminarAlarma(alarma);
-            }else {
+            } else {
                 listaTareas.get(act).eliminarAlarma(alarma);
             }
         }
@@ -256,8 +256,8 @@ public class Calendario implements XmlGuardador{
         }
         return listaEventosEnRango;
     }
-    public void guardar(Element calendario, Document doc){
-        for (Evento ev : listaEventos.keySet()){
+    public void guardar(Element calendario, Document doc) {
+        for (Evento ev : listaEventos.keySet()) {
             Alarmas r = listaEventos.get(ev);
 
             Element eventElement = doc.createElement("Evento");
@@ -279,23 +279,23 @@ public class Calendario implements XmlGuardador{
         for (int i = 0; i < ActividadesCalendario.getLength(); i++) {
             if (ActividadesCalendario.item(i) instanceof Element Actividad) {
                 switch (Actividad.getNodeName()) {
-                    case "Evento":
-                        var ev = new Evento(null,null);
-                        var r = new Alarmas();
-                        ev.cargar(Actividad);
-                        var elementosEvento = Actividad.getChildNodes();
-                        for (int j = 0; j < elementosEvento.getLength(); j++) {
-                            if (elementosEvento.item(j) instanceof Element elemento) {
-                                if (elemento.getNodeName().equals("Clase_Alarmas")) {
-                                    r.cargar(elemento);
-                                }
+                case "Evento":
+                    var ev = new Evento(null,null);
+                    var r = new Alarmas();
+                    ev.cargar(Actividad);
+                    var elementosEvento = Actividad.getChildNodes();
+                    for (int j = 0; j < elementosEvento.getLength(); j++) {
+                        if (elementosEvento.item(j) instanceof Element elemento) {
+                            if (elemento.getNodeName().equals("Clase_Alarmas")) {
+                                r.cargar(elemento);
                             }
                         }
-                        listaEventos.put(ev,r);
-                        break;
-                    case "Tarea":
-                        //implementacion Tarea
-                        break;
+                    }
+                    listaEventos.put(ev,r);
+                    break;
+                case "Tarea":
+                    //implementacion Tarea
+                    break;
                 }
             }
         }

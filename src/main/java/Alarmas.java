@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Alarmas implements XmlGuardador{
+public class Alarmas implements XmlGuardador {
     public Notificacion notificaciones;
     //--------- Atributos ---------
 
@@ -118,7 +118,7 @@ public class Alarmas implements XmlGuardador{
 
         Element SetAlarmas = doc.createElement("SetAlarmas");
         int i = 0;
-        for (LocalDateTime alarm : alarmas){
+        for (LocalDateTime alarm : alarmas) {
             i+=1;
             Element alarma = doc.createElement("alarma%d".formatted(i));
             alarma.appendChild(doc.createTextNode(alarm.toString()));
@@ -129,7 +129,7 @@ public class Alarmas implements XmlGuardador{
 
         Element SetAlarmasMantenidas = doc.createElement("AlarmasMantenidas");
         int j = 0;
-        for (LocalDateTime alarm : alarmasYaSonadas){
+        for (LocalDateTime alarm : alarmasYaSonadas) {
             j+=1;
             Element alarma = doc.createElement("alarmaYaSonada%d".formatted(j));
             alarma.appendChild(doc.createTextNode(alarm.toString()));
@@ -143,22 +143,22 @@ public class Alarmas implements XmlGuardador{
     public void cargar(Element Alarma) {
         var elementosAlarma = Alarma.getChildNodes();
 
-        for (int i = 0; i< elementosAlarma.getLength(); i++){
-            if (elementosAlarma.item(i) instanceof Element elementoInterno){
+        for (int i = 0; i< elementosAlarma.getLength(); i++) {
+            if (elementosAlarma.item(i) instanceof Element elementoInterno) {
                 switch (elementoInterno.getTagName()) {
-                    case "MantenerAlarma" -> mantenerAlarmas = elementoInterno.getTextContent().startsWith("t");
-                    case "SetAlarmas" -> {
-                        var listaAlarmas = elementoInterno.getChildNodes();
+                case "MantenerAlarma" -> mantenerAlarmas = elementoInterno.getTextContent().startsWith("t");
+                case "SetAlarmas" -> {
+                            var listaAlarmas = elementoInterno.getChildNodes();
                         for (int j = 0; j < listaAlarmas.getLength(); j++) {
-                            if (listaAlarmas.item(j) instanceof Element alarma) {
+                        if (listaAlarmas.item(j) instanceof Element alarma) {
                                 alarmas.add(LocalDateTime.parse(alarma.getTextContent()));
                             }
                         }
                     }
-                    case "AlarmasMantenidas" -> {
-                        var listaAlarmasSonadas = elementoInterno.getChildNodes();
+                case "AlarmasMantenidas" -> {
+                            var listaAlarmasSonadas = elementoInterno.getChildNodes();
                         for (int k = 0; k < listaAlarmasSonadas.getLength(); k++) {
-                            if (listaAlarmasSonadas.item(k) instanceof Element alarma) {
+                        if (listaAlarmasSonadas.item(k) instanceof Element alarma) {
                                 alarmasYaSonadas.add(LocalDateTime.parse(alarma.getTextContent()));
                             }
                         }

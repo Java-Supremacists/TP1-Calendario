@@ -39,7 +39,7 @@ public class ControlerXmlTest {
         var alarm1 = new Alarmas(true,null);
         var alarm2 = new Alarmas();
         List<LocalDateTime> array = new ArrayList<>();
-        for (int i = 1; i < 13;i++){
+        for (int i = 1; i < 13; i++) {
             array.add(LocalDateTime.of(2023,i,i,i,i));
         }
         alarm1.agregarAlarma(array);
@@ -53,7 +53,7 @@ public class ControlerXmlTest {
         assertEquals(alarm1.size(),alarm2.size());
         assertEquals(alarm1.repiteLasAlarmas(),alarm2.repiteLasAlarmas());
         assertEquals(alarm1.primerAlarmaASonar(),alarm2.primerAlarmaASonar());
-        for (int i = 1; i < 13;i++){
+        for (int i = 1; i < 13; i++) {
             var alarmax = LocalDateTime.of(2023,i,i,i,i);
             assertEquals(alarm1.size(),alarm2.size());
             assertEquals(alarm1.quedanAlarmas(),alarm2.quedanAlarmas());

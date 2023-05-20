@@ -63,7 +63,7 @@ public class Evento extends Activities {
         frecuencia = frecuenciaNueva;
     }
     @Override
-    public void guardar(Element estructura, Document doc){
+    public void guardar(Element estructura, Document doc) {
         super.guardar(estructura,doc);
         Element FechaInicio1 = doc.createElement("ArranquePrincipio");
         FechaInicio1.appendChild(doc.createTextNode(arranquePrincipio.toString()));
@@ -88,13 +88,13 @@ public class Evento extends Activities {
         super.cargar(Evento);
 
         var elementosDelEvento = Evento.getChildNodes();
-        for (int i = 0; i< elementosDelEvento.getLength(); i++){
-            if (elementosDelEvento.item(i) instanceof Element elementoInterno){
+        for (int i = 0; i< elementosDelEvento.getLength(); i++) {
+            if (elementosDelEvento.item(i) instanceof Element elementoInterno) {
                 switch (elementoInterno.getTagName()) {
-                    case "ArranquePrincipio" -> arranquePrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
-                    case "TerminaPrincipio" -> terminaPrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
-                    case "ArranqueActual" -> arranqueActual = LocalDateTime.parse(elementoInterno.getTextContent());
-                    case "TerminaActual" -> terminaActual = LocalDateTime.parse(elementoInterno.getTextContent());
+                case "ArranquePrincipio" -> arranquePrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
+                case "TerminaPrincipio" -> terminaPrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
+                case "ArranqueActual" -> arranqueActual = LocalDateTime.parse(elementoInterno.getTextContent());
+                case "TerminaActual" -> terminaActual = LocalDateTime.parse(elementoInterno.getTextContent());
                 }
             }
         }
