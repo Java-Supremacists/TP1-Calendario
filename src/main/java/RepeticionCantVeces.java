@@ -1,4 +1,8 @@
 import java.time.LocalDateTime;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import java.time.DayOfWeek;
 /**
  * RepeticionCantVeces
@@ -66,4 +70,9 @@ public class RepeticionCantVeces implements Repeticion {
         return estaDentro;
     }
 
+    @Override
+    public void guardar(Element estructura, Document doc) {
+    	// TODO Auto-generated method stub
+    	
+    }
 }
