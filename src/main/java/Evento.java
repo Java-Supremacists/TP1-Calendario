@@ -81,7 +81,6 @@ public class Evento extends Activities {
         FechaFinal2.appendChild(doc.createTextNode(terminaActual.toString()));
         estructura.appendChild(FechaFinal2);
 
-	//TODO: Cambiar, ponerle por defecto frecuencia unica
 	if (this.frecuencia != null) {
 	    this.frecuencia.guardar(estructura, doc);
 	}

@@ -55,6 +55,14 @@ public class Main {
         xmlManejador.generateXml(ev2,"Evento",fw);
         xmlManejador.generateXml(ev3,"Evento",fw);
 
+
+	int ita1 = calendario.crearTarea(termina);
+	Tarea ta1 = calendario.obtenerTarea(ita1);
+        xmlManejador.generateXml(ta1,"Tarea",fw);
+
+
+
+
 	System.out.println("Hola mundo");
 	System.out.println(ev1.getTitulo());
     }

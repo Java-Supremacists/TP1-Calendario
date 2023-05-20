@@ -1,5 +1,8 @@
 import java.time.LocalDateTime;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 public class Tarea extends Activities {
     //--------- Atributos ---------
 
@@ -40,6 +43,19 @@ public class Tarea extends Activities {
     }
     public void setTermina(LocalDateTime termina) {
         this.termina = termina;
+    }
+
+    @Override
+    public void guardar(Element estructura, Document doc) {
+    	super.guardar(estructura, doc);
+
+        Element estaCompleta = doc.createElement("EstaCompleta");
+        estaCompleta.appendChild(doc.createTextNode(String.valueOf(this.estaCompleta())));
+        estructura.appendChild(estaCompleta);
+
+        Element termina = doc.createElement("Termina");
+        termina.appendChild(doc.createTextNode(String.valueOf(this.termina)));
+        estructura.appendChild(termina);
     }
 
     //--------- Metodos ---------
