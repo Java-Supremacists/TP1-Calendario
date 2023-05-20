@@ -1,7 +1,6 @@
 /**
  * Main
  */
-import java.io.File;
 import java.time.DayOfWeek;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -17,12 +16,12 @@ public class Main {
 	Evento ev1 = calendario.obtenerEvento(iev1);
 	ev1.setName("Evento1");
 	var repeticion1 = new RepeticionFecha(LocalDateTime.of(2023,5,19,10,30));
-	var frecuencia1 = new FrecuenciaMensual(repeticion1);
+	var frecuencia1 = new FrecuenciaDiaria(6, repeticion1);
 	ev1.setFrecuencia(frecuencia1);
 
         var inicia2 = LocalDateTime.of(2023,5,18,10,30);
         var termina2 = LocalDateTime.of(2023,5,20,20,0);
-	int iev2 = calendario.crearEvento(inicia, termina);
+	int iev2 = calendario.crearEvento(inicia, termina2);
 	Evento ev2 = calendario.obtenerEvento(iev2);
 	ev2.setName("Evento2");
 

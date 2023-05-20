@@ -74,12 +74,9 @@ public class FrecuenciaSemanal implements Frecuencia {
 
 	String dias = "";
 	for (int i = 0; i < this.diasDeLaSemana.length; i++) {
-	    //Le ponemos coma (,) a todos los elementos (excepto al primero) 
-	    //para evitar que quede: ,MONDAY,THURSDAY
-	    if (i != 0) {
-		dias += ","; 
+	    if (i != 0) {   //Le ponemos coma (,) a todos los elementos (excepto
+		dias += ",";//al primero) para evitar que quede: ,MONDAY,THURSDAY
 	    }
-	    System.out.println(i);
 	    dias += this.diasDeLaSemana[i].toString();
 		
 	}
