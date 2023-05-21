@@ -102,36 +102,45 @@ public class Evento extends Activities {
         for (int i = 0; i< elementosDelEvento.getLength(); i++) {
             if (elementosDelEvento.item(i) instanceof Element elementoInterno) {
                 switch (elementoInterno.getTagName()) {
-                case "ArranquePrincipio" -> arranquePrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
-                case "TerminaPrincipio" -> terminaPrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
-                case "ArranqueActual" -> arranqueActual = LocalDateTime.parse(elementoInterno.getTextContent());
-                case "TerminaActual" -> terminaActual = LocalDateTime.parse(elementoInterno.getTextContent());
+		    case "ArranquePrincipio":
+			arranquePrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
+		    case "TerminaPrincipio" :
+			terminaPrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
+		    case "ArranqueActual" :
+			arranqueActual = LocalDateTime.parse(elementoInterno.getTextContent());
+		    case "TerminaActual" :
+			terminaActual = LocalDateTime.parse(elementoInterno.getTextContent());
 
-		// @Facu, esto te lo digo a vos. Cuando hagamos la entrega
-		// podemos reemplazar el "yo" por nosotros o podemos borrar
-		// a la mierda este comentario. Como vos prefieras
-		//
-		// Esto no es ideal, pero creo yo que es la manera mas prolija
-		// de hacerlo. 
-		// Por la manera en la que estan hechos las frecuencia, no tengo
-		// manera de poder hacer algo generico. Incluso en el caso de 
-		// reemplazar la interfaz por una clase abstracta, los Constructores
-		// son tan distintos que terminaria resultando a un conjunto
-		// de ifs de cualquier manera. 
-		// :(
-		//
-		// RepeticionInfinita se usa como un valor momentaneo
-		case "FrecuenciaMensual" -> frecuenciaEncontrada = new FrecuenciaMensual(new RepeticionInfinita()); 
+		    // @Facu, esto te lo digo a vos. Cuando hagamos la entrega
+		    // podemos reemplazar el "yo" por nosotros o podemos borrar
+		    // a la mierda este comentario. Como vos prefieras
+		    //
+		    // Esto no es ideal, pero creo yo que es la manera mas prolija
+		    // de hacerlo. 
+		    // Por la manera en la que estan hechos las frecuencia, no tengo
+		    // manera de poder hacer algo generico. Incluso en el caso de 
+		    // reemplazar la interfaz por una clase abstracta, los Constructores
+		    // son tan distintos que terminaria resultando a un conjunto
+		    // de ifs de cualquier manera. 
+		    // :(
+		    //
+		    // RepeticionInfinita se usa como un valor momentaneo
+		    case "FrecuenciaMensual":
+			frecuenciaEncontrada = new FrecuenciaMensual(new RepeticionInfinita()); 
 
-		case "FrecuenciaDiaria" -> frecuenciaEncontrada = new FrecuenciaDiaria(Integer.parseInt(elementoInterno.getTextContent()), new RepeticionInfinita());
+		    case "FrecuenciaDiaria":
+			frecuenciaEncontrada = new FrecuenciaDiaria(Integer.parseInt(elementoInterno.getTextContent()), new RepeticionInfinita());
 
-		case "FrecuenciaAnual" -> frecuenciaEncontrada = new FrecuenciaAnual(new RepeticionInfinita());
+		    case "FrecuenciaAnual":
+			frecuenciaEncontrada = new FrecuenciaAnual(new RepeticionInfinita());
 
-		case "FrecuenciaSemanal" -> frecuenciaEncontrada = new FrecuenciaSemanal
+		// case "FrecuenciaSemanal" -> frecuenciaEncontrada = new FrecuenciaSemanal
 
-		case "RepeticionFecha" -> repeticionEncontrada = new RepeticionFecha(LocalDateTime.parse(elementoInterno.getTextContent()));
+		    case "RepeticionFecha":
+			repeticionEncontrada = new RepeticionFecha(LocalDateTime.parse(elementoInterno.getTextContent()));
 
-		case "RepeticionInfinita" -> repeticionEncontrada = new RepeticionInfinita();
+		    case "RepeticionInfinita":
+			repeticionEncontrada = new RepeticionInfinita();
 
 		// case "RepeticionCantVeces" -> repeticionEncontrada = new RepeticionCantVeces
                 }
