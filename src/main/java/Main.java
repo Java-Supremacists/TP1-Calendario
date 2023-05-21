@@ -51,17 +51,19 @@ public class Main {
 	FileOutputStream fw = new FileOutputStream(str);
 
         var xmlManejador = new ControlerXml();
-        xmlManejador.generateXml(ev1,"Evento",fw);
-        xmlManejador.generateXml(ev2,"Evento",fw);
-        xmlManejador.generateXml(ev3,"Evento",fw);
+        // xmlManejador.generateXml(ev1,"Evento",fw);
+        // xmlManejador.generateXml(ev2,"Evento",fw);
+        // xmlManejador.generateXml(ev3,"Evento",fw);
 
 
 	int ita1 = calendario.crearTarea(termina);
+	calendario.modificarActividadDescripcion(ita1,"Descripcion tarea");
 	Tarea ta1 = calendario.obtenerTarea(ita1);
-        xmlManejador.generateXml(ta1,"Tarea",fw);
+        // xmlManejador.generateXml(ta1,"Tarea",fw);
 
 
-
+        xmlManejador.generateXml(calendario,"Calendario",fw);
+	// calendario.guardar("test", fw);
 
 	System.out.println("Hola mundo");
 	System.out.println(ev1.getTitulo());

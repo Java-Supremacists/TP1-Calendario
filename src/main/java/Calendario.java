@@ -271,15 +271,17 @@ public class Calendario implements XmlGuardador {
         }
         //Aca va la implementacion para tarea ahora
 
-        for (Tarea tarea : listaTareas.keySet()) {
+	System.out.println("TAREA");
+        for (Tarea tarea : this.listaTareas.keySet()) {
+	    System.out.println("hola");
             Element tareaElement = doc.createElement("Tarea");
-            // tarea.guardar(eventElement,doc);
+            tarea.guardar(tareaElement,doc);
 
             // Element elementoAlarma = doc.createElement("Clase_Alarmas");
             // r.guardar(elementoAlarma,doc);
 
-            // eventElement.appendChild(elementoAlarma);
-            // calendario.appendChild(eventElement);
+            // tareaElement.appendChild(elementoAlarma);
+            calendario.appendChild(tareaElement);
         }
     }
     @Override
