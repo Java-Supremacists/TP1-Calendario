@@ -289,6 +289,16 @@ public class Calendario implements XmlGuardador {
             calendario.appendChild(tareaElement);
         }
     }
+
+    //TODO: Esta funcion la uso para debugear
+    public void iterarEventos() {
+        for (Evento ev : this.listaEventos.keySet()) {
+	    System.out.println(ev.mostrarFrecuencia());
+	}
+
+
+    }
+
     @Override
     public void cargar(Element calendario) {
         NodeList ActividadesCalendario = calendario.getChildNodes();

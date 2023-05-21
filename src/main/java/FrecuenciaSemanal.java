@@ -93,5 +93,11 @@ public class FrecuenciaSemanal implements Frecuencia {
 
     }
 
+    @Override
+    public void cambiarRepeticion(Repeticion repeticion) {
+	this.repeticion = repeticion;
+    	
+    }
+
 
 }

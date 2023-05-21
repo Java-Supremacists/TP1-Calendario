@@ -78,5 +78,10 @@ public class FrecuenciaDiaria implements Frecuencia {
         // TODO Auto-generated method stub
 
     }
+    @Override
+    public void cambiarRepeticion(Repeticion repeticion) {
+	this.repeticion = repeticion;
+    	
+    }
 
 }

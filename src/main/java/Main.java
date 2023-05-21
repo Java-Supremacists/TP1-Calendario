@@ -68,7 +68,7 @@ public class Main {
 
         // System.out.println(ev1.getTitulo());
         String str = new String();
-        str = "archivos/hola";
+        str = "archivos/hola2";
 
         FileInputStream fi = new FileInputStream(str);
 
@@ -79,6 +79,8 @@ public class Main {
         xmlManejador.cargarXml(calendario, fi);
 
         calendario.longTareasYEventos();
+
+	calendario.iterarEventos();
 
 
 

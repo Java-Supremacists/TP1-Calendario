@@ -76,9 +76,26 @@ public class FrecuenciaAnual implements Frecuencia {
     }
 
     @Override
-    public void cargar(Element estructura) {
+    public void cargar(Element Evento) {
         // TODO Auto-generated method stub
+        // var elementosDelEvento = Evento.getChildNodes();
+        // for (int i = 0; i< elementosDelEvento.getLength(); i++) {
+        //     if (elementosDelEvento.item(i) instanceof Element elementoInterno) {
+        //         switch (elementoInterno.getTagName()) {
+        //         case "ArranquePrincipio" -> arranquePrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
+        //         case "TerminaPrincipio" -> terminaPrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
+        //         case "ArranqueActual" -> arranqueActual = LocalDateTime.parse(elementoInterno.getTextContent());
+        //         case "TerminaActual" -> terminaActual = LocalDateTime.parse(elementoInterno.getTextContent());
+        //         }
+        //     }
+        // }
 
+    }
+
+    @Override
+    public void cambiarRepeticion(Repeticion repeticion) {
+	this.repeticion = repeticion;
+    	
     }
 
 }

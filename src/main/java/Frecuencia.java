@@ -14,4 +14,6 @@ public interface Frecuencia {
 
     void cargar(Element estructura);
 
+    void cambiarRepeticion(Repeticion repeticion);
+
 }
