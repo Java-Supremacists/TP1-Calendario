@@ -10,8 +10,11 @@ import java.time.DayOfWeek;
 public class RepeticionCantVeces implements Repeticion {
     private LocalDateTime fechaFinRepeticion;
 
-    //Lo guardamos solamente para que lo podamos gurdar en un archivo despues
+    //Los guardamos solamente para que lo podamos gurdar en un archivo despues
     private int cantidadDeRepeticionesMaximas;
+    private int cadaCuantosDias;
+    private DayOfWeek[] diasDeLaSemana;
+    private LocalDateTime fechaComienzo;
 
     //No estamos totalmente contentos con la presencia de dos constructores
     //distintos, sin embargo, fue la mejor manera que se nos ocurrio de poder
@@ -28,6 +31,8 @@ public class RepeticionCantVeces implements Repeticion {
         this.fechaFinRepeticion = fechaFinal;
 
         this.cantidadDeRepeticionesMaximas = cantidadDeRepeticionesMaximas;
+        this.cadaCuantosDias = cadaCuantosDias;
+        this.fechaComienzo = fechaComienzo;
 
 
     }
@@ -69,6 +74,8 @@ public class RepeticionCantVeces implements Repeticion {
         this.fechaFinRepeticion = fechaFinal;
 
         this.cantidadDeRepeticionesMaximas = cantidadDeRepeticionesMaximas;
+        this.diasDeLaSemana = diasDeLaSemana;
+        this.fechaComienzo = fechaComienzo;
     }
 
     @Override
@@ -81,8 +88,15 @@ public class RepeticionCantVeces implements Repeticion {
 
     @Override
     public void guardar(Element estructura, Document doc) {
+	//Solo tengo que guardar una cosa. Si dias de la semana no existe,
+	//entonces el la repeticion se creo con cadaCuantosDias
+	String diasDeLaSemanaOCadaCuantosDias = this.diasDeLaSemana != null ? String.valueOf(this.diasDeLaSemana) : String.valueOf(this.cadaCuantosDias);
+
+
         Element Repeticion = doc.createElement("RepeticionCantVeces");
-        Repeticion.appendChild(doc.createTextNode(String.valueOf(this.cantidadDeRepeticionesMaximas)));
+        Repeticion.appendChild(doc.createTextNode(String.valueOf(this.cantidadDeRepeticionesMaximas) + "," +
+						  String.valueOf(diasDeLaSemanaOCadaCuantosDias) + "," +
+						  String.valueOf(this.fechaComienzo)));
         estructura.appendChild(Repeticion);
 
     }

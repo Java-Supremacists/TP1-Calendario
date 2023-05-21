@@ -1,3 +1,4 @@
+import java.time.DayOfWeek;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import java.time.LocalDateTime;
@@ -126,9 +127,13 @@ public class Evento extends Activities {
 
 		case "FrecuenciaAnual" -> frecuenciaEncontrada = new FrecuenciaAnual(new RepeticionInfinita());
 
+		case "FrecuenciaSemanal" -> frecuenciaEncontrada = new FrecuenciaSemanal
+
 		case "RepeticionFecha" -> repeticionEncontrada = new RepeticionFecha(LocalDateTime.parse(elementoInterno.getTextContent()));
 
 		case "RepeticionInfinita" -> repeticionEncontrada = new RepeticionInfinita();
+
+		// case "RepeticionCantVeces" -> repeticionEncontrada = new RepeticionCantVeces
                 }
             }
         }
