@@ -81,9 +81,9 @@ public class Evento extends Activities {
         FechaFinal2.appendChild(doc.createTextNode(terminaActual.toString()));
         estructura.appendChild(FechaFinal2);
 
-	if (this.frecuencia != null) {
-	    this.frecuencia.guardar(estructura, doc);
-	}
+        if (this.frecuencia != null) {
+            this.frecuencia.guardar(estructura, doc);
+        }
     }
     @Override
     public void cargar(Element Evento) {

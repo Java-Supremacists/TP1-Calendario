@@ -25,6 +25,6 @@ public class RepeticionFecha implements Repeticion {
         Element Repeticion = doc.createElement("RepeticionFecha");
         Repeticion.appendChild(doc.createTextNode(String.valueOf(this.fechaFinRepeticion)));
         estructura.appendChild(Repeticion);
-    	
+
     }
 }

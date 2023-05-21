@@ -72,25 +72,25 @@ public class FrecuenciaSemanal implements Frecuencia {
     public void guardar(Element estructura, Document doc) {
         Element Frecuencia = doc.createElement("FrecuenciaSemanal");
 
-	String dias = "";
-	for (int i = 0; i < this.diasDeLaSemana.length; i++) {
-	    if (i != 0) {   //Le ponemos coma (,) a todos los elementos (excepto
-		dias += ",";//al primero) para evitar que quede: ,MONDAY,THURSDAY
-	    }
-	    dias += this.diasDeLaSemana[i].toString();
-		
-	}
+        String dias = "";
+        for (int i = 0; i < this.diasDeLaSemana.length; i++) {
+            if (i != 0) {   //Le ponemos coma (,) a todos los elementos (excepto
+                dias += ",";//al primero) para evitar que quede: ,MONDAY,THURSDAY
+            }
+            dias += this.diasDeLaSemana[i].toString();
+
+        }
         Frecuencia.appendChild(doc.createTextNode(dias));
         estructura.appendChild(Frecuencia);
-    	
-	this.repeticion.guardar(estructura, doc);
-    	
+
+        this.repeticion.guardar(estructura, doc);
+
     }
 
     @Override
     public void cargar(Element estructura) {
-    	// TODO Auto-generated method stub
-    	
+        // TODO Auto-generated method stub
+
     }
 
 

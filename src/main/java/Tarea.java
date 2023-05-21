@@ -47,7 +47,7 @@ public class Tarea extends Activities {
 
     @Override
     public void guardar(Element estructura, Document doc) {
-    	super.guardar(estructura, doc);
+        super.guardar(estructura, doc);
 
         Element estaCompleta = doc.createElement("EstaCompleta");
         estaCompleta.appendChild(doc.createTextNode(String.valueOf(this.estaCompleta())));
@@ -60,8 +60,8 @@ public class Tarea extends Activities {
 
     @Override
     public void cargar(Element Evento) {
-    	super.cargar(Evento);
-	
+        super.cargar(Evento);
+
         var elementosDelEvento = Evento.getChildNodes();
         for (int i = 0; i< elementosDelEvento.getLength(); i++) {
             if (elementosDelEvento.item(i) instanceof Element elementoInterno) {
@@ -70,8 +70,8 @@ public class Tarea extends Activities {
                 case "EstaCompleta" -> this.estaCompletada = Boolean.parseBoolean(elementoInterno.getTextContent());
                 // case "Termina" -> this.estaCompletada = Boolean.parseBoolean(elementoInterno.getTextContent());
                 case "Termina" -> termina = LocalDateTime.parse(elementoInterno.getTextContent());
-                // case "ArranqueActual" -> arranqueActual = LocalDateTime.parse(elementoInterno.getTextContent());
-                // case "TerminaActual" -> terminaActual = LocalDateTime.parse(elementoInterno.getTextContent());
+                    // case "ArranqueActual" -> arranqueActual = LocalDateTime.parse(elementoInterno.getTextContent());
+                    // case "TerminaActual" -> terminaActual = LocalDateTime.parse(elementoInterno.getTextContent());
                 }
             }
         }

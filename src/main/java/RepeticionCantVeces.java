@@ -27,7 +27,7 @@ public class RepeticionCantVeces implements Repeticion {
 
         this.fechaFinRepeticion = fechaFinal;
 
-	this.cantidadDeRepeticionesMaximas = cantidadDeRepeticionesMaximas;
+        this.cantidadDeRepeticionesMaximas = cantidadDeRepeticionesMaximas;
 
 
     }
@@ -68,7 +68,7 @@ public class RepeticionCantVeces implements Repeticion {
 
         this.fechaFinRepeticion = fechaFinal;
 
-	this.cantidadDeRepeticionesMaximas = cantidadDeRepeticionesMaximas;
+        this.cantidadDeRepeticionesMaximas = cantidadDeRepeticionesMaximas;
     }
 
     @Override
@@ -84,6 +84,6 @@ public class RepeticionCantVeces implements Repeticion {
         Element Repeticion = doc.createElement("RepeticionCantVeces");
         Repeticion.appendChild(doc.createTextNode(String.valueOf(this.cantidadDeRepeticionesMaximas)));
         estructura.appendChild(Repeticion);
-    	
+
     }
 }

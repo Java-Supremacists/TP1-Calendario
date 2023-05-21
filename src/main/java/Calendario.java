@@ -30,8 +30,8 @@ public class Calendario implements XmlGuardador {
     }
 
     public void longTareasYEventos() {
-	System.out.println("Eventos: " + String.valueOf(this.listaEventos.size()));
-	System.out.println("Tareas: " + String.valueOf(this.listaTareas.size()));
+        System.out.println("Eventos: " + String.valueOf(this.listaEventos.size()));
+        System.out.println("Tareas: " + String.valueOf(this.listaTareas.size()));
     }
 
 
@@ -314,11 +314,11 @@ public class Calendario implements XmlGuardador {
                     listaEventos.put(ev,r);
                     break;
                 case "Tarea":
-		    //Le pasamos un valor momentaneo. Se va a cambiar al leer el archivo
-		    var tarea = new Tarea(LocalDateTime.of(2002, 12, 8, 13, 20)); 
+                    //Le pasamos un valor momentaneo. Se va a cambiar al leer el archivo
+                    var tarea = new Tarea(LocalDateTime.of(2002, 12, 8, 13, 20));
                     var alarmaTarea = new Alarmas();
 
-		    tarea.cargar(Actividad);
+                    tarea.cargar(Actividad);
 
                     var elementosTarea = Actividad.getChildNodes();
                     for (int j = 0; j < elementosTarea.getLength(); j++) {
@@ -328,7 +328,7 @@ public class Calendario implements XmlGuardador {
                             }
                         }
                     }
-		    listaTareas.put(tarea,new Alarmas());
+                    listaTareas.put(tarea,new Alarmas());
                 }
             }
         }
