@@ -87,5 +87,11 @@ public class FrecuenciaSemanal implements Frecuencia {
     	
     }
 
+    @Override
+    public void cargar(Element estructura) {
+    	// TODO Auto-generated method stub
+    	
+    }
+
 
 }

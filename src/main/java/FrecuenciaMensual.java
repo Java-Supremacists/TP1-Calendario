@@ -74,4 +74,10 @@ public class FrecuenciaMensual implements Frecuencia {
 	this.repeticion.guardar(estructura, doc);
     }
 
+    @Override
+    public void cargar(Element estructura) {
+    	// TODO Auto-generated method stub
+    	
+    }
+
 }

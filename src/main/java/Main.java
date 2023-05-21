@@ -2,6 +2,7 @@
  * Main
  */
 import java.time.DayOfWeek;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.time.LocalDateTime;
@@ -66,7 +67,18 @@ public class Main {
 	// // calendario.guardar("test", fw);
 
 	// System.out.println(ev1.getTitulo());
+	String str = new String();
+	str = "archivos/hola";
+
+	FileInputStream fi = new FileInputStream(str);
+
+        var xmlManejador = new ControlerXml();
+
+	var calendario = new Calendario();
 	System.out.println("Hola mundo");
+	xmlManejador.cargarXml(calendario, fi);
+
+	calendario.longTareasYEventos();
 
 	
 

@@ -75,5 +75,11 @@ public class FrecuenciaAnual implements Frecuencia {
     	
     }
 
+    @Override
+    public void cargar(Element estructura) {
+    	// TODO Auto-generated method stub
+    	
+    }
+
 }
 

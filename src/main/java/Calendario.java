@@ -28,6 +28,13 @@ public class Calendario implements XmlGuardador {
         listaTareas.put(nuevaTarea,new Alarmas());
         return nuevaTarea.hashCode();
     }
+
+    public void longTareasYEventos() {
+	System.out.println("Eventos: " + String.valueOf(this.listaEventos.size()));
+	System.out.println("Tareas: " + String.valueOf(this.listaTareas.size()));
+    }
+
+
     public int crearEvento(LocalDateTime arranque, LocalDateTime termina) {
         Evento nuevoEvento = new Evento(arranque,termina);
         listaEventos.put(nuevoEvento,new Alarmas());
@@ -295,6 +302,9 @@ public class Calendario implements XmlGuardador {
                 case "Evento":
                     var ev = new Evento(null,null);
                     var r = new Alarmas();
+
+		    System.out.println(Actividad);
+
                     ev.cargar(Actividad);
                     var elementosEvento = Actividad.getChildNodes();
                     for (int j = 0; j < elementosEvento.getLength(); j++) {
@@ -308,6 +318,7 @@ public class Calendario implements XmlGuardador {
                     break;
                 case "Tarea":
                     //implementacion Tarea
+		    // var tarea = new Tarea(termina)
                     break;
                 }
             }
