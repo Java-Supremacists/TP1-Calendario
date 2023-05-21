@@ -60,17 +60,18 @@ public class Tarea extends Activities {
 
     @Override
     public void cargar(Element Evento) {
-    	// TODO Auto-generated method stub
     	super.cargar(Evento);
-
+	
         var elementosDelEvento = Evento.getChildNodes();
         for (int i = 0; i< elementosDelEvento.getLength(); i++) {
             if (elementosDelEvento.item(i) instanceof Element elementoInterno) {
                 switch (elementoInterno.getTagName()) {
-                case "ArranquePrincipio" -> arranquePrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
-                case "TerminaPrincipio" -> terminaPrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
-                case "ArranqueActual" -> arranqueActual = LocalDateTime.parse(elementoInterno.getTextContent());
-                case "TerminaActual" -> terminaActual = LocalDateTime.parse(elementoInterno.getTextContent());
+                // case "EstaCompleta" -> this.estaCompletada = LocalDateTime.parse(elementoInterno.getTextContent());
+                case "EstaCompleta" -> this.estaCompletada = Boolean.parseBoolean(elementoInterno.getTextContent());
+                // case "Termina" -> this.estaCompletada = Boolean.parseBoolean(elementoInterno.getTextContent());
+                case "Termina" -> termina = LocalDateTime.parse(elementoInterno.getTextContent());
+                // case "ArranqueActual" -> arranqueActual = LocalDateTime.parse(elementoInterno.getTextContent());
+                // case "TerminaActual" -> terminaActual = LocalDateTime.parse(elementoInterno.getTextContent());
                 }
             }
         }

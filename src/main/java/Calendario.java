@@ -278,9 +278,7 @@ public class Calendario implements XmlGuardador {
         }
         //Aca va la implementacion para tarea ahora
 
-	System.out.println("TAREA");
         for (Tarea tarea : this.listaTareas.keySet()) {
-	    System.out.println("hola");
             Element tareaElement = doc.createElement("Tarea");
             tarea.guardar(tareaElement,doc);
 
@@ -303,7 +301,6 @@ public class Calendario implements XmlGuardador {
                     var ev = new Evento(null,null);
                     var r = new Alarmas();
 
-		    System.out.println(Actividad);
 
                     ev.cargar(Actividad);
                     var elementosEvento = Actividad.getChildNodes();
@@ -317,9 +314,21 @@ public class Calendario implements XmlGuardador {
                     listaEventos.put(ev,r);
                     break;
                 case "Tarea":
-                    //implementacion Tarea
-		    // var tarea = new Tarea(termina)
-                    break;
+		    //Le pasamos un valor momentaneo. Se va a cambiar al leer el archivo
+		    var tarea = new Tarea(LocalDateTime.of(2002, 12, 8, 13, 20)); 
+                    var alarmaTarea = new Alarmas();
+
+		    tarea.cargar(Actividad);
+
+                    var elementosTarea = Actividad.getChildNodes();
+                    for (int j = 0; j < elementosTarea.getLength(); j++) {
+                        if (elementosTarea.item(j) instanceof Element elemento) {
+                            if (elemento.getNodeName().equals("Clase_Alarmas")) {
+                                alarmaTarea.cargar(elemento);
+                            }
+                        }
+                    }
+		    listaTareas.put(tarea,new Alarmas());
                 }
             }
         }
