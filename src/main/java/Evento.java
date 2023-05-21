@@ -104,12 +104,16 @@ public class Evento extends Activities {
                 switch (elementoInterno.getTagName()) {
 		    case "ArranquePrincipio":
 			arranquePrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
+			break;
 		    case "TerminaPrincipio" :
 			terminaPrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
+			break;
 		    case "ArranqueActual" :
 			arranqueActual = LocalDateTime.parse(elementoInterno.getTextContent());
+			break;
 		    case "TerminaActual" :
 			terminaActual = LocalDateTime.parse(elementoInterno.getTextContent());
+			break;
 
 		    // @Facu, esto te lo digo a vos. Cuando hagamos la entrega
 		    // podemos reemplazar el "yo" por nosotros o podemos borrar
@@ -127,12 +131,15 @@ public class Evento extends Activities {
 		    // RepeticionInfinita se usa como un valor momentaneo
 		    case "FrecuenciaMensual":
 			frecuenciaEncontrada = new FrecuenciaMensual(new RepeticionInfinita()); 
+			break;
 
 		    case "FrecuenciaDiaria":
 			frecuenciaEncontrada = new FrecuenciaDiaria(Integer.parseInt(elementoInterno.getTextContent()), new RepeticionInfinita());
+			break;
 
 		    case "FrecuenciaAnual":
 			frecuenciaEncontrada = new FrecuenciaAnual(new RepeticionInfinita());
+			break;
 
 		    // case "FrecuenciaSemanal":
 			// String[] diasDeLaSemana = elementoInterno.getTextContent().split(",");
@@ -141,9 +148,11 @@ public class Evento extends Activities {
 
 		    case "RepeticionFecha":
 			repeticionEncontrada = new RepeticionFecha(LocalDateTime.parse(elementoInterno.getTextContent()));
+			break;
 
 		    case "RepeticionInfinita":
 			repeticionEncontrada = new RepeticionInfinita();
+			break;
 
 		// case "RepeticionCantVeces" -> repeticionEncontrada = new RepeticionCantVeces
                 }
