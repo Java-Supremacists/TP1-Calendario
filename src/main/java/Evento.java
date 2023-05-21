@@ -134,7 +134,10 @@ public class Evento extends Activities {
 		    case "FrecuenciaAnual":
 			frecuenciaEncontrada = new FrecuenciaAnual(new RepeticionInfinita());
 
-		// case "FrecuenciaSemanal" -> frecuenciaEncontrada = new FrecuenciaSemanal
+		    // case "FrecuenciaSemanal":
+			// String[] diasDeLaSemana = elementoInterno.getTextContent().split(",");
+			// System.out.println(diasDeLaSemana);
+			// frecuenciaEncontrada = new FrecuenciaSemanal
 
 		    case "RepeticionFecha":
 			repeticionEncontrada = new RepeticionFecha(LocalDateTime.parse(elementoInterno.getTextContent()));
