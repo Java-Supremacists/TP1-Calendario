@@ -29,7 +29,8 @@ public class Calendario implements XmlGuardador {
         return nuevaTarea.hashCode();
     }
 
-    //TODO: FUncion de debugeo. Se puede dejar?
+    //Funcion de debugeo. No es parte del contrato de la funcion.
+    //En la version final no va a estar
     public void longTareasYEventos() {
         System.out.println("Cantidad de eventos: " + String.valueOf(this.listaEventos.size()));
         System.out.println("Cantidad de tareas: " + String.valueOf(this.listaTareas.size()));
@@ -293,15 +294,6 @@ public class Calendario implements XmlGuardador {
             // tareaElement.appendChild(elementoAlarma);
             calendario.appendChild(tareaElement);
         }
-    }
-
-    //TODO: Esta funcion la uso para debugear
-    public void iterarEventos() {
-        for (Evento ev : this.listaEventos.keySet()) {
-	    System.out.println(ev.mostrarFrecuencia());
-	}
-
-
     }
 
     @Override
