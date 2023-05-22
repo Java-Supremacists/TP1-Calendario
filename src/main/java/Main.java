@@ -9,6 +9,9 @@ import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String args[]) throws FileNotFoundException {
+	//Esta funcion main la usamos para testear el comportamiento de las 
+	//funciones mientras las desarrollabamos
+
         // var calendario = new Calendario();
 
         // var inicia = LocalDateTime.of(2023,5,19,10,30);
@@ -103,12 +106,8 @@ public class Main {
 
         calendario.longTareasYEventos();
 
-	// calendario.iterarEventos();
-	//
 	System.out.println("\u001B[32m" + "BUILD SUCCESS" + "\u001B[0m");
 
-	//Esta funcion main la usamos para testear el comportamiento de las 
-	//funciones mientras las desarrollabamos
 
 
     }

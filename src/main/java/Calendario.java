@@ -288,10 +288,6 @@ public class Calendario implements XmlGuardador {
             Element tareaElement = doc.createElement("Tarea");
             tarea.guardar(tareaElement,doc);
 
-            // Element elementoAlarma = doc.createElement("Clase_Alarmas");
-            // r.guardar(elementoAlarma,doc);
-
-            // tareaElement.appendChild(elementoAlarma);
             calendario.appendChild(tareaElement);
         }
     }
