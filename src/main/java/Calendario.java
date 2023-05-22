@@ -38,6 +38,7 @@ public class Calendario implements XmlGuardador {
 
     public int crearEvento(LocalDateTime arranque, LocalDateTime termina) {
         Evento nuevoEvento = new Evento(arranque,termina);
+	nuevoEvento.setFrecuencia(new FrecuenciaDiaria(0, new RepeticionCantVeces(1, 0, arranque)));
         listaEventos.put(nuevoEvento,new Alarmas());
         return nuevoEvento.getID();
     }
@@ -48,6 +49,7 @@ public class Calendario implements XmlGuardador {
     }
     public int crearEvento(String nombre, String descripcion, boolean esCompleto,LocalDateTime arranque, LocalDateTime termina) {
         Evento nuevoEvento = new Evento(nombre,descripcion,esCompleto,arranque,termina);
+	nuevoEvento.setFrecuencia(new FrecuenciaDiaria(0, new RepeticionCantVeces(1, 0, arranque)));
         listaEventos.put(nuevoEvento,new Alarmas());
         return nuevoEvento.hashCode();
     }
