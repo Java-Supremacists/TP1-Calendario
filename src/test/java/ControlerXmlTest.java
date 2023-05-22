@@ -36,7 +36,7 @@ public class ControlerXmlTest {
     @Test
     public void testConGuardadoDeTareas() {
         var termina = LocalDateTime.of(2023,5,19,20,0);
-	var tarea1 = new Tarea(termina);
+        var tarea1 = new Tarea(termina);
         var tarea2 = new Tarea(null);
         ByteArrayOutputStream archivo = new ByteArrayOutputStream();
         var xmlManejador = new ControlerXml();
@@ -53,8 +53,8 @@ public class ControlerXmlTest {
         assertEquals(tarea1.cuandoEmpieza(),tarea2.cuandoEmpieza());
         assertNotEquals(tarea1,tarea2);
     }
-    
-    
+
+
     @Test
     public void testConGuardadoDeAlarmas() {
         var alarm1 = new Alarmas(true,null);
@@ -117,13 +117,13 @@ public class ControlerXmlTest {
         calendario1.modificarActividadAgregarAlarma(ID2,LocalDateTime.of(2023,5,19,8,30));
         calendario1.modificarActividadAgregarAlarma(ID2,LocalDateTime.of(2023,1,30,11,0));
 
-	var repeticionInfinita = new RepeticionInfinita();
-	var frecuenciaDiaria = new FrecuenciaDiaria(3, repeticionInfinita);
-	calendario1.modificarEventoFrecuencia(ID3, frecuenciaDiaria);
+        var repeticionInfinita = new RepeticionInfinita();
+        var frecuenciaDiaria = new FrecuenciaDiaria(3, repeticionInfinita);
+        calendario1.modificarEventoFrecuencia(ID3, frecuenciaDiaria);
 
         DayOfWeek[] diasDeLaSemana = {DayOfWeek.MONDAY, DayOfWeek.THURSDAY};
-	var frecuenciaSemanal = new FrecuenciaSemanal(diasDeLaSemana, repeticionInfinita);
-	calendario1.modificarEventoFrecuencia(ID4, frecuenciaSemanal);
+        var frecuenciaSemanal = new FrecuenciaSemanal(diasDeLaSemana, repeticionInfinita);
+        calendario1.modificarEventoFrecuencia(ID4, frecuenciaSemanal);
 
         ByteArrayOutputStream archivo = new ByteArrayOutputStream();
         var xmlManejador = new ControlerXml();
@@ -140,8 +140,8 @@ public class ControlerXmlTest {
         assertEquals(calendario1.obtenerEvento(ID2).getDescripcion(),calendario2.obtenerEvento(ID2).getDescripcion());
         assertEquals(calendario1.obtenerEvento(ID2).esDiaEntero(),calendario2.obtenerEvento(ID2).esDiaEntero());
 
-	//Corroboramos que el evento sea el mismo despues de aplicar la frecuencia
-	assertEquals(calendario1.eventosEnRango(LocalDateTime.of(2023, 5, 26, 0,0),LocalDateTime.of(2023, 5, 28, 0,0)).get(0).cuandoEmpieza(), calendario2.eventosEnRango(LocalDateTime.of(2023, 5, 26, 0,0),LocalDateTime.of(2023, 5, 28, 0,0)).get(0).cuandoEmpieza());
-	assertEquals(calendario1.eventosEnRango(LocalDateTime.of(2023, 5, 28, 0,0),LocalDateTime.of(2023, 5, 29, 0,0)).get(0).cuandoEmpieza(), calendario2.eventosEnRango(LocalDateTime.of(2023, 5, 28, 0,0),LocalDateTime.of(2023, 5, 29, 0,0)).get(0).cuandoEmpieza());
+        //Corroboramos que el evento sea el mismo despues de aplicar la frecuencia
+        assertEquals(calendario1.eventosEnRango(LocalDateTime.of(2023, 5, 26, 0,0),LocalDateTime.of(2023, 5, 28, 0,0)).get(0).cuandoEmpieza(), calendario2.eventosEnRango(LocalDateTime.of(2023, 5, 26, 0,0),LocalDateTime.of(2023, 5, 28, 0,0)).get(0).cuandoEmpieza());
+        assertEquals(calendario1.eventosEnRango(LocalDateTime.of(2023, 5, 28, 0,0),LocalDateTime.of(2023, 5, 29, 0,0)).get(0).cuandoEmpieza(), calendario2.eventosEnRango(LocalDateTime.of(2023, 5, 28, 0,0),LocalDateTime.of(2023, 5, 29, 0,0)).get(0).cuandoEmpieza());
     }
 }

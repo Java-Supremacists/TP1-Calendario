@@ -89,100 +89,100 @@ public class Evento extends Activities {
     public void cargar(Element Evento) {
         super.cargar(Evento);
 
-	Frecuencia frecuenciaEncontrada;
-	Repeticion repeticionEncontrada;
+        Frecuencia frecuenciaEncontrada;
+        Repeticion repeticionEncontrada;
 
-	// Le damos valores momentaneos, simplemente porque Java dice que
-	// PUEDE que no sean inicializadas
-	repeticionEncontrada = new RepeticionInfinita();
-	frecuenciaEncontrada = new FrecuenciaDiaria(1, repeticionEncontrada);
+        // Le damos valores momentaneos, simplemente porque Java dice que
+        // PUEDE que no sean inicializadas
+        repeticionEncontrada = new RepeticionInfinita();
+        frecuenciaEncontrada = new FrecuenciaDiaria(1, repeticionEncontrada);
 
         var elementosDelEvento = Evento.getChildNodes();
         for (int i = 0; i< elementosDelEvento.getLength(); i++) {
             if (elementosDelEvento.item(i) instanceof Element elementoInterno) {
                 switch (elementoInterno.getTagName()) {
-		    case "ArranquePrincipio":
-			arranquePrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
-			break;
-		    case "TerminaPrincipio" :
-			terminaPrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
-			break;
-		    case "ArranqueActual" :
-			arranqueActual = LocalDateTime.parse(elementoInterno.getTextContent());
-			break;
-		    case "TerminaActual" :
-			terminaActual = LocalDateTime.parse(elementoInterno.getTextContent());
-			break;
+                case "ArranquePrincipio":
+                    arranquePrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
+                    break;
+                case "TerminaPrincipio" :
+                    terminaPrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
+                    break;
+                case "ArranqueActual" :
+                    arranqueActual = LocalDateTime.parse(elementoInterno.getTextContent());
+                    break;
+                case "TerminaActual" :
+                    terminaActual = LocalDateTime.parse(elementoInterno.getTextContent());
+                    break;
 
-		    // Esto no es ideal, pero creemos que es la manera 
-		    // mas prolija de hacerlo. 
-		    // Por la manera en la que estan hechos las frecuencia, no 
-		    // tensmos manera de poder hacer algo generico. Incluso en 
-		    // el caso de reemplazar la interfaz por una clase abstracta, 
-		    // los Constructores son tan distintos que terminaria resultando a un conjunto
-		    // de ifs de cualquier manera. 
-		    // :(
+                // Esto no es ideal, pero creemos que es la manera
+                // mas prolija de hacerlo.
+                // Por la manera en la que estan hechos las frecuencia, no
+                // tensmos manera de poder hacer algo generico. Incluso en
+                // el caso de reemplazar la interfaz por una clase abstracta,
+                // los Constructores son tan distintos que terminaria resultando a un conjunto
+                // de ifs de cualquier manera.
+                // :(
 
-		    // RepeticionInfinita se usa como un valor momentaneo
-		    case "FrecuenciaMensual":
-			frecuenciaEncontrada = new FrecuenciaMensual(new RepeticionInfinita()); 
-			break;
+                // RepeticionInfinita se usa como un valor momentaneo
+                case "FrecuenciaMensual":
+                    frecuenciaEncontrada = new FrecuenciaMensual(new RepeticionInfinita());
+                    break;
 
-		    case "FrecuenciaDiaria":
-			frecuenciaEncontrada = new FrecuenciaDiaria(Integer.parseInt(elementoInterno.getTextContent()), new RepeticionInfinita());
-			break;
+                case "FrecuenciaDiaria":
+                    frecuenciaEncontrada = new FrecuenciaDiaria(Integer.parseInt(elementoInterno.getTextContent()), new RepeticionInfinita());
+                    break;
 
-		    case "FrecuenciaAnual":
-			frecuenciaEncontrada = new FrecuenciaAnual(new RepeticionInfinita());
-			break;
+                case "FrecuenciaAnual":
+                    frecuenciaEncontrada = new FrecuenciaAnual(new RepeticionInfinita());
+                    break;
 
-		    case "FrecuenciaSemanal":
-			String[] diasDeLaSemanaString = elementoInterno.getTextContent().split(",");
-			DayOfWeek[] diasDeLaSemana = new DayOfWeek[diasDeLaSemanaString.length];
+                case "FrecuenciaSemanal":
+                    String[] diasDeLaSemanaString = elementoInterno.getTextContent().split(",");
+                    DayOfWeek[] diasDeLaSemana = new DayOfWeek[diasDeLaSemanaString.length];
 
-			for (int j = 0; j < diasDeLaSemanaString.length; j++) { 
-			    diasDeLaSemana[j] = DayOfWeek.valueOf(diasDeLaSemanaString[j]);
-			}
+                    for (int j = 0; j < diasDeLaSemanaString.length; j++) {
+                        diasDeLaSemana[j] = DayOfWeek.valueOf(diasDeLaSemanaString[j]);
+                    }
 
-			frecuenciaEncontrada = new FrecuenciaSemanal(diasDeLaSemana, new RepeticionInfinita());
-			break;
+                    frecuenciaEncontrada = new FrecuenciaSemanal(diasDeLaSemana, new RepeticionInfinita());
+                    break;
 
-		    case "RepeticionFecha":
-			repeticionEncontrada = new RepeticionFecha(LocalDateTime.parse(elementoInterno.getTextContent()));
-			break;
+                case "RepeticionFecha":
+                    repeticionEncontrada = new RepeticionFecha(LocalDateTime.parse(elementoInterno.getTextContent()));
+                    break;
 
-		    case "RepeticionInfinita":
-			repeticionEncontrada = new RepeticionInfinita();
-			break;
+                case "RepeticionInfinita":
+                    repeticionEncontrada = new RepeticionInfinita();
+                    break;
 
-		    case "RepeticionCantVeces":
-			String[] repeticionCantVeceString = elementoInterno.getTextContent().split("@");
-			int cantidadDeRepeticionesMaximas = Integer.valueOf(repeticionCantVeceString[0]);
-			LocalDateTime fechaComienzo = LocalDateTime.parse(repeticionCantVeceString[2]);
+                case "RepeticionCantVeces":
+                    String[] repeticionCantVeceString = elementoInterno.getTextContent().split("@");
+                    int cantidadDeRepeticionesMaximas = Integer.valueOf(repeticionCantVeceString[0]);
+                    LocalDateTime fechaComienzo = LocalDateTime.parse(repeticionCantVeceString[2]);
 
-			try {
-			    int cadaCuantosDias = Integer.valueOf(repeticionCantVeceString[1]);
-			    repeticionEncontrada = new RepeticionCantVeces(cantidadDeRepeticionesMaximas, cadaCuantosDias, fechaComienzo);
-			}
-			//Esto pasa cuando es por dias de la semana y no por 
-			//cantidad dias
-			catch (IllegalArgumentException e) {
-			    String[] diasDeLaSemanaStrings = repeticionCantVeceString[1].split(",");
+                    try {
+                        int cadaCuantosDias = Integer.valueOf(repeticionCantVeceString[1]);
+                        repeticionEncontrada = new RepeticionCantVeces(cantidadDeRepeticionesMaximas, cadaCuantosDias, fechaComienzo);
+                    }
+                    //Esto pasa cuando es por dias de la semana y no por
+                    //cantidad dias
+                    catch (IllegalArgumentException e) {
+                        String[] diasDeLaSemanaStrings = repeticionCantVeceString[1].split(",");
 
-			    DayOfWeek[] diasDeLaSemanas = new DayOfWeek[diasDeLaSemanaStrings.length];
-			    for (int j = 0; j < diasDeLaSemanaStrings.length; j++) { 
-				diasDeLaSemanas[j] = DayOfWeek.valueOf(diasDeLaSemanaStrings[j]);
-			    }
+                        DayOfWeek[] diasDeLaSemanas = new DayOfWeek[diasDeLaSemanaStrings.length];
+                        for (int j = 0; j < diasDeLaSemanaStrings.length; j++) {
+                            diasDeLaSemanas[j] = DayOfWeek.valueOf(diasDeLaSemanaStrings[j]);
+                        }
 
-			    repeticionEncontrada = new RepeticionCantVeces(cantidadDeRepeticionesMaximas, diasDeLaSemanas, fechaComienzo);
-			}
+                        repeticionEncontrada = new RepeticionCantVeces(cantidadDeRepeticionesMaximas, diasDeLaSemanas, fechaComienzo);
+                    }
 
-			break;
+                    break;
                 }
             }
         }
-	this.frecuencia = frecuenciaEncontrada;
-	this.frecuencia.cambiarRepeticion(repeticionEncontrada);
+        this.frecuencia = frecuenciaEncontrada;
+        this.frecuencia.cambiarRepeticion(repeticionEncontrada);
     }
     //--------- Metodos ---------
 }

@@ -88,27 +88,27 @@ public class RepeticionCantVeces implements Repeticion {
 
     @Override
     public void guardar(Element estructura, Document doc) {
-	//Solo tengo que guardar una cosa. Si dias de la semana no existe,
-	//entonces el la repeticion se creo con cadaCuantosDias
+        //Solo tengo que guardar una cosa. Si dias de la semana no existe,
+        //entonces el la repeticion se creo con cadaCuantosDias
         String diasDeLaSemanaOCadaCuantosDias = "";
-	if (this.diasDeLaSemana != null) {
-	    for (int i = 0; i < this.diasDeLaSemana.length; i++) {
-		if (i != 0) {   //Le ponemos coma (,) a todos los elementos (excepto
-		    diasDeLaSemanaOCadaCuantosDias += ",";//al primero) para evitar que quede: ,MONDAY,THURSDAY
-		}
-		diasDeLaSemanaOCadaCuantosDias += this.diasDeLaSemana[i].toString();
+        if (this.diasDeLaSemana != null) {
+            for (int i = 0; i < this.diasDeLaSemana.length; i++) {
+                if (i != 0) {   //Le ponemos coma (,) a todos los elementos (excepto
+                    diasDeLaSemanaOCadaCuantosDias += ",";//al primero) para evitar que quede: ,MONDAY,THURSDAY
+                }
+                diasDeLaSemanaOCadaCuantosDias += this.diasDeLaSemana[i].toString();
 
-	    }
-	}
-	else {
-	    diasDeLaSemanaOCadaCuantosDias = String.valueOf(this.cadaCuantosDias);
-	}
+            }
+        }
+        else {
+            diasDeLaSemanaOCadaCuantosDias = String.valueOf(this.cadaCuantosDias);
+        }
 
 
         Element Repeticion = doc.createElement("RepeticionCantVeces");
         Repeticion.appendChild(doc.createTextNode(String.valueOf(this.cantidadDeRepeticionesMaximas) + "@" +
-						  String.valueOf(diasDeLaSemanaOCadaCuantosDias) + "@" +
-						  String.valueOf(this.fechaComienzo)));
+                               String.valueOf(diasDeLaSemanaOCadaCuantosDias) + "@" +
+                               String.valueOf(this.fechaComienzo)));
         estructura.appendChild(Repeticion);
 
     }

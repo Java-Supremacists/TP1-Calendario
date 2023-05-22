@@ -75,8 +75,8 @@ public class FrecuenciaDiaria implements Frecuencia {
 
     @Override
     public void cambiarRepeticion(Repeticion repeticion) {
-	this.repeticion = repeticion;
-    	
+        this.repeticion = repeticion;
+
     }
 
 }
