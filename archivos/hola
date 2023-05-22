@@ -35,6 +35,25 @@
         </Clase_Alarmas>
     </Evento>
     <Evento>
+        <Nombre>Evento2</Nombre>
+        <Descripcion/>
+        <DeDiaCompleto>false</DeDiaCompleto>
+        <IDE>325040804</IDE>
+        <ArranquePrincipio>2023-05-19T10:30</ArranquePrincipio>
+        <TerminaPrincipio>2023-05-20T20:00</TerminaPrincipio>
+        <ArranqueActual>2023-05-19T10:30</ArranqueActual>
+        <TerminaActual>2023-05-20T20:00</TerminaActual>
+        <FrecuenciaMensual>30</FrecuenciaMensual>
+        <RepeticionCantVeces>5@30@2023-05-18T10:30</RepeticionCantVeces>
+        <Clase_Alarmas>
+            <MantenerAlarma>false</MantenerAlarma>
+            <SetAlarmas>
+                <alarma1>2023-05-18T10:30</alarma1>
+            </SetAlarmas>
+            <AlarmasMantenidas/>
+        </Clase_Alarmas>
+    </Evento>
+    <Evento>
         <Nombre>Evento3</Nombre>
         <Descripcion/>
         <DeDiaCompleto>false</DeDiaCompleto>
@@ -48,25 +67,6 @@
         <Clase_Alarmas>
             <MantenerAlarma>false</MantenerAlarma>
             <SetAlarmas/>
-            <AlarmasMantenidas/>
-        </Clase_Alarmas>
-    </Evento>
-    <Evento>
-        <Nombre>Evento2</Nombre>
-        <Descripcion/>
-        <DeDiaCompleto>false</DeDiaCompleto>
-        <IDE>21685669</IDE>
-        <ArranquePrincipio>2023-05-19T10:30</ArranquePrincipio>
-        <TerminaPrincipio>2023-05-20T20:00</TerminaPrincipio>
-        <ArranqueActual>2023-05-19T10:30</ArranqueActual>
-        <TerminaActual>2023-05-20T20:00</TerminaActual>
-        <FrecuenciaMensual>30</FrecuenciaMensual>
-        <RepeticionCantVeces>5@30@2023-05-18T10:30</RepeticionCantVeces>
-        <Clase_Alarmas>
-            <MantenerAlarma>false</MantenerAlarma>
-            <SetAlarmas>
-                <alarma1>2023-05-18T10:30</alarma1>
-            </SetAlarmas>
             <AlarmasMantenidas/>
         </Clase_Alarmas>
     </Evento>
