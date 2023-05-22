@@ -107,6 +107,8 @@ public class Main {
 	//
 	System.out.println("\u001B[32m" + "BUILD SUCCESS" + "\u001B[0m");
 
+	//Esta funcion main la usamos para testear el comportamiento de las 
+	//funciones mientras las desarrollabamos
 
 
     }

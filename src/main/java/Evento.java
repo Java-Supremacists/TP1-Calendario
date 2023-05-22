@@ -2,7 +2,6 @@ import java.time.DayOfWeek;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Evento extends Activities {
     //--------- Atributos ---------
