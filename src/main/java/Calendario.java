@@ -28,8 +28,19 @@ public class Calendario implements XmlGuardador {
         listaTareas.put(nuevaTarea,new Alarmas());
         return nuevaTarea.hashCode();
     }
+
+    //Funcion de debugeo. No es parte del contrato de la funcion.
+    //En la version final no va a estar
+    public void longTareasYEventos() {
+        System.out.println("Cantidad de eventos: " + String.valueOf(this.listaEventos.size()));
+        System.out.println("Cantidad de tareas: " + String.valueOf(this.listaTareas.size()));
+    }
+
+
     public int crearEvento(LocalDateTime arranque, LocalDateTime termina) {
         Evento nuevoEvento = new Evento(arranque,termina);
+	//Por defecto asume que el evento se va a repetir una unica vez
+	nuevoEvento.setFrecuencia(new FrecuenciaDiaria(0, new RepeticionCantVeces(1, 0, arranque)));
         listaEventos.put(nuevoEvento,new Alarmas());
         return nuevoEvento.getID();
     }
@@ -40,6 +51,8 @@ public class Calendario implements XmlGuardador {
     }
     public int crearEvento(String nombre, String descripcion, boolean esCompleto,LocalDateTime arranque, LocalDateTime termina) {
         Evento nuevoEvento = new Evento(nombre,descripcion,esCompleto,arranque,termina);
+	//Por defecto asume que el evento se va a repetir una unica vez
+	nuevoEvento.setFrecuencia(new FrecuenciaDiaria(0, new RepeticionCantVeces(1, 0, arranque)));
         listaEventos.put(nuevoEvento,new Alarmas());
         return nuevoEvento.hashCode();
     }
@@ -270,7 +283,15 @@ public class Calendario implements XmlGuardador {
             calendario.appendChild(eventElement);
         }
         //Aca va la implementacion para tarea ahora
+
+        for (Tarea tarea : this.listaTareas.keySet()) {
+            Element tareaElement = doc.createElement("Tarea");
+            tarea.guardar(tareaElement,doc);
+
+            calendario.appendChild(tareaElement);
+        }
     }
+
     @Override
     public void cargar(Element calendario) {
         NodeList ActividadesCalendario = calendario.getChildNodes();
@@ -282,6 +303,8 @@ public class Calendario implements XmlGuardador {
                 case "Evento":
                     var ev = new Evento(null,null);
                     var r = new Alarmas();
+
+
                     ev.cargar(Actividad);
                     var elementosEvento = Actividad.getChildNodes();
                     for (int j = 0; j < elementosEvento.getLength(); j++) {
@@ -294,8 +317,21 @@ public class Calendario implements XmlGuardador {
                     listaEventos.put(ev,r);
                     break;
                 case "Tarea":
-                    //implementacion Tarea
-                    break;
+                    //Le pasamos un valor momentaneo. Se va a cambiar al leer el archivo
+                    var tarea = new Tarea(LocalDateTime.of(2002, 12, 8, 13, 20));
+                    var alarmaTarea = new Alarmas();
+
+                    tarea.cargar(Actividad);
+
+                    var elementosTarea = Actividad.getChildNodes();
+                    for (int j = 0; j < elementosTarea.getLength(); j++) {
+                        if (elementosTarea.item(j) instanceof Element elemento) {
+                            if (elemento.getNodeName().equals("Clase_Alarmas")) {
+                                alarmaTarea.cargar(elemento);
+                            }
+                        }
+                    }
+                    listaTareas.put(tarea,new Alarmas());
                 }
             }
         }
