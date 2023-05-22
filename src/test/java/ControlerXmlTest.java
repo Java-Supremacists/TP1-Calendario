@@ -33,6 +33,24 @@ public class ControlerXmlTest {
     }
     @Test
     public void testConGuardadoDeTareas() {
+        var termina = LocalDateTime.of(2023,5,19,20,0);
+	var tarea1 = new Tarea(termina);
+        var tarea2 = new Tarea(null);
+        ByteArrayOutputStream archivo = new ByteArrayOutputStream();
+        var xmlManejador = new ControlerXml();
+
+
+        xmlManejador.generateXml(tarea1,"Tarea",archivo);
+        InputStream cargarArchivo = new ByteArrayInputStream(archivo.toByteArray());
+        xmlManejador.cargarXml(tarea2,cargarArchivo);
+
+
+        assertEquals(tarea1.getTitulo(),tarea2.getTitulo());
+        assertEquals(tarea1.getDescripcion(),tarea2.getDescripcion());
+        assertEquals(tarea1.esDiaEntero(),tarea2.esDiaEntero());
+        assertEquals(tarea1.cuandoEmpieza(),tarea2.cuandoEmpieza());
+        assertEquals(tarea1.cuandoTermina(),tarea2.cuandoTermina());
+        assertNotEquals(tarea1,tarea2);
     }
     @Test
     public void testConGuardadoDeAlarmas() {
