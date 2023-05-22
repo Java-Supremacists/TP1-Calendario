@@ -127,7 +127,9 @@ public class Evento extends Activities {
 		    // son tan distintos que terminaria resultando a un conjunto
 		    // de ifs de cualquier manera. 
 		    // :(
-		    //
+		    // Te pido perdon si no quedo como esperabas.
+		    // maldito calendario
+
 		    // RepeticionInfinita se usa como un valor momentaneo
 		    case "FrecuenciaMensual":
 			frecuenciaEncontrada = new FrecuenciaMensual(new RepeticionInfinita()); 
@@ -162,7 +164,33 @@ public class Evento extends Activities {
 			repeticionEncontrada = new RepeticionInfinita();
 			break;
 
-		// case "RepeticionCantVeces" -> repeticionEncontrada = new RepeticionCantVeces
+		    case "RepeticionCantVeces":
+			String[] repeticionCantVeceString = elementoInterno.getTextContent().split("@");
+			System.out.println(repeticionCantVeceString[0]);
+			int cantidadDeRepeticionesMaximas = Integer.valueOf(repeticionCantVeceString[0]);
+			LocalDateTime fechaComienzo = LocalDateTime.parse(repeticionCantVeceString[2]);
+
+			//Odio mi vida
+			try {
+			    //Esta primera conversion es para testear si es del
+			    //tipo semana o cantidad de repeticiones. 
+			    DayOfWeek diasDeLaSemanaPrueba = DayOfWeek.valueOf(repeticionCantVeceString[0]);
+
+			    DayOfWeek[] diasDeLaSemanas;
+			    for (int j = 0; j < diasDeLaSemanaString.length; j++) { 
+				diasDeLaSemana[j] = DayOfWeek.valueOf(diasDeLaSemanaString[j]);
+				System.out.println(diasDeLaSemana[j]);
+			    }
+
+			    repeticionEncontrada = new RepeticionCantVeces(cantidadDeRepeticionesMaximas, diasDeLaSemanas, fechaComienzo);
+			}
+			//Esto pasa cuando es por fecha y no por dias de la semana
+			catch (IllegalArgumentException e) {
+			    int cadaCuantosDias = Integer.valueOf(repeticionCantVeceString[1]);
+			    repeticionEncontrada = new RepeticionCantVeces(cantidadDeRepeticionesMaximas, cadaCuantosDias, fechaComienzo);
+			}
+
+			break;
                 }
             }
         }
