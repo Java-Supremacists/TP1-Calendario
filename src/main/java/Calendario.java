@@ -29,9 +29,10 @@ public class Calendario implements XmlGuardador {
         return nuevaTarea.hashCode();
     }
 
+    //TODO: FUncion de debugeo. Se puede dejar?
     public void longTareasYEventos() {
-        System.out.println("Eventos: " + String.valueOf(this.listaEventos.size()));
-        System.out.println("Tareas: " + String.valueOf(this.listaTareas.size()));
+        System.out.println("Cantidad de eventos: " + String.valueOf(this.listaEventos.size()));
+        System.out.println("Cantidad de tareas: " + String.valueOf(this.listaTareas.size()));
     }
 
 
