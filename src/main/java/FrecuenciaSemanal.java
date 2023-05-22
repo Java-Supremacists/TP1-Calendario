@@ -88,12 +88,6 @@ public class FrecuenciaSemanal implements Frecuencia {
     }
 
     @Override
-    public void cargar(Element estructura) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public void cambiarRepeticion(Repeticion repeticion) {
 	this.repeticion = repeticion;
     	

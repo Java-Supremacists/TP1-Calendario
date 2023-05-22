@@ -12,8 +12,6 @@ public interface Frecuencia {
 
     void guardar(Element estructura, Document doc);
 
-    void cargar(Element estructura);
-
     void cambiarRepeticion(Repeticion repeticion);
 
 }
