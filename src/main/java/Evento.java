@@ -167,7 +167,6 @@ public class Evento extends Activities {
 			int cantidadDeRepeticionesMaximas = Integer.valueOf(repeticionCantVeceString[0]);
 			LocalDateTime fechaComienzo = LocalDateTime.parse(repeticionCantVeceString[2]);
 
-			//Odio mi vida
 			try {
 			    int cadaCuantosDias = Integer.valueOf(repeticionCantVeceString[1]);
 			    repeticionEncontrada = new RepeticionCantVeces(cantidadDeRepeticionesMaximas, cadaCuantosDias, fechaComienzo);
@@ -191,7 +190,6 @@ public class Evento extends Activities {
         }
 	this.frecuencia = frecuenciaEncontrada;
 	this.frecuencia.cambiarRepeticion(repeticionEncontrada);
-        //frecuencia.cargar()
     }
     //TODO: Funcion para debugear
     public String mostrarFrecuencia() {

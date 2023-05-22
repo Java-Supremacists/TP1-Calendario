@@ -1,3 +1,4 @@
+import java.time.DayOfWeek;
 import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -99,9 +100,12 @@ public class ControlerXmlTest {
         var termina2 = LocalDateTime.of(2023,5,24,10,0);
         var inicia3 = LocalDateTime.of(2023,5,24,10,30);
         var termina3 = LocalDateTime.of(2023,5,24,18,0);
+        var inicia4 = LocalDateTime.of(2023,5,22,10,30);
+        var termina4 = LocalDateTime.of(2023,5,22,18,0);
         int ID1 = calendario1.crearEvento("Evento1","Descripcion1",true,inicia1,termina1);
         int ID2 = calendario1.crearEvento("Evento2","Descripcion2",false,inicia2,termina2);
         int ID3 = calendario1.crearEvento("Evento3","Descripcion3",false,inicia3,termina3);
+        int ID4 = calendario1.crearEvento("Evento4","Descripcion4",false,inicia4,termina4);
 
         calendario1.modificarActividadAgregarAlarma(ID1,Plazo.HORAANTES);
         calendario1.modificarActividadAgregarAlarma(ID1,Plazo.DIAANTES);
@@ -116,6 +120,10 @@ public class ControlerXmlTest {
 	var repeticionInfinita = new RepeticionInfinita();
 	var frecuenciaDiaria = new FrecuenciaDiaria(3, repeticionInfinita);
 	calendario1.modificarEventoFrecuencia(ID3, frecuenciaDiaria);
+
+        DayOfWeek[] diasDeLaSemana = {DayOfWeek.MONDAY, DayOfWeek.THURSDAY};
+	var frecuenciaSemanal = new FrecuenciaSemanal(diasDeLaSemana, repeticionInfinita);
+	calendario1.modificarEventoFrecuencia(ID4, frecuenciaSemanal);
 
         ByteArrayOutputStream archivo = new ByteArrayOutputStream();
         var xmlManejador = new ControlerXml();
@@ -134,25 +142,6 @@ public class ControlerXmlTest {
 
 	//Corroboramos que el evento sea el mismo despues de aplicar la frecuencia
 	assertEquals(calendario1.eventosEnRango(LocalDateTime.of(2023, 5, 26, 0,0),LocalDateTime.of(2023, 5, 28, 0,0)).get(0).cuandoEmpieza(), calendario2.eventosEnRango(LocalDateTime.of(2023, 5, 26, 0,0),LocalDateTime.of(2023, 5, 28, 0,0)).get(0).cuandoEmpieza());
+	assertEquals(calendario1.eventosEnRango(LocalDateTime.of(2023, 5, 28, 0,0),LocalDateTime.of(2023, 5, 29, 0,0)).get(0).cuandoEmpieza(), calendario2.eventosEnRango(LocalDateTime.of(2023, 5, 28, 0,0),LocalDateTime.of(2023, 5, 29, 0,0)).get(0).cuandoEmpieza());
     }
-    // @Test
-    // public void testConGuardadoDeFrecuencia() {
-    //     var termina = LocalDateTime.of(2023,5,19,20,0);
-	// var frecuencia1 = new FrecuenciaDiaria(3, new RepeticionInfinita());
-    //     var frecuencia2 = new FrecuenciaDiaria(0, null);
-    //     ByteArrayOutputStream archivo = new ByteArrayOutputStream();
-    //     var xmlManejador = new ControlerXml();
-
-
-    //     xmlManejador.generateXml(frecuencia1,"FrecuenciaDiaria",archivo);
-    //     InputStream cargarArchivo = new ByteArrayInputStream(archivo.toByteArray());
-    //     xmlManejador.cargarXml(tarea2,cargarArchivo);
-
-
-    //     assertEquals(tarea1.getTitulo(),tarea2.getTitulo());
-    //     assertEquals(tarea1.getDescripcion(),tarea2.getDescripcion());
-    //     assertEquals(tarea1.esDiaEntero(),tarea2.esDiaEntero());
-    //     assertEquals(tarea1.cuandoEmpieza(),tarea2.cuandoEmpieza());
-    //     assertNotEquals(tarea1,tarea2);
-    // }
 }
