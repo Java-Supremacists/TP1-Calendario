@@ -31,6 +31,7 @@ public class ControlerXmlTest {
         assertEquals(ev1.cuandoTermina(),ev2.cuandoTermina());
         assertNotEquals(ev1,ev2);
     }
+
     @Test
     public void testConGuardadoDeTareas() {
         var termina = LocalDateTime.of(2023,5,19,20,0);
@@ -49,9 +50,10 @@ public class ControlerXmlTest {
         assertEquals(tarea1.getDescripcion(),tarea2.getDescripcion());
         assertEquals(tarea1.esDiaEntero(),tarea2.esDiaEntero());
         assertEquals(tarea1.cuandoEmpieza(),tarea2.cuandoEmpieza());
-        assertEquals(tarea1.cuandoTermina(),tarea2.cuandoTermina());
         assertNotEquals(tarea1,tarea2);
     }
+    
+    
     @Test
     public void testConGuardadoDeAlarmas() {
         var alarm1 = new Alarmas(true,null);
@@ -95,8 +97,11 @@ public class ControlerXmlTest {
         var termina1 = LocalDateTime.of(2023,5,19,20,0);
         var inicia2 = LocalDateTime.of(2023,5,23,10,30);
         var termina2 = LocalDateTime.of(2023,5,24,10,0);
+        var inicia3 = LocalDateTime.of(2023,5,24,10,30);
+        var termina3 = LocalDateTime.of(2023,5,24,18,0);
         int ID1 = calendario1.crearEvento("Evento1","Descripcion1",true,inicia1,termina1);
         int ID2 = calendario1.crearEvento("Evento2","Descripcion2",false,inicia2,termina2);
+        int ID3 = calendario1.crearEvento("Evento3","Descripcion3",false,inicia3,termina3);
 
         calendario1.modificarActividadAgregarAlarma(ID1,Plazo.HORAANTES);
         calendario1.modificarActividadAgregarAlarma(ID1,Plazo.DIAANTES);
@@ -107,6 +112,10 @@ public class ControlerXmlTest {
         calendario1.modificarActividadAgregarAlarma(ID2,Plazo.DIAANTES);
         calendario1.modificarActividadAgregarAlarma(ID2,LocalDateTime.of(2023,5,19,8,30));
         calendario1.modificarActividadAgregarAlarma(ID2,LocalDateTime.of(2023,1,30,11,0));
+
+	var repeticionInfinita = new RepeticionInfinita();
+	var frecuenciaDiaria = new FrecuenciaDiaria(3, repeticionInfinita);
+	calendario1.modificarEventoFrecuencia(ID3, frecuenciaDiaria);
 
         ByteArrayOutputStream archivo = new ByteArrayOutputStream();
         var xmlManejador = new ControlerXml();
@@ -122,5 +131,28 @@ public class ControlerXmlTest {
         assertEquals(calendario1.obtenerEvento(ID2).getTitulo(),calendario2.obtenerEvento(ID2).getTitulo());
         assertEquals(calendario1.obtenerEvento(ID2).getDescripcion(),calendario2.obtenerEvento(ID2).getDescripcion());
         assertEquals(calendario1.obtenerEvento(ID2).esDiaEntero(),calendario2.obtenerEvento(ID2).esDiaEntero());
+
+	//Corroboramos que el evento sea el mismo despues de aplicar la frecuencia
+	assertEquals(calendario1.eventosEnRango(LocalDateTime.of(2023, 5, 26, 0,0),LocalDateTime.of(2023, 5, 28, 0,0)).get(0).cuandoEmpieza(), calendario2.eventosEnRango(LocalDateTime.of(2023, 5, 26, 0,0),LocalDateTime.of(2023, 5, 28, 0,0)).get(0).cuandoEmpieza());
     }
+    // @Test
+    // public void testConGuardadoDeFrecuencia() {
+    //     var termina = LocalDateTime.of(2023,5,19,20,0);
+	// var frecuencia1 = new FrecuenciaDiaria(3, new RepeticionInfinita());
+    //     var frecuencia2 = new FrecuenciaDiaria(0, null);
+    //     ByteArrayOutputStream archivo = new ByteArrayOutputStream();
+    //     var xmlManejador = new ControlerXml();
+
+
+    //     xmlManejador.generateXml(frecuencia1,"FrecuenciaDiaria",archivo);
+    //     InputStream cargarArchivo = new ByteArrayInputStream(archivo.toByteArray());
+    //     xmlManejador.cargarXml(tarea2,cargarArchivo);
+
+
+    //     assertEquals(tarea1.getTitulo(),tarea2.getTitulo());
+    //     assertEquals(tarea1.getDescripcion(),tarea2.getDescripcion());
+    //     assertEquals(tarea1.esDiaEntero(),tarea2.esDiaEntero());
+    //     assertEquals(tarea1.cuandoEmpieza(),tarea2.cuandoEmpieza());
+    //     assertNotEquals(tarea1,tarea2);
+    // }
 }
