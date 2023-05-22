@@ -115,20 +115,14 @@ public class Evento extends Activities {
 			terminaActual = LocalDateTime.parse(elementoInterno.getTextContent());
 			break;
 
-		    // @Facu, esto te lo digo a vos. Cuando hagamos la entrega
-		    // podemos reemplazar el "yo" por nosotros o podemos borrar
-		    // a la mierda este comentario. Como vos prefieras
-		    //
-		    // Esto no es ideal, pero creo yo que es la manera mas prolija
-		    // de hacerlo. 
-		    // Por la manera en la que estan hechos las frecuencia, no tengo
-		    // manera de poder hacer algo generico. Incluso en el caso de 
-		    // reemplazar la interfaz por una clase abstracta, los Constructores
-		    // son tan distintos que terminaria resultando a un conjunto
+		    // Esto no es ideal, pero creemos que es la manera 
+		    // mas prolija de hacerlo. 
+		    // Por la manera en la que estan hechos las frecuencia, no 
+		    // tensmos manera de poder hacer algo generico. Incluso en 
+		    // el caso de reemplazar la interfaz por una clase abstracta, 
+		    // los Constructores son tan distintos que terminaria resultando a un conjunto
 		    // de ifs de cualquier manera. 
 		    // :(
-		    // Te pido perdon si no quedo como esperabas.
-		    // maldito calendario
 
 		    // RepeticionInfinita se usa como un valor momentaneo
 		    case "FrecuenciaMensual":
@@ -190,11 +184,6 @@ public class Evento extends Activities {
         }
 	this.frecuencia = frecuenciaEncontrada;
 	this.frecuencia.cambiarRepeticion(repeticionEncontrada);
-    }
-    //TODO: Funcion para debugear
-    public String mostrarFrecuencia() {
-	return String.valueOf(this.frecuencia);
-
     }
     //--------- Metodos ---------
 }
