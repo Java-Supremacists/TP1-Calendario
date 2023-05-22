@@ -172,22 +172,21 @@ public class Evento extends Activities {
 
 			//Odio mi vida
 			try {
-			    //Esta primera conversion es para testear si es del
-			    //tipo semana o cantidad de repeticiones. 
-			    DayOfWeek diasDeLaSemanaPrueba = DayOfWeek.valueOf(repeticionCantVeceString[0]);
+			    int cadaCuantosDias = Integer.valueOf(repeticionCantVeceString[1]);
+			    repeticionEncontrada = new RepeticionCantVeces(cantidadDeRepeticionesMaximas, cadaCuantosDias, fechaComienzo);
+			}
+			//Esto pasa cuando es por dias de la semana y no por 
+			//cantidad dias
+			catch (IllegalArgumentException e) {
+			    String[] diasDeLaSemanaStrings = repeticionCantVeceString[1].split(",");
 
-			    DayOfWeek[] diasDeLaSemanas;
-			    for (int j = 0; j < diasDeLaSemanaString.length; j++) { 
-				diasDeLaSemana[j] = DayOfWeek.valueOf(diasDeLaSemanaString[j]);
-				System.out.println(diasDeLaSemana[j]);
+			    DayOfWeek[] diasDeLaSemanas = new DayOfWeek[diasDeLaSemanaStrings.length];
+			    for (int j = 0; j < diasDeLaSemanaStrings.length; j++) { 
+				diasDeLaSemanas[j] = DayOfWeek.valueOf(diasDeLaSemanaStrings[j]);
+				System.out.println(diasDeLaSemanas[j]);
 			    }
 
 			    repeticionEncontrada = new RepeticionCantVeces(cantidadDeRepeticionesMaximas, diasDeLaSemanas, fechaComienzo);
-			}
-			//Esto pasa cuando es por fecha y no por dias de la semana
-			catch (IllegalArgumentException e) {
-			    int cadaCuantosDias = Integer.valueOf(repeticionCantVeceString[1]);
-			    repeticionEncontrada = new RepeticionCantVeces(cantidadDeRepeticionesMaximas, cadaCuantosDias, fechaComienzo);
 			}
 
 			break;
