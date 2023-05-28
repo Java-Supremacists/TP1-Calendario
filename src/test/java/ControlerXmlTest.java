@@ -31,8 +31,27 @@ public class ControlerXmlTest {
         assertEquals(ev1.cuandoEmpieza(),ev2.cuandoEmpieza());
         assertEquals(ev1.cuandoTermina(),ev2.cuandoTermina());
         assertNotEquals(ev1,ev2);
-    }
 
+
+
+        var ev3 = new Evento("Evento1","Esta es la descripcion a cargar",true,inicia,termina);
+        //Fabri aca mete la implementacion para agregar una frecuencia de cierto tipo
+        var ev4 = new Evento(null,null);
+        archivo = new ByteArrayOutputStream();
+
+
+        xmlManejador.generateXml(ev3,"Evento",archivo);
+        cargarArchivo = new ByteArrayInputStream(archivo.toByteArray());
+        xmlManejador.cargarXml(ev4,cargarArchivo);
+
+
+        assertEquals(ev3.getTitulo(),ev4.getTitulo());
+        assertEquals(ev3.getDescripcion(),ev4.getDescripcion());
+        assertEquals(ev3.esDiaEntero(),ev4.esDiaEntero());
+        assertEquals(ev3.cuandoEmpieza(),ev4.cuandoEmpieza());
+        assertEquals(ev3.cuandoTermina(),ev4.cuandoTermina());
+        assertNotEquals(ev3,ev4);
+    }
     @Test
     public void testConGuardadoDeTareas() {
         var termina = LocalDateTime.of(2023,5,19,20,0);
@@ -53,8 +72,6 @@ public class ControlerXmlTest {
         assertEquals(tarea1.cuandoEmpieza(),tarea2.cuandoEmpieza());
         assertNotEquals(tarea1,tarea2);
     }
-
-
     @Test
     public void testConGuardadoDeAlarmas() {
         var alarm1 = new Alarmas(true,null);
