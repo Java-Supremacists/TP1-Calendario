@@ -298,7 +298,10 @@ public class Calendario implements XmlGuardador {
 
         // Itera sobre las actividades y les deja que ellos se carguen a si mismos
         for (int i = 0; i < ActividadesCalendario.getLength(); i++) {
-            if (ActividadesCalendario.item(i) instanceof Element Actividad) {
+            var hijoDeLaLista = ActividadesCalendario.item(i);
+            var propioDeElementos = hijoDeLaLista.getAttributes();
+            if (propioDeElementos!=null) {
+                var Actividad = (Element) hijoDeLaLista;
                 switch (Actividad.getNodeName()) {
                 case "Evento":
                     var ev = new Evento(null,null);
@@ -308,7 +311,10 @@ public class Calendario implements XmlGuardador {
                     ev.cargar(Actividad);
                     var elementosEvento = Actividad.getChildNodes();
                     for (int j = 0; j < elementosEvento.getLength(); j++) {
-                        if (elementosEvento.item(j) instanceof Element elemento) {
+                        var hijoDelEvento = elementosEvento.item(j);
+                        propioDeElementos = hijoDelEvento.getAttributes();
+                        if (propioDeElementos!=null) {
+                            var elemento = (Element) hijoDelEvento;
                             if (elemento.getNodeName().equals("Clase_Alarmas")) {
                                 r.cargar(elemento);
                             }
