@@ -89,7 +89,10 @@ public class Evento extends Activities {
 
         var elementosDelEvento = Evento.getChildNodes();
         for (int i = 0; i< elementosDelEvento.getLength(); i++) {
-            if (elementosDelEvento.item(i) instanceof Element elementoInterno) {
+            var hijoDeLaLista = elementosDelEvento.item(i);
+            var propioDeElementos = hijoDeLaLista.getAttributes();
+            if (propioDeElementos!=null) {
+                var elementoInterno = (Element) hijoDeLaLista;
                 switch (elementoInterno.getTagName()) {
                 case "ArranquePrincipio" -> arranquePrincipio = LocalDateTime.parse(elementoInterno.getTextContent());
                 case "TerminaPrincipio" -> terminaPrincipio = LocalDateTime.parse(elementoInterno.getTextContent());

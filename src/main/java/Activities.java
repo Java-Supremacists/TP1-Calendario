@@ -73,7 +73,10 @@ public abstract class Activities implements XmlGuardador {
     public void cargar(Element Actividad) {
         var hijosActividad = Actividad.getChildNodes();
         for (int i=0; i<hijosActividad.getLength(); i++) {
-            if (hijosActividad.item(i) instanceof Element elementoInterno) {
+            var hijoDeLaLista = hijosActividad.item(i);
+            var propioDeElementos = hijoDeLaLista.getAttributes();
+            if (propioDeElementos!=null) {
+                var elementoInterno = (Element) hijoDeLaLista;
                 switch (elementoInterno.getTagName()) {
                 case "Nombre" -> this.name = elementoInterno.getTextContent();
                 case "Descripcion" -> this.description = elementoInterno.getTextContent();

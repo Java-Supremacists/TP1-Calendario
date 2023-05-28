@@ -144,13 +144,19 @@ public class Alarmas implements XmlGuardador {
         var elementosAlarma = Alarma.getChildNodes();
 
         for (int i = 0; i< elementosAlarma.getLength(); i++) {
-            if (elementosAlarma.item(i) instanceof Element elementoInterno) {
+            var hijoDeLaLista = elementosAlarma.item(i);
+            var propioDeElementos = hijoDeLaLista.getAttributes();
+            if (propioDeElementos != null) {
+                var elementoInterno = (Element) hijoDeLaLista;
                 switch (elementoInterno.getTagName()) {
                 case "MantenerAlarma" -> mantenerAlarmas = elementoInterno.getTextContent().startsWith("t");
                 case "SetAlarmas" -> {
                             var listaAlarmas = elementoInterno.getChildNodes();
                         for (int j = 0; j < listaAlarmas.getLength(); j++) {
-                        if (listaAlarmas.item(j) instanceof Element alarma) {
+                            var posibleAlarma = listaAlarmas.item(j);
+                            propioDeElementos = posibleAlarma.getAttributes();
+                        if (propioDeElementos!=null) {
+                                var alarma = (Element) posibleAlarma;
                                 alarmas.add(LocalDateTime.parse(alarma.getTextContent()));
                             }
                         }
@@ -158,7 +164,10 @@ public class Alarmas implements XmlGuardador {
                 case "AlarmasMantenidas" -> {
                             var listaAlarmasSonadas = elementoInterno.getChildNodes();
                         for (int k = 0; k < listaAlarmasSonadas.getLength(); k++) {
-                        if (listaAlarmasSonadas.item(k) instanceof Element alarma) {
+                            var posibleAlarma = listaAlarmasSonadas.item(k);
+                            propioDeElementos = posibleAlarma.getAttributes();
+                        if (propioDeElementos!=null) {
+                                var alarma = (Element) posibleAlarma;
                                 alarmasYaSonadas.add(LocalDateTime.parse(alarma.getTextContent()));
                             }
                         }
