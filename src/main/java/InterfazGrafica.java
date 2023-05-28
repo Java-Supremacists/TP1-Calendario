@@ -2,26 +2,74 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class InterfazGrafica extends Application {
-    private Scene escena1;
-    private Scene escena2;
+    @FXML
+    private FlowPane pantalla;
+/*
+*   @FXML
+    private HBox barraDeHerramientas;
+
+    @FXML
+    private VBox barraLateralIzquierda;
+
+    @FXML
+    private ListView listaPosibleParaUsar;
+
+    @FXML
+    private ScrollPane escroleoDeGrilla;
+
+    @FXML
+    private Pane barraSuperiorDiaria;
+
+    @FXML
+    private ScrollPane ScrollGrillaDiaxHora;
+ */
+    @FXML
+    private Button botonDeHoy;
+    @FXML
+    private Button visualizacionAnterior;
+    @FXML
+    private Button visualizacionPosterior;
+    @FXML
+    private ChoiceBox tipoDeVisualizacion;
+    @FXML
+    private ChoiceBox usuario;
+    @FXML
+    private ChoiceBox botonCrearActividad;
+    @FXML
+    private FlowPane escenaPorSemana;
+    @FXML
+    private GridPane grillaDeDiasFijos;
+    @FXML
+    private GridPane grillaDiasxHorarios;
+    @FXML
+    private FlowPane escenaPorDia;
+    @FXML
+    private GridPane grillaDiaxHora;
+    @FXML
+    private FlowPane escenaPorMes;
+    @FXML
+    private GridPane grillaDelMes;
+    private Scene escena;
 
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader1 = new FXMLLoader(getClass().getResource("escenario1.fxml"));
         loader1.setController(this);
         FlowPane pantalla1 = loader1.load();
-        escena1 = new Scene(pantalla1, 854, 480);
+        escena = new Scene(pantalla1, 854, 480);
 
         FXMLLoader loader2 = new FXMLLoader(getClass().getResource("escenario2.fxml"));
         loader2.setController(this);
-        FlowPane pantalla2 = loader2.load();
-        escena2 = new Scene(pantalla2, 754, 860);
 
-        stage.setScene(escena1);
+        stage.setScene(escena);
         stage.show();
     }
 }
