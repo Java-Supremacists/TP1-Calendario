@@ -11,11 +11,13 @@ public class InterfazGrafica extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("escenario1.fxml"));
-        FlowPane pantalla1 = loader.load();
+        FXMLLoader loader1 = new FXMLLoader(getClass().getResource("escenario1.fxml"));
+        loader1.setController(this);
+        FlowPane pantalla1 = loader1.load();
         escena1 = new Scene(pantalla1, 640, 480);
 
         FXMLLoader loader2 = new FXMLLoader(getClass().getResource("escenario2.fxml"));
+        loader2.setController(this);
         FlowPane pantalla2 = loader2.load();
         escena2 = new Scene(pantalla2, 640, 480);
 
