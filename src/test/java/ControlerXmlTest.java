@@ -224,39 +224,36 @@ public class ControlerXmlTest {
 
     }
 
-    //@Test
-    //public void testEventoRepeticionCantVeces() {
-    //    var calendario1 = new Calendario();
-    //    var calendario2 = new Calendario();
+    @Test
+    public void testEventoRepeticionFecha() {
+        var calendario1 = new Calendario();
+        var calendario2 = new Calendario();
 
 
-    //    var inicia1 = LocalDateTime.of(2023,5,19,10,30);
-    //    var termina1 = LocalDateTime.of(2023,5,19,20,0);
+        var inicia1 = LocalDateTime.of(2023,5,19,10,30);
+        var termina1 = LocalDateTime.of(2023,5,19,20,0);
 
-    //    int ID1 = calendario1.crearEvento("Evento1","Descripcion1",true,inicia1,termina1);
+        int ID1 = calendario1.crearEvento("Evento1","Descripcion1",true,inicia1,termina1);
 
-    //    var repeticionInfinita = new RepeticionInfinita();
-    //    var frecuenciaDiaria = new FrecuenciaDiaria(3, repeticionInfinita);
-    //    calendario1.modificarEventoFrecuencia(ID1, frecuenciaDiaria);
+        var repeticionFecha = new RepeticionFecha(LocalDateTime.of(2023,5,23,20,0));
+        var frecuenciaDiaria = new FrecuenciaDiaria(3, repeticionFecha);
+        calendario1.modificarEventoFrecuencia(ID1, frecuenciaDiaria);
 
-    //    DayOfWeek[] diasDeLaSemana = {DayOfWeek.MONDAY, DayOfWeek.THURSDAY};
-    //    var frecuenciaSemanal = new FrecuenciaSemanal(diasDeLaSemana, repeticionInfinita);
-    //    calendario1.modificarEventoFrecuencia(ID1, frecuenciaSemanal);
+        ByteArrayOutputStream archivo = new ByteArrayOutputStream();
+        var xmlManejador = new ControlerXml();
 
-    //    ByteArrayOutputStream archivo = new ByteArrayOutputStream();
-    //    var xmlManejador = new ControlerXml();
+        xmlManejador.generateXml(calendario1,"Calendario",archivo);
+        InputStream cargarArchivo = new ByteArrayInputStream(archivo.toByteArray());
+        xmlManejador.cargarXml(calendario2,cargarArchivo);
 
-    //    xmlManejador.generateXml(calendario1,"Calendario",archivo);
-    //    InputStream cargarArchivo = new ByteArrayInputStream(archivo.toByteArray());
-    //    xmlManejador.cargarXml(calendario2,cargarArchivo);
+        assertEquals(calendario1.proximaAlarma(),calendario2.proximaAlarma());
+        assertEquals(calendario1.obtenerEvento(ID1).getTitulo(),calendario2.obtenerEvento(ID1).getTitulo());
+        assertEquals(calendario1.obtenerEvento(ID1).getDescripcion(),calendario2.obtenerEvento(ID1).getDescripcion());
+        assertEquals(calendario1.obtenerEvento(ID1).esDiaEntero(),calendario2.obtenerEvento(ID1).esDiaEntero());
 
-    //    assertEquals(calendario1.proximaAlarma(),calendario2.proximaAlarma());
-    //    assertEquals(calendario1.obtenerEvento(ID1).getTitulo(),calendario2.obtenerEvento(ID1).getTitulo());
-    //    assertEquals(calendario1.obtenerEvento(ID1).getDescripcion(),calendario2.obtenerEvento(ID1).getDescripcion());
-    //    assertEquals(calendario1.obtenerEvento(ID1).esDiaEntero(),calendario2.obtenerEvento(ID1).esDiaEntero());
-
-    //    //Corroboramos que el evento sea el mismo despues de aplicar la frecuencia
-    //    assertEquals(calendario1.eventosEnRango(LocalDateTime.of(2023, 5, 26, 0,0),LocalDateTime.of(2023, 5, 28, 0,0)).get(0).cuandoEmpieza(), calendario2.eventosEnRango(LocalDateTime.of(2023, 5, 26, 0,0),LocalDateTime.of(2023, 5, 28, 0,0)).get(0).cuandoEmpieza());
-    //    assertEquals(calendario1.eventosEnRango(LocalDateTime.of(2023, 5, 28, 0,0),LocalDateTime.of(2023, 5, 29, 0,0)).get(0).cuandoEmpieza(), calendario2.eventosEnRango(LocalDateTime.of(2023, 5, 28, 0,0),LocalDateTime.of(2023, 5, 29, 0,0)).get(0).cuandoEmpieza());
-    //}
+        //Corroboramos que el evento sea el mismo despues de aplicar la frecuencia
+        assertEquals(calendario1.eventosEnRango(LocalDateTime.of(2023, 5, 21, 0,0),LocalDateTime.of(2023, 5, 23, 0,0)).size(), 1);
+        assertEquals(calendario2.eventosEnRango(LocalDateTime.of(2023, 5, 21, 0,0),LocalDateTime.of(2023, 5, 23, 0,0)).size(), 1);
+        assertEquals(calendario1.eventosEnRango(LocalDateTime.of(2023, 5, 21, 0,0),LocalDateTime.of(2023, 5, 23, 0,0)).get(0).cuandoEmpieza(), calendario2.eventosEnRango(LocalDateTime.of(2023, 5, 21, 0,0),LocalDateTime.of(2023, 5, 23, 0,0)).get(0).cuandoEmpieza());
+    }
 }
