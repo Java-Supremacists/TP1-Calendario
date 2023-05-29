@@ -9,6 +9,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.util.HashMap;
+
 public class InterfazGrafica extends Application {
     @FXML
     private FlowPane pantalla;
@@ -57,14 +59,13 @@ public class InterfazGrafica extends Application {
     private FlowPane escenaPorMes;
     @FXML
     private GridPane grillaDelMes;
-    private Scene escena;
-
+    private final HashMap<Usuario,Calendario> listadoUsuarios = new HashMap<>();
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader1 = new FXMLLoader(getClass().getResource("escenario1.fxml"));
         loader1.setController(this);
         FlowPane pantalla1 = loader1.load();
-        escena = new Scene(pantalla1, 854, 480);
+        Scene escena = new Scene(pantalla1, 854, 480);
 
         FXMLLoader loader2 = new FXMLLoader(getClass().getResource("escenario2.fxml"));
         loader2.setController(this);

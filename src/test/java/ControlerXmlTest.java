@@ -74,7 +74,7 @@ public class ControlerXmlTest {
     }
     @Test
     public void testConGuardadoDeAlarmas() {
-        var alarm1 = new Alarmas(true,null);
+        var alarm1 = new Alarmas(true);
         var alarm2 = new Alarmas();
         List<LocalDateTime> array = new ArrayList<>();
         for (int i = 1; i < 13; i++) {

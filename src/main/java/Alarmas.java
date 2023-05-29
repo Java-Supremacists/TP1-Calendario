@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Alarmas implements XmlGuardador {
-    public Notificacion notificaciones;
+
     //--------- Atributos ---------
 
     private final Set<LocalDateTime> alarmas;
@@ -22,14 +22,12 @@ public class Alarmas implements XmlGuardador {
         alarmaMasTemprana = null;
         alarmas = new HashSet<>();
         alarmasYaSonadas = new HashSet<>();
-        notificaciones = null;
     }
-    public Alarmas(boolean mantener,Notificacion notificacionesUsuario) {
+    public Alarmas(boolean mantener ) {
         alarmaMasTemprana = null;
         alarmas = new HashSet<>();
         mantenerAlarmas = mantener;
         alarmasYaSonadas = new HashSet<>();
-        notificaciones = notificacionesUsuario;
     }
 
     //--------- Constructores ---------
