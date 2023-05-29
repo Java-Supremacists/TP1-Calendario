@@ -264,7 +264,6 @@ public class ControlerXmlTest {
 
         int ID1 = calendario1.crearEvento("Evento1","Descripcion1",true,inicia1,termina1);
 
-	System.out.println("MIERDA");
         var repeticionCant = new RepeticionCantVeces(3, 5, inicia1);
         var frecuenciaDiaria = new FrecuenciaDiaria(5, repeticionCant);
         calendario1.modificarEventoFrecuencia(ID1, frecuenciaDiaria);
