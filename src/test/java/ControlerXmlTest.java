@@ -282,7 +282,8 @@ public class ControlerXmlTest {
         //Corroboramos que el evento sea el mismo despues de aplicar la frecuencia
         assertEquals(calendario1.eventosEnRango(LocalDateTime.of(2023, 5, 14, 0,0),LocalDateTime.of(2023, 5, 16, 0,0)).size(), 1);
 
-        // assertEquals(calendario2.eventosEnRango(LocalDateTime.of(2023, 5, 21, 0,0),LocalDateTime.of(2023, 5, 23, 0,0)).size(), 1);
-        // assertEquals(calendario1.eventosEnRango(LocalDateTime.of(2023, 5, 21, 0,0),LocalDateTime.of(2023, 5, 23, 0,0)).get(0).cuandoEmpieza(), calendario2.eventosEnRango(LocalDateTime.of(2023, 5, 21, 0,0),LocalDateTime.of(2023, 5, 23, 0,0)).get(0).cuandoEmpieza());
+        assertEquals(calendario2.eventosEnRango(LocalDateTime.of(2023, 5, 14, 0,0),LocalDateTime.of(2023, 5, 16, 0,0)).size(), 1);
+
+        assertEquals(calendario1.eventosEnRango(LocalDateTime.of(2023, 5, 14, 0,0),LocalDateTime.of(2023, 5, 16, 0,0)).get(0).cuandoEmpieza(), calendario2.eventosEnRango(LocalDateTime.of(2023, 5, 14, 0,0),LocalDateTime.of(2023, 5, 16, 0,0)).get(0).cuandoEmpieza());
     }
 }
