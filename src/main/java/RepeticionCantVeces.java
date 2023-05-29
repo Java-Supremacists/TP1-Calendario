@@ -20,10 +20,13 @@ public class RepeticionCantVeces implements Repeticion {
     //distintos, sin embargo, fue la mejor manera que se nos ocurrio de poder
     //encapsular dos casos distinto en 1
     public RepeticionCantVeces(int cantidadDeRepeticionesMaximas, int cadaCuantosDias, LocalDateTime fechaComienzo) {
+	System.out.println(cantidadDeRepeticionesMaximas);
+	System.out.println(cadaCuantosDias);
+
         //Esto nos da la cantidad de dias extra para llegar al ultimo dia
         //Le restamos uno a cantidadDeRepeticionesMaximas porque el dia en el
         //que estamos cuenta como una repeticion
-        int cantidadDeDiasASumar = cadaCuantosDias * (cantidadDeRepeticionesMaximas - 1);
+        int cantidadDeDiasASumar = cadaCuantosDias * cantidadDeRepeticionesMaximas - 1;
 
         //Le sumamos esos dias a la fecha que nos pasaron
         LocalDateTime fechaFinal = fechaComienzo.plusDays(cantidadDeDiasASumar);
@@ -35,6 +38,8 @@ public class RepeticionCantVeces implements Repeticion {
         this.fechaComienzo = fechaComienzo;
 
 
+	System.out.println(this.fechaFinRepeticion);
+	System.out.println();
     }
 
     public RepeticionCantVeces(int cantidadDeRepeticionesMaximas, DayOfWeek[] diasDeLaSemana, LocalDateTime fechaComienzo) {
