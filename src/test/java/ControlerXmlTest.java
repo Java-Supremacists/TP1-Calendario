@@ -195,4 +195,29 @@ public class ControlerXmlTest {
         assertEquals(calendario1.obtenerActividad(ID1).esDiaEntero(),calendario2.obtenerActividad(ID1).esDiaEntero());
 
     }
+
+    @Test
+    public void testTareaCompleta() {
+        var calendario1 = new Calendario();
+        var calendario2 = new Calendario();
+
+
+        var termina1 = LocalDateTime.of(2023,5,19,20,0);
+	
+        int ID1 = calendario1.crearTarea("Tarea1","Descripcion1",true,termina1);
+	calendario1.modificarTareaCompletarODescompletar(ID1);
+
+        ByteArrayOutputStream archivo = new ByteArrayOutputStream();
+        var xmlManejador = new ControlerXml();
+
+        xmlManejador.generateXml(calendario1,"Calendario",archivo);
+        InputStream cargarArchivo = new ByteArrayInputStream(archivo.toByteArray());
+        xmlManejador.cargarXml(calendario2,cargarArchivo);
+
+        assertEquals(calendario1.proximaAlarma(),calendario2.proximaAlarma());
+        assertEquals(calendario1.obtenerActividad(ID1).getTitulo(),calendario2.obtenerActividad(ID1).getTitulo());
+        assertEquals(calendario1.obtenerActividad(ID1).getDescripcion(),calendario2.obtenerActividad(ID1).getDescripcion());
+        assertEquals(calendario1.obtenerTarea(ID1).estaCompleta(),calendario2.obtenerTarea(ID1).estaCompleta());
+
+    }
 }
