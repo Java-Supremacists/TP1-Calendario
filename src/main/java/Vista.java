@@ -1,13 +1,16 @@
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-
+import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
@@ -65,6 +68,8 @@ public class Vista {
     private FlowPane escenaPorDia;
     @FXML
     private GridPane grillaDiaxHora;
+    @FXML
+    private VBox panelConElDia;
     //--------- Diario ---------
 
     //--------- Mensual ---------
@@ -106,6 +111,11 @@ public class Vista {
         //implementar aca para facilitar la actualizacion de los días facilmente
         switch (tipoDeVisualizacion.getValue()){
             case "Dia":
+                ObservableList<Node> algo = panelConElDia.getChildren();
+                Label Dia = (Label) algo.get(0);
+                Label numero = (Label) algo.get(1);
+                Dia.setText(primerDia.getDayOfWeek().toString());
+                numero.setText("%d".formatted(primerDia.getDayOfMonth()));
                 break;
             case "Semana":
                 break;
@@ -132,6 +142,7 @@ public class Vista {
         pantalla.getChildren().remove(elementoActual);
         pantalla.getChildren().add(nuevo);
         elementoActual = nuevo;
+        this.actualizarVistaCalendario(LocalDateTime.now());
     }
     public void botonDeHoyActividad(EventHandler<ActionEvent> evento){
         botonDeHoy.setOnAction(evento);
