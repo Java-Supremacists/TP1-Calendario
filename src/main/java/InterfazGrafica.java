@@ -65,12 +65,13 @@ public class InterfazGrafica extends Application {
         FXMLLoader loader1 = new FXMLLoader(getClass().getResource("escenario1.fxml"));
         loader1.setController(this);
         FlowPane pantalla1 = loader1.load();
-        Scene escena = new Scene(pantalla1, 854, 480);
+        Scene escena = new Scene(pantalla1,854,480);
 
         FXMLLoader loader2 = new FXMLLoader(getClass().getResource("escenario2.fxml"));
         loader2.setController(this);
 
         stage.setScene(escena);
+        stage.setResizable(false);
         stage.show();
     }
 }
