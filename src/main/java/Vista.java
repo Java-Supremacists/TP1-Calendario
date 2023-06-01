@@ -109,19 +109,55 @@ public class Vista {
     public void actualizarVistaCalendario(LocalDateTime primerDia){
         //Actualizar las grillas segun si va una semana/día/mes antes o después del actual
         //implementar aca para facilitar la actualizacion de los días facilmente
-        switch (tipoDeVisualizacion.getValue()){
-            case "Dia":
-                ObservableList<Node> algo = panelConElDia.getChildren();
-                Label Dia = (Label) algo.get(0);
-                Label numero = (Label) algo.get(1);
+        ObservableList<Node> hijos;
+        Label Dia;
+        Label Numero;
+        long i = 0;
+        switch (tipoDeVisualizacion.getValue()) {
+            case "Dia" -> {
+                hijos = panelConElDia.getChildren();
+                Dia = (Label) hijos.get(0);
+                Numero = (Label) hijos.get(1);
                 Dia.setText(primerDia.getDayOfWeek().toString());
-                numero.setText("%d".formatted(primerDia.getDayOfMonth()));
-                break;
-            case "Semana":
-                break;
-            case "Mes":
-                break;
+                Numero.setText("%d".formatted(primerDia.getDayOfMonth()));
+            }
+            case "Semana" -> {
+                hijos = grillaDeDiasFijos.getChildren();
+                for (Node e : hijos) {
+                    if (e.getClass().equals(VBox.class)) {
+                        LocalDateTime dia = primerDia.plusDays(i);
+                        VBox apartado = (VBox) e;
+                        hijos = apartado.getChildren();
+                        Dia = (Label) hijos.get(0);
+                        Numero = (Label) hijos.get(1);
+                        Dia.setText(dia.getDayOfWeek().toString());
+                        Numero.setText("%d".formatted(dia.getDayOfMonth()));
+                        i++;
+                    }
 
+                }
+            }
+            case "Mes" -> {
+                hijos = grillaDelMes.getChildren();
+                System.out.println(hijos);
+                for (Node e : hijos) {
+                    if (e.getClass().equals(VBox.class)) {
+                        LocalDateTime dia = primerDia.plusDays(i);
+                        VBox apartado = (VBox) e;
+                        hijos = apartado.getChildren();
+                        if (i < 7) {
+                            Dia = (Label) hijos.get(0);
+                            Numero = (Label) hijos.get(1);
+                            Dia.setText(dia.getDayOfWeek().toString());
+                            Numero.setText("%d".formatted(dia.getDayOfMonth()));
+                        } else {
+                            Numero = (Label) hijos.get(0);
+                            Numero.setText("%d".formatted(dia.getDayOfMonth()));
+                        }
+                        i++;
+                    }
+                }
+            }
         }
     }
     public void cambiarVistaCalendario(ActionEvent event){
@@ -142,7 +178,7 @@ public class Vista {
         pantalla.getChildren().remove(elementoActual);
         pantalla.getChildren().add(nuevo);
         elementoActual = nuevo;
-        this.actualizarVistaCalendario(LocalDateTime.now());
+        this.actualizarVistaCalendario(LocalDateTime.now()); // Esto es momentaneo para que sea visible
     }
     public void botonDeHoyActividad(EventHandler<ActionEvent> evento){
         botonDeHoy.setOnAction(evento);
