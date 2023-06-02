@@ -106,6 +106,9 @@ public class Vista {
     public Scene getScene(){
         return this.escena;
     }
+    public String getVisualizacion(){
+        return tipoDeVisualizacion.getValue();
+    }
     public void actualizarVistaCalendario(LocalDateTime primerDia){
         //Actualizar las grillas segun si va una semana/día/mes antes o después del actual
         //implementar aca para facilitar la actualizacion de los días facilmente
@@ -139,7 +142,6 @@ public class Vista {
             }
             case "Mes" -> {
                 hijos = grillaDelMes.getChildren();
-                System.out.println(hijos);
                 for (Node e : hijos) {
                     if (e.getClass().equals(VBox.class)) {
                         LocalDateTime dia = primerDia.plusDays(i);
@@ -162,23 +164,26 @@ public class Vista {
     }
     public void cambiarVistaCalendario(ActionEvent event){
         String visualizacion = tipoDeVisualizacion.getValue();
-        int indice = pantalla.getChildren().indexOf(elementoActual);
-        FlowPane nuevo = escenaPorSemana;
-        switch (visualizacion){
-            case "Dia":
+        FlowPane nuevo = null;
+        LocalDateTime hoy = LocalDateTime.now();
+        switch (visualizacion) {
+            case "Dia" -> {
                 nuevo = escenaPorDia;
-                break;
-            case "Semana":
-                break;
-            case "Mes":
+                controlador.setFechaActual(hoy);
+            }
+            case "Semana" -> {
+                nuevo = escenaPorSemana;
+                controlador.setFechaActual(InterfazGrafica.domingoAnteriorCercano(hoy));
+            }
+            case "Mes" -> {
                 nuevo = escenaPorMes;
-                break;
-
+                controlador.setFechaActual(InterfazGrafica.primerDomingoCercanoAlMes(hoy.getYear(), hoy.getMonth()));
+            }
         }
         pantalla.getChildren().remove(elementoActual);
         pantalla.getChildren().add(nuevo);
         elementoActual = nuevo;
-        this.actualizarVistaCalendario(LocalDateTime.now()); // Esto es momentaneo para que sea visible
+        this.actualizarVistaCalendario(controlador.getFechaActual()); // Esto es momentaneo para que sea visible
     }
     public void botonDeHoyActividad(EventHandler<ActionEvent> evento){
         botonDeHoy.setOnAction(evento);
