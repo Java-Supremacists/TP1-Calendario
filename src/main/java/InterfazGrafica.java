@@ -68,6 +68,24 @@ public class InterfazGrafica extends Application {
                 vista.actualizarVistaCalendario(fechaActual);
             }
         });
+        vista.botonDeHoyActividad(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                var nueva = LocalDateTime.now();
+                switch (vista.getVisualizacion()) {
+                    case "Dia" -> {
+                        fechaActual = nueva;
+                    }
+                    case "Semana" -> {
+                        fechaActual = domingoAnteriorCercano(nueva);
+                    }
+                    case "Mes" -> {
+                        fechaActual = primerDomingoCercanoAlMes(nueva.getYear(),nueva.getMonth());
+                    }
+                }
+                vista.actualizarVistaCalendario(fechaActual);
+            }
+        });
     }
     public void setFechaActual(LocalDateTime fechaActual) {
         this.fechaActual = fechaActual;
