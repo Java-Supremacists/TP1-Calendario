@@ -46,10 +46,10 @@ public class Vista {
     @FXML
     private Button visualizacionPosterior;
     @FXML
+    private Label mesDelCalendario;
+    @FXML
     private ChoiceBox<String> tipoDeVisualizacion;
     private final String[] elecciones = {"Dia","Semana","Mes"};
-    @FXML
-    private ChoiceBox<String> usuario;
     @FXML
     private ChoiceBox<String> botonCrearActividad;
     private final String[] actividades = {"Evento","Tarea"};
@@ -123,9 +123,12 @@ public class Vista {
                 Numero = (Label) hijos.get(1);
                 Dia.setText(primerDia.getDayOfWeek().toString());
                 Numero.setText("%d".formatted(primerDia.getDayOfMonth()));
+                mesDelCalendario.setText(primerDia.getMonth().toString());
             }
             case "Semana" -> {
                 hijos = grillaDeDiasFijos.getChildren();
+                String mesDesde = primerDia.getMonth().toString();
+                String mesHasta = "";
                 for (Node e : hijos) {
                     if (e.getClass().equals(VBox.class)) {
                         LocalDateTime dia = primerDia.plusDays(i);
@@ -135,18 +138,23 @@ public class Vista {
                         Numero = (Label) hijos.get(1);
                         Dia.setText(dia.getDayOfWeek().toString());
                         Numero.setText("%d".formatted(dia.getDayOfMonth()));
+                        mesHasta = dia.getMonth().toString();
                         i++;
                     }
-
                 }
+                mesDelCalendario.setText(mesDesde + "-" + mesHasta);
             }
             case "Mes" -> {
                 hijos = grillaDelMes.getChildren();
+                String mes = "";
                 for (Node e : hijos) {
                     if (e.getClass().equals(VBox.class)) {
                         LocalDateTime dia = primerDia.plusDays(i);
                         VBox apartado = (VBox) e;
                         hijos = apartado.getChildren();
+                        if (dia.getDayOfMonth()==1){
+                            mes = dia.getMonth().toString();
+                        }
                         if (i < 7) {
                             Dia = (Label) hijos.get(0);
                             Numero = (Label) hijos.get(1);
@@ -159,6 +167,7 @@ public class Vista {
                         i++;
                     }
                 }
+                mesDelCalendario.setText(mes);
             }
         }
     }
