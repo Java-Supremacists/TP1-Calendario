@@ -88,6 +88,7 @@ public class Vista {
         //cargamos archivos
         FXMLLoader loader1 = new FXMLLoader(getClass().getResource("escenario1.fxml"));
         loader1.setController(this);
+        FlowPane pantalla1 = loader1.load();
         FXMLLoader loader2 = new FXMLLoader(getClass().getResource("escenario2.fxml"));
         loader2.setController(this);
         loader2.load();
@@ -96,7 +97,7 @@ public class Vista {
         //guardamos atributos
         controlador = controller;
         strategy = new VistaSemanal(escenaPorSemana,pantalla);
-        this.escena = new Scene(pantalla,854,480); //creamos la escena
+        this.escena = new Scene(pantalla1,854,480); //creamos la escena
 
         //metemos implementacion interna
         tipoDeVisualizacion.getItems().addAll(elecciones);
@@ -111,6 +112,7 @@ public class Vista {
         return tipoDeVisualizacion.getValue();
     }
     public void actualizarVistaCalendario(LocalDateTime primerDia){
+        //HAY UN ERROR PARA ARREGLAR ACA EN STRATEGY
         //Actualizar las grillas segun si va una semana/día/mes antes o después del actual
         //implementar aca para facilitar la actualizacion de los días facilmente
         List<Month> months = new ArrayList<>(1);

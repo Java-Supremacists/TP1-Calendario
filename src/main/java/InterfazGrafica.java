@@ -34,12 +34,11 @@ public class InterfazGrafica extends Application {
                         fechaActual = domingoAnteriorCercano(fechaActual.minusDays(7));
                     }
                     case "Mes" -> {
-                        if (fechaActual.getDayOfMonth()>20){
-                            fechaActual = primerDomingoCercanoAlMes(fechaActual.getYear(),fechaActual.getMonth());
-                        } else {
-                            var nueva = fechaActual.minusMonths(1);
-                            fechaActual = primerDomingoCercanoAlMes(nueva.getYear(),nueva.getMonth());
+                        while (fechaActual.getDayOfMonth()!= 1){
+                            fechaActual = fechaActual.plusDays(1);
                         }
+                        fechaActual = fechaActual.minusMonths(1);
+                        fechaActual = primerDomingoCercanoAlMes(fechaActual.getYear(),fechaActual.getMonth());
                     }
                 }
                 vista.actualizarVistaCalendario(fechaActual);
@@ -56,13 +55,11 @@ public class InterfazGrafica extends Application {
                         fechaActual = domingoAnteriorCercano(fechaActual.plusDays(7));
                     }
                     case "Mes" -> {
-                        LocalDateTime nueva;
-                        if (fechaActual.getDayOfMonth()>20){
-                            nueva = fechaActual.plusMonths(2);
-                        } else {
-                            nueva = fechaActual.plusMonths(1);
+                        while (fechaActual.getDayOfMonth()!= 1){
+                            fechaActual = fechaActual.plusDays(1);
                         }
-                        fechaActual = primerDomingoCercanoAlMes(nueva.getYear(),nueva.getMonth());
+                        fechaActual = fechaActual.plusMonths(1);
+                        fechaActual = primerDomingoCercanoAlMes(fechaActual.getYear(),fechaActual.getMonth());
                     }
                 }
                 vista.actualizarVistaCalendario(fechaActual);
