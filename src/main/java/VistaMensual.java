@@ -13,9 +13,9 @@ public class VistaMensual extends VistaCalendario {
     public VistaMensual(FlowPane visualizacion, FlowPane pantalla, FlowPane eliminar) {
         super(visualizacion, pantalla, eliminar);
     }
-    public VistaMensual(FlowPane visualizacion, FlowPane pantalla) {
+    /*public VistaMensual(FlowPane visualizacion, FlowPane pantalla) {
         super(visualizacion, pantalla);
-    }
+    }*/
     @Override
     public List<Month> actualizarVista(LocalDateTime fecha, GridPane grillaMes) {
         ObservableList<Node> hijos = grillaMes.getChildren();
@@ -28,7 +28,7 @@ public class VistaMensual extends VistaCalendario {
                 LocalDateTime dia = fecha.plusDays(i);
                 VBox diaDelMes = (VBox) e;
                 hijos = diaDelMes.getChildren();
-                if (dia.getDayOfMonth()==1){
+                if (dia.getDayOfMonth()==1 && i<14){
                     mes = dia.getMonth();
                 }
                 if (i < 7) {

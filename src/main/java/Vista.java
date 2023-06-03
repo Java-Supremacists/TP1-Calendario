@@ -8,7 +8,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -69,8 +68,6 @@ public class Vista {
     @FXML
     private GridPane grillaDiaxHora;
     @FXML
-    private VBox panelConElDia;
-    @FXML
     private GridPane grillaConElDia;
     //--------- Diario ---------
 
@@ -117,21 +114,15 @@ public class Vista {
         //implementar aca para facilitar la actualizacion de los días facilmente
         List<Month> months = new ArrayList<>(1);
         switch (strategy.getTipo()){
-            case "Dia" -> {
-                months = strategy.actualizarVista(primerDia,grillaConElDia);
-            }
-            case "Semana" -> {
-                months = strategy.actualizarVista(primerDia,grillaDeDiasFijos);
-            }
-            case "Mes" -> {
-                months = strategy.actualizarVista(primerDia,grillaDelMes);
-            }
+            case "Dia" -> months = strategy.actualizarVista(primerDia,grillaConElDia);
+            case "Semana" -> months = strategy.actualizarVista(primerDia,grillaDeDiasFijos);
+            case "Mes" -> months = strategy.actualizarVista(primerDia,grillaDelMes);
         }
-        String mes = months.get(0).toString();
+        StringBuilder mes = new StringBuilder(months.get(0).toString());
         for (int i = 1; i < months.size();i++){
-            mes = mes + ("-" + months.get(i).toString());
+            mes.append("-").append(months.get(i).toString());
         }
-        mesDelCalendario.setText(mes);
+        mesDelCalendario.setText(mes.toString());
     }
     public void cambiarVistaCalendario(ActionEvent event){
         String visualizacion = tipoDeVisualizacion.getValue();

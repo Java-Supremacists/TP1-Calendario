@@ -13,9 +13,9 @@ public class VistaDiaria extends VistaCalendario {
     public VistaDiaria(FlowPane visualizacion, FlowPane pantalla, FlowPane eliminar) {
         super(visualizacion, pantalla, eliminar);
     }
-    public VistaDiaria(FlowPane visualizacion, FlowPane pantalla) {
+    /*public VistaDiaria(FlowPane visualizacion, FlowPane pantalla) {
         super(visualizacion, pantalla);
-    }
+    }*/
     @Override
     public List<Month> actualizarVista(LocalDateTime fecha, GridPane grillaSuperior) {
         ObservableList<Node> hijos = grillaSuperior.getChildren();
