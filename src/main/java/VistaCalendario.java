@@ -1,5 +1,5 @@
-import javafx.scene.Scene;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
@@ -13,6 +13,13 @@ public abstract class VistaCalendario {
         pantalla.getChildren().remove(eliminar);
         pantalla.getChildren().add(visualizacion);
     }
-
-    public abstract List<Month> actualizarVista(LocalDateTime fecha);
+    public VistaCalendario(FlowPane visualizacion, FlowPane pantalla){
+        vista = visualizacion;
+        escenaActual = pantalla;
+    }
+    public abstract List<Month> actualizarVista(LocalDateTime fecha, GridPane grillaSuperior);
+    public abstract String getTipo();
+    public FlowPane getVista() {
+        return vista;
+    }
 }

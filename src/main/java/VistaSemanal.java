@@ -9,33 +9,41 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VistaDiaria extends VistaCalendario {
-    public VistaDiaria(FlowPane visualizacion, FlowPane pantalla, FlowPane eliminar) {
+public class VistaSemanal extends VistaCalendario {
+    public VistaSemanal(FlowPane visualizacion, FlowPane pantalla, FlowPane eliminar) {
         super(visualizacion, pantalla, eliminar);
     }
-    public VistaDiaria(FlowPane visualizacion, FlowPane pantalla) {
+    public VistaSemanal(FlowPane visualizacion, FlowPane pantalla) {
         super(visualizacion, pantalla);
     }
     @Override
     public List<Month> actualizarVista(LocalDateTime fecha, GridPane grillaSuperior) {
         ObservableList<Node> hijos = grillaSuperior.getChildren();
+        Month mesDesde = fecha.getMonth();
+        Month mesHasta = null;
+        long i = 0;
         for (Node e : hijos) {
             if (e.getClass().equals(VBox.class)) {
-                VBox panelDeDia = (VBox) e;
-                hijos = panelDeDia.getChildren();
+                LocalDateTime dia = fecha.plusDays(i);
+                VBox panelDeDias = (VBox) e;
+                hijos = panelDeDias.getChildren();
                 var Dia = (Label) hijos.get(0);
                 var Numero = (Label) hijos.get(1);
-                Dia.setText(fecha.getDayOfWeek().toString());
-                Numero.setText("%d".formatted(fecha.getDayOfMonth()));
+                Dia.setText(dia.getDayOfWeek().toString());
+                Numero.setText("%d".formatted(dia.getDayOfMonth()));
+                mesHasta = dia.getMonth();
+                i++;
             }
         }
-
-        ArrayList<Month> months = new ArrayList<>(1);
-        months.add(0,fecha.getMonth());
+        ArrayList<Month> months = new ArrayList<>();
+        months.add(mesDesde);
+        if (mesDesde != mesHasta){
+            months.add(mesHasta);
+        }
         return months;
     }
     @Override
     public String getTipo() {
-        return "Dia";
+        return "Semana";
     }
 }

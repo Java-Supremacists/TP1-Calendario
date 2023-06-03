@@ -1,9 +1,7 @@
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -11,14 +9,16 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Vista {
     /*
     *
-
-
         @FXML
         private HBox barraDeHerramientas;
 
@@ -70,6 +70,8 @@ public class Vista {
     private GridPane grillaDiaxHora;
     @FXML
     private VBox panelConElDia;
+    @FXML
+    private GridPane grillaConElDia;
     //--------- Diario ---------
 
     //--------- Mensual ---------
@@ -79,27 +81,26 @@ public class Vista {
     private GridPane grillaDelMes;
 
     //--------- Mensual ---------
-    private Scene escena;
+    private final Scene escena;
     private final InterfazGrafica controlador;
-    private FlowPane elementoActual;
+    private VistaCalendario strategy;
     public Vista(InterfazGrafica controller) throws IOException {
-        controlador = controller;
-
         //cargamos archivos
         FXMLLoader loader1 = new FXMLLoader(getClass().getResource("escenario1.fxml"));
         loader1.setController(this);
-        FlowPane pantalla1 = loader1.load();
         FXMLLoader loader2 = new FXMLLoader(getClass().getResource("escenario2.fxml"));
         loader2.setController(this);
         loader2.load();
         //cargamos archivos
 
-        this.escena = new Scene(pantalla1,854,480); //creamos la escena
+        //guardamos atributos
+        controlador = controller;
+        strategy = new VistaSemanal(escenaPorSemana,pantalla);
+        this.escena = new Scene(pantalla,854,480); //creamos la escena
 
         //metemos implementacion interna
         tipoDeVisualizacion.getItems().addAll(elecciones);
         tipoDeVisualizacion.setValue("Semana");
-        elementoActual = escenaPorSemana;
         tipoDeVisualizacion.setOnAction(this::cambiarVistaCalendario);
         botonCrearActividad.getItems().addAll(actividades);
     }
@@ -112,87 +113,44 @@ public class Vista {
     public void actualizarVistaCalendario(LocalDateTime primerDia){
         //Actualizar las grillas segun si va una semana/día/mes antes o después del actual
         //implementar aca para facilitar la actualizacion de los días facilmente
-        ObservableList<Node> hijos;
-        Label Dia;
-        Label Numero;
-        long i = 0;
-        switch (tipoDeVisualizacion.getValue()) {
+        List<Month> months = new ArrayList<>(1);
+        switch (strategy.getTipo()){
             case "Dia" -> {
-                hijos = panelConElDia.getChildren();
-                Dia = (Label) hijos.get(0);
-                Numero = (Label) hijos.get(1);
-                Dia.setText(primerDia.getDayOfWeek().toString());
-                Numero.setText("%d".formatted(primerDia.getDayOfMonth()));
-                mesDelCalendario.setText(primerDia.getMonth().toString());
+                months = strategy.actualizarVista(primerDia,grillaConElDia);
             }
             case "Semana" -> {
-                hijos = grillaDeDiasFijos.getChildren();
-                String mesDesde = primerDia.getMonth().toString();
-                String mesHasta = "";
-                for (Node e : hijos) {
-                    if (e.getClass().equals(VBox.class)) {
-                        LocalDateTime dia = primerDia.plusDays(i);
-                        VBox apartado = (VBox) e;
-                        hijos = apartado.getChildren();
-                        Dia = (Label) hijos.get(0);
-                        Numero = (Label) hijos.get(1);
-                        Dia.setText(dia.getDayOfWeek().toString());
-                        Numero.setText("%d".formatted(dia.getDayOfMonth()));
-                        mesHasta = dia.getMonth().toString();
-                        i++;
-                    }
-                }
-                mesDelCalendario.setText(mesDesde + "-" + mesHasta);
+                months = strategy.actualizarVista(primerDia,grillaDeDiasFijos);
             }
             case "Mes" -> {
-                hijos = grillaDelMes.getChildren();
-                String mes = "";
-                for (Node e : hijos) {
-                    if (e.getClass().equals(VBox.class)) {
-                        LocalDateTime dia = primerDia.plusDays(i);
-                        VBox apartado = (VBox) e;
-                        hijos = apartado.getChildren();
-                        if (dia.getDayOfMonth()==1){
-                            mes = dia.getMonth().toString();
-                        }
-                        if (i < 7) {
-                            Dia = (Label) hijos.get(0);
-                            Numero = (Label) hijos.get(1);
-                            Dia.setText(dia.getDayOfWeek().toString());
-                            Numero.setText("%d".formatted(dia.getDayOfMonth()));
-                        } else {
-                            Numero = (Label) hijos.get(0);
-                            Numero.setText("%d".formatted(dia.getDayOfMonth()));
-                        }
-                        i++;
-                    }
-                }
-                mesDelCalendario.setText(mes);
+                months = strategy.actualizarVista(primerDia,grillaDelMes);
             }
         }
+        String mes = months.get(0).toString();
+        for (int i = 1; i < months.size();i++){
+            mes = mes + ("-" + months.get(i).toString());
+        }
+        mesDelCalendario.setText(mes);
     }
     public void cambiarVistaCalendario(ActionEvent event){
         String visualizacion = tipoDeVisualizacion.getValue();
-        FlowPane nuevo = null;
-        LocalDateTime hoy = LocalDateTime.now();
-        switch (visualizacion) {
-            case "Dia" -> {
-                nuevo = escenaPorDia;
-                controlador.setFechaActual(hoy);
+        if (!strategy.getTipo().equals(visualizacion)){
+            LocalDateTime hoy = LocalDateTime.now();
+            switch (visualizacion) {
+                case "Dia" -> {
+                    strategy = new VistaDiaria(escenaPorDia,pantalla,strategy.getVista());
+                    controlador.setFechaActual(hoy);
+                }
+                case "Semana" -> {
+                    strategy = new VistaSemanal(escenaPorSemana,pantalla,strategy.getVista());
+                    controlador.setFechaActual(InterfazGrafica.domingoAnteriorCercano(hoy));
+                }
+                case "Mes" -> {
+                    strategy = new VistaMensual(escenaPorMes,pantalla,strategy.getVista());
+                    controlador.setFechaActual(InterfazGrafica.primerDomingoCercanoAlMes(hoy.getYear(), hoy.getMonth()));
+                }
             }
-            case "Semana" -> {
-                nuevo = escenaPorSemana;
-                controlador.setFechaActual(InterfazGrafica.domingoAnteriorCercano(hoy));
-            }
-            case "Mes" -> {
-                nuevo = escenaPorMes;
-                controlador.setFechaActual(InterfazGrafica.primerDomingoCercanoAlMes(hoy.getYear(), hoy.getMonth()));
-            }
+            this.actualizarVistaCalendario(controlador.getFechaActual()); // Esto es momentaneo para que sea visible
         }
-        pantalla.getChildren().remove(elementoActual);
-        pantalla.getChildren().add(nuevo);
-        elementoActual = nuevo;
-        this.actualizarVistaCalendario(controlador.getFechaActual()); // Esto es momentaneo para que sea visible
     }
     public void botonDeHoyActividad(EventHandler<ActionEvent> evento){
         botonDeHoy.setOnAction(evento);
