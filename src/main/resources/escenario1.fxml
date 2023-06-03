@@ -22,9 +22,7 @@
       <Button fx:id="visualizacionAnterior" mnemonicParsing="false" text="Anterior" />
       <Separator opacity="0.0" orientation="VERTICAL" prefHeight="50.0" prefWidth="40.0" />
       <Button fx:id="visualizacionPosterior" mnemonicParsing="false" text="Siguiente" />
-      <Separator opacity="0.0" orientation="VERTICAL" prefHeight="50.0" prefWidth="50.0" />
-      <Label fx:id="mesDelCalendario" alignment="CENTER" prefHeight="30.0" prefWidth="100.0" text="Mes" textAlignment="CENTER" />
-      <Separator opacity="0.0" orientation="VERTICAL" prefHeight="50.0" prefWidth="101.0" />
+      <Label fx:id="mesDelCalendario" alignment="CENTER" prefHeight="30.0" prefWidth="250.0" text="Mes" textAlignment="CENTER" />
       <ChoiceBox fx:id="tipoDeVisualizacion" prefHeight="26.0" prefWidth="126.0" />
    </HBox>
    <VBox fx:id="barraLateralIzquierda" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="430.0" prefWidth="100.0">
