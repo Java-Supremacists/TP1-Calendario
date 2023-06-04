@@ -49,7 +49,8 @@ public class Vista {
     @FXML
     private ChoiceBox<String> tipoDeVisualizacion;
     private final String[] elecciones = {"Dia","Semana","Mes"};
-    // @FXML
+    @FXML
+    private Button botonCrearActividad;
     // private ChoiceBox<String> botonCrearActividad;
     // private final String[] actividades = {"Evento","Tarea"};
 
@@ -99,7 +100,9 @@ public class Vista {
         //metemos implementacion interna
         tipoDeVisualizacion.getItems().addAll(elecciones);
         tipoDeVisualizacion.setValue("Semana");
+
         tipoDeVisualizacion.setOnAction(this::cambiarVistaCalendario);
+        botonCrearActividad.setOnAction(this::crearActividad);
         // botonCrearActividad.getItems().addAll(actividades);
     }
     public Scene getScene(){
@@ -153,6 +156,10 @@ public class Vista {
     }
     public void visualizacionPosteriorActividad(EventHandler<ActionEvent> evento){
         visualizacionPosterior.setOnAction(evento);
+    }
+
+    public void crearActividad(ActionEvent evento) {
+	System.out.println("Hola mundo");
     }
     // public void botonCrearActividadActividad(EventHandler<ActionEvent> evento){
     //     botonCrearActividad.setOnAction(evento);
