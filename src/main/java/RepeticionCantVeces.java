@@ -1,10 +1,20 @@
 import java.time.LocalDateTime;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import java.time.DayOfWeek;
 /**
  * RepeticionCantVeces
  */
 public class RepeticionCantVeces implements Repeticion {
     private LocalDateTime fechaFinRepeticion;
+
+    //Los guardamos solamente para que lo podamos gurdar en un archivo despues
+    private int cantidadDeRepeticionesMaximas;
+    private int cadaCuantosDias;
+    private DayOfWeek[] diasDeLaSemana;
+    private LocalDateTime fechaComienzo;
 
     //No estamos totalmente contentos con la presencia de dos constructores
     //distintos, sin embargo, fue la mejor manera que se nos ocurrio de poder
@@ -13,12 +23,16 @@ public class RepeticionCantVeces implements Repeticion {
         //Esto nos da la cantidad de dias extra para llegar al ultimo dia
         //Le restamos uno a cantidadDeRepeticionesMaximas porque el dia en el
         //que estamos cuenta como una repeticion
-        int cantidadDeDiasASumar = cadaCuantosDias * (cantidadDeRepeticionesMaximas - 1);
+        int cantidadDeDiasASumar = cadaCuantosDias * cantidadDeRepeticionesMaximas - 1;
 
         //Le sumamos esos dias a la fecha que nos pasaron
         LocalDateTime fechaFinal = fechaComienzo.plusDays(cantidadDeDiasASumar);
 
         this.fechaFinRepeticion = fechaFinal;
+
+        this.cantidadDeRepeticionesMaximas = cantidadDeRepeticionesMaximas;
+        this.cadaCuantosDias = cadaCuantosDias;
+        this.fechaComienzo = fechaComienzo;
     }
 
     public RepeticionCantVeces(int cantidadDeRepeticionesMaximas, DayOfWeek[] diasDeLaSemana, LocalDateTime fechaComienzo) {
@@ -56,6 +70,10 @@ public class RepeticionCantVeces implements Repeticion {
         LocalDateTime fechaFinal = offsetDiaDeLaSemana.plusDays(cantidadDeRepeticionesSemanales * 7);
 
         this.fechaFinRepeticion = fechaFinal;
+
+        this.cantidadDeRepeticionesMaximas = cantidadDeRepeticionesMaximas;
+        this.diasDeLaSemana = diasDeLaSemana;
+        this.fechaComienzo = fechaComienzo;
     }
 
     @Override
@@ -66,4 +84,30 @@ public class RepeticionCantVeces implements Repeticion {
         return estaDentro;
     }
 
+    @Override
+    public void guardar(Element estructura, Document doc) {
+        //Solo tengo que guardar una cosa. Si dias de la semana no existe,
+        //entonces el la repeticion se creo con cadaCuantosDias
+        String diasDeLaSemanaOCadaCuantosDias = "";
+        if (this.diasDeLaSemana != null) {
+            for (int i = 0; i < this.diasDeLaSemana.length; i++) {
+                if (i != 0) {   //Le ponemos coma (,) a todos los elementos (excepto
+                    diasDeLaSemanaOCadaCuantosDias += ",";//al primero) para evitar que quede: ,MONDAY,THURSDAY
+                }
+                diasDeLaSemanaOCadaCuantosDias += this.diasDeLaSemana[i].toString();
+
+            }
+        }
+        else {
+            diasDeLaSemanaOCadaCuantosDias = String.valueOf(this.cadaCuantosDias);
+        }
+
+
+        Element Repeticion = doc.createElement("RepeticionCantVeces");
+        Repeticion.appendChild(doc.createTextNode(String.valueOf(this.cantidadDeRepeticionesMaximas) + "@" +
+                               String.valueOf(diasDeLaSemanaOCadaCuantosDias) + "@" +
+                               String.valueOf(this.fechaComienzo)));
+        estructura.appendChild(Repeticion);
+
+    }
 }

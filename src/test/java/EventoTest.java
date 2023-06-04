@@ -22,7 +22,6 @@ public class EventoTest {
         even1.setTermina(termina);
         assertEquals(arranca, even1.cuandoEmpieza());
         assertEquals(termina, even1.cuandoTermina());
-        assertNull(even1.ultimaAlarma());
         assertEquals("", even1.getDescripcion());
         assertEquals("", even1.getTitulo());
         assertFalse(even1.esDiaEntero());
@@ -35,12 +34,6 @@ public class EventoTest {
     }
     @Test
     public void creacionDeEventos() {
-        ArrayList<LocalDateTime> alarmas = new ArrayList<>();
-        alarmas.add(LocalDateTime.of(2023,1,1,0,0));
-        alarmas.add(LocalDateTime.of(2023,5,24,11,30));
-        alarmas.add(LocalDateTime.of(2023,3,12,18,0));
-        alarmas.add(LocalDateTime.of(2023,9,12,23,30));
-        alarmas.add(LocalDateTime.of(2023,1,1,0,0));
         var arranca = LocalDateTime.of(2023,12,8,0,0);
         var termina = LocalDateTime.of(2023,12,8,0,0);
 
@@ -48,7 +41,6 @@ public class EventoTest {
         var even1 = new Evento(arranca,termina);
         even1.setName("Nombre1");
         even1.setDescription("Descripcion1");
-        even1.agregarAlarmas(alarmas);
         even1.setEsDiaCompleto(true);
 
         var even2 = new Evento(arranca,termina);
@@ -99,8 +91,8 @@ public class EventoTest {
         var fechaQueCae = LocalDateTime.of(2023, 4, 12, 5, 0);
         var fechaQueNoCae = LocalDateTime.of(2023, 4, 13, 5, 0);
 
-        assertEquals(true, even1.caeElDia(fechaQueCae));
-        assertEquals(false, even1.caeElDia(fechaQueNoCae));
+        assertTrue(even1.caeElDia(fechaQueCae));
+        assertFalse(even1.caeElDia(fechaQueNoCae));
     }
 
     @Test

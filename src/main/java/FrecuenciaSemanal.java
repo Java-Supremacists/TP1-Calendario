@@ -2,6 +2,9 @@ import java.time.LocalDateTime;
 import java.time.DayOfWeek;
 import java.util.Arrays;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 
 /**
  * FrecuenciaSemanal
@@ -63,6 +66,31 @@ public class FrecuenciaSemanal implements Frecuencia {
         }
 
         return proximoEvento;
+    }
+
+    @Override
+    public void guardar(Element estructura, Document doc) {
+        Element Frecuencia = doc.createElement("FrecuenciaSemanal");
+
+        String dias = "";
+        for (int i = 0; i < this.diasDeLaSemana.length; i++) {
+            if (i != 0) {   //Le ponemos coma (,) a todos los elementos (excepto
+                dias += ",";//al primero) para evitar que quede: ,MONDAY,THURSDAY
+            }
+            dias += this.diasDeLaSemana[i].toString();
+
+        }
+        Frecuencia.appendChild(doc.createTextNode(dias));
+        estructura.appendChild(Frecuencia);
+
+        this.repeticion.guardar(estructura, doc);
+
+    }
+
+    @Override
+    public void cambiarRepeticion(Repeticion repeticion) {
+        this.repeticion = repeticion;
+
     }
 
 
