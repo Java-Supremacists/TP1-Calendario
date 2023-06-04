@@ -49,9 +49,9 @@ public class Vista {
     @FXML
     private ChoiceBox<String> tipoDeVisualizacion;
     private final String[] elecciones = {"Dia","Semana","Mes"};
-    @FXML
-    private ChoiceBox<String> botonCrearActividad;
-    private final String[] actividades = {"Evento","Tarea"};
+    // @FXML
+    // private ChoiceBox<String> botonCrearActividad;
+    // private final String[] actividades = {"Evento","Tarea"};
 
     //--------- Semanal ---------
     @FXML
@@ -100,7 +100,7 @@ public class Vista {
         tipoDeVisualizacion.getItems().addAll(elecciones);
         tipoDeVisualizacion.setValue("Semana");
         tipoDeVisualizacion.setOnAction(this::cambiarVistaCalendario);
-        botonCrearActividad.getItems().addAll(actividades);
+        // botonCrearActividad.getItems().addAll(actividades);
     }
     public Scene getScene(){
         return this.escena;
@@ -154,7 +154,7 @@ public class Vista {
     public void visualizacionPosteriorActividad(EventHandler<ActionEvent> evento){
         visualizacionPosterior.setOnAction(evento);
     }
-    public void botonCrearActividadActividad(EventHandler<ActionEvent> evento){
-        botonCrearActividad.setOnAction(evento);
-    }
+    // public void botonCrearActividadActividad(EventHandler<ActionEvent> evento){
+    //     botonCrearActividad.setOnAction(evento);
+    // }
 }
