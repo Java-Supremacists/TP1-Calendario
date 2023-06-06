@@ -164,25 +164,12 @@ public class Vista {
     }
 
     public void crearActividad(ActionEvent evento) {
-	try {
-	System.out.println("Hola mundo");
-	final Stage dialog = new Stage();
-	dialog.initModality(Modality.APPLICATION_MODAL);
 	var crearActividad = new CreadorActividad(this.controlador);
-	dialog.setScene(crearActividad.getScene());
-	System.out.println("ups");
-	// dialog.initOwner(primaryStage);
-	// VBox dialogVbox = new VBox(20);
-	// dialogVbox.getChildren().add(new Text("This is a Dialog"));
-	// Scene dialogScene = new Scene(dialogVbox, 300, 200);
-	// dialog.setScene(dialogScene);
-	dialog.show();
-	}
-	catch (IOException e) {
-	    System.out.println("S");
+	try {
+	    crearActividad.start();
+	    }
+	catch (Exception e) {
+	    e.printStackTrace(System.out);
 	}
     }
-    // public void botonCrearActividadActividad(EventHandler<ActionEvent> evento){
-    //     botonCrearActividad.setOnAction(evento);
-    // }
 }
