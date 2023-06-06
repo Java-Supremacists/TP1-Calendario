@@ -1,3 +1,5 @@
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,6 +16,8 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 public class Vista {
     /*
@@ -160,6 +164,14 @@ public class Vista {
 
     public void crearActividad(ActionEvent evento) {
 	System.out.println("Hola mundo");
+	final Stage dialog = new Stage();
+	dialog.initModality(Modality.APPLICATION_MODAL);
+	// dialog.initOwner(primaryStage);
+	// VBox dialogVbox = new VBox(20);
+	// dialogVbox.getChildren().add(new Text("This is a Dialog"));
+	// Scene dialogScene = new Scene(dialogVbox, 300, 200);
+	// dialog.setScene(dialogScene);
+	dialog.show();
     }
     // public void botonCrearActividadActividad(EventHandler<ActionEvent> evento){
     //     botonCrearActividad.setOnAction(evento);
