@@ -23,6 +23,7 @@ public class InterfazGrafica extends Application {
         stage.setScene(calendario);
         stage.setResizable(false);
         stage.show();
+	stage.setTitle("Calendario Gerez - Orsi");
         vista.visualizacionAnteriorActividad(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
