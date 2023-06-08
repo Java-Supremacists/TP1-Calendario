@@ -14,21 +14,21 @@
     <scene>
         <Scene>
             <AnchorPane prefHeight="254.0" prefWidth="249.0">
-            <children>
-               <TextField layoutX="39.0" layoutY="29.0" text="Nombre" />
-               <TextField layoutX="38.0" layoutY="77.0" text="Descripcion" />
-               <DatePicker layoutX="14.0" layoutY="121.0" prefHeight="24.0" prefWidth="110.0" promptText="Insertar fecha" />
-               <Button layoutX="98.0" layoutY="209.0" mnemonicParsing="false" text="Crear" />
-               <MenuButton layoutX="15.0" layoutY="169.0" mnemonicParsing="false" text="Frecuencia">
-                 <items>
-                   <MenuItem mnemonicParsing="false" text="Diaria" />
-                   <MenuItem mnemonicParsing="false" text="Semanal" />
-                     <MenuItem mnemonicParsing="false" text="Mensual" />
-                     <MenuItem mnemonicParsing="false" text="Anual" />
-                 </items>
-               </MenuButton>
-               <CheckBox layoutX="146.0" layoutY="124.0" mnemonicParsing="false" text="Dia Entero" />
-            </children></AnchorPane>
+                <TextField layoutX="39.0" layoutY="29.0" text="Nombre"/>
+                <TextField layoutX="38.0" layoutY="77.0" text="Descripcion"/>
+                <DatePicker layoutX="14.0" layoutY="121.0" prefHeight="24.0" prefWidth="110.0"
+                            promptText="Insertar fecha"/>
+                <Button layoutX="98.0" layoutY="209.0" mnemonicParsing="false" text="Crear"/>
+                <MenuButton layoutX="15.0" layoutY="169.0" mnemonicParsing="false" text="Frecuencia">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Diaria"/>
+                        <MenuItem mnemonicParsing="false" text="Semanal"/>
+                        <MenuItem mnemonicParsing="false" text="Mensual"/>
+                        <MenuItem mnemonicParsing="false" text="Anual"/>
+                    </items>
+                </MenuButton>
+                <CheckBox layoutX="146.0" layoutY="124.0" mnemonicParsing="false" text="Dia Entero"/>
+            </AnchorPane>
         </Scene>
     </scene>
 </Stage>
