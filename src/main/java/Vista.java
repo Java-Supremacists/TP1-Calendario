@@ -1,3 +1,5 @@
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,6 +16,8 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 public class Vista {
     /*
@@ -49,7 +53,8 @@ public class Vista {
     @FXML
     private ChoiceBox<String> tipoDeVisualizacion;
     private final String[] elecciones = {"Dia","Semana","Mes"};
-    // @FXML
+    @FXML
+    private Button botonCrearActividad;
     // private ChoiceBox<String> botonCrearActividad;
     // private final String[] actividades = {"Evento","Tarea"};
 
@@ -99,7 +104,10 @@ public class Vista {
         //metemos implementacion interna
         tipoDeVisualizacion.getItems().addAll(elecciones);
         tipoDeVisualizacion.setValue("Semana");
+
         tipoDeVisualizacion.setOnAction(this::cambiarVistaCalendario);
+
+	botonCrearActividad.setOnAction(this::crearActividad);
         // botonCrearActividad.getItems().addAll(actividades);
     }
     public Scene getScene(){
@@ -154,7 +162,14 @@ public class Vista {
     public void visualizacionPosteriorActividad(EventHandler<ActionEvent> evento){
         visualizacionPosterior.setOnAction(evento);
     }
-    // public void botonCrearActividadActividad(EventHandler<ActionEvent> evento){
-    //     botonCrearActividad.setOnAction(evento);
-    // }
+
+    public void crearActividad(ActionEvent evento) {
+	var crearActividad = new CreadorActividad(this.controlador);
+	try {
+	    crearActividad.start();
+	    }
+	catch (Exception e) {
+	    e.printStackTrace(System.out);
+	}
+    }
 }
