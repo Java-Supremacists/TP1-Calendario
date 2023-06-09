@@ -1,14 +1,15 @@
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.HashMap;
 
 public class InterfazGrafica extends Application {
-    private final HashMap<Usuario,Calendario> modelo = new HashMap<>();
+    private final Calendario modelo = new Calendario();
     private LocalDateTime fechaActual;
     @Override
     public void start(Stage stage) throws Exception {
@@ -57,6 +58,20 @@ public class InterfazGrafica extends Application {
             }
             vista.actualizarVistaCalendario(fechaActual);
         });
+        var timer = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                var horaActual = LocalDateTime.now();
+                if (horaActual.equals(modelo.proximaAlarma())){
+                    var alerta = new Alert(Alert.AlertType.INFORMATION);
+                    alerta.setContentText("Esta Es la alarma del evento.......");
+                    alerta.show();
+                    //Alert alertaPosible2 = new Alert(Alert.AlertType.NONE, "Esta Es la alarma del evento......", ButtonType.OK);
+                    //alertaPosible2.show();
+                }
+            }
+        };
+        timer.start();
     }
     public void setFechaActual(LocalDateTime fechaActual) {
         this.fechaActual = fechaActual;
