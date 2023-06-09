@@ -1,5 +1,3 @@
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,9 +11,6 @@ import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
 
 
 
@@ -120,17 +115,13 @@ public class Vista {
         //HAY UN ERROR PARA ARREGLAR ACA EN STRATEGY
         //Actualizar las grillas segun si va una semana/día/mes antes o después del actual
         //implementar aca para facilitar la actualizacion de los días facilmente
-        List<Month> months = new ArrayList<>(1);
+        String months = "";
         switch (strategy.getTipo()){
             case "Dia" -> months = strategy.actualizarVista(primerDia,grillaConElDia);
             case "Semana" -> months = strategy.actualizarVista(primerDia,grillaDeDiasFijos);
             case "Mes" -> months = strategy.actualizarVista(primerDia,grillaDelMes);
         }
-        StringBuilder mes = new StringBuilder(months.get(0).toString());
-        for (int i = 1; i < months.size();i++){
-            mes.append("-").append(months.get(i).toString());
-        }
-        mesDelCalendario.setText(mes.toString());
+        mesDelCalendario.setText(months);
     }
     public void cambiarVistaCalendario(ActionEvent event){
         String visualizacion = tipoDeVisualizacion.getValue();
@@ -147,7 +138,7 @@ public class Vista {
                 }
                 case "Mes" -> {
                     strategy = new VistaMensual(escenaPorMes,pantalla,strategy.getVista());
-                    controlador.setFechaActual(InterfazGrafica.primerDomingoCercanoAlMes(hoy.getYear(), hoy.getMonth()));
+                    controlador.setFechaActual(InterfazGrafica.primerDiaDelMes(hoy.getYear(), hoy.getMonth()));
                 }
             }
             this.actualizarVistaCalendario(controlador.getFechaActual()); // Esto es momentaneo para que sea visible
@@ -162,7 +153,6 @@ public class Vista {
     public void visualizacionPosteriorActividad(EventHandler<ActionEvent> evento){
         visualizacionPosterior.setOnAction(evento);
     }
-
     public void crearActividad(ActionEvent evento) {
 	var crearActividad = new CreadorActividad(this.controlador);
 	try {

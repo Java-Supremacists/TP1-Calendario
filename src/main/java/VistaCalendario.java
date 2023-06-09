@@ -17,7 +17,7 @@ public abstract class VistaCalendario {
         vista = visualizacion;
         escenaActual = pantalla;
     }
-    public abstract List<Month> actualizarVista(LocalDateTime fecha, GridPane grillaSuperior);
+    public abstract String actualizarVista(LocalDateTime fecha, GridPane grillaSuperior);
     public abstract String getTipo();
     public FlowPane getVista() {
         return vista;

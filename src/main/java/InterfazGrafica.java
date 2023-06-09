@@ -26,11 +26,8 @@ public class InterfazGrafica extends Application {
                 case "Dia" -> fechaActual = fechaActual.minusDays(1);
                 case "Semana" -> fechaActual = domingoAnteriorCercano(fechaActual.minusDays(7));
                 case "Mes" -> {
-                    while (fechaActual.getDayOfMonth()!= 1){
-                        fechaActual = fechaActual.plusDays(1);
-                    }
                     fechaActual = fechaActual.minusMonths(1);
-                    fechaActual = primerDomingoCercanoAlMes(fechaActual.getYear(),fechaActual.getMonth());
+                    fechaActual = primerDiaDelMes(fechaActual.getYear(),fechaActual.getMonth());
                 }
             }
             vista.actualizarVistaCalendario(fechaActual);
@@ -40,11 +37,8 @@ public class InterfazGrafica extends Application {
                 case "Dia" -> fechaActual = fechaActual.plusDays(1);
                 case "Semana" -> fechaActual = domingoAnteriorCercano(fechaActual.plusDays(7));
                 case "Mes" -> {
-                    while (fechaActual.getDayOfMonth()!= 1){
-                        fechaActual = fechaActual.plusDays(1);
-                    }
                     fechaActual = fechaActual.plusMonths(1);
-                    fechaActual = primerDomingoCercanoAlMes(fechaActual.getYear(),fechaActual.getMonth());
+                    fechaActual = primerDiaDelMes(fechaActual.getYear(),fechaActual.getMonth());
                 }
             }
             vista.actualizarVistaCalendario(fechaActual);
@@ -54,7 +48,7 @@ public class InterfazGrafica extends Application {
             switch (vista.getVisualizacion()) {
                 case "Dia" -> fechaActual = nueva;
                 case "Semana" -> fechaActual = domingoAnteriorCercano(nueva);
-                case "Mes" -> fechaActual = primerDomingoCercanoAlMes(nueva.getYear(),nueva.getMonth());
+                case "Mes" -> fechaActual = primerDiaDelMes(nueva.getYear(),nueva.getMonth());
             }
             vista.actualizarVistaCalendario(fechaActual);
         });
@@ -87,8 +81,7 @@ public class InterfazGrafica extends Application {
         }
         return devolver;
     }
-    public static LocalDateTime primerDomingoCercanoAlMes(int year, Month mes){
-        LocalDateTime primerDiaDelMes = LocalDateTime.of(year,mes,1,0,0);
-        return domingoAnteriorCercano(primerDiaDelMes);
+    public static LocalDateTime primerDiaDelMes(int year, Month mes){
+        return LocalDateTime.of(year,mes,1,0,0);
     }
 }

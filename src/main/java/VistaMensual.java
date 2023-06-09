@@ -4,10 +4,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
 
 public class VistaMensual extends VistaCalendario {
     public VistaMensual(FlowPane visualizacion, FlowPane pantalla, FlowPane eliminar) {
@@ -17,9 +16,9 @@ public class VistaMensual extends VistaCalendario {
         super(visualizacion, pantalla);
     }*/
     @Override
-    public List<Month> actualizarVista(LocalDateTime fecha, GridPane grillaMes) {
+    public String actualizarVista(LocalDateTime fecha, GridPane grillaMes) {
         ObservableList<Node> hijos = grillaMes.getChildren();
-        Month mes = null;
+        Month mes = fecha.getMonth();
         long i = 0;
         Label Dia;
         Label Numero;
@@ -43,9 +42,7 @@ public class VistaMensual extends VistaCalendario {
                 i++;
             }
         }
-        ArrayList<Month> months = new ArrayList<>(1);
-        months.add(0,mes);
-        return months;
+        return mes.toString();
     }
     @Override
     public String getTipo() {
