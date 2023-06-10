@@ -132,6 +132,7 @@ public class CreadorActividad {
         // var numeroBoton = new Estadooton(this.espacioHora);
         // this.espacioHora.setStyle(numeroBoton.getColorBoton());
 	// this.configurarUnidadDeTiempo(this.espacioHora, 23, LocalDate::withHour);
+
 	var horaFinal = this.configurarUnidadDeTiempo(this.espacioHora, 23);
         this.horaEvento = this.horaEvento.withHour(horaFinal);
 
@@ -144,23 +145,29 @@ public class CreadorActividad {
 
     @FXML
     public void ponerMinuto(ActionEvent event) {
-        var numeroBoton = new EstadoBoton(this.espacioMinuto);
-        this.espacioMinuto.setStyle(numeroBoton.getColorBoton());
+	var horaFinal = this.configurarUnidadDeTiempo(this.espacioMinuto, 59);
+        this.horaEvento = this.horaEvento.withMinute(horaFinal);
+	//
+        // var numeroBoton = new EstadoBoton(this.espacioMinuto);
+        // this.espacioMinuto.setStyle(numeroBoton.getColorBoton());
 
-        Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), 59);
-        this.horaEvento = this.horaEvento.withMinute(horaEstablecida);
-        this.espacioMinuto.setText(String.valueOf(horaEstablecida));
+        // Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), 59);
+        // this.horaEvento = this.horaEvento.withMinute(horaEstablecida);
+        // this.espacioMinuto.setText(String.valueOf(horaEstablecida));
         System.out.println(this.horaEvento);
     }
 
     @FXML
     public void ponerSegundo(ActionEvent event) {
-        var numeroBoton = new EstadoBoton(this.espacioSegundo);
-        this.espacioSegundo.setStyle(numeroBoton.getColorBoton());
+	var horaFinal = this.configurarUnidadDeTiempo(this.espacioSegundo, 59);
+        this.horaEvento = this.horaEvento.withSecond(horaFinal);
 
-        Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), 59);
-        this.horaEvento = this.horaEvento.withSecond(horaEstablecida);
-        this.espacioSegundo.setText(String.valueOf(horaEstablecida));
+        // var numeroBoton = new EstadoBoton(this.espacioSegundo);
+        // this.espacioSegundo.setStyle(numeroBoton.getColorBoton());
+
+        // Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), 59);
+        // this.horaEvento = this.horaEvento.withSecond(horaEstablecida);
+        // this.espacioSegundo.setText(String.valueOf(horaEstablecida));
         System.out.println(this.horaEvento);
     }
 
