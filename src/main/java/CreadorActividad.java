@@ -60,7 +60,7 @@ public class CreadorActividad {
 
 
     public CreadorActividad(InterfazGrafica controller) {
-	this.controlador = controller;
+        this.controlador = controller;
     }
 
     // public Scene getScene() {
@@ -155,7 +155,7 @@ public class CreadorActividad {
     }
 
     public void crearEvento(ActionEvent event) {
-	// this.controlador.mo
+        // this.controlador.mo
     }
 
 }
