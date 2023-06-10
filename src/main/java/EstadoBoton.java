@@ -2,7 +2,7 @@ import javafx.scene.control.TextField;
 
 /**
  * EstadoBoton
- * Esta clase solo existe porque java no nos deja devolver dos valores de distinto tipo. 
+ * Esta clase solo existe porque java no nos deja devolver dos valores de distinto tipo.
  * Gracias por nada POO >:(
  */
 public class EstadoBoton {
@@ -10,22 +10,22 @@ public class EstadoBoton {
     private Integer numeroBoton;
 
     public EstadoBoton (TextField numeroBoton) {
-	try {
-	    this.numeroBoton = Integer.parseInt(numeroBoton.getText());
-	    this.colorBoton = "-fx-control-inner-background: white";
-	}
-	catch (NumberFormatException e) {
-	    this.numeroBoton = 0;
-	    this.colorBoton = "-fx-control-inner-background: crimson";
-	}
+        try {
+            this.numeroBoton = Integer.parseInt(numeroBoton.getText());
+            this.colorBoton = "-fx-control-inner-background: white";
+        }
+        catch (NumberFormatException e) {
+            this.numeroBoton = 0;
+            this.colorBoton = "-fx-control-inner-background: crimson";
+        }
     }
 
     public String getColorBoton() {
-	return this.colorBoton;
+        return this.colorBoton;
     }
 
     public Integer getNumeroBoton() {
-	return this.numeroBoton;
+        return this.numeroBoton;
     }
-	
+
 }
