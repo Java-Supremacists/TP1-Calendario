@@ -13,7 +13,7 @@ public class InterfazGrafica extends Application {
     private LocalDateTime fechaActual;
     @Override
     public void start(Stage stage) throws Exception {
-        var vista = new Vista(this); //por defecto viene con una vista semanal
+        var vista = new Vista(this, this.modelo); //por defecto viene con una vista semanal
         fechaActual = domingoAnteriorCercano(LocalDateTime.now());
         vista.actualizarVistaCalendario(fechaActual);
         Scene calendario = vista.getScene();

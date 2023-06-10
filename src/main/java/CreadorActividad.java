@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 
 import java.lang.reflect.Method;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.function.Function;
 
@@ -18,7 +19,7 @@ public class CreadorActividad {
 
     // private Scene escena;
 
-    private InterfazGrafica controlador;
+    private Calendario modelo;
 
     @FXML
     private TextField espacioNombre;
@@ -55,12 +56,8 @@ public class CreadorActividad {
     //Le pongo un valor por defecto. Esto tambien es asi en google calendar
     private LocalTime horaEvento = LocalTime.now();
 
-
-
-
-
-    public CreadorActividad(InterfazGrafica controller) {
-        this.controlador = controller;
+    public CreadorActividad(Calendario modelo) {
+        this.modelo = modelo;
     }
 
     // public Scene getScene() {
@@ -155,7 +152,10 @@ public class CreadorActividad {
     }
 
     public void crearEvento(ActionEvent event) {
-        // this.controlador.mo
+	LocalDateTime fechaFinal;
+	fechaFinal = this.horaEvento.atDate(this.fechaEvento);
+	this.modelo.crearTarea(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaFinal);
+	this.modelo.longTareasYEventos();
     }
 
 }

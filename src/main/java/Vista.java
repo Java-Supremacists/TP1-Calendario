@@ -77,11 +77,13 @@ public class Vista {
     @FXML
     private GridPane grillaDelMes;
 
+    private Calendario modelo;
+
     //--------- Mensual ---------
     private final Scene escena;
     private final InterfazGrafica controlador;
     private VistaCalendario strategy;
-    public Vista(InterfazGrafica controller) throws IOException {
+    public Vista(InterfazGrafica controller, Calendario modelo) throws IOException {
         //cargamos archivos
         FXMLLoader loader1 = new FXMLLoader(getClass().getResource("escenario1.fxml"));
         loader1.setController(this);
@@ -93,6 +95,7 @@ public class Vista {
 
         //guardamos atributos
         controlador = controller;
+	this.modelo = modelo;
         strategy = new VistaSemanal(escenaPorSemana,pantalla);
         this.escena = new Scene(pantalla1,854,480); //creamos la escena
 
@@ -157,7 +160,7 @@ public class Vista {
         visualizacionPosterior.setOnAction(evento);
     }
     public void crearActividad(ActionEvent evento) {
-        var crearActividad = new CreadorActividad(this.controlador);
+        var crearActividad = new CreadorActividad(this.modelo);
         try {
             crearActividad.start();
         }
