@@ -97,7 +97,8 @@ public class CreadorActividad {
 
     }
 
-    private Integer stringAIntGUI() {
+    private Integer stringAIntGUI() throws NumberFormatException {
+
 	return 1;
     }
 
