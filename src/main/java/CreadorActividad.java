@@ -1,6 +1,7 @@
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -36,6 +37,9 @@ public class CreadorActividad {
     @FXML
     private DatePicker espacioElegirFecha;
     private LocalDate fechaEvento;
+
+    @FXML
+    private Button botonCrear;
 
     @FXML
     private TextField espacioFrecuencia;
@@ -148,5 +152,8 @@ public class CreadorActividad {
 
         System.out.println(this.horaEvento);
     }
+
+    public void crearEvento(ActionEvent event) {
+	}
 
 }

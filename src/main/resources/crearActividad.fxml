@@ -18,7 +18,7 @@
                <TextField fx:id="espacioNombre" layoutX="40.0" layoutY="26.0" onAction="#ponerNombre" text="Nombre" />
                <TextField fx:id="espacioDescripcion" layoutX="40.0" layoutY="65.0" onAction="#ponerDescripcion" text="Descripcion" />
                <DatePicker fx:id="espacioElegirFecha" layoutX="14.0" layoutY="103.0" onAction="#ponerFecha" prefHeight="24.0" prefWidth="110.0" promptText="Insertar fecha" />
-               <Button layoutX="98.0" layoutY="209.0" mnemonicParsing="false" text="Crear" />
+               <Button fx:id="botonCrear" layoutX="98.0" layoutY="209.0" mnemonicParsing="false" onAction="#crearEvento" text="Crear" />
                <CheckBox fx:id="espacioEsDiaCompleto" layoutX="142.0" layoutY="106.0" mnemonicParsing="false" onAction="#ponerEsDiaCompleto" text="Dia Entero" />
                <Text layoutX="14.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frecuencia diaria:" />
                <TextField fx:id="espacioFrecuencia" layoutX="153.0" layoutY="175.0" onAction="#ponerFrecuencia" prefHeight="24.0" prefWidth="71.0" text="0" />
