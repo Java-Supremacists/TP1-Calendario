@@ -83,23 +83,14 @@ public class CreadorActividad {
 
     @FXML
     public void ponerFrecuencia(ActionEvent event) {
-	try  {
-	    this.frecuenciaDiariaEvento = Integer.parseInt(this.espacioFrecuencia.getText());
-	    System.out.println(this.frecuenciaDiariaEvento);
-	    this.espacioFrecuencia.setStyle("-fx-control-inner-background: white");
-	}
-	catch (NumberFormatException e) {
-	    System.out.println("POner un numero, no un string");
-	    this.espacioFrecuencia.setStyle("-fx-control-inner-background: crimson");
-	    this.frecuenciaDiariaEvento = 0;
-	    System.out.println(this.frecuenciaDiariaEvento);
-	}
+	var numeroBoton = new EstadoBoton(this.espacioFrecuencia);
+	this.frecuenciaDiariaEvento = numeroBoton.getNumeroBoton();
+	this.espacioFrecuencia.setStyle(numeroBoton.getColorBoton());
+	System.out.println(numeroBoton.getColorBoton());
+	System.out.println(numeroBoton.getNumeroBoton());
 
-    }
 
-    private Integer stringAIntGUI() throws NumberFormatException {
 
-	return 1;
     }
 
     @FXML
