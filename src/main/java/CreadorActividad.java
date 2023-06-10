@@ -18,7 +18,7 @@ public class CreadorActividad {
 
     // private Scene escena;
 
-    // private InterfazGrafica controlador;
+    private InterfazGrafica controlador;
 
     @FXML
     private TextField espacioNombre;
@@ -60,6 +60,7 @@ public class CreadorActividad {
 
 
     public CreadorActividad(InterfazGrafica controller) {
+	this.controlador = controller;
     }
 
     // public Scene getScene() {
@@ -154,6 +155,7 @@ public class CreadorActividad {
     }
 
     public void crearEvento(ActionEvent event) {
+	// this.controlador.mo
     }
 
 }

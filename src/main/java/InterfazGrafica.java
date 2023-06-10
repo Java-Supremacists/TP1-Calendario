@@ -84,4 +84,6 @@ public class InterfazGrafica extends Application {
     public static LocalDateTime primerDiaDelMes(int year, Month mes) {
         return LocalDateTime.of(year,mes,1,0,0);
     }
+
+
 }

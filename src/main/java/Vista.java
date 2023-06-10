@@ -131,14 +131,17 @@ public class Vista {
             case "Dia" -> {
                         strategy = new VistaDiaria(escenaPorDia,pantalla,strategy.getVista());
                         controlador.setFechaActual(hoy);
+			break;
                     }
                 case "Semana" -> {
                             strategy = new VistaSemanal(escenaPorSemana,pantalla,strategy.getVista());
                             controlador.setFechaActual(InterfazGrafica.domingoAnteriorCercano(hoy));
+			break;
                         }
                     case "Mes" -> {
                                 strategy = new VistaMensual(escenaPorMes,pantalla,strategy.getVista());
                                 controlador.setFechaActual(InterfazGrafica.primerDiaDelMes(hoy.getYear(), hoy.getMonth()));
+			break;
                             }
                         }
             this.actualizarVistaCalendario(controlador.getFechaActual()); // Esto es momentaneo para que sea visible
