@@ -2,8 +2,10 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
+import java.time.LocalDate;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,10 +26,16 @@ public class CreadorActividad {
 
     @FXML
     private CheckBox espacioEsDiaCompleto;
-
     //Tiene como valor predeterminado falso. Si el usuario no dice nada
     //entonces asumimos que NO es de dia completo
     private Boolean esDiaCompletoEvento = false; 
+
+    @FXML
+    private DatePicker espacioElegirFecha;
+    private LocalDate fechaEvento;
+
+
+
 
     public CreadorActividad(InterfazGrafica controller) {
     }
@@ -60,6 +68,12 @@ public class CreadorActividad {
     public void ponerEsDiaCompleto(ActionEvent event) {
 	this.esDiaCompletoEvento = espacioEsDiaCompleto.isSelected();
 	System.out.println(this.esDiaCompletoEvento);
+    }
+
+    @FXML
+    public void ponerFecha(ActionEvent event) {
+	this.fechaEvento = espacioElegirFecha.getValue();
+	System.out.println(this.fechaEvento);
     }
 
 }
