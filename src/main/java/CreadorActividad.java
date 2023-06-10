@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 
 public class CreadorActividad {
 
-    private Scene escena;
+    // private Scene escena;
 
     // private InterfazGrafica controlador;
     @FXML
@@ -19,9 +19,9 @@ public class CreadorActividad {
     public CreadorActividad(InterfazGrafica controller) {
     }
 
-    public Scene getScene() {
-        return this.escena;
-    }
+    // public Scene getScene() {
+    //     return this.escena;
+    // }
 
     public void start() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("crearActividad.fxml"));
