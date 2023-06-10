@@ -68,6 +68,10 @@ public class CreadorActividad {
         Stage stageCrearEvento = loader.load();
         stageCrearEvento.setTitle("Creando evento");
         stageCrearEvento.show();
+
+	this.espacioHora.setText(String.valueOf(LocalTime.now().getHour()));
+	this.espacioMinuto.setText(String.valueOf(LocalTime.now().getMinute()));
+	this.espacioSegundo.setText(String.valueOf(LocalTime.now().getSecond()));
     }
 
     @FXML
