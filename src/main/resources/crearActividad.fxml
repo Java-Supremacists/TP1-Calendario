@@ -27,7 +27,7 @@
                      <MenuItem mnemonicParsing="false" text="Anual" />
                  </items>
                </MenuButton>
-               <CheckBox layoutX="142.0" layoutY="115.0" mnemonicParsing="false" text="Dia Entero" />
+               <CheckBox fx:id="espacioEsDiaCompleto" layoutX="142.0" layoutY="115.0" mnemonicParsing="false" onAction="#ponerEsDiaCompleto" text="Dia Entero" />
             </children></AnchorPane>
         </Scene>
     </scene>
