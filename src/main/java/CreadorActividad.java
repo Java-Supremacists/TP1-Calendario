@@ -97,4 +97,26 @@ public class CreadorActividad {
 
     }
 
+    private Integer stringAIntGUI() {
+	return 1;
+    }
+
+    @FXML
+    public void ponerHora(ActionEvent event) {
+	// this.fechaEvento = this.espacioElegirFecha.getValue();
+	// System.out.println(this.fechaEvento);
+    }
+
+    @FXML
+    public void ponerMinuto(ActionEvent event) {
+	// this.fechaEvento = this.espacioElegirFecha.getValue();
+	// System.out.println(this.fechaEvento);
+    }
+
+    @FXML
+    public void ponerSegundo(ActionEvent event) {
+	// this.fechaEvento = this.espacioElegirFecha.getValue();
+	// System.out.println(this.fechaEvento);
+    }
+
 }

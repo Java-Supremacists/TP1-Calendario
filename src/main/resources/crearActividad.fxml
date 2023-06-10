@@ -6,21 +6,35 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
 <Stage xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene>
-            <AnchorPane prefHeight="254.0" prefWidth="249.0">
+            <AnchorPane prefHeight="245.0" prefWidth="249.0">
             <children>
-               <TextField fx:id="espacioNombre" layoutX="39.0" layoutY="29.0" onAction="#ponerNombre" text="Nombre" />
+               <TextField fx:id="espacioNombre" layoutX="40.0" layoutY="26.0" onAction="#ponerNombre" text="Nombre" />
                <TextField fx:id="espacioDescripcion" layoutX="40.0" layoutY="65.0" onAction="#ponerDescripcion" text="Descripcion" />
-               <DatePicker fx:id="espacioElegirFecha" layoutX="14.0" layoutY="112.0" onAction="#ponerFecha" prefHeight="24.0" prefWidth="110.0" promptText="Insertar fecha" />
+               <DatePicker fx:id="espacioElegirFecha" layoutX="14.0" layoutY="103.0" onAction="#ponerFecha" prefHeight="24.0" prefWidth="110.0" promptText="Insertar fecha" />
                <Button layoutX="98.0" layoutY="209.0" mnemonicParsing="false" text="Crear" />
-               <CheckBox fx:id="espacioEsDiaCompleto" layoutX="142.0" layoutY="115.0" mnemonicParsing="false" onAction="#ponerEsDiaCompleto" text="Dia Entero" />
-               <Text layoutX="14.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frecuencia diaria:" />
-               <TextField fx:id="espacioFrecuencia" layoutX="153.0" layoutY="163.0" onAction="#ponerFrecuencia" prefHeight="24.0" prefWidth="71.0" text="0" />
+               <CheckBox fx:id="espacioEsDiaCompleto" layoutX="142.0" layoutY="106.0" mnemonicParsing="false" onAction="#ponerEsDiaCompleto" text="Dia Entero" />
+               <Text layoutX="14.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frecuencia diaria:" />
+               <TextField fx:id="espacioFrecuencia" layoutX="153.0" layoutY="175.0" onAction="#ponerFrecuencia" prefHeight="24.0" prefWidth="71.0" text="0" />
+               <TextField fx:id="espacioMinuto" layoutX="117.0" layoutY="139.0" onAction="#ponerMinuto" prefHeight="24.0" prefWidth="26.0" text="0" />
+               <TextField fx:id="espacioHora" layoutX="59.0" layoutY="139.0" onAction="#ponerHora" prefHeight="24.0" prefWidth="26.0" text="0" />
+               <TextField fx:id="espacioSegundo" layoutX="169.0" layoutY="139.0" onAction="#ponerSegundo" prefHeight="24.0" prefWidth="26.0" text="0" />
+               <Text layoutX="98.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" wrappingWidth="21.3798828125">
+                  <font>
+                     <Font size="19.0" />
+                  </font>
+               </Text>
+               <Text layoutX="152.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" wrappingWidth="21.3798828125">
+                  <font>
+                     <Font size="19.0" />
+                  </font>
+               </Text>
             </children></AnchorPane>
         </Scene>
     </scene>
