@@ -1,13 +1,20 @@
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 
 public class CreadorActividad {
 
     private Scene escena;
 
-    private InterfazGrafica controlador;
+    // private InterfazGrafica controlador;
+    @FXML
+    private TextField espacioNombre;
+    private String nombreEvento;
 
     public CreadorActividad(InterfazGrafica controller) {
     }
@@ -22,6 +29,13 @@ public class CreadorActividad {
         Stage stageCrearEvento = loader.load();
         stageCrearEvento.setTitle("Creando evento");
         stageCrearEvento.show();
+    }
+
+    @FXML
+    public void ponerNombre(ActionEvent event) {
+	this.nombreEvento = espacioNombre.getText();
+	System.out.println(this.nombreEvento);
+
     }
 
 }
