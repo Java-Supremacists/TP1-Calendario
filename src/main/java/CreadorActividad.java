@@ -6,6 +6,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,6 +38,16 @@ public class CreadorActividad {
     @FXML
     private TextField espacioFrecuencia;
     private Integer frecuenciaDiariaEvento;
+
+    @FXML
+    private TextField espacioHora;
+    @FXML
+    private TextField espacioMinuto;
+    @FXML
+    private TextField espacioSegundo;
+
+    //Le pongo un valor por defecto. Esto tambien es asi en google calendar
+    private LocalTime horaEvento = LocalTime.now(); 
 
 
 
@@ -84,31 +95,38 @@ public class CreadorActividad {
     @FXML
     public void ponerFrecuencia(ActionEvent event) {
 	var numeroBoton = new EstadoBoton(this.espacioFrecuencia);
-	this.frecuenciaDiariaEvento = numeroBoton.getNumeroBoton();
 	this.espacioFrecuencia.setStyle(numeroBoton.getColorBoton());
-	System.out.println(numeroBoton.getColorBoton());
-	System.out.println(numeroBoton.getNumeroBoton());
 
-
-
+	this.frecuenciaDiariaEvento = numeroBoton.getNumeroBoton();
+	System.out.println(this.frecuenciaDiariaEvento);
+	// System.out.println(numeroBoton.getNumeroBoton());
     }
 
     @FXML
     public void ponerHora(ActionEvent event) {
-	// this.fechaEvento = this.espacioElegirFecha.getValue();
-	// System.out.println(this.fechaEvento);
+	var numeroBoton = new EstadoBoton(this.espacioHora);
+	this.espacioHora.setStyle(numeroBoton.getColorBoton());
+
+	this.horaEvento = this.horaEvento.withHour(numeroBoton.getNumeroBoton());
+	System.out.println(this.horaEvento);
     }
 
     @FXML
     public void ponerMinuto(ActionEvent event) {
-	// this.fechaEvento = this.espacioElegirFecha.getValue();
-	// System.out.println(this.fechaEvento);
+	var numeroBoton = new EstadoBoton(this.espacioMinuto);
+	this.espacioMinuto.setStyle(numeroBoton.getColorBoton());
+
+	this.horaEvento = this.horaEvento.withMinute(numeroBoton.getNumeroBoton());
+	System.out.println(this.horaEvento);
     }
 
     @FXML
     public void ponerSegundo(ActionEvent event) {
-	// this.fechaEvento = this.espacioElegirFecha.getValue();
-	// System.out.println(this.fechaEvento);
+	var numeroBoton = new EstadoBoton(this.espacioSegundo);
+	this.espacioSegundo.setStyle(numeroBoton.getColorBoton());
+
+	this.horaEvento = this.horaEvento.withSecond(numeroBoton.getNumeroBoton());
+	System.out.println(this.horaEvento);
     }
 
 }
