@@ -12,9 +12,14 @@ public class CreadorActividad {
     // private Scene escena;
 
     // private InterfazGrafica controlador;
+
     @FXML
     private TextField espacioNombre;
     private String nombreEvento;
+
+    @FXML
+    private TextField espacioDescripcion;
+    private String descripcionEvento;
 
     public CreadorActividad(InterfazGrafica controller) {
     }
@@ -35,6 +40,13 @@ public class CreadorActividad {
     public void ponerNombre(ActionEvent event) {
 	this.nombreEvento = espacioNombre.getText();
 	System.out.println(this.nombreEvento);
+
+    }
+
+    @FXML
+    public void ponerDescripcion(ActionEvent event) {
+	this.descripcionEvento = espacioDescripcion.getText();
+	System.out.println(this.descripcionEvento);
 
     }
 
