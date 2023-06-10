@@ -34,7 +34,7 @@ public class VistaSemanal extends VistaCalendario {
                 i++;
             }
         }
-        if (mesDesde != mesHasta && mesHasta!= null){
+        if (mesDesde != mesHasta && mesHasta!= null) {
             return mesDesde.toString() + "-" + mesHasta.toString();
         }
         return mesDesde.toString();

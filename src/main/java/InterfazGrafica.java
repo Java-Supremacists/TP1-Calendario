@@ -20,12 +20,12 @@ public class InterfazGrafica extends Application {
         stage.setScene(calendario);
         stage.setResizable(false);
         stage.show();
-	    stage.setTitle("Calendario Gerez - Orsi");
+        stage.setTitle("Calendario Gerez - Orsi");
         vista.visualizacionAnteriorActividad(event -> {
             switch (vista.getVisualizacion()) {
-                case "Dia" -> fechaActual = fechaActual.minusDays(1);
-                case "Semana" -> fechaActual = domingoAnteriorCercano(fechaActual.minusDays(7));
-                case "Mes" -> {
+            case "Dia" -> fechaActual = fechaActual.minusDays(1);
+            case "Semana" -> fechaActual = domingoAnteriorCercano(fechaActual.minusDays(7));
+            case "Mes" -> {
                     fechaActual = fechaActual.minusMonths(1);
                     fechaActual = primerDiaDelMes(fechaActual.getYear(),fechaActual.getMonth());
                 }
@@ -34,9 +34,9 @@ public class InterfazGrafica extends Application {
         });
         vista.visualizacionPosteriorActividad(event -> {
             switch (vista.getVisualizacion()) {
-                case "Dia" -> fechaActual = fechaActual.plusDays(1);
-                case "Semana" -> fechaActual = domingoAnteriorCercano(fechaActual.plusDays(7));
-                case "Mes" -> {
+            case "Dia" -> fechaActual = fechaActual.plusDays(1);
+            case "Semana" -> fechaActual = domingoAnteriorCercano(fechaActual.plusDays(7));
+            case "Mes" -> {
                     fechaActual = fechaActual.plusMonths(1);
                     fechaActual = primerDiaDelMes(fechaActual.getYear(),fechaActual.getMonth());
                 }
@@ -46,9 +46,9 @@ public class InterfazGrafica extends Application {
         vista.botonDeHoyActividad(event -> {
             var nueva = LocalDateTime.now();
             switch (vista.getVisualizacion()) {
-                case "Dia" -> fechaActual = nueva;
-                case "Semana" -> fechaActual = domingoAnteriorCercano(nueva);
-                case "Mes" -> fechaActual = primerDiaDelMes(nueva.getYear(),nueva.getMonth());
+            case "Dia" -> fechaActual = nueva;
+            case "Semana" -> fechaActual = domingoAnteriorCercano(nueva);
+            case "Mes" -> fechaActual = primerDiaDelMes(nueva.getYear(),nueva.getMonth());
             }
             vista.actualizarVistaCalendario(fechaActual);
         });
@@ -56,7 +56,7 @@ public class InterfazGrafica extends Application {
             @Override
             public void handle(long l) {
                 var horaActual = LocalDateTime.now();
-                if (horaActual.equals(modelo.proximaAlarma())){
+                if (horaActual.equals(modelo.proximaAlarma())) {
                     var alerta = new Alert(Alert.AlertType.INFORMATION);
                     alerta.setContentText("Esta Es la alarma del evento.......");
                     alerta.show();
@@ -73,15 +73,15 @@ public class InterfazGrafica extends Application {
     public LocalDateTime getFechaActual() {
         return fechaActual;
     }
-    public static LocalDateTime domingoAnteriorCercano(LocalDateTime dia){
+    public static LocalDateTime domingoAnteriorCercano(LocalDateTime dia) {
         //para semanas
         LocalDateTime devolver = dia;
-        while (devolver.getDayOfWeek()!= DayOfWeek.SUNDAY){
+        while (devolver.getDayOfWeek()!= DayOfWeek.SUNDAY) {
             devolver = devolver.minusDays(1);
         }
         return devolver;
     }
-    public static LocalDateTime primerDiaDelMes(int year, Month mes){
+    public static LocalDateTime primerDiaDelMes(int year, Month mes) {
         return LocalDateTime.of(year,mes,1,0,0);
     }
 }
