@@ -133,7 +133,9 @@ public class CreadorActividad {
 	var numeroBoton = new EstadoBoton(this.espacioMinuto);
 	this.espacioMinuto.setStyle(numeroBoton.getColorBoton());
 
-	this.horaEvento = this.horaEvento.withMinute(numeroBoton.getNumeroBoton());
+	Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), 59);
+	this.horaEvento = this.horaEvento.withMinute(horaEstablecida);
+	this.espacioMinuto.setText(String.valueOf(horaEstablecida));
 	System.out.println(this.horaEvento);
     }
 
@@ -142,7 +144,9 @@ public class CreadorActividad {
 	var numeroBoton = new EstadoBoton(this.espacioSegundo);
 	this.espacioSegundo.setStyle(numeroBoton.getColorBoton());
 
-	this.horaEvento = this.horaEvento.withSecond(numeroBoton.getNumeroBoton());
+	Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), 59);
+	this.horaEvento = this.horaEvento.withSecond(horaEstablecida);
+	this.espacioSegundo.setText(String.valueOf(horaEstablecida));
 	System.out.println(this.horaEvento);
     }
 
