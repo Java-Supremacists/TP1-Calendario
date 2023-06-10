@@ -116,29 +116,24 @@ public class CreadorActividad {
         }
     }
 
-    // private void configurarUnidadDeTiempo(TextField espacioUnidad, Integer horaMaxima, Function funcionDeAnadir) {
+    // No es ideal que esta funcion tenga TANTOS efectos secundarios, sin embargo
+    // java no nos permite hacerlo de una forma mas elegante a menos que creemos
+    // clases animica
     private Integer configurarUnidadDeTiempo(TextField espacioUnidad, Integer horaMaxima) {
         var numeroBoton = new EstadoBoton(espacioUnidad);
 	espacioUnidad.setStyle(numeroBoton.getColorBoton());
 
         Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), horaMaxima);
-        // this.horaEvento = this.horaEvento.funcionDeAnadir(horaEstablecida);
         espacioUnidad.setText(String.valueOf(horaEstablecida));
+
 	return horaEstablecida;
 	}
 
     @FXML
     public void ponerHora(ActionEvent event) {
-        // var numeroBoton = new Estadooton(this.espacioHora);
-        // this.espacioHora.setStyle(numeroBoton.getColorBoton());
-	// this.configurarUnidadDeTiempo(this.espacioHora, 23, LocalDate::withHour);
-
 	var horaFinal = this.configurarUnidadDeTiempo(this.espacioHora, 23);
         this.horaEvento = this.horaEvento.withHour(horaFinal);
 
-        // Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), 23);
-        // this.horaEvento = this.horaEvento.withHour(horaEstablecida);
-        // this.espacioHora.setText(String.valueOf(horaEstablecida));
         System.out.println(this.horaEvento);
     }
 
@@ -147,13 +142,7 @@ public class CreadorActividad {
     public void ponerMinuto(ActionEvent event) {
 	var horaFinal = this.configurarUnidadDeTiempo(this.espacioMinuto, 59);
         this.horaEvento = this.horaEvento.withMinute(horaFinal);
-	//
-        // var numeroBoton = new EstadoBoton(this.espacioMinuto);
-        // this.espacioMinuto.setStyle(numeroBoton.getColorBoton());
 
-        // Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), 59);
-        // this.horaEvento = this.horaEvento.withMinute(horaEstablecida);
-        // this.espacioMinuto.setText(String.valueOf(horaEstablecida));
         System.out.println(this.horaEvento);
     }
 
@@ -162,12 +151,6 @@ public class CreadorActividad {
 	var horaFinal = this.configurarUnidadDeTiempo(this.espacioSegundo, 59);
         this.horaEvento = this.horaEvento.withSecond(horaFinal);
 
-        // var numeroBoton = new EstadoBoton(this.espacioSegundo);
-        // this.espacioSegundo.setStyle(numeroBoton.getColorBoton());
-
-        // Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), 59);
-        // this.horaEvento = this.horaEvento.withSecond(horaEstablecida);
-        // this.espacioSegundo.setText(String.valueOf(horaEstablecida));
         System.out.println(this.horaEvento);
     }
 
