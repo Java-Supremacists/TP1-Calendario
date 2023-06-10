@@ -59,32 +59,32 @@ public class CreadorActividad {
 
     @FXML
     public void ponerNombre(ActionEvent event) {
-	this.nombreEvento = espacioNombre.getText();
+	this.nombreEvento = this.espacioNombre.getText();
 	System.out.println(this.nombreEvento);
     }
 
     @FXML
     public void ponerDescripcion(ActionEvent event) {
-	this.descripcionEvento = espacioDescripcion.getText();
+	this.descripcionEvento = this.espacioDescripcion.getText();
 	System.out.println(this.descripcionEvento);
     }
 
     @FXML
     public void ponerEsDiaCompleto(ActionEvent event) {
-	this.esDiaCompletoEvento = espacioEsDiaCompleto.isSelected();
+	this.esDiaCompletoEvento = this.espacioEsDiaCompleto.isSelected();
 	System.out.println(this.esDiaCompletoEvento);
     }
 
     @FXML
     public void ponerFecha(ActionEvent event) {
-	this.fechaEvento = espacioElegirFecha.getValue();
+	this.fechaEvento = this.espacioElegirFecha.getValue();
 	System.out.println(this.fechaEvento);
     }
 
     @FXML
     public void ponerFrecuencia(ActionEvent event) {
 	try  {
-	    this.frecuenciaDiariaEvento = Integer.parseInt(espacioFrecuencia.getText());
+	    this.frecuenciaDiariaEvento = Integer.parseInt(this.espacioFrecuencia.getText());
 	    System.out.println(this.frecuenciaDiariaEvento);
 	}
 	catch (NumberFormatException e) {
