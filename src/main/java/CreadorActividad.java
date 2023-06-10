@@ -85,12 +85,14 @@ public class CreadorActividad {
     public void ponerFrecuencia(ActionEvent event) {
 	try  {
 	    this.frecuenciaDiariaEvento = Integer.parseInt(espacioFrecuencia.getText());
+	    System.out.println(this.frecuenciaDiariaEvento);
 	}
 	catch (NumberFormatException e) {
 	    System.out.println("POner un numero, no un string");
+	    this.frecuenciaDiariaEvento = 0;
+	    System.out.println(this.frecuenciaDiariaEvento);
 	}
 
-	System.out.println(this.frecuenciaDiariaEvento);
     }
 
 }
