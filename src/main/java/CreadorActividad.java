@@ -5,8 +5,10 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
+import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.function.Function;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -110,20 +112,32 @@ public class CreadorActividad {
             return 0;
         }
         else {
-
             return horaAChequear;
-
         }
     }
 
+    // private void configurarUnidadDeTiempo(TextField espacioUnidad, Integer horaMaxima, Function funcionDeAnadir) {
+    private Integer configurarUnidadDeTiempo(TextField espacioUnidad, Integer horaMaxima) {
+        var numeroBoton = new EstadoBoton(espacioUnidad);
+	espacioUnidad.setStyle(numeroBoton.getColorBoton());
+
+        Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), horaMaxima);
+        // this.horaEvento = this.horaEvento.funcionDeAnadir(horaEstablecida);
+        espacioUnidad.setText(String.valueOf(horaEstablecida));
+	return horaEstablecida;
+	}
+
     @FXML
     public void ponerHora(ActionEvent event) {
-        var numeroBoton = new EstadoBoton(this.espacioHora);
-        this.espacioHora.setStyle(numeroBoton.getColorBoton());
+        // var numeroBoton = new Estadooton(this.espacioHora);
+        // this.espacioHora.setStyle(numeroBoton.getColorBoton());
+	// this.configurarUnidadDeTiempo(this.espacioHora, 23, LocalDate::withHour);
+	var horaFinal = this.configurarUnidadDeTiempo(this.espacioHora, 23);
+        this.horaEvento = this.horaEvento.withHour(horaFinal);
 
-        Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), 23);
-        this.horaEvento = this.horaEvento.withHour(horaEstablecida);
-        this.espacioHora.setText(String.valueOf(horaEstablecida));
+        // Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), 23);
+        // this.horaEvento = this.horaEvento.withHour(horaEstablecida);
+        // this.espacioHora.setText(String.valueOf(horaEstablecida));
         System.out.println(this.horaEvento);
     }
 
