@@ -119,8 +119,8 @@ public class CreadorActividad {
     }
 
     // No es ideal que esta funcion tenga TANTOS efectos secundarios, sin embargo
-    // java no nos permite hacerlo de una forma mas elegante a menos que creemos
-    // clases animica
+    // java no nos permite hacerlo de una forma mas elegante/funcional 
+    // a menos que creemos clases animica
     private Integer configurarUnidadDeTiempo(TextField espacioUnidad, Integer horaMaxima) {
         var numeroBoton = new EstadoBoton(espacioUnidad);
 	espacioUnidad.setStyle(numeroBoton.getColorBoton());
