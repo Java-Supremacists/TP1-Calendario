@@ -102,14 +102,31 @@ public class CreadorActividad {
 	// System.out.println(numeroBoton.getNumeroBoton());
     }
 
+    private Integer noTeMePases(Integer horaAChequear, Integer horaMaxima) {
+	if (horaAChequear > horaMaxima) {
+	    return horaMaxima;
+	}
+	else if (horaAChequear < 0) {
+	    return 0;
+	}
+	else {
+
+	return horaAChequear;
+		
+	}
+    }
+
     @FXML
     public void ponerHora(ActionEvent event) {
 	var numeroBoton = new EstadoBoton(this.espacioHora);
 	this.espacioHora.setStyle(numeroBoton.getColorBoton());
 
-	this.horaEvento = this.horaEvento.withHour(numeroBoton.getNumeroBoton());
+	Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), 23);
+	this.horaEvento = this.horaEvento.withHour(horaEstablecida);
+	this.espacioHora.setText(String.valueOf(horaEstablecida));
 	System.out.println(this.horaEvento);
     }
+
 
     @FXML
     public void ponerMinuto(ActionEvent event) {
