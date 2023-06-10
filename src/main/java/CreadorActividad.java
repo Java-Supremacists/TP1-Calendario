@@ -105,7 +105,6 @@ public class CreadorActividad {
 
         this.frecuenciaDiariaEvento = numeroBoton.getNumeroBoton();
         System.out.println(this.frecuenciaDiariaEvento);
-        // System.out.println(numeroBoton.getNumeroBoton());
     }
 
     private Integer noTeMePases(Integer horaAChequear, Integer horaMaxima) {
