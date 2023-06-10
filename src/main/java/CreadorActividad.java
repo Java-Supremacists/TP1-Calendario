@@ -74,31 +74,26 @@ public class CreadorActividad {
 	this.espacioSegundo.setText(String.valueOf(LocalTime.now().getSecond()));
     }
 
-    @FXML
     public void ponerNombre(ActionEvent event) {
         this.nombreEvento = this.espacioNombre.getText();
         System.out.println(this.nombreEvento);
     }
 
-    @FXML
     public void ponerDescripcion(ActionEvent event) {
         this.descripcionEvento = this.espacioDescripcion.getText();
         System.out.println(this.descripcionEvento);
     }
 
-    @FXML
     public void ponerEsDiaCompleto(ActionEvent event) {
         this.esDiaCompletoEvento = this.espacioEsDiaCompleto.isSelected();
         System.out.println(this.esDiaCompletoEvento);
     }
 
-    @FXML
     public void ponerFecha(ActionEvent event) {
         this.fechaEvento = this.espacioElegirFecha.getValue();
         System.out.println(this.fechaEvento);
     }
 
-    @FXML
     public void ponerFrecuencia(ActionEvent event) {
         var numeroBoton = new EstadoBoton(this.espacioFrecuencia);
         this.espacioFrecuencia.setStyle(numeroBoton.getColorBoton());
@@ -132,7 +127,6 @@ public class CreadorActividad {
 	return horaEstablecida;
 	}
 
-    @FXML
     public void ponerHora(ActionEvent event) {
 	var horaFinal = this.configurarUnidadDeTiempo(this.espacioHora, 23);
         this.horaEvento = this.horaEvento.withHour(horaFinal);
@@ -141,7 +135,6 @@ public class CreadorActividad {
     }
 
 
-    @FXML
     public void ponerMinuto(ActionEvent event) {
 	var horaFinal = this.configurarUnidadDeTiempo(this.espacioMinuto, 59);
         this.horaEvento = this.horaEvento.withMinute(horaFinal);
@@ -149,7 +142,6 @@ public class CreadorActividad {
         System.out.println(this.horaEvento);
     }
 
-    @FXML
     public void ponerSegundo(ActionEvent event) {
 	var horaFinal = this.configurarUnidadDeTiempo(this.espacioSegundo, 59);
         this.horaEvento = this.horaEvento.withSecond(horaFinal);
