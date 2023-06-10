@@ -34,6 +34,11 @@ public class CreadorActividad {
     private DatePicker espacioElegirFecha;
     private LocalDate fechaEvento;
 
+    @FXML
+    private TextField espacioFrecuencia;
+    private Integer frecuenciaDiariaEvento;
+
+
 
 
 
@@ -74,6 +79,18 @@ public class CreadorActividad {
     public void ponerFecha(ActionEvent event) {
 	this.fechaEvento = espacioElegirFecha.getValue();
 	System.out.println(this.fechaEvento);
+    }
+
+    @FXML
+    public void ponerFrecuencia(ActionEvent event) {
+	try  {
+	    this.frecuenciaDiariaEvento = Integer.parseInt(espacioFrecuencia.getText());
+	}
+	catch (NumberFormatException e) {
+	    System.out.println("POner un numero, no un string");
+	}
+
+	System.out.println(this.frecuenciaDiariaEvento);
     }
 
 }
