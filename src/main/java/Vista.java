@@ -106,6 +106,7 @@ public class Vista {
         tipoDeVisualizacion.setOnAction(this::cambiarVistaCalendario);
 
         botonCrearActividad.setOnAction(this::crearActividad);
+
         // botonCrearActividad.getItems().addAll(actividades);
     }
     public Scene getScene() {
