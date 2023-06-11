@@ -65,6 +65,7 @@ public class CreadorActividad {
 
     @FXML
     private MenuButton espacioTipoActividad;
+    private String tipoActividad = "Evento";
 
     //Le pongo un valor por defecto. Esto tambien es asi en google calendar
     private LocalTime horaEvento = LocalTime.now();
@@ -167,9 +168,14 @@ public class CreadorActividad {
         System.out.println(this.horaEvento);
     }
 
-    public void ponerTipoActividad(ActionEvent event) {
-	System.out.println(this.espacioTipoActividad.getText());
+    public void ponerTipoActividadTarea(ActionEvent event) {
+	System.out.println("Sus");
+	this.espacioTipoActividad.setText("Tarea");
+    }
 
+    public void ponerTipoActividadEvento(ActionEvent event) {
+	System.out.println("Sus");
+	this.espacioTipoActividad.setText("Evento");
     }
 
     public void crearEvento(ActionEvent event) {
