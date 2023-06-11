@@ -160,7 +160,7 @@ public class Vista {
         visualizacionPosterior.setOnAction(evento);
     }
     public void crearActividad(ActionEvent evento) {
-        var crearActividad = new CreadorActividad(this.modelo);
+        var crearActividad = new CreadorActividad(this.modelo, this.controlador);
         try {
             crearActividad.start();
         }

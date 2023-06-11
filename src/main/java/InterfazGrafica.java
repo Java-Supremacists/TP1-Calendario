@@ -7,9 +7,13 @@ import javafx.stage.Stage;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.HashMap;
 
 public class InterfazGrafica extends Application {
     private final Calendario modelo = new Calendario();
+
+    private HashMap<Integer, TareaGui> hashTareas = new HashMap<>();
+
     private LocalDateTime fechaActual;
     @Override
     public void start(Stage stage) throws Exception {
@@ -83,6 +87,10 @@ public class InterfazGrafica extends Application {
     }
     public static LocalDateTime primerDiaDelMes(int year, Month mes) {
         return LocalDateTime.of(year,mes,1,0,0);
+    }
+
+    public void anadirTarea(int hashTarea, TareaGui tareaGui) {
+	this.hashTareas.put(hashTarea, tareaGui);
     }
 
 
