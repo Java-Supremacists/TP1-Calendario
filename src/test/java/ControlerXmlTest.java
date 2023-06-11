@@ -169,9 +169,9 @@ public class ControlerXmlTest {
 
 
         var termina1 = LocalDateTime.of(2023,5,19,20,0);
-	
+
         int ID1 = calendario1.crearTarea("Tarea1","Descripcion1",true,termina1);
-	calendario1.modificarActividadEsDiaEntero(ID1, true);
+        calendario1.modificarActividadEsDiaEntero(ID1, true);
 
         ByteArrayOutputStream archivo = new ByteArrayOutputStream();
         var xmlManejador = new ControlerXml();
@@ -194,9 +194,9 @@ public class ControlerXmlTest {
 
         var inicia1 = LocalDateTime.of(2023,5,19,10,30);
         var termina1 = LocalDateTime.of(2023,5,19,20,0);
-	
+
         int ID1 = calendario1.crearEvento("Evento1","Descripcion1",true,inicia1, termina1);
-	calendario1.modificarActividadEsDiaEntero(ID1, true);
+        calendario1.modificarActividadEsDiaEntero(ID1, true);
 
         ByteArrayOutputStream archivo = new ByteArrayOutputStream();
         var xmlManejador = new ControlerXml();
@@ -218,11 +218,11 @@ public class ControlerXmlTest {
 
 
         var termina1 = LocalDateTime.of(2023,5,19,20,0);
-	
+
         int ID1 = calendario1.crearTarea("Tarea1","Completada",true,termina1);
         int ID2 = calendario1.crearTarea("Tarea2","No completada",true,termina1);
 
-	calendario1.modificarTareaCompletarODescompletar(ID1);
+        calendario1.modificarTareaCompletarODescompletar(ID1);
 
         ByteArrayOutputStream archivo = new ByteArrayOutputStream();
         var xmlManejador = new ControlerXml();

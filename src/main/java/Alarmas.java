@@ -151,9 +151,9 @@ public class Alarmas implements XmlGuardador {
                 case "SetAlarmas" -> {
                             var listaAlarmas = elementoInterno.getChildNodes();
                         for (int j = 0; j < listaAlarmas.getLength(); j++) {
-                            var posibleAlarma = listaAlarmas.item(j);
+                        var posibleAlarma = listaAlarmas.item(j);
                             propioDeElementos = posibleAlarma.getAttributes();
-                        if (propioDeElementos!=null) {
+                            if (propioDeElementos!=null) {
                                 var alarma = (Element) posibleAlarma;
                                 alarmas.add(LocalDateTime.parse(alarma.getTextContent()));
                             }
@@ -162,9 +162,9 @@ public class Alarmas implements XmlGuardador {
                 case "AlarmasMantenidas" -> {
                             var listaAlarmasSonadas = elementoInterno.getChildNodes();
                         for (int k = 0; k < listaAlarmasSonadas.getLength(); k++) {
-                            var posibleAlarma = listaAlarmasSonadas.item(k);
+                        var posibleAlarma = listaAlarmasSonadas.item(k);
                             propioDeElementos = posibleAlarma.getAttributes();
-                        if (propioDeElementos!=null) {
+                            if (propioDeElementos!=null) {
                                 var alarma = (Element) posibleAlarma;
                                 alarmasYaSonadas.add(LocalDateTime.parse(alarma.getTextContent()));
                             }

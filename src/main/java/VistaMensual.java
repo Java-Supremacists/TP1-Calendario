@@ -28,7 +28,7 @@ public class VistaMensual extends VistaCalendario {
                 LocalDateTime dia = fecha.plusDays(i);
                 VBox diaDelMes = (VBox) e;
                 hijos = diaDelMes.getChildren();
-                if (dia.getDayOfMonth()==1 && i<14){
+                if (dia.getDayOfMonth()==1 && i<14) {
                     mes = dia.getMonth();
                 }
                 if (i < 7) {

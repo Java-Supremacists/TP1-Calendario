@@ -77,11 +77,13 @@ public class Vista {
     @FXML
     private GridPane grillaDelMes;
 
+    private Calendario modelo;
+
     //--------- Mensual ---------
     private final Scene escena;
     private final InterfazGrafica controlador;
     private VistaCalendario strategy;
-    public Vista(InterfazGrafica controller) throws IOException {
+    public Vista(InterfazGrafica controller, Calendario modelo) throws IOException {
         //cargamos archivos
         FXMLLoader loader1 = new FXMLLoader(getClass().getResource("escenario1.fxml"));
         loader1.setController(this);
@@ -93,6 +95,7 @@ public class Vista {
 
         //guardamos atributos
         controlador = controller;
+        this.modelo = modelo;
         strategy = new VistaSemanal(escenaPorSemana,pantalla);
         this.escena = new Scene(pantalla1,854,480); //creamos la escena
 
@@ -102,62 +105,66 @@ public class Vista {
 
         tipoDeVisualizacion.setOnAction(this::cambiarVistaCalendario);
 
-	    botonCrearActividad.setOnAction(this::crearActividad);
+        botonCrearActividad.setOnAction(this::crearActividad);
+
         // botonCrearActividad.getItems().addAll(actividades);
     }
-    public Scene getScene(){
+    public Scene getScene() {
         return this.escena;
     }
-    public String getVisualizacion(){
+    public String getVisualizacion() {
         return tipoDeVisualizacion.getValue();
     }
-    public void actualizarVistaCalendario(LocalDateTime primerDia){
+    public void actualizarVistaCalendario(LocalDateTime primerDia) {
         //HAY UN ERROR PARA ARREGLAR ACA EN STRATEGY
         //Actualizar las grillas segun si va una semana/día/mes antes o después del actual
         //implementar aca para facilitar la actualizacion de los días facilmente
         String months = "";
-        switch (strategy.getTipo()){
-            case "Dia" -> months = strategy.actualizarVista(primerDia,grillaConElDia);
-            case "Semana" -> months = strategy.actualizarVista(primerDia,grillaDeDiasFijos);
-            case "Mes" -> months = strategy.actualizarVista(primerDia,grillaDelMes);
+        switch (strategy.getTipo()) {
+        case "Dia" -> months = strategy.actualizarVista(primerDia,grillaConElDia);
+        case "Semana" -> months = strategy.actualizarVista(primerDia,grillaDeDiasFijos);
+        case "Mes" -> months = strategy.actualizarVista(primerDia,grillaDelMes);
         }
         mesDelCalendario.setText(months);
     }
-    public void cambiarVistaCalendario(ActionEvent event){
+    public void cambiarVistaCalendario(ActionEvent event) {
         String visualizacion = tipoDeVisualizacion.getValue();
-        if (!strategy.getTipo().equals(visualizacion)){
+        if (!strategy.getTipo().equals(visualizacion)) {
             LocalDateTime hoy = LocalDateTime.now();
             switch (visualizacion) {
-                case "Dia" -> {
-                    strategy = new VistaDiaria(escenaPorDia,pantalla,strategy.getVista());
-                    controlador.setFechaActual(hoy);
-                }
+            case "Dia" -> {
+                        strategy = new VistaDiaria(escenaPorDia,pantalla,strategy.getVista());
+                        controlador.setFechaActual(hoy);
+                        break;
+                    }
                 case "Semana" -> {
-                    strategy = new VistaSemanal(escenaPorSemana,pantalla,strategy.getVista());
-                    controlador.setFechaActual(InterfazGrafica.domingoAnteriorCercano(hoy));
-                }
-                case "Mes" -> {
-                    strategy = new VistaMensual(escenaPorMes,pantalla,strategy.getVista());
-                    controlador.setFechaActual(InterfazGrafica.primerDiaDelMes(hoy.getYear(), hoy.getMonth()));
-                }
-            }
+                            strategy = new VistaSemanal(escenaPorSemana,pantalla,strategy.getVista());
+                            controlador.setFechaActual(InterfazGrafica.domingoAnteriorCercano(hoy));
+                            break;
+                        }
+                    case "Mes" -> {
+                                strategy = new VistaMensual(escenaPorMes,pantalla,strategy.getVista());
+                                controlador.setFechaActual(InterfazGrafica.primerDiaDelMes(hoy.getYear(), hoy.getMonth()));
+                                break;
+                            }
+                        }
             this.actualizarVistaCalendario(controlador.getFechaActual()); // Esto es momentaneo para que sea visible
         }
     }
-    public void botonDeHoyActividad(EventHandler<ActionEvent> evento){
+    public void botonDeHoyActividad(EventHandler<ActionEvent> evento) {
         botonDeHoy.setOnAction(evento);
     }
-    public void visualizacionAnteriorActividad(EventHandler<ActionEvent> evento){
+    public void visualizacionAnteriorActividad(EventHandler<ActionEvent> evento) {
         visualizacionAnterior.setOnAction(evento);
     }
-    public void visualizacionPosteriorActividad(EventHandler<ActionEvent> evento){
+    public void visualizacionPosteriorActividad(EventHandler<ActionEvent> evento) {
         visualizacionPosterior.setOnAction(evento);
     }
     public void crearActividad(ActionEvent evento) {
-        var crearActividad = new CreadorActividad(this.controlador);
+        var crearActividad = new CreadorActividad(this.modelo, this.controlador);
         try {
             crearActividad.start();
-            }
+        }
         catch (Exception e) {
             e.printStackTrace(System.out);
         }

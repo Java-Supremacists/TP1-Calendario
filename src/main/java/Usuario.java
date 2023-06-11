@@ -11,8 +11,8 @@ public class Usuario {
         this.password = password;
         this.notificacion = notificacion;
     }
-    public boolean verificacion(String password1){
-        if (password1 == null){
+    public boolean verificacion(String password1) {
+        if (password1 == null) {
             return false;
         }
         return password1.equals(password);
@@ -23,7 +23,7 @@ public class Usuario {
     public String getName() {
         return name;
     }
-    public void alertar(LocalDateTime horaActual){
+    public void alertar(LocalDateTime horaActual) {
         notificacion.send("",""); //Todavia se tiene q arreglar bien
     }
 

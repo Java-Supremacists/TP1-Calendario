@@ -11,7 +11,7 @@ public class Main {
     public static void main(String args[]) throws FileNotFoundException {
         //Esta funcion main la usamos para testear el comportamiento de las
         //funciones mientras las desarrollabamos
-	//Genera un archivo con los datos guardados
+        //Genera un archivo con los datos guardados
 
         var calendario = new Calendario();
 
@@ -86,7 +86,7 @@ public class Main {
 
 
 
-	// Esta porcion del codigo lee el archivo
+        // Esta porcion del codigo lee el archivo
         // String str = new String();
         // str = "archivos/hola";
 
