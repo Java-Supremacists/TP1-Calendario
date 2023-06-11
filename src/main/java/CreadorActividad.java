@@ -171,6 +171,9 @@ public class CreadorActividad {
     public void ponerTipoActividadTarea(ActionEvent event) {
 	System.out.println("Sus");
 	this.espacioTipoActividad.setText("Tarea");
+	this.espacioHoraFin.setDisable(true);
+	this.espacioMinutoFin.setDisable(true);
+	this.espacioSegundoFin.setDisable(true);
     }
 
     public void ponerTipoActividadEvento(ActionEvent event) {

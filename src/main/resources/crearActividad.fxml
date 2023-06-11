@@ -50,7 +50,7 @@
                      <Font size="19.0" />
                   </font>
                </Text>
-               <MenuButton fx:id="espacioTipoActividad" layoutX="69.0" layoutY="85.0" mnemonicParsing="false" text="MenuButton">
+               <MenuButton fx:id="espacioTipoActividad" layoutX="84.0" layoutY="85.0" mnemonicParsing="false" text="Evento">
                  <items>
                    <MenuItem mnemonicParsing="false" onAction="#ponerTipoActividadTarea" text="Tarea" />
                    <MenuItem mnemonicParsing="false" onAction="#ponerTipoActividadEvento" text="Evento" />
