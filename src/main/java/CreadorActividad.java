@@ -142,53 +142,57 @@ public class CreadorActividad {
     // No es ideal que esta funcion tenga TANTOS efectos secundarios, sin embargo
     // java no nos permite hacerlo de una forma mas elegante/funcional
     // a menos que creemos clases animica
-    private Integer configurarUnidadDeTiempo(TextField espacioUnidad, Integer horaMaxima) {
+    private Integer configurarUnidadDeTiempo(TextField espacioUnidad, Integer horaMaxima, Integer horaMinima) {
         var numeroBoton = new EstadoBoton(espacioUnidad);
         espacioUnidad.setStyle(numeroBoton.getColorBoton());
 
         Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), horaMaxima);
+	//No podemos tener eventos que finalicen antes de que empiecen
+	if (horaEstablecida < horaMinima) {
+	    horaEstablecida = horaMinima;
+	}
         espacioUnidad.setText(String.valueOf(horaEstablecida));
 
         return horaEstablecida;
     }
 
     public void ponerHora(ActionEvent event) {
-        var horaFinal = this.configurarUnidadDeTiempo(this.espacioHora, 23);
+        var horaFinal = this.configurarUnidadDeTiempo(this.espacioHora, 23, 0);
         this.comienzoEvento = this.comienzoEvento.withHour(horaFinal);
 
         System.out.println(this.comienzoEvento);
     }
 
     public void ponerHoraFin(ActionEvent event) {
-        var horaFinal = this.configurarUnidadDeTiempo(this.espacioHoraFin, 23);
+        var horaFinal = this.configurarUnidadDeTiempo(this.espacioHoraFin, 23, this.comienzoEvento.getHour());
         this.finEvento = this.finEvento.withHour(horaFinal);
 
         System.out.println(this.comienzoEvento);
     }
 
     public void ponerMinuto(ActionEvent event) {
-        var horaFinal = this.configurarUnidadDeTiempo(this.espacioMinuto, 59);
+        var horaFinal = this.configurarUnidadDeTiempo(this.espacioMinuto, 59, 0);
         this.comienzoEvento = this.comienzoEvento.withMinute(horaFinal);
 
         System.out.println(this.comienzoEvento);
     }
 
     public void ponerMinutoFin(ActionEvent event) {
-        var horaFinal = this.configurarUnidadDeTiempo(this.espacioMinutoFin, 59);
+        var horaFinal = this.configurarUnidadDeTiempo(this.espacioMinutoFin, 59, this.comienzoEvento.getMinute());
         this.finEvento = this.finEvento.withMinute(horaFinal);
 
         System.out.println(this.comienzoEvento);
     }
 
     public void ponerSegundo(ActionEvent event) {
-        var horaFinal = this.configurarUnidadDeTiempo(this.espacioSegundo, 59);
+        var horaFinal = this.configurarUnidadDeTiempo(this.espacioSegundo, 59, 0);
         this.comienzoEvento = this.comienzoEvento.withSecond(horaFinal);
 
         System.out.println(this.comienzoEvento);
     }
 
     public void ponerSegundoFin(ActionEvent event) {
-        var horaFinal = this.configurarUnidadDeTiempo(this.espacioSegundoFin, 59);
+        var horaFinal = this.configurarUnidadDeTiempo(this.espacioSegundoFin, 59, this.comienzoEvento.getSecond());
         this.finEvento = this.finEvento.withSecond(horaFinal);
 
         System.out.println(this.comienzoEvento);
