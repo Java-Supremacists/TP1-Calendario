@@ -4,6 +4,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 
 import java.lang.reflect.Method;
@@ -20,7 +22,7 @@ public class CreadorActividad {
     // private Scene escena;
 
     private Calendario modelo;
-    private InterfazGrafica interfazGrafica;
+    // private InterfazGrafica interfazGrafica;
 
     @FXML
     private TextField espacioNombre;
@@ -54,12 +56,22 @@ public class CreadorActividad {
     @FXML
     private TextField espacioSegundo;
 
+    @FXML
+    private TextField espacioHoraFin;
+    @FXML
+    private TextField espacioMinutoFin;
+    @FXML
+    private TextField espacioSegundoFin;
+
+    @FXML
+    private MenuButton espacioTipoActividad;
+
     //Le pongo un valor por defecto. Esto tambien es asi en google calendar
     private LocalTime horaEvento = LocalTime.now();
 
     public CreadorActividad(Calendario modelo, InterfazGrafica interfazGrafica) {
         this.modelo = modelo;
-        this.interfazGrafica = interfazGrafica;
+        // this.interfazGrafica = interfazGrafica;
     }
 
     // public Scene getScene() {
@@ -155,13 +167,18 @@ public class CreadorActividad {
         System.out.println(this.horaEvento);
     }
 
+    public void ponerTipoActividad(ActionEvent event) {
+	System.out.println(this.espacioTipoActividad.getText());
+
+    }
+
     public void crearEvento(ActionEvent event) {
         LocalDateTime fechaFinal = this.horaEvento.atDate(this.fechaEvento);
 
         int idEvento = this.modelo.crearTarea(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaFinal);
 
 	var tareaGrafica = new TareaGui(idEvento);
-	this.interfazGrafica.anadirTarea(idEvento, tareaGrafica);
+	// this.interfazGrafica.anadirTarea(idEvento, tareaGrafica);
 
         this.modelo.longTareasYEventos();
     }
