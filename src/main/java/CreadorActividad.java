@@ -123,6 +123,7 @@ public class CreadorActividad {
         this.espacioFrecuencia.setStyle(numeroBoton.getColorBoton());
 
         this.frecuenciaDiariaEvento = numeroBoton.getNumeroBoton();
+	this.espacioFrecuencia.setText(String.valueOf(this.frecuenciaDiariaEvento));
         System.out.println(this.frecuenciaDiariaEvento);
     }
 
@@ -219,7 +220,6 @@ public class CreadorActividad {
 	    idEvento = this.modelo.crearTarea(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaComienzo);
 	}
 	else {
-	    // idEvento = this.modelo.crearTarea(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaFinal);
 	    LocalDateTime fechaFin = this.finEvento.atDate(this.fechaEvento);
 	    idEvento = this.modelo.crearEvento(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaComienzo, fechaFin);
 	}
