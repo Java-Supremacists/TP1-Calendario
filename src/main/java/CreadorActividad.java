@@ -69,6 +69,7 @@ public class CreadorActividad {
 
     //Le pongo un valor por defecto. Esto tambien es asi en google calendar
     private LocalTime horaEvento = LocalTime.now();
+    private LocalTime horaEvento = horaEvento.plusHours(1);
 
     public CreadorActividad(Calendario modelo, InterfazGrafica interfazGrafica) {
         this.modelo = modelo;
@@ -192,6 +193,8 @@ public class CreadorActividad {
 	    idEvento = this.modelo.crearTarea(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaFinal);
 	}
 	else {
+	    // idEvento = this.modelo.crearTarea(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaFinal);
+	    idEvento = this.modelo.crearEvento(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaFinal, termina)
 	}
 
 
