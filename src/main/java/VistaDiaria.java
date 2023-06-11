@@ -4,7 +4,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -34,17 +33,12 @@ public class VistaDiaria extends VistaCalendario {
     public String getTipo() {
         return "Dia";
     }
-
     @Override
     public void visualizarActividades(List<Activities> hacerVisual, GridPane grilla) {
         vaciarGrilla(grilla);
     }
     private void vaciarGrilla(GridPane grillaxDia){
-        for (Node e : grillaxDia.getChildren()){
-            if (!e.getClass().equals(Label.class)){
-                //significa que e es un elemento de visualizacion del evento o tarea
-            }
-        }
+        grillaxDia.getChildren().removeIf(e -> !e.getClass().equals(Label.class)); //significa que e es un elemento de visualizacion del evento o tarea
     }
 
 }

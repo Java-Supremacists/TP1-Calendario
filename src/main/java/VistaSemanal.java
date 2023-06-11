@@ -4,7 +4,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
@@ -44,12 +43,11 @@ public class VistaSemanal extends VistaCalendario {
     public String getTipo() {
         return "Semana";
     }
-
     @Override
     public void visualizarActividades(List<Activities> hacerVisual, GridPane grilla) {
         vaciarGrilla(grilla);
     }
-    private void vaciarGrilla(GridPane grillaxDia){
-        System.out.println(grillaxDia.getChildren());
+    private void vaciarGrilla(GridPane grillaDiasxHorarios){
+        grillaDiasxHorarios.getChildren().removeIf(e -> !e.getClass().equals(Label.class));
     }
 }

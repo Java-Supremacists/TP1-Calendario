@@ -4,7 +4,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
@@ -49,12 +48,15 @@ public class VistaMensual extends VistaCalendario {
     public String getTipo() {
         return "Mes";
     }
-
     @Override
     public void visualizarActividades(List<Activities> hacerVisual, GridPane grilla) {
         vaciarGrilla(grilla);
     }
-    private void vaciarGrilla(GridPane grillaxDia){
-        System.out.println(grillaxDia.getChildren());
+    private void vaciarGrilla(GridPane grillaDelMes){
+        for (Node e : grillaDelMes.getChildren()){
+            //e siempre va a ser una VBox
+            var hijo = (VBox) e;
+            hijo.getChildren().removeIf(i -> !i.getClass().equals(Label.class)); // remuevo lo de adentro del Vbox excepto las fechas
+        }
     }
 }
