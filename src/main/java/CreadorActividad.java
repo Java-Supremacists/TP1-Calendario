@@ -7,6 +7,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.lang.reflect.Method;
 import java.time.LocalDate;
@@ -66,6 +68,9 @@ public class CreadorActividad {
     @FXML
     private MenuButton espacioTipoActividad;
     private String tipoActividad = "Evento";
+    
+    @FXML
+    private ImageView relojImagen;
 
     //Le pongo un valor por defecto. Esto tambien es asi en google calendar
     private LocalTime comienzoEvento = LocalTime.now();
@@ -96,6 +101,7 @@ public class CreadorActividad {
         this.espacioSegundoFin.setText(String.valueOf(finEvento.getSecond()));
 
         this.espacioElegirFecha.setValue(LocalDate.now());
+	this.relojImagen.setImage(new Image("alarma.png"));
     }
 
     public void ponerNombre(ActionEvent event) {
