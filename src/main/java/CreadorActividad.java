@@ -174,6 +174,7 @@ public class CreadorActividad {
     }
 
     public void ponerTipoActividadTarea(ActionEvent event) {
+	this.tipoActividad = "Tarea";
 	this.espacioTipoActividad.setText("Tarea");
 	this.espacioHoraFin.setDisable(true);
 	this.espacioMinutoFin.setDisable(true);
@@ -182,6 +183,7 @@ public class CreadorActividad {
     }
 
     public void ponerTipoActividadEvento(ActionEvent event) {
+	this.tipoActividad = "Evento";
 	this.espacioTipoActividad.setText("Evento");
 	this.espacioHoraFin.setDisable(false);
 	this.espacioMinutoFin.setDisable(false);
@@ -190,16 +192,18 @@ public class CreadorActividad {
     }
 
     public void crearEvento(ActionEvent event) {
-        LocalDateTime fechaFinal = this.comienzoEvento.atDate(this.fechaEvento);
+        LocalDateTime fechaComienzo = this.comienzoEvento.atDate(this.fechaEvento);
 
 	int idEvento;
 	if (this.tipoActividad == "Tarea") {
-	    idEvento = this.modelo.crearTarea(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaFinal);
+	    idEvento = this.modelo.crearTarea(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaComienzo);
 	}
 	else {
 	    // idEvento = this.modelo.crearTarea(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaFinal);
-	    idEvento = this.modelo.crearEvento(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaFinal, termina)
+	    LocalDateTime fechaFin = this.finEvento.atDate(this.fechaEvento);
+	    idEvento = this.modelo.crearEvento(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaComienzo, fechaFin);
 	}
+	System.out.println(idEvento);
 
 
 	// var tareaGrafica = new TareaGui(idEvento);
