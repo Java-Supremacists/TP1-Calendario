@@ -152,9 +152,10 @@ public class CreadorActividad {
     }
 
     public void crearEvento(ActionEvent event) {
-	LocalDateTime fechaFinal;
-	fechaFinal = this.horaEvento.atDate(this.fechaEvento);
-	this.modelo.crearTarea(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaFinal);
+	LocalDateTime fechaFinal = this.horaEvento.atDate(this.fechaEvento);
+
+	int idEvento = this.modelo.crearTarea(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaFinal);
+
 	this.modelo.longTareasYEventos();
     }
 
