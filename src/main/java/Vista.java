@@ -95,7 +95,7 @@ public class Vista {
 
         //guardamos atributos
         controlador = controller;
-	this.modelo = modelo;
+        this.modelo = modelo;
         strategy = new VistaSemanal(escenaPorSemana,pantalla);
         this.escena = new Scene(pantalla1,854,480); //creamos la escena
 
