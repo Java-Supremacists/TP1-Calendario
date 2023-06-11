@@ -68,8 +68,8 @@ public class CreadorActividad {
     private String tipoActividad = "Evento";
 
     //Le pongo un valor por defecto. Esto tambien es asi en google calendar
-    private LocalTime horaEvento = LocalTime.now();
-    private LocalTime horaEvento = horaEvento.plusHours(1);
+    private LocalTime comienzoEvento = LocalTime.now();
+    private LocalTime finEvento = comienzoEvento.plusHours(1);
 
     public CreadorActividad(Calendario modelo, InterfazGrafica interfazGrafica) {
         this.modelo = modelo;
@@ -87,9 +87,13 @@ public class CreadorActividad {
         stageCrearEvento.setTitle("Creando evento");
         stageCrearEvento.show();
 
-        this.espacioHora.setText(String.valueOf(LocalTime.now().getHour()));
-        this.espacioMinuto.setText(String.valueOf(LocalTime.now().getMinute()));
-        this.espacioSegundo.setText(String.valueOf(LocalTime.now().getSecond()));
+        this.espacioHora.setText(String.valueOf(comienzoEvento.getHour()));
+        this.espacioMinuto.setText(String.valueOf(comienzoEvento.getMinute()));
+        this.espacioSegundo.setText(String.valueOf(comienzoEvento.getSecond()));
+
+        this.espacioHoraFin.setText(String.valueOf(finEvento.getHour()));
+        this.espacioMinutoFin.setText(String.valueOf(finEvento.getMinute()));
+        this.espacioSegundoFin.setText(String.valueOf(finEvento.getSecond()));
 
 	this.espacioElegirFecha.setValue(LocalDate.now());
     }
@@ -149,24 +153,24 @@ public class CreadorActividad {
 
     public void ponerHora(ActionEvent event) {
         var horaFinal = this.configurarUnidadDeTiempo(this.espacioHora, 23);
-        this.horaEvento = this.horaEvento.withHour(horaFinal);
+        this.comienzoEvento = this.comienzoEvento.withHour(horaFinal);
 
-        System.out.println(this.horaEvento);
+        System.out.println(this.comienzoEvento);
     }
 
 
     public void ponerMinuto(ActionEvent event) {
         var horaFinal = this.configurarUnidadDeTiempo(this.espacioMinuto, 59);
-        this.horaEvento = this.horaEvento.withMinute(horaFinal);
+        this.comienzoEvento = this.comienzoEvento.withMinute(horaFinal);
 
-        System.out.println(this.horaEvento);
+        System.out.println(this.comienzoEvento);
     }
 
     public void ponerSegundo(ActionEvent event) {
         var horaFinal = this.configurarUnidadDeTiempo(this.espacioSegundo, 59);
-        this.horaEvento = this.horaEvento.withSecond(horaFinal);
+        this.comienzoEvento = this.comienzoEvento.withSecond(horaFinal);
 
-        System.out.println(this.horaEvento);
+        System.out.println(this.comienzoEvento);
     }
 
     public void ponerTipoActividadTarea(ActionEvent event) {
@@ -186,7 +190,7 @@ public class CreadorActividad {
     }
 
     public void crearEvento(ActionEvent event) {
-        LocalDateTime fechaFinal = this.horaEvento.atDate(this.fechaEvento);
+        LocalDateTime fechaFinal = this.comienzoEvento.atDate(this.fechaEvento);
 
 	int idEvento;
 	if (this.tipoActividad == "Tarea") {
