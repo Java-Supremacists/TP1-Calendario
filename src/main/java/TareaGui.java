@@ -12,7 +12,7 @@ public class TareaGui {
     }
 
     public void setColor(String color) {
-	this.color = color;
+        this.color = color;
 
     }
 }

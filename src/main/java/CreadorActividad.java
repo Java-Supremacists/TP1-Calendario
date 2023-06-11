@@ -95,7 +95,7 @@ public class CreadorActividad {
         this.espacioMinutoFin.setText(String.valueOf(finEvento.getMinute()));
         this.espacioSegundoFin.setText(String.valueOf(finEvento.getSecond()));
 
-	this.espacioElegirFecha.setValue(LocalDate.now());
+        this.espacioElegirFecha.setValue(LocalDate.now());
     }
 
     public void ponerNombre(ActionEvent event) {
@@ -123,7 +123,7 @@ public class CreadorActividad {
         this.espacioFrecuencia.setStyle(numeroBoton.getColorBoton());
 
         this.frecuenciaDiariaEvento = numeroBoton.getNumeroBoton();
-	this.espacioFrecuencia.setText(String.valueOf(this.frecuenciaDiariaEvento));
+        this.espacioFrecuencia.setText(String.valueOf(this.frecuenciaDiariaEvento));
         System.out.println(this.frecuenciaDiariaEvento);
     }
 
@@ -147,10 +147,10 @@ public class CreadorActividad {
         espacioUnidad.setStyle(numeroBoton.getColorBoton());
 
         Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), horaMaxima);
-	//No podemos tener eventos que finalicen antes de que empiecen
-	if (horaEstablecida < horaMinima) {
-	    horaEstablecida = horaMinima;
-	}
+        //No podemos tener eventos que finalicen antes de que empiecen
+        if (horaEstablecida < horaMinima) {
+            horaEstablecida = horaMinima;
+        }
         espacioUnidad.setText(String.valueOf(horaEstablecida));
 
         return horaEstablecida;
@@ -199,39 +199,39 @@ public class CreadorActividad {
     }
 
     public void ponerTipoActividadTarea(ActionEvent event) {
-	this.tipoActividad = "Tarea";
-	this.espacioTipoActividad.setText("Tarea");
-	this.espacioHoraFin.setDisable(true);
-	this.espacioMinutoFin.setDisable(true);
-	this.espacioSegundoFin.setDisable(true);
-	this.espacioFrecuencia.setDisable(true);
+        this.tipoActividad = "Tarea";
+        this.espacioTipoActividad.setText("Tarea");
+        this.espacioHoraFin.setDisable(true);
+        this.espacioMinutoFin.setDisable(true);
+        this.espacioSegundoFin.setDisable(true);
+        this.espacioFrecuencia.setDisable(true);
     }
 
     public void ponerTipoActividadEvento(ActionEvent event) {
-	this.tipoActividad = "Evento";
-	this.espacioTipoActividad.setText("Evento");
-	this.espacioHoraFin.setDisable(false);
-	this.espacioMinutoFin.setDisable(false);
-	this.espacioSegundoFin.setDisable(false);
-	this.espacioFrecuencia.setDisable(false);
+        this.tipoActividad = "Evento";
+        this.espacioTipoActividad.setText("Evento");
+        this.espacioHoraFin.setDisable(false);
+        this.espacioMinutoFin.setDisable(false);
+        this.espacioSegundoFin.setDisable(false);
+        this.espacioFrecuencia.setDisable(false);
     }
 
     public void crearEvento(ActionEvent event) {
         LocalDateTime fechaComienzo = this.comienzoEvento.atDate(this.fechaEvento);
 
-	int idEvento;
-	if (this.tipoActividad == "Tarea") {
-	    idEvento = this.modelo.crearTarea(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaComienzo);
-	}
-	else {
-	    LocalDateTime fechaFin = this.finEvento.atDate(this.fechaEvento);
-	    idEvento = this.modelo.crearEvento(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaComienzo, fechaFin);
-	}
-	System.out.println(idEvento);
+        int idEvento;
+        if (this.tipoActividad == "Tarea") {
+            idEvento = this.modelo.crearTarea(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaComienzo);
+        }
+        else {
+            LocalDateTime fechaFin = this.finEvento.atDate(this.fechaEvento);
+            idEvento = this.modelo.crearEvento(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaComienzo, fechaFin);
+        }
+        System.out.println(idEvento);
 
 
-	// var tareaGrafica = new TareaGui(idEvento);
-	// this.interfazGrafica.anadirTarea(idEvento, tareaGrafica);
+        // var tareaGrafica = new TareaGui(idEvento);
+        // this.interfazGrafica.anadirTarea(idEvento, tareaGrafica);
 
         this.modelo.longTareasYEventos();
     }

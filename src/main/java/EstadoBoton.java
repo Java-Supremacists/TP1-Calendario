@@ -12,7 +12,7 @@ public class EstadoBoton {
     public EstadoBoton (TextField numeroBoton) {
         try {
             this.numeroBoton = Integer.parseInt(numeroBoton.getText());
-	    this.numeroBoton = (this.numeroBoton < 0 ? 0 : this.numeroBoton);
+            this.numeroBoton = (this.numeroBoton < 0 ? 0 : this.numeroBoton);
             this.colorBoton = "-fx-control-inner-background: white";
         }
         catch (NumberFormatException e) {

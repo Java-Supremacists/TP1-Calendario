@@ -90,7 +90,7 @@ public class InterfazGrafica extends Application {
     }
 
     // public void anadirTarea(int hashTarea, TareaGui tareaGui) {
-	// this.hashTareas.put(hashTarea, tareaGui);
+    // this.hashTareas.put(hashTarea, tareaGui);
     // }
 
 
