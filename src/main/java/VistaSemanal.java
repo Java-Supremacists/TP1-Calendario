@@ -7,6 +7,7 @@ import javafx.scene.layout.VBox;
 
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.List;
 
 public class VistaSemanal extends VistaCalendario {
     public VistaSemanal(FlowPane visualizacion, FlowPane pantalla, FlowPane eliminar) {
@@ -42,5 +43,10 @@ public class VistaSemanal extends VistaCalendario {
     @Override
     public String getTipo() {
         return "Semana";
+    }
+
+    @Override
+    public void visualizarActividades(List<Activities> hacerVisual, GridPane grilla) {
+
     }
 }

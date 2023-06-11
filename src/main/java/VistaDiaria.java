@@ -6,6 +6,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class VistaDiaria extends VistaCalendario {
     public VistaDiaria(FlowPane visualizacion, FlowPane pantalla, FlowPane eliminar) {
@@ -33,4 +34,13 @@ public class VistaDiaria extends VistaCalendario {
     public String getTipo() {
         return "Dia";
     }
+
+    @Override
+    public void visualizarActividades(List<Activities> hacerVisual, GridPane grilla) {
+        vaciarGrilla(grilla);
+    }
+    private void vaciarGrilla(GridPane grillaxDia){
+        System.out.println(grillaxDia.getChildren());
+    }
+
 }

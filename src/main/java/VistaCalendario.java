@@ -22,4 +22,5 @@ public abstract class VistaCalendario {
     public FlowPane getVista() {
         return vista;
     }
+    public abstract void visualizarActividades(List<Activities> hacerVisual,GridPane grilla);
 }

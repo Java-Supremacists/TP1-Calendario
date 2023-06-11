@@ -7,6 +7,7 @@ import javafx.scene.layout.VBox;
 
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.List;
 
 public class VistaMensual extends VistaCalendario {
     public VistaMensual(FlowPane visualizacion, FlowPane pantalla, FlowPane eliminar) {
@@ -47,5 +48,10 @@ public class VistaMensual extends VistaCalendario {
     @Override
     public String getTipo() {
         return "Mes";
+    }
+
+    @Override
+    public void visualizarActividades(List<Activities> hacerVisual, GridPane grilla) {
+
     }
 }

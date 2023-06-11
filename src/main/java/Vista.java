@@ -102,7 +102,7 @@ public class Vista {
 
         tipoDeVisualizacion.setOnAction(this::cambiarVistaCalendario);
 
-	botonCrearActividad.setOnAction(this::crearActividad);
+	    botonCrearActividad.setOnAction(this::crearActividad);
         // botonCrearActividad.getItems().addAll(actividades);
     }
     public Scene getScene(){
@@ -154,12 +154,12 @@ public class Vista {
         visualizacionPosterior.setOnAction(evento);
     }
     public void crearActividad(ActionEvent evento) {
-	var crearActividad = new CreadorActividad(this.controlador);
-	try {
-	    crearActividad.start();
-	    }
-	catch (Exception e) {
-	    e.printStackTrace(System.out);
-	}
+        var crearActividad = new CreadorActividad(this.controlador);
+        try {
+            crearActividad.start();
+            }
+        catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
     }
 }
