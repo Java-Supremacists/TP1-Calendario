@@ -37,9 +37,9 @@
                      <Font size="19.0" />
                   </font>
                </Text>
-               <TextField fx:id="espacioMinutoFin" layoutX="108.0" layoutY="190.0" onAction="#ponerMinuto" prefHeight="24.0" prefWidth="35.0" text="00" />
-               <TextField fx:id="espacioHoraFin" layoutX="51.0" layoutY="190.0" onAction="#ponerHora" prefHeight="24.0" prefWidth="35.0" text="00" />
-               <TextField fx:id="espacioSegundoFin" layoutX="168.0" layoutY="190.0" onAction="#ponerSegundo" prefHeight="24.0" prefWidth="35.0" text="00" />
+               <TextField fx:id="espacioMinutoFin" layoutX="108.0" layoutY="190.0" onAction="#ponerMinutoFin" prefHeight="24.0" prefWidth="35.0" text="00" />
+               <TextField fx:id="espacioHoraFin" layoutX="51.0" layoutY="190.0" onAction="#ponerHoraFin" prefHeight="24.0" prefWidth="35.0" text="00" />
+               <TextField fx:id="espacioSegundoFin" layoutX="168.0" layoutY="190.0" onAction="#ponerSegundoFin" prefHeight="24.0" prefWidth="35.0" text="00" />
                <Text layoutX="93.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" wrappingWidth="21.3798828125">
                   <font>
                      <Font size="19.0" />
