@@ -76,6 +76,8 @@ public class CreadorActividad {
         this.espacioHora.setText(String.valueOf(LocalTime.now().getHour()));
         this.espacioMinuto.setText(String.valueOf(LocalTime.now().getMinute()));
         this.espacioSegundo.setText(String.valueOf(LocalTime.now().getSecond()));
+
+	this.espacioElegirFecha.setValue(LocalDate.now());
     }
 
     public void ponerNombre(ActionEvent event) {
