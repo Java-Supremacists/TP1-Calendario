@@ -169,7 +169,6 @@ public class CreadorActividad {
     }
 
     public void ponerTipoActividadTarea(ActionEvent event) {
-	System.out.println("Sus");
 	this.espacioTipoActividad.setText("Tarea");
 	this.espacioHoraFin.setDisable(true);
 	this.espacioMinutoFin.setDisable(true);
@@ -177,8 +176,10 @@ public class CreadorActividad {
     }
 
     public void ponerTipoActividadEvento(ActionEvent event) {
-	System.out.println("Sus");
 	this.espacioTipoActividad.setText("Evento");
+	this.espacioHoraFin.setDisable(false);
+	this.espacioMinutoFin.setDisable(false);
+	this.espacioSegundoFin.setDisable(false);
     }
 
     public void crearEvento(ActionEvent event) {
