@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class InterfazGrafica extends Application {
     private final Calendario modelo = new Calendario();
 
-    private HashMap<Integer, TareaGui> hashTareas = new HashMap<>();
+//     private HashMap<Integer, TareaGui> hashTareas = new HashMap<>();
 
     private LocalDateTime fechaActual;
     @Override
@@ -89,9 +89,9 @@ public class InterfazGrafica extends Application {
         return LocalDateTime.of(year,mes,1,0,0);
     }
 
-    public void anadirTarea(int hashTarea, TareaGui tareaGui) {
-	this.hashTareas.put(hashTarea, tareaGui);
-    }
+    // public void anadirTarea(int hashTarea, TareaGui tareaGui) {
+	// this.hashTareas.put(hashTarea, tareaGui);
+    // }
 
 
 }
