@@ -173,6 +173,7 @@ public class CreadorActividad {
 	this.espacioHoraFin.setDisable(true);
 	this.espacioMinutoFin.setDisable(true);
 	this.espacioSegundoFin.setDisable(true);
+	this.espacioFrecuencia.setDisable(true);
     }
 
     public void ponerTipoActividadEvento(ActionEvent event) {
@@ -180,14 +181,21 @@ public class CreadorActividad {
 	this.espacioHoraFin.setDisable(false);
 	this.espacioMinutoFin.setDisable(false);
 	this.espacioSegundoFin.setDisable(false);
+	this.espacioFrecuencia.setDisable(false);
     }
 
     public void crearEvento(ActionEvent event) {
         LocalDateTime fechaFinal = this.horaEvento.atDate(this.fechaEvento);
 
-        int idEvento = this.modelo.crearTarea(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaFinal);
+	int idEvento;
+	if (this.tipoActividad == "Tarea") {
+	    idEvento = this.modelo.crearTarea(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaFinal);
+	}
+	else {
+	}
 
-	var tareaGrafica = new TareaGui(idEvento);
+
+	// var tareaGrafica = new TareaGui(idEvento);
 	// this.interfazGrafica.anadirTarea(idEvento, tareaGrafica);
 
         this.modelo.longTareasYEventos();
