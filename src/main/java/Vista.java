@@ -47,7 +47,6 @@ public class Vista {
     private Label mesDelCalendario;
     @FXML
     private ChoiceBox<String> tipoDeVisualizacion;
-    private final String[] elecciones = {"Dia","Semana","Mes"};
     @FXML
     private Button botonCrearActividad;
     // private ChoiceBox<String> botonCrearActividad;
@@ -77,7 +76,7 @@ public class Vista {
     @FXML
     private GridPane grillaDelMes;
 
-    private Calendario modelo;
+    private final Calendario modelo;
 
     //--------- Mensual ---------
     private final Scene escena;
@@ -100,6 +99,7 @@ public class Vista {
         this.escena = new Scene(pantalla1,854,480); //creamos la escena
 
         //metemos implementacion interna
+        String[] elecciones = {"Dia", "Semana", "Mes"};
         tipoDeVisualizacion.getItems().addAll(elecciones);
         tipoDeVisualizacion.setValue("Semana");
 
@@ -121,9 +121,19 @@ public class Vista {
         //implementar aca para facilitar la actualizacion de los días facilmente
         String months = "";
         switch (strategy.getTipo()) {
-        case "Dia" -> months = strategy.actualizarVista(primerDia,grillaConElDia);
-        case "Semana" -> months = strategy.actualizarVista(primerDia,grillaDeDiasFijos);
-        case "Mes" -> months = strategy.actualizarVista(primerDia,grillaDelMes);
+        case "Dia" -> {
+            months = strategy.actualizarVista(primerDia,grillaConElDia);
+            strategy.visualizarActividades(null,grillaDiaxHora);
+        }
+
+        case "Semana" ->{
+            months = strategy.actualizarVista(primerDia,grillaDeDiasFijos);
+            strategy.visualizarActividades(null,grillaDiasxHorarios);
+        }
+        case "Mes" ->{
+            months = strategy.actualizarVista(primerDia,grillaDelMes);
+            strategy.visualizarActividades(null,grillaDelMes);
+        }
         }
         mesDelCalendario.setText(months);
     }
@@ -135,18 +145,18 @@ public class Vista {
             case "Dia" -> {
                         strategy = new VistaDiaria(escenaPorDia,pantalla,strategy.getVista());
                         controlador.setFechaActual(hoy);
-                        break;
-                    }
+                        strategy.visualizarActividades(null,grillaDiaxHora);
+            }
                 case "Semana" -> {
                             strategy = new VistaSemanal(escenaPorSemana,pantalla,strategy.getVista());
                             controlador.setFechaActual(InterfazGrafica.domingoAnteriorCercano(hoy));
-                            break;
-                        }
+                            strategy.visualizarActividades(null,grillaDiasxHorarios);
+                }
                     case "Mes" -> {
                                 strategy = new VistaMensual(escenaPorMes,pantalla,strategy.getVista());
                                 controlador.setFechaActual(InterfazGrafica.primerDiaDelMes(hoy.getYear(), hoy.getMonth()));
-                                break;
-                            }
+                                strategy.visualizarActividades(null,grillaDelMes);
+                    }
                         }
             this.actualizarVistaCalendario(controlador.getFechaActual()); // Esto es momentaneo para que sea visible
         }

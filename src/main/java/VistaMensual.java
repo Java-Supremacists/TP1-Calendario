@@ -52,6 +52,9 @@ public class VistaMensual extends VistaCalendario {
 
     @Override
     public void visualizarActividades(List<Activities> hacerVisual, GridPane grilla) {
-
+        vaciarGrilla(grilla);
+    }
+    private void vaciarGrilla(GridPane grillaxDia){
+        System.out.println(grillaxDia.getChildren());
     }
 }

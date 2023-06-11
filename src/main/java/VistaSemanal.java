@@ -36,7 +36,7 @@ public class VistaSemanal extends VistaCalendario {
             }
         }
         if (mesDesde != mesHasta && mesHasta!= null) {
-            return mesDesde.toString() + "-" + mesHasta.toString();
+            return mesDesde.toString() + "-" + mesHasta;
         }
         return mesDesde.toString();
     }
@@ -47,6 +47,9 @@ public class VistaSemanal extends VistaCalendario {
 
     @Override
     public void visualizarActividades(List<Activities> hacerVisual, GridPane grilla) {
-
+        vaciarGrilla(grilla);
+    }
+    private void vaciarGrilla(GridPane grillaxDia){
+        System.out.println(grillaxDia.getChildren());
     }
 }

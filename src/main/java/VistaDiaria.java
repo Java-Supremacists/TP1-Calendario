@@ -40,7 +40,11 @@ public class VistaDiaria extends VistaCalendario {
         vaciarGrilla(grilla);
     }
     private void vaciarGrilla(GridPane grillaxDia){
-        System.out.println(grillaxDia.getChildren());
+        for (Node e : grillaxDia.getChildren()){
+            if (!e.getClass().equals(Label.class)){
+                //significa que e es un elemento de visualizacion del evento o tarea
+            }
+        }
     }
 
 }
