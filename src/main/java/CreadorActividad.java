@@ -47,7 +47,7 @@ public class CreadorActividad {
 
     @FXML
     private TextField espacioFrecuencia;
-    private Integer frecuenciaDiariaEvento;
+    private Integer frecuenciaDiariaEvento = 0;
 
     @FXML
     private TextField espacioHora;
