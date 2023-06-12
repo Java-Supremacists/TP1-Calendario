@@ -14,6 +14,7 @@ import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.function.Function;
 
 import javafx.event.ActionEvent;
@@ -75,6 +76,8 @@ public class CreadorActividad {
     //Le pongo un valor por defecto. Esto tambien es asi en google calendar
     private LocalTime comienzoEvento = LocalTime.now();
     private LocalTime finEvento = comienzoEvento.plusHours(1);
+
+    private List<Plazo> listaPlazos;
 
     public CreadorActividad(Calendario modelo, InterfazGrafica interfazGrafica) {
         this.modelo = modelo;
@@ -245,7 +248,7 @@ public class CreadorActividad {
 
     public void elegirAlarma() {
 	System.out.println("clicl");
-	var elegirAlarma = new ElegirAlarma();
+	var elegirAlarma = new ElegirAlarma(this);
 
 	try {
 	    elegirAlarma.start();
@@ -256,4 +259,32 @@ public class CreadorActividad {
 
     }
 
-}
+    public void anadirAlarma(String plazoElegidoPorUsuario) {
+	Plazo plazoParaAnadir;
+	switch (plazoElegidoPorUsuario) {
+	    case "1 dia antes":
+		System.out.println("1 dia antes");
+		break;
+	    case "1 hora antes":
+		System.out.println("1 hora antes");
+		break;
+
+	    case "30 mins antes":
+		System.out.println("30 mins antes");
+		break;
+
+	    case "15 mins antes":
+		System.out.println("15 mins antes");
+		break;
+
+	    case "10 mins antes":
+		System.out.println("10 mins antes");
+		break;
+
+	    case "5 mins antes":
+		System.out.println("5 mins antes");
+		break;
+
+	}
+	}
+    }

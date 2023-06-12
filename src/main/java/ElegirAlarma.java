@@ -18,7 +18,11 @@ public class ElegirAlarma {
     @FXML
     private ImageView imagen;
 
-    public ElegirAlarma() {
+    @FXML
+    private CreadorActividad padre;
+
+    public ElegirAlarma(CreadorActividad padre) {
+	this.padre = padre;
     }
 
     public void start() throws Exception {
@@ -33,7 +37,9 @@ public class ElegirAlarma {
 
     public void elegirAlarmaDeTipo(ActionEvent event) {
 	var item = (MenuItem) event.getSource();
+	var idItem = item.getId();
 	System.out.println(item.getId());
+	this.padre.anadirAlarma(idItem);
     }
 }
 

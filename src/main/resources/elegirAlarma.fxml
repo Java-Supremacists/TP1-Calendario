@@ -25,7 +25,6 @@
                    <MenuItem id="1 hora antes" mnemonicParsing="false" onAction="#elegirAlarmaDeTipo" onMenuValidation="#elegirAlarmaDeTipo" text="1 hora antes" />
                    <MenuItem id="30 mins antes" mnemonicParsing="false" onAction="#elegirAlarmaDeTipo" onMenuValidation="#elegirAlarmaDeTipo" text="30 mins antes" />
                    <MenuItem id="15 mins antes" mnemonicParsing="false" onAction="#elegirAlarmaDeTipo" onMenuValidation="#elegirAlarmaDeTipo" text="15 mins antes" />
-                   <MenuItem id="15 mins antes" mnemonicParsing="false" onAction="#elegirAlarmaDeTipo" onMenuValidation="#elegirAlarmaDeTipo" text="15 mins antes" />
                    <MenuItem id="10 mins antes" mnemonicParsing="false" onAction="#elegirAlarmaDeTipo" onMenuValidation="#elegirAlarmaDeTipo" text="10 mins antes" />
                    <MenuItem id="5 mins antes" mnemonicParsing="false" onAction="#elegirAlarmaDeTipo" onMenuValidation="#elegirAlarmaDeTipo" text="5 mins antes" />
                  </items>
