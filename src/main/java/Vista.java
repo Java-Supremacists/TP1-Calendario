@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 
@@ -26,8 +27,6 @@ public class Vista {
         @FXML
         private ListView listaPosibleParaUsar;
 
-        @FXML
-        private ScrollPane escroleoDeGrilla;
 
         @FXML
         private Pane barraSuperiorDiaria;
@@ -35,6 +34,9 @@ public class Vista {
         @FXML
         private ScrollPane ScrollGrillaDiaxHora;
      */
+    @FXML
+    private ScrollPane escroleoDeGrilla;
+
     @FXML
     private FlowPane pantalla;
     @FXML
