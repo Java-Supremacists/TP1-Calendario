@@ -24,7 +24,7 @@
                <Button fx:id="botonCrear" layoutX="98.0" layoutY="294.0" mnemonicParsing="false" onAction="#crearEvento" text="Crear" />
                <CheckBox fx:id="espacioEsDiaCompleto" layoutX="142.0" layoutY="125.0" mnemonicParsing="false" onAction="#ponerEsDiaCompleto" text="Dia Entero" />
                <Text layoutX="14.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frecuencia diaria:" />
-               <TextField fx:id="espacioFrecuencia" layoutX="153.0" layoutY="258.0" onAction="#ponerFrecuencia" prefHeight="24.0" prefWidth="71.0" text="0" />
+               <TextField fx:id="espacioFrecuencia" layoutX="153.0" layoutY="258.0" onAction="#ponerFrecuencia" onMouseReleased="#ponerFrecuencia" prefHeight="24.0" prefWidth="71.0" text="0" />
                <TextField fx:id="espacioMinuto" layoutX="109.0" layoutY="160.0" onAction="#ponerMinuto" prefHeight="24.0" prefWidth="35.0" text="00" />
                <TextField fx:id="espacioHora" layoutX="52.0" layoutY="160.0" onAction="#ponerHora" prefHeight="24.0" prefWidth="35.0" text="00" />
                <TextField fx:id="espacioSegundo" layoutX="169.0" layoutY="160.0" onAction="#ponerSegundo" prefHeight="24.0" prefWidth="35.0" text="00" />
@@ -57,7 +57,7 @@
                    <MenuItem mnemonicParsing="false" onAction="#ponerTipoActividadEvento" text="Evento" />
                  </items>
                </MenuButton>
-               <ImageView fx:id="relojImagen" fitHeight="40.0" fitWidth="40.0" layoutX="106.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true" />
+               <ImageView fx:id="relojImagen" fitHeight="40.0" fitWidth="40.0" layoutX="106.0" layoutY="220.0" onMouseClicked="#elegirAlarma" pickOnBounds="true" preserveRatio="true" />
             </children></AnchorPane>
         </Scene>
     </scene>

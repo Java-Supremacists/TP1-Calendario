@@ -243,4 +243,8 @@ public class CreadorActividad {
         this.modelo.longTareasYEventos();
     }
 
+    public void elegirAlarma(ActionEvent event) {
+
+    }
+
 }
