@@ -32,10 +32,8 @@ public class ElegirAlarma {
     }
 
     public void elegirAlarmaDeTipo(ActionEvent event) {
-	System.out.println(event);
-	System.out.println(event.getClass());
-	System.out.println(event.toString());
-	System.out.println(event.getSource());
+	var item = (MenuItem) event.getSource();
+	System.out.println(item.getId());
     }
 }
 
