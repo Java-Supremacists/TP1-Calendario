@@ -21,12 +21,13 @@
                <ImageView fx:id="imagen" fitHeight="114.0" fitWidth="114.0" layoutX="43.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
                <SplitMenuButton fx:id="elegirAlarma" layoutX="23.0" layoutY="168.0" mnemonicParsing="false" text="SplitMenuButton">
                  <items>
-                   <MenuItem mnemonicParsing="false" text="1 dia antes" />
-                   <MenuItem mnemonicParsing="false" text="1 hora antes" />
-                     <MenuItem mnemonicParsing="false" text="30 mins antes" />
-                     <MenuItem mnemonicParsing="false" text="15 mins antes" />
-                     <MenuItem mnemonicParsing="false" text="10 mins antes" />
-                     <MenuItem mnemonicParsing="false" text="5 mins antes" />
+                   <MenuItem id="1 dia antes" mnemonicParsing="false" onAction="#elegirAlarmaDeTipo" onMenuValidation="#elegirAlarmaDeTipo" text="1 dia antes" />
+                   <MenuItem id="1 hora antes" mnemonicParsing="false" onAction="#elegirAlarmaDeTipo" onMenuValidation="#elegirAlarmaDeTipo" text="1 hora antes" />
+                   <MenuItem id="30 mins antes" mnemonicParsing="false" onAction="#elegirAlarmaDeTipo" onMenuValidation="#elegirAlarmaDeTipo" text="30 mins antes" />
+                   <MenuItem id="15 mins antes" mnemonicParsing="false" onAction="#elegirAlarmaDeTipo" onMenuValidation="#elegirAlarmaDeTipo" text="15 mins antes" />
+                   <MenuItem id="15 mins antes" mnemonicParsing="false" onAction="#elegirAlarmaDeTipo" onMenuValidation="#elegirAlarmaDeTipo" text="15 mins antes" />
+                   <MenuItem id="10 mins antes" mnemonicParsing="false" onAction="#elegirAlarmaDeTipo" onMenuValidation="#elegirAlarmaDeTipo" text="10 mins antes" />
+                   <MenuItem id="5 mins antes" mnemonicParsing="false" onAction="#elegirAlarmaDeTipo" onMenuValidation="#elegirAlarmaDeTipo" text="5 mins antes" />
                  </items>
                </SplitMenuButton>
             </children></AnchorPane>

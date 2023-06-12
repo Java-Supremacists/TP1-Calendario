@@ -1,5 +1,7 @@
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,6 +29,13 @@ public class ElegirAlarma {
         stageCrearEvento.show();
 
 	this.imagen.setImage(new Image("alarma.png"));
+    }
+
+    public void elegirAlarmaDeTipo(ActionEvent event) {
+	System.out.println(event);
+	System.out.println(event.getClass());
+	System.out.println(event.toString());
+	System.out.println(event.getSource());
     }
 }
 
