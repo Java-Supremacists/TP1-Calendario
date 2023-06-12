@@ -1,6 +1,7 @@
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.SplitMenuButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -16,7 +17,6 @@ public class ElegirAlarma {
     private ImageView imagen;
 
     public ElegirAlarma() {
-
     }
 
     public void start() throws Exception {
@@ -26,6 +26,7 @@ public class ElegirAlarma {
         stageCrearEvento.setTitle("Creando evento");
         stageCrearEvento.show();
 
+	this.imagen.setImage(new Image("alarma.png"));
     }
 }
 
