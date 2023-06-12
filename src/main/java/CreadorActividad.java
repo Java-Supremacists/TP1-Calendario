@@ -243,7 +243,16 @@ public class CreadorActividad {
         this.modelo.longTareasYEventos();
     }
 
-    public void elegirAlarma(ActionEvent event) {
+    public void elegirAlarma() {
+	System.out.println("clicl");
+	var elegirAlarma = new ElegirAlarma();
+
+	try {
+	    elegirAlarma.start();
+	}
+        catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
 
     }
 
