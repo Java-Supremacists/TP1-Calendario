@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -7,7 +6,6 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -21,10 +19,10 @@
                <TextField fx:id="espacioNombre" layoutX="39.0" layoutY="14.0" onAction="#ponerNombre" text="Nombre" />
                <TextField fx:id="espacioDescripcion" layoutX="40.0" layoutY="49.0" onAction="#ponerDescripcion" text="Descripcion" />
                <DatePicker fx:id="espacioElegirFecha" layoutX="17.0" layoutY="122.0" onAction="#ponerFecha" prefHeight="24.0" prefWidth="110.0" promptText="Insertar fecha" />
-               <Button fx:id="botonCrear" layoutX="98.0" layoutY="294.0" mnemonicParsing="false" onAction="#crearEvento" text="Crear" />
+               <Button fx:id="botonCrear" layoutX="103.0" layoutY="296.0" mnemonicParsing="false" onAction="#crearEvento" text="Crear" />
                <CheckBox fx:id="espacioEsDiaCompleto" layoutX="142.0" layoutY="125.0" mnemonicParsing="false" onAction="#ponerEsDiaCompleto" text="Dia Entero" />
-               <Text layoutX="14.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frecuencia diaria:" />
-               <TextField fx:id="espacioFrecuencia" layoutX="153.0" layoutY="258.0" onAction="#ponerFrecuencia" onMouseReleased="#ponerFrecuencia" prefHeight="24.0" prefWidth="71.0" text="0" />
+               <Text layoutX="14.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frecuencia diaria:" />
+               <TextField fx:id="espacioFrecuencia" layoutX="153.0" layoutY="265.0" onAction="#ponerFrecuencia" onMouseReleased="#ponerFrecuencia" prefHeight="24.0" prefWidth="71.0" text="0" />
                <TextField fx:id="espacioMinuto" layoutX="109.0" layoutY="160.0" onAction="#ponerMinuto" prefHeight="24.0" prefWidth="35.0" text="00" />
                <TextField fx:id="espacioHora" layoutX="52.0" layoutY="160.0" onAction="#ponerHora" prefHeight="24.0" prefWidth="35.0" text="00" />
                <TextField fx:id="espacioSegundo" layoutX="169.0" layoutY="160.0" onAction="#ponerSegundo" prefHeight="24.0" prefWidth="35.0" text="00" />
@@ -57,7 +55,11 @@
                    <MenuItem mnemonicParsing="false" onAction="#ponerTipoActividadEvento" text="Evento" />
                  </items>
                </MenuButton>
-               <ImageView fx:id="relojImagen" fitHeight="40.0" fitWidth="40.0" layoutX="106.0" layoutY="220.0" onMouseClicked="#elegirAlarma" pickOnBounds="true" preserveRatio="true" />
+               <Button fx:id="relojImagen" layoutX="94.0" layoutY="223.0" mnemonicParsing="false" onAction="#elegirAlarma" prefHeight="34.0" prefWidth="73.0" text="Alarma">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Button>
             </children></AnchorPane>
         </Scene>
     </scene>

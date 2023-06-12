@@ -70,7 +70,7 @@ public class CreadorActividad {
     private String tipoActividad = "Evento";
     
     @FXML
-    private ImageView relojImagen;
+    private Button relojImagen;
 
     //Le pongo un valor por defecto. Esto tambien es asi en google calendar
     private LocalTime comienzoEvento = LocalTime.now();
@@ -101,7 +101,7 @@ public class CreadorActividad {
         this.espacioSegundoFin.setText(String.valueOf(finEvento.getSecond()));
 
         this.espacioElegirFecha.setValue(LocalDate.now());
-	this.relojImagen.setImage(new Image("alarma.png"));
+	// this.relojImagen.setGraphic(new ImageView(new Image("alarma.png")));
     }
 
     public void ponerNombre(ActionEvent event) {
