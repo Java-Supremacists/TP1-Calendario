@@ -14,7 +14,7 @@
             <AnchorPane prefHeight="198.0" prefWidth="200">
             <children>
                <Text layoutX="67.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alarma:" textAlignment="CENTER" wrappingWidth="66.7294921875" />
-               <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="70.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+               <ImageView fx:id="imagen" fitHeight="60.0" fitWidth="60.0" layoutX="70.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
                <SplitMenuButton fx:id="elegirAlarma" layoutX="23.0" layoutY="99.0" mnemonicParsing="false" text="SplitMenuButton">
                  <items>
                    <MenuItem mnemonicParsing="false" text="1 dia antes" />
