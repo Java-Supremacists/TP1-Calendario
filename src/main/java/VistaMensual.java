@@ -85,22 +85,16 @@ public class VistaMensual extends VistaCalendario {
 			    var casteado = (Tarea) act;
 			    var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
 			    if (dia.getDayOfMonth() == diaActividadComienza){
-				// agregar.getItems().add("Aca iria el texto del evento o tarea");
-				// System.out.println(((Evento) act).getDescripcion());
+
 				agregar.getItems().add(casteado.getTitulo());
-				// agregar.getItems().add(act.getDescripcion());
 			}
 			}
 			catch (ClassCastException errorJavaXD) {
 			    var casteado = (Evento) act;
 			    var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
 			    if (dia.getDayOfMonth() == diaActividadComienza){
-				// agregar.getItems().add("Aca iria el texto del evento o tarea");
-				// System.out.println(((Evento) act).getDescripcion());
-				System.out.println("ARREGLAME ESTA");
-				System.out.println(casteado.getTitulo());
+
 				agregar.getItems().add(casteado.getTitulo());
-				// agregar.getItems().add(act.getDescripcion());
 			}
 			}
                     }
