@@ -62,7 +62,7 @@ public class VistaSemanal extends VistaCalendario {
         return escenaPorSemana;
     }
     @Override
-    public void visualizarActividades(List<Activities> hacerVisual) {
+    public void visualizarActividades(List<Activities> hacerVisual,LocalDateTime fechaInicioSemana) {
         vaciarGrilla();
     }
     private void vaciarGrilla() {

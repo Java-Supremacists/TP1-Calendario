@@ -3,9 +3,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -65,17 +69,65 @@ public class VistaMensual extends VistaCalendario {
         return escenaPorMes;
     }
     @Override
-    public void visualizarActividades(List<Activities> hacerVisual) {
-        vaciarGrilla();
-    }
-    private void vaciarGrilla() {
+    public void visualizarActividades(List<Activities> hacerVisual,LocalDateTime fechaInicio) {
+        var dia = fechaInicio;
         for (Node e : grillaDelMes.getChildren()) {
             if (e.getClass().equals(VBox.class)){
                 //e siempre va a ser una VBox
                 var hijo = (VBox) e;
-                hijo.getChildren().removeIf(i -> !i.getClass().equals(Label.class)); // remuevo lo de adentro del Vbox excepto las fechas
+                var listaHijos = hijo.getChildren();//primer elemento el dia y el segundo es la fecha y sino solo unicamente la fecha
+                listaHijos.removeIf(i -> !i.getClass().equals(Label.class)); //remuevo lo de adentro del Vbox excepto las fechas
+                ListView<String> agregar = listaFormal();//creo la lista formal
+                if (hacerVisual!=null) {
+                    for (Activities act : hacerVisual){
+                        var diaActividadComienza = act.cuandoEmpieza().getDayOfMonth();
+                        if (dia.getDayOfMonth() == diaActividadComienza){
+                            agregar.getItems().add(act.getTitulo());
+                        }
+                    }
+                }
+                listaHijos.add(agregar); //añado las listas formales
+                dia = dia.plusDays(1);
             }
-
         }
+
+    }
+    public static String getRandomColor() {
+        double red = Math.random();
+        double green = Math.random();
+        double blue = Math.random();
+        return String.format("#%02X%02X%02X",
+                (int) (red * 255),
+                (int) (green * 255),
+                (int) (blue * 255));
+    }
+    public static ListView<String> listaFormal(){
+        ListView<String> listView = new ListView<>();
+        listView.setCellFactory(new Callback<>() {
+            public ListCell<String> call(ListView<String> listView) {
+                return new ListCell<>() {
+                    protected void updateItem(String texto, boolean celdaVacia) {
+                        super.updateItem(texto, celdaVacia);
+
+                        if (celdaVacia || texto == null) {
+                            setText(null);
+                            setGraphic(null);
+                        } else {
+                            // Crear un punto de color a la izquierda del texto
+                            Label bulletPoint = new Label("•");
+                            bulletPoint.setStyle("-fx-text-fill: " + getRandomColor());
+
+                            // Crear un contenedor para el punto de color y el texto
+                            HBox hbox = new HBox(bulletPoint, new Label(texto));
+                            hbox.setSpacing(10);
+
+                            setGraphic(hbox);
+                            setText(null);
+                        }
+                    }
+                };
+            }
+        });
+        return listView;
     }
 }

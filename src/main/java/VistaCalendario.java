@@ -1,5 +1,4 @@
 import javafx.scene.layout.FlowPane;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -12,5 +11,5 @@ public abstract class VistaCalendario {
     public abstract String actualizarVista(LocalDateTime fecha);
     public abstract String getTipo();
     public abstract FlowPane getVista();
-    public abstract void visualizarActividades(List<Activities> hacerVisual);
+    public abstract void visualizarActividades(List<Activities> hacerVisual,LocalDateTime fecha);
 }

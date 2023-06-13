@@ -53,7 +53,7 @@ public class VistaDiaria extends VistaCalendario {
         return escenaPorDia;
     }
     @Override
-    public void visualizarActividades(List<Activities> hacerVisual) {
+    public void visualizarActividades(List<Activities> hacerVisual,LocalDateTime fechaHoy) {
         vaciarGrilla();
     }
     private void vaciarGrilla() {
