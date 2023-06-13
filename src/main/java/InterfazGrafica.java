@@ -107,6 +107,7 @@ public class InterfazGrafica extends Application {
 	System.out.println(archivoGuardado);
 
 	xmlManejador.generateXml(this.modelo, "Calendario", new FileOutputStream(archivoGuardado));
+
     }
 
     // public void anadirTarea(int hashTarea, TareaGui tareaGui) {
