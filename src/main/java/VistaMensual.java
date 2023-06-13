@@ -101,7 +101,7 @@ public class VistaMensual extends VistaCalendario {
                             var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
                             if (dia.getDayOfMonth() == diaActividadComienza) {
 
-                                agregar.getItems().add(casteado.getTitulo());
+                                agregar.getItems().add(casteado.getTitulo() + "赦" + String.valueOf(casteado.getID()));
                             }
                         }
                     }
