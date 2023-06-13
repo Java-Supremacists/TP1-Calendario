@@ -1,14 +1,18 @@
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Callback;
+
+import java.awt.Button;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -89,6 +93,7 @@ public class VistaMensual extends VistaCalendario {
                             if (dia.getDayOfMonth() == diaActividadComienza) {
 
                                 agregar.getItems().add(casteado.getTitulo());
+				// agregar.getItems().add(new Button());
                             }
                         }
                         catch (ClassCastException errorJavaXD) {
@@ -102,6 +107,11 @@ public class VistaMensual extends VistaCalendario {
                     }
                 }
                 listaHijos.add(agregar); //añado las listas formales
+		// listaHijos.setAll(this::sus);j
+		// listaHijos.setAll(System::out.println("SUS"));
+		// listaHijos.setAll();
+
+		// listaHijos.set
                 dia = dia.plusDays(1);
             }
         }
@@ -131,11 +141,15 @@ public class VistaMensual extends VistaCalendario {
                             Circle bulletPoint = new Circle(9, Color.web(getRandomColor()));
 
                             // Crear un contenedor para el punto de color y el texto
-                            HBox hbox = new HBox(bulletPoint, new Label(texto));
+			    var nombre = new Label(texto);
+			    nombre.setOnMouseClicked(VistaMensual::sus);
+                            HBox hbox = new HBox(bulletPoint, nombre);
                             hbox.setSpacing(10);
+			    // hbox.buildEventDispatchChain
 
                             setGraphic(hbox);
                             setText("");
+			    System.out.println("EYEYEYEYYE");
                         }
                     }
                 };
@@ -143,4 +157,9 @@ public class VistaMensual extends VistaCalendario {
         });
         return listView;
     }
+
+    public static void sus(MouseEvent event){
+	System.out.println("SUSU");
+    }
+
 }
