@@ -1,4 +1,8 @@
 import javafx.animation.AnimationTimer;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -12,11 +16,17 @@ import java.util.HashMap;
 public class InterfazGrafica extends Application {
     private final Calendario modelo = new Calendario();
 
+    private ControlerXml xmlManejador;
+    private final String archivoGuardado = System.getProperty("user.dir") + "/archivoGuardado";
+
 //     private HashMap<Integer, TareaGui> hashTareas = new HashMap<>();
 
     private LocalDateTime fechaActual;
     @Override
     public void start(Stage stage) throws Exception {
+        this.xmlManejador = new ControlerXml();
+	this.xmlManejador.cargarXml(this.modelo, new FileInputStream(archivoGuardado));
+
         var vista = new Vista(this, this.modelo); //por defecto viene con una vista semanal
         fechaActual = domingoAnteriorCercano(LocalDateTime.now());
         vista.actualizarVistaCalendario(fechaActual);
@@ -87,6 +97,15 @@ public class InterfazGrafica extends Application {
     }
     public static LocalDateTime primerDiaDelMes(int year, Month mes) {
         return LocalDateTime.of(year,mes,1,0,0);
+    }
+
+    @Override
+    public void stop () throws FileNotFoundException {
+	System.out.println("Generando xml");
+	System.out.println(archivoGuardado);
+
+	xmlManejador.generateXml(this.modelo, "Calendario", new FileOutputStream(archivoGuardado));
+
     }
 
     // public void anadirTarea(int hashTarea, TareaGui tareaGui) {
