@@ -37,6 +37,9 @@ public class FrecuenciaDiaria implements Frecuencia {
             return false; //Si es negativo, no puede caer
         }
 
+	if (this.cadaCuantosDias == 0 && !fechaComienzo.equals(diaEspecifico)) {
+	    return true;
+	    }
         //True: El evento tiene una "aparicion" ese dia. False: no.
         boolean eventoCaeElDiaPedidio = (cantDiasHastaDiaPedido % this.cadaCuantosDias == 0);
         return eventoCaeElDiaPedidio;
