@@ -14,6 +14,7 @@ import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -77,11 +78,12 @@ public class CreadorActividad {
     private LocalTime comienzoEvento = LocalTime.now();
     private LocalTime finEvento = comienzoEvento.plusHours(1);
 
-    private List<Plazo> listaPlazos;
+    private ArrayList<Plazo> listaPlazos;
 
     public CreadorActividad(Calendario modelo, InterfazGrafica interfazGrafica) {
         this.modelo = modelo;
-        // this.interfazGrafica = interfazGrafica;
+						     
+        this.listaPlazos = new ArrayList<>();
     }
 
     // public Scene getScene() {
@@ -261,30 +263,43 @@ public class CreadorActividad {
 
     public void anadirAlarma(String plazoElegidoPorUsuario) {
 	Plazo plazoParaAnadir;
+
+	//Pongo un plazo por defecto porque sino java se pone triste de que
+	//puede ser que haya una chance de que tal vez no sea el caso de la 
+	//posible posibilidad de que dado el caso mi variable no sea 
+	//inicializada
+	plazoParaAnadir = Plazo.CINCOMINUTOSANTES;
+
 	switch (plazoElegidoPorUsuario) {
 	    case "1 dia antes":
 		System.out.println("1 dia antes");
+		plazoParaAnadir = Plazo.DIAANTES;
 		break;
 	    case "1 hora antes":
 		System.out.println("1 hora antes");
+		plazoParaAnadir = Plazo.HORAANTES;
 		break;
 
 	    case "30 mins antes":
 		System.out.println("30 mins antes");
+		plazoParaAnadir = Plazo.MEDIAHORAANTES;
 		break;
 
 	    case "15 mins antes":
 		System.out.println("15 mins antes");
+		plazoParaAnadir = Plazo.QUINCEMINUTOSANTES;
 		break;
 
 	    case "10 mins antes":
 		System.out.println("10 mins antes");
+		plazoParaAnadir = Plazo.DIEZMINUTOSANTES;
 		break;
 
 	    case "5 mins antes":
 		System.out.println("5 mins antes");
+		plazoParaAnadir = Plazo.CINCOMINUTOSANTES;
 		break;
-
 	}
+	this.listaPlazos.add(plazoParaAnadir);
 	}
     }
