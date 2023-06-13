@@ -233,11 +233,17 @@ public class CreadorActividad {
         int idEvento;
         if (this.tipoActividad == "Tarea") {
             idEvento = this.modelo.crearTarea(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaComienzo);
+	    for (Plazo plazo : this.listaPlazos) {
+		this.modelo.modificarActividadAgregarAlarma(idEvento, plazo);
+	    }
         }
         else {
             LocalDateTime fechaFin = this.finEvento.atDate(this.fechaEvento);
             idEvento = this.modelo.crearEvento(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaComienzo, fechaFin);
 	    this.modelo.modificarEventoFrecuencia(idEvento, new FrecuenciaDiaria(this.frecuenciaDiariaEvento, new RepeticionInfinita()));
+	    for (Plazo plazo : this.listaPlazos) {
+		this.modelo.modificarActividadAgregarAlarma(idEvento, plazo);
+	    }
         }
         System.out.println(idEvento);
 
