@@ -70,7 +70,9 @@ public class VistaMensual extends VistaCalendario {
     @Override
     public void visualizarActividades(List<Activities> hacerVisual,LocalDateTime fechaInicio) {
         var dia = fechaInicio;
+        var mes = fechaInicio.getMonth();
         for (Node e : grillaDelMes.getChildren()) {
+            if (!dia.getMonth().equals(mes)){break;}
             if (e.getClass().equals(VBox.class)){
                 //e siempre va a ser una VBox
                 var hijo = (VBox) e;
