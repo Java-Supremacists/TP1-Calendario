@@ -74,11 +74,11 @@ public class Tarea extends Activities {
     }
 
     public boolean caeElDia(LocalDateTime fechaAChequear) {
-	if (fechaAChequear.getDayOfYear() == this.termina.getDayOfYear()) {
-	    return true;
-	}
-	return false;
-	
+        if (fechaAChequear.getDayOfYear() == this.termina.getDayOfYear()) {
+            return true;
+        }
+        return false;
+
 
 
     }

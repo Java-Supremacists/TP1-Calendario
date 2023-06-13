@@ -72,31 +72,33 @@ public class VistaMensual extends VistaCalendario {
         var dia = fechaInicio;
         var mes = fechaInicio.getMonth();
         for (Node e : grillaDelMes.getChildren()) {
-            if (!dia.getMonth().equals(mes)){break;}
-            if (e.getClass().equals(VBox.class)){
+            if (!dia.getMonth().equals(mes)) {
+                break;
+            }
+            if (e.getClass().equals(VBox.class)) {
                 //e siempre va a ser una VBox
                 var hijo = (VBox) e;
                 var listaHijos = hijo.getChildren();//primer elemento el dia y el segundo es la fecha y sino solo unicamente la fecha
                 listaHijos.removeIf(i -> !i.getClass().equals(Label.class)); //remuevo lo de adentro del Vbox excepto las fechas
                 ListView<String> agregar = listaFormal();//creo la lista formal
                 if (hacerVisual!=null) {
-                    for (Activities act : hacerVisual){
-			try {
-			    var casteado = (Tarea) act;
-			    var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
-			    if (dia.getDayOfMonth() == diaActividadComienza){
+                    for (Activities act : hacerVisual) {
+                        try {
+                            var casteado = (Tarea) act;
+                            var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
+                            if (dia.getDayOfMonth() == diaActividadComienza) {
 
-				agregar.getItems().add(casteado.getTitulo());
-			}
-			}
-			catch (ClassCastException errorJavaXD) {
-			    var casteado = (Evento) act;
-			    var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
-			    if (dia.getDayOfMonth() == diaActividadComienza){
+                                agregar.getItems().add(casteado.getTitulo());
+                            }
+                        }
+                        catch (ClassCastException errorJavaXD) {
+                            var casteado = (Evento) act;
+                            var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
+                            if (dia.getDayOfMonth() == diaActividadComienza) {
 
-				agregar.getItems().add(casteado.getTitulo());
-			}
-			}
+                                agregar.getItems().add(casteado.getTitulo());
+                            }
+                        }
                     }
                 }
                 listaHijos.add(agregar); //añado las listas formales
@@ -110,11 +112,11 @@ public class VistaMensual extends VistaCalendario {
         double green = Math.random();
         double blue = Math.random();
         return String.format("#%02X%02X%02X",
-                (int) (red * 255),
-                (int) (green * 255),
-                (int) (blue * 255));
+                             (int) (red * 255),
+                             (int) (green * 255),
+                             (int) (blue * 255));
     }
-    public static ListView<String> listaFormal(){
+    public static ListView<String> listaFormal() {
         ListView<String> listView = new ListView<>();
         listView.setCellFactory(new Callback<>() {
             public ListCell<String> call(ListView<String> listView) {

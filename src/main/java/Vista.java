@@ -74,44 +74,44 @@ public class Vista {
         months = strategy.actualizarVista(primerDia);
         LocalDateTime entre = primerDia.minusDays(1);
         LocalDateTime termina = null;
-        switch (strategy.getTipo()){
-            case "Dia" -> {
-                termina = primerDia.plusDays(1);
-            }
+        switch (strategy.getTipo()) {
+        case "Dia" -> {
+                    termina = primerDia.plusDays(1);
+                }
             case "Semana" -> {
-                termina = primerDia.plusDays(7);
-            }
-            case "Mes" -> {
-                termina = primerDia.plusMonths(1);
-            }
-        }
-	System.out.println("ACA HAY ALGO SUS");
+                        termina = primerDia.plusDays(7);
+                    }
+                case "Mes" -> {
+                            termina = primerDia.plusMonths(1);
+                        }
+                    }
+        System.out.println("ACA HAY ALGO SUS");
         strategy.visualizarActividades(modelo.actividadesEnRango(entre,termina),primerDia);
         // strategy.visualizarActividades(modelo.activitiesEnRango(entre,termina),primerDia);
         mesDelCalendario.setText(months);
     }
-    public void cambiarVistaCalendario(ActionEvent event){
+    public void cambiarVistaCalendario(ActionEvent event) {
         String visualizacion = tipoDeVisualizacion.getValue();
         if (!strategy.getTipo().equals(visualizacion)) {
             LocalDateTime hoy = LocalDateTime.now();
             switch (visualizacion) {
-                case "Dia" -> {
-                    estrategiasCargadas.get(0).ponermeAMi(strategy.getVista());
-                    strategy = estrategiasCargadas.get(0);
-                    controlador.setFechaActual(hoy);
-                }
+            case "Dia" -> {
+                        estrategiasCargadas.get(0).ponermeAMi(strategy.getVista());
+                        strategy = estrategiasCargadas.get(0);
+                        controlador.setFechaActual(hoy);
+                    }
                 case "Semana" -> {
-                    estrategiasCargadas.get(1).ponermeAMi(strategy.getVista());
-                    strategy = estrategiasCargadas.get(1);
-                    controlador.setFechaActual(InterfazGrafica.domingoAnteriorCercano(hoy));
+                            estrategiasCargadas.get(1).ponermeAMi(strategy.getVista());
+                            strategy = estrategiasCargadas.get(1);
+                            controlador.setFechaActual(InterfazGrafica.domingoAnteriorCercano(hoy));
 
-                }
-                case "Mes" -> {
-                    estrategiasCargadas.get(2).ponermeAMi(strategy.getVista());
-                    strategy = estrategiasCargadas.get(2);
-                    controlador.setFechaActual(InterfazGrafica.primerDiaDelMes(hoy.getYear(), hoy.getMonth()));
-                }
-            }
+                        }
+                    case "Mes" -> {
+                                estrategiasCargadas.get(2).ponermeAMi(strategy.getVista());
+                                strategy = estrategiasCargadas.get(2);
+                                controlador.setFechaActual(InterfazGrafica.primerDiaDelMes(hoy.getYear(), hoy.getMonth()));
+                            }
+                        }
             this.actualizarVistaCalendario(controlador.getFechaActual()); // Esto es momentaneo para que sea visible
         }
     }

@@ -25,7 +25,7 @@ public class InterfazGrafica extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         this.xmlManejador = new ControlerXml();
-	this.xmlManejador.cargarXml(this.modelo, new FileInputStream(archivoGuardado));
+        this.xmlManejador.cargarXml(this.modelo, new FileInputStream(archivoGuardado));
 
         var vista = new Vista(this, this.modelo); //por defecto viene con una vista semanal
         fechaActual = domingoAnteriorCercano(LocalDateTime.now());
@@ -101,10 +101,10 @@ public class InterfazGrafica extends Application {
 
     @Override
     public void stop () throws FileNotFoundException {
-	System.out.println("Generando xml");
-	System.out.println(archivoGuardado);
+        System.out.println("Generando xml");
+        System.out.println(archivoGuardado);
 
-	xmlManejador.generateXml(this.modelo, "Calendario", new FileOutputStream(archivoGuardado));
+        xmlManejador.generateXml(this.modelo, "Calendario", new FileOutputStream(archivoGuardado));
 
     }
 
