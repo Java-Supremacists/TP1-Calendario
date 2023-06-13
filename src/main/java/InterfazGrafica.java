@@ -1,4 +1,7 @@
 import javafx.animation.AnimationTimer;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -13,6 +16,7 @@ public class InterfazGrafica extends Application {
     private final Calendario modelo = new Calendario();
 
     private ControlerXml xmlManejador;
+    private final String archivoGuardado = System.getProperty("user.dir") + "/archivoGuardado";
 
 //     private HashMap<Integer, TareaGui> hashTareas = new HashMap<>();
 
@@ -98,8 +102,11 @@ public class InterfazGrafica extends Application {
     }
 
     @Override
-    public void stop () {
-	System.out.println("AMONGUS");
+    public void stop () throws FileNotFoundException {
+	System.out.println("Generando xml");
+	System.out.println(archivoGuardado);
+
+	xmlManejador.generateXml(this.modelo, "Calendario", new FileOutputStream(archivoGuardado));
     }
 
     // public void anadirTarea(int hashTarea, TareaGui tareaGui) {
