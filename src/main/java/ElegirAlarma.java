@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class ElegirAlarma {
 
     @FXML
-    private SplitMenuButton elegirAlarma; 
+    private SplitMenuButton elegirAlarma;
 
     @FXML
     private ImageView imagen;
@@ -22,7 +22,7 @@ public class ElegirAlarma {
     private CreadorActividad padre;
 
     public ElegirAlarma(CreadorActividad padre) {
-	this.padre = padre;
+        this.padre = padre;
     }
 
     public void start() throws Exception {
@@ -32,14 +32,14 @@ public class ElegirAlarma {
         stageCrearEvento.setTitle("Creando evento");
         stageCrearEvento.show();
 
-	this.imagen.setImage(new Image("alarma.png"));
+        this.imagen.setImage(new Image("alarma.png"));
     }
 
     public void elegirAlarmaDeTipo(ActionEvent event) {
-	var item = (MenuItem) event.getSource();
-	var idItem = item.getId();
-	System.out.println(item.getId());
-	this.padre.anadirAlarma(idItem);
+        var item = (MenuItem) event.getSource();
+        var idItem = item.getId();
+        System.out.println(item.getId());
+        this.padre.anadirAlarma(idItem);
     }
 }
 

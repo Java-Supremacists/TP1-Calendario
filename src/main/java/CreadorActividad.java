@@ -70,7 +70,7 @@ public class CreadorActividad {
     @FXML
     private MenuButton espacioTipoActividad;
     private String tipoActividad = "Evento";
-    
+
     @FXML
     private Button relojImagen;
 
@@ -82,7 +82,7 @@ public class CreadorActividad {
 
     public CreadorActividad(Calendario modelo, InterfazGrafica interfazGrafica) {
         this.modelo = modelo;
-						     
+
         this.listaPlazos = new ArrayList<>();
     }
 
@@ -106,7 +106,7 @@ public class CreadorActividad {
         this.espacioSegundoFin.setText(String.valueOf(finEvento.getSecond()));
 
         this.espacioElegirFecha.setValue(LocalDate.now());
-	// this.relojImagen.setGraphic(new ImageView(new Image("alarma.png")));
+        // this.relojImagen.setGraphic(new ImageView(new Image("alarma.png")));
     }
 
     public void ponerNombre(ActionEvent event) {
@@ -233,17 +233,17 @@ public class CreadorActividad {
         int idEvento;
         if (this.tipoActividad == "Tarea") {
             idEvento = this.modelo.crearTarea(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaComienzo);
-	    for (Plazo plazo : this.listaPlazos) {
-		this.modelo.modificarActividadAgregarAlarma(idEvento, plazo);
-	    }
+            for (Plazo plazo : this.listaPlazos) {
+                this.modelo.modificarActividadAgregarAlarma(idEvento, plazo);
+            }
         }
         else {
             LocalDateTime fechaFin = this.finEvento.atDate(this.fechaEvento);
             idEvento = this.modelo.crearEvento(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaComienzo, fechaFin);
-	    this.modelo.modificarEventoFrecuencia(idEvento, new FrecuenciaDiaria(this.frecuenciaDiariaEvento, new RepeticionInfinita()));
-	    for (Plazo plazo : this.listaPlazos) {
-		this.modelo.modificarActividadAgregarAlarma(idEvento, plazo);
-	    }
+            this.modelo.modificarEventoFrecuencia(idEvento, new FrecuenciaDiaria(this.frecuenciaDiariaEvento, new RepeticionInfinita()));
+            for (Plazo plazo : this.listaPlazos) {
+                this.modelo.modificarActividadAgregarAlarma(idEvento, plazo);
+            }
         }
         System.out.println(idEvento);
 
@@ -255,12 +255,12 @@ public class CreadorActividad {
     }
 
     public void elegirAlarma() {
-	System.out.println("clicl");
-	var elegirAlarma = new ElegirAlarma(this);
+        System.out.println("clicl");
+        var elegirAlarma = new ElegirAlarma(this);
 
-	try {
-	    elegirAlarma.start();
-	}
+        try {
+            elegirAlarma.start();
+        }
         catch (Exception e) {
             e.printStackTrace(System.out);
         }
@@ -268,49 +268,49 @@ public class CreadorActividad {
     }
 
     public void anadirAlarma(String plazoElegidoPorUsuario) {
-	Plazo plazoParaAnadir;
+        Plazo plazoParaAnadir;
 
-	//Pongo un plazo por defecto porque sino java se pone triste de que
-	//puede ser que haya una chance de que tal vez no sea el caso de la 
-	//posible posibilidad de que dado el caso mi variable no sea 
-	//inicializada
-	plazoParaAnadir = Plazo.CINCOMINUTOSANTES;
+        //Pongo un plazo por defecto porque sino java se pone triste de que
+        //puede ser que haya una chance de que tal vez no sea el caso de la
+        //posible posibilidad de que dado el caso mi variable no sea
+        //inicializada
+        plazoParaAnadir = Plazo.CINCOMINUTOSANTES;
 
-	switch (plazoElegidoPorUsuario) {
-	    case "1 dia antes":
-		System.out.println("1 dia antes");
-		plazoParaAnadir = Plazo.DIAANTES;
-		break;
-	    case "1 hora antes":
-		System.out.println("1 hora antes");
-		plazoParaAnadir = Plazo.HORAANTES;
-		break;
+        switch (plazoElegidoPorUsuario) {
+        case "1 dia antes":
+            System.out.println("1 dia antes");
+            plazoParaAnadir = Plazo.DIAANTES;
+            break;
+        case "1 hora antes":
+            System.out.println("1 hora antes");
+            plazoParaAnadir = Plazo.HORAANTES;
+            break;
 
-	    case "30 mins antes":
-		System.out.println("30 mins antes");
-		plazoParaAnadir = Plazo.MEDIAHORAANTES;
-		break;
+        case "30 mins antes":
+            System.out.println("30 mins antes");
+            plazoParaAnadir = Plazo.MEDIAHORAANTES;
+            break;
 
-	    case "15 mins antes":
-		System.out.println("15 mins antes");
-		plazoParaAnadir = Plazo.QUINCEMINUTOSANTES;
-		break;
+        case "15 mins antes":
+            System.out.println("15 mins antes");
+            plazoParaAnadir = Plazo.QUINCEMINUTOSANTES;
+            break;
 
-	    case "10 mins antes":
-		System.out.println("10 mins antes");
-		plazoParaAnadir = Plazo.DIEZMINUTOSANTES;
-		break;
+        case "10 mins antes":
+            System.out.println("10 mins antes");
+            plazoParaAnadir = Plazo.DIEZMINUTOSANTES;
+            break;
 
-	    case "5 mins antes":
-		System.out.println("5 mins antes");
-		plazoParaAnadir = Plazo.CINCOMINUTOSANTES;
-		break;
-	}
-	if (this.listaPlazos.contains(plazoParaAnadir) == true) {
-	    //Si ya lo tiene, no lo vuelvo a guardar
-	    return;
-	}
-	this.listaPlazos.add(plazoParaAnadir);
-	System.out.println(this.listaPlazos.size());
-	}
+        case "5 mins antes":
+            System.out.println("5 mins antes");
+            plazoParaAnadir = Plazo.CINCOMINUTOSANTES;
+            break;
+        }
+        if (this.listaPlazos.contains(plazoParaAnadir) == true) {
+            //Si ya lo tiene, no lo vuelvo a guardar
+            return;
+        }
+        this.listaPlazos.add(plazoParaAnadir);
+        System.out.println(this.listaPlazos.size());
     }
+}

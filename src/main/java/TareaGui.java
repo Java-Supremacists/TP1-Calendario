@@ -16,6 +16,6 @@ public class TareaGui {
     }
 
     public int getId() {
-	return this.idTarea;
+        return this.idTarea;
     }
 }
