@@ -300,6 +300,11 @@ public class CreadorActividad {
 		plazoParaAnadir = Plazo.CINCOMINUTOSANTES;
 		break;
 	}
+	if (this.listaPlazos.contains(plazoParaAnadir) == true) {
+	    //Si ya lo tiene, no lo vuelvo a guardar
+	    return;
+	}
 	this.listaPlazos.add(plazoParaAnadir);
+	System.out.println(this.listaPlazos.size());
 	}
     }
