@@ -92,7 +92,7 @@ public class VistaMensual extends VistaCalendario {
                             var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
                             if (dia.getDayOfMonth() == diaActividadComienza) {
 
-                                agregar.getItems().add(casteado.getTitulo());
+                                agregar.getItems().add(casteado.getTitulo() + "赦" + String.valueOf(casteado.getID()));
 				// agregar.getItems().add(new Button());
                             }
                         }
@@ -138,17 +138,20 @@ public class VistaMensual extends VistaCalendario {
                             setGraphic(null);
                         } else {
                             // Crear un punto de color a la izquierda del texto
+			    var partido = texto.split("赦");
                             Circle bulletPoint = new Circle(9, Color.web(getRandomColor()));
 
                             // Crear un contenedor para el punto de color y el texto
-			    var nombre = new Label(texto);
+			    var nombre = new Label(partido[0]);
                             HBox hbox = new HBox(bulletPoint, nombre);
                             hbox.setSpacing(10);
+
+			    //TODO: Activar esto y rezar
 			    hbox.setDisable(true);
 
 
 			    // En este stack esta el invicible
-			    var id = new Label("EYYYYYYYYYYY");
+			    var id = new Label(partido[1]);
 			    id.setOpacity(0);
 			    var stack = new StackPane(hbox, id);
 
