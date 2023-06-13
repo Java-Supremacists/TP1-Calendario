@@ -30,11 +30,11 @@ public class CreadorActividad {
 
     @FXML
     private TextField espacioNombre;
-    private String nombreEvento;
+    private String nombreEvento = "Nombre default";
 
     @FXML
     private TextField espacioDescripcion;
-    private String descripcionEvento;
+    private String descripcionEvento = "Descripcion Default";
 
     @FXML
     private CheckBox espacioEsDiaCompleto;
@@ -44,7 +44,7 @@ public class CreadorActividad {
 
     @FXML
     private DatePicker espacioElegirFecha;
-    private LocalDate fechaEvento;
+    private LocalDate fechaEvento = LocalDate.now();
 
     @FXML
     private Button botonCrear;

@@ -281,6 +281,42 @@ public class Calendario implements XmlGuardador {
         }
         return listaEventosEnRango;
     }
+
+
+    public ArrayList<Activities> activitiesEnRango(LocalDateTime comienzo, LocalDateTime fin) {
+	System.out.println("OTRA IMPLEMENTACION");
+        var listaEventosEnRango = new ArrayList<Activities>();
+
+        long cantDias = comienzo.until(fin, ChronoUnit.DAYS);
+        for (Tarea t :listaTareas.keySet()) {
+            LocalDateTime diaAChequear = comienzo;
+            //Chequeo todos los días que hay entre comienzo y fin
+            for (int i = 0 ; i < cantDias ; i++ ) {
+                diaAChequear = diaAChequear.plusDays(1);
+                if (t.caeElDia(diaAChequear)) {
+                    listaEventosEnRango.add(t);
+		    System.out.println("TITULO DE LA TAREA QUE VOY A ANADIR");
+		    System.out.println(t.getTitulo());
+                    break;
+                }
+            }
+        }
+        for (Evento e :listaEventos.keySet()) {
+            LocalDateTime diaAChequear = comienzo;
+            //Chequeo todos los días que hay entre comienzo y fin
+            for (int i = 0 ; i < cantDias ; i++ ) {
+                diaAChequear = diaAChequear.plusDays(1);
+                if (e.caeElDia(diaAChequear)) {
+                    listaEventosEnRango.add(e);
+		    System.out.println("TITULO DE LA EVENTO QUE VOY A ANADIR");
+		    System.out.println(e.getTitulo());
+                    break;
+                }
+            }
+        }
+        return listaEventosEnRango;
+    }
+
     public void guardar(Element calendario, Document doc) {
         for (Evento ev : listaEventos.keySet()) {
             Alarmas r = listaEventos.get(ev);
