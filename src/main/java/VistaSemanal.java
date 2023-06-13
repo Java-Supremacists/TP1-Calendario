@@ -47,7 +47,7 @@ public class VistaSemanal extends VistaCalendario {
     public void visualizarActividades(List<Activities> hacerVisual, GridPane grilla) {
         vaciarGrilla(grilla);
     }
-    private void vaciarGrilla(GridPane grillaDiasxHorarios){
+    private void vaciarGrilla(GridPane grillaDiasxHorarios) {
         grillaDiasxHorarios.getChildren().removeIf(e -> !e.getClass().equals(Label.class));
     }
 }

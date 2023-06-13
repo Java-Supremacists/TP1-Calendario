@@ -13,6 +13,9 @@ public class TareaGui {
 
     public void setColor(String color) {
         this.color = color;
+    }
 
+    public int getId() {
+        return this.idTarea;
     }
 }

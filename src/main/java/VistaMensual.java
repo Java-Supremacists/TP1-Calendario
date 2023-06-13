@@ -52,8 +52,8 @@ public class VistaMensual extends VistaCalendario {
     public void visualizarActividades(List<Activities> hacerVisual, GridPane grilla) {
         vaciarGrilla(grilla);
     }
-    private void vaciarGrilla(GridPane grillaDelMes){
-        for (Node e : grillaDelMes.getChildren()){
+    private void vaciarGrilla(GridPane grillaDelMes) {
+        for (Node e : grillaDelMes.getChildren()) {
             //e siempre va a ser una VBox
             var hijo = (VBox) e;
             hijo.getChildren().removeIf(i -> !i.getClass().equals(Label.class)); // remuevo lo de adentro del Vbox excepto las fechas

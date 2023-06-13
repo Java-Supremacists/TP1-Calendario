@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 
@@ -26,8 +27,6 @@ public class Vista {
         @FXML
         private ListView listaPosibleParaUsar;
 
-        @FXML
-        private ScrollPane escroleoDeGrilla;
 
         @FXML
         private Pane barraSuperiorDiaria;
@@ -35,6 +34,9 @@ public class Vista {
         @FXML
         private ScrollPane ScrollGrillaDiaxHora;
      */
+    @FXML
+    private ScrollPane escroleoDeGrilla;
+
     @FXML
     private FlowPane pantalla;
     @FXML
@@ -122,19 +124,19 @@ public class Vista {
         String months = "";
         switch (strategy.getTipo()) {
         case "Dia" -> {
-            months = strategy.actualizarVista(primerDia,grillaConElDia);
-            strategy.visualizarActividades(null,grillaDiaxHora);
-        }
+                    months = strategy.actualizarVista(primerDia,grillaConElDia);
+                    strategy.visualizarActividades(null,grillaDiaxHora);
+                }
 
-        case "Semana" ->{
-            months = strategy.actualizarVista(primerDia,grillaDeDiasFijos);
-            strategy.visualizarActividades(null,grillaDiasxHorarios);
-        }
-        case "Mes" ->{
-            months = strategy.actualizarVista(primerDia,grillaDelMes);
-            strategy.visualizarActividades(null,grillaDelMes);
-        }
-        }
+            case "Semana" -> {
+                        months = strategy.actualizarVista(primerDia,grillaDeDiasFijos);
+                        strategy.visualizarActividades(null,grillaDiasxHorarios);
+                    }
+                case "Mes" -> {
+                            months = strategy.actualizarVista(primerDia,grillaDelMes);
+                            strategy.visualizarActividades(null,grillaDelMes);
+                        }
+                    }
         mesDelCalendario.setText(months);
     }
     public void cambiarVistaCalendario(ActionEvent event) {
@@ -146,17 +148,17 @@ public class Vista {
                         strategy = new VistaDiaria(escenaPorDia,pantalla,strategy.getVista());
                         controlador.setFechaActual(hoy);
                         strategy.visualizarActividades(null,grillaDiaxHora);
-            }
+                    }
                 case "Semana" -> {
                             strategy = new VistaSemanal(escenaPorSemana,pantalla,strategy.getVista());
                             controlador.setFechaActual(InterfazGrafica.domingoAnteriorCercano(hoy));
                             strategy.visualizarActividades(null,grillaDiasxHorarios);
-                }
+                        }
                     case "Mes" -> {
                                 strategy = new VistaMensual(escenaPorMes,pantalla,strategy.getVista());
                                 controlador.setFechaActual(InterfazGrafica.primerDiaDelMes(hoy.getYear(), hoy.getMonth()));
                                 strategy.visualizarActividades(null,grillaDelMes);
-                    }
+                            }
                         }
             this.actualizarVistaCalendario(controlador.getFechaActual()); // Esto es momentaneo para que sea visible
         }
