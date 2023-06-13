@@ -1,5 +1,6 @@
 import javafx.animation.AnimationTimer;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import javafx.application.Application;
@@ -23,11 +24,8 @@ public class InterfazGrafica extends Application {
     private LocalDateTime fechaActual;
     @Override
     public void start(Stage stage) throws Exception {
-
-	
         this.xmlManejador = new ControlerXml();
-
-
+	this.xmlManejador.cargarXml(this.modelo, new FileInputStream(archivoGuardado));
 
         var vista = new Vista(this, this.modelo); //por defecto viene con una vista semanal
         fechaActual = domingoAnteriorCercano(LocalDateTime.now());
