@@ -142,12 +142,20 @@ public class VistaMensual extends VistaCalendario {
 
                             // Crear un contenedor para el punto de color y el texto
 			    var nombre = new Label(texto);
-			    nombre.setOnMouseClicked(VistaMensual::sus);
                             HBox hbox = new HBox(bulletPoint, nombre);
                             hbox.setSpacing(10);
-			    // hbox.buildEventDispatchChain
+			    hbox.setDisable(true);
 
-                            setGraphic(hbox);
+
+			    // En este stack esta el invicible
+			    var id = new Label("EYYYYYYYYYYY");
+			    id.setOpacity(0);
+			    var stack = new StackPane(hbox, id);
+
+
+			    stack.setOnMouseClicked(VistaMensual::sus);
+			    // setGraphic(new HBox());
+                            setGraphic(stack);
                             setText("");
 			    System.out.println("EYEYEYEYYE");
                         }
@@ -159,6 +167,10 @@ public class VistaMensual extends VistaCalendario {
     }
 
     public static void sus(MouseEvent event){
+	System.out.println(event);
+	System.out.println(event.getSource());
+	System.out.println(event.getSource().getClass());
+	System.out.println(event.getTarget());
 	System.out.println("SUSU");
     }
 
