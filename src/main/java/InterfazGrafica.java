@@ -12,11 +12,19 @@ import java.util.HashMap;
 public class InterfazGrafica extends Application {
     private final Calendario modelo = new Calendario();
 
+    private ControlerXml xmlManejador;
+
 //     private HashMap<Integer, TareaGui> hashTareas = new HashMap<>();
 
     private LocalDateTime fechaActual;
     @Override
     public void start(Stage stage) throws Exception {
+
+	
+        this.xmlManejador = new ControlerXml();
+
+
+
         var vista = new Vista(this, this.modelo); //por defecto viene con una vista semanal
         fechaActual = domingoAnteriorCercano(LocalDateTime.now());
         vista.actualizarVistaCalendario(fechaActual);
