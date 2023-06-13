@@ -1,23 +1,37 @@
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
 
 public class VistaSemanal extends VistaCalendario {
-    public VistaSemanal(FlowPane visualizacion, FlowPane pantalla, FlowPane eliminar) {
-        super(visualizacion, pantalla, eliminar);
-    }
-    public VistaSemanal(FlowPane visualizacion, FlowPane pantalla) {
-        super(visualizacion, pantalla);
+    @FXML
+    private FlowPane escenaPorSemana;
+    @FXML
+    private GridPane grillaDeDiasFijos;
+    @FXML
+    private GridPane grillaDiasxHorarios;
+    public VistaSemanal(FlowPane pantalla) throws IOException {
+        super(pantalla);
+        FXMLLoader loader1 = new FXMLLoader(getClass().getResource("semana.fxml"));
+        loader1.setController(this);
+        loader1.load();
     }
     @Override
-    public String actualizarVista(LocalDateTime fecha, GridPane grillaSuperior) {
-        ObservableList<Node> hijos = grillaSuperior.getChildren();
+    public void ponermeAMi(FlowPane eliminar) {
+        escenaActual.getChildren().remove(eliminar);
+        escenaActual.getChildren().add(escenaPorSemana);
+    }
+    @Override
+    public String actualizarVista(LocalDateTime fecha) {
+        ObservableList<Node> hijos = grillaDeDiasFijos.getChildren();
         Month mesDesde = fecha.getMonth();
         Month mesHasta = null;
         long i = 0;
@@ -44,10 +58,14 @@ public class VistaSemanal extends VistaCalendario {
         return "Semana";
     }
     @Override
-    public void visualizarActividades(List<Activities> hacerVisual, GridPane grilla) {
-        vaciarGrilla(grilla);
+    public FlowPane getVista() {
+        return escenaPorSemana;
     }
-    private void vaciarGrilla(GridPane grillaDiasxHorarios) {
+    @Override
+    public void visualizarActividades(List<Activities> hacerVisual) {
+        vaciarGrilla();
+    }
+    private void vaciarGrilla() {
         grillaDiasxHorarios.getChildren().removeIf(e -> !e.getClass().equals(Label.class));
     }
 }
