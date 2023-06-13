@@ -86,8 +86,8 @@ public class Vista {
             }
         }
 	System.out.println("ACA HAY ALGO SUS");
-        // strategy.visualizarActividades(modelo.actividadesEnRango(entre,termina),primerDia);
-        strategy.visualizarActividades(modelo.activitiesEnRango(entre,termina),primerDia);
+        strategy.visualizarActividades(modelo.actividadesEnRango(entre,termina),primerDia);
+        // strategy.visualizarActividades(modelo.activitiesEnRango(entre,termina),primerDia);
         mesDelCalendario.setText(months);
     }
     public void cambiarVistaCalendario(ActionEvent event){
