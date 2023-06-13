@@ -1,5 +1,6 @@
 import javafx.animation.AnimationTimer;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -25,7 +26,11 @@ public class InterfazGrafica extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         this.xmlManejador = new ControlerXml();
+
+	var archivoExiste = new File(this.archivoGuardado);
+	if (archivoExiste.exists() == true) {
         this.xmlManejador.cargarXml(this.modelo, new FileInputStream(archivoGuardado));
+	}
 
         var vista = new Vista(this, this.modelo); //por defecto viene con una vista semanal
         fechaActual = domingoAnteriorCercano(LocalDateTime.now());
@@ -104,7 +109,7 @@ public class InterfazGrafica extends Application {
         System.out.println("Generando xml");
         System.out.println(archivoGuardado);
 
-        xmlManejador.generateXml(this.modelo, "Calendario", new FileOutputStream(archivoGuardado));
+        this.xmlManejador.generateXml(this.modelo, "Calendario", new FileOutputStream(archivoGuardado));
 
     }
 
