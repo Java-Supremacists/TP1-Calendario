@@ -89,6 +89,11 @@ public class InterfazGrafica extends Application {
         return LocalDateTime.of(year,mes,1,0,0);
     }
 
+    @Override
+    public void stop () {
+	System.out.println("AMONGUS");
+    }
+
     // public void anadirTarea(int hashTarea, TareaGui tareaGui) {
     // this.hashTareas.put(hashTarea, tareaGui);
     // }
