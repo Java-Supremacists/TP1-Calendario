@@ -32,11 +32,23 @@ public class Calendario implements XmlGuardador {
     //Funcion de debugeo. No es parte del contrato de la funcion.
     //En la version final no va a estar
     public void longTareasYEventos() {
-        System.out.println("Cantidad de eventos: " + String.valueOf(this.listaEventos.size()));
-        System.out.println("Cantidad de tareas: " + String.valueOf(this.listaTareas.size()));
+        System.out.println("Cantidad de eventos: " + this.listaEventos.size());
+        System.out.println("Cantidad de tareas: " + this.listaTareas.size());
     }
-
-
+    public List<Activities> actividadesEnRango(LocalDateTime entreEste, LocalDateTime yEste){
+        List<Activities> devolver = new ArrayList<>();
+        for (Tarea t : listaTareas.keySet()){
+            if (t.cuandoEmpieza().isAfter(entreEste) && yEste.isAfter(t.cuandoEmpieza())){
+                devolver.add(t);
+            }
+        }
+        for (Evento ev : listaEventos.keySet()){
+            if (ev.cuandoEmpieza().isAfter(entreEste) && yEste.isAfter(ev.cuandoEmpieza())){
+                devolver.add(ev);
+            }
+        }
+        return devolver;
+    }
     public int crearEvento(LocalDateTime arranque, LocalDateTime termina) {
         Evento nuevoEvento = new Evento(arranque,termina);
         //Por defecto asume que el evento se va a repetir una unica vez

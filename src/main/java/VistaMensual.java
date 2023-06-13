@@ -5,10 +5,9 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.util.Callback;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -82,7 +81,7 @@ public class VistaMensual extends VistaCalendario {
                     for (Activities act : hacerVisual){
                         var diaActividadComienza = act.cuandoEmpieza().getDayOfMonth();
                         if (dia.getDayOfMonth() == diaActividadComienza){
-                            agregar.getItems().add(act.getTitulo());
+                            agregar.getItems().add("Aca iria el texto del evento o tarea");
                         }
                     }
                 }
@@ -108,21 +107,19 @@ public class VistaMensual extends VistaCalendario {
                 return new ListCell<>() {
                     protected void updateItem(String texto, boolean celdaVacia) {
                         super.updateItem(texto, celdaVacia);
-
                         if (celdaVacia || texto == null) {
                             setText(null);
                             setGraphic(null);
                         } else {
                             // Crear un punto de color a la izquierda del texto
-                            Label bulletPoint = new Label("•");
-                            bulletPoint.setStyle("-fx-text-fill: " + getRandomColor());
+                            Circle bulletPoint = new Circle(9, Color.web(getRandomColor()));
 
                             // Crear un contenedor para el punto de color y el texto
                             HBox hbox = new HBox(bulletPoint, new Label(texto));
                             hbox.setSpacing(10);
 
                             setGraphic(hbox);
-                            setText(null);
+                            setText("");
                         }
                     }
                 };

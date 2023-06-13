@@ -72,7 +72,20 @@ public class Vista {
         //implementar aca para facilitar la actualizacion de los días facilmente
         String months;
         months = strategy.actualizarVista(primerDia);
-        strategy.visualizarActividades(null,primerDia);
+        LocalDateTime entre = primerDia.minusDays(1);
+        LocalDateTime termina = null;
+        switch (strategy.getTipo()){
+            case "Dia" -> {
+                termina = primerDia.plusDays(1);
+            }
+            case "Semana" -> {
+                termina = primerDia.plusDays(7);
+            }
+            case "Mes" -> {
+                termina = primerDia.plusMonths(1);
+            }
+        }
+        strategy.visualizarActividades(modelo.actividadesEnRango(entre,termina),primerDia);
         mesDelCalendario.setText(months);
     }
     public void cambiarVistaCalendario(ActionEvent event){
@@ -97,7 +110,6 @@ public class Vista {
                     controlador.setFechaActual(InterfazGrafica.primerDiaDelMes(hoy.getYear(), hoy.getMonth()));
                 }
             }
-            strategy.visualizarActividades(null,controlador.getFechaActual());
             this.actualizarVistaCalendario(controlador.getFechaActual()); // Esto es momentaneo para que sea visible
         }
     }
