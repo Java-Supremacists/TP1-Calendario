@@ -93,7 +93,6 @@ public class VistaMensual extends VistaCalendario {
                             if (dia.getDayOfMonth() == diaActividadComienza) {
 
                                 agregar.getItems().add(casteado.getTitulo() + "赦" + String.valueOf(casteado.getID()));
-				// agregar.getItems().add(new Button());
                             }
                         }
                         catch (ClassCastException errorJavaXD) {
@@ -104,29 +103,9 @@ public class VistaMensual extends VistaCalendario {
                                 agregar.getItems().add(casteado.getTitulo() + "赦" + String.valueOf(casteado.getID()));
                             }
                         }
-		    //@Facu esto lo que estaba antes, lo dejo por las dudas
-                    // for (Activities act : hacerVisual){
-                    //     try {
-                    //         var casteado = (Tarea) act;
-                    //         var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
-                    //         if (dia.getDayOfMonth() == diaActividadComienza){
-                    //             agregar.getItems().add(casteado.getTitulo());
-                    //         }
-                    //     } catch (ClassCastException errorJavaXD) {
-                    //         var casteado = (Evento) act;
-                    //         var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
-                    //         if (dia.getDayOfMonth() == diaActividadComienza){
-                    //             agregar.getItems().add(casteado.getTitulo());
-                    //         }
-			            // }
                     }
                 }
                 listaHijos.add(agregar); //añado las listas formales
-		// listaHijos.setAll(this::sus);j
-		// listaHijos.setAll(System::out.println("SUS"));
-		// listaHijos.setAll();
-
-		// listaHijos.set
                 dia = dia.plusDays(1);
             }
         }
@@ -212,7 +191,7 @@ public class VistaMensual extends VistaCalendario {
 	// System.out.println(idPreParseo.substring(idPreParseo.lastIndexOf("text") + 1));
 	// // System.out.println(idPreParseo);
 	// // modelo.getID();
-	
+
 	// System.out.println("SUSU");
     }
 
