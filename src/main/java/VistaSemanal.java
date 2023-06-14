@@ -18,8 +18,8 @@ public class VistaSemanal extends VistaCalendario {
     private GridPane grillaDeDiasFijos;
     @FXML
     private GridPane grillaDiasxHorarios;
-    public VistaSemanal(FlowPane pantalla) throws IOException {
-        super(pantalla);
+    public VistaSemanal(FlowPane pantalla, Calendario modelo) throws IOException {
+        super(pantalla, modelo);
         FXMLLoader loader1 = new FXMLLoader(getClass().getResource("semana.fxml"));
         loader1.setController(this);
         loader1.load();

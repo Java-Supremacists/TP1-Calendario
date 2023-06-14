@@ -23,8 +23,8 @@ public class VistaMensual extends VistaCalendario {
     private FlowPane escenaPorMes;
     @FXML
     private GridPane grillaDelMes;
-    public VistaMensual(FlowPane pantalla) throws IOException {
-        super(pantalla);
+    public VistaMensual(FlowPane pantalla, Calendario modelo) throws IOException {
+        super(pantalla, modelo);
         FXMLLoader loader1 = new FXMLLoader(getClass().getResource("mensual.fxml"));
         loader1.setController(this);
         loader1.load();
@@ -126,7 +126,9 @@ public class VistaMensual extends VistaCalendario {
                              (int) (green * 255),
                              (int) (blue * 255));
     }
-    public static ListView<String> listaFormal() {
+    public ListView<String> listaFormal() {
+	// this.modelo;
+	this.modelo.obtenerTarea(5);
         ListView<String> listView = new ListView<>();
         listView.setCellFactory(new Callback<>() {
             public ListCell<String> call(ListView<String> listView) {
@@ -157,6 +159,7 @@ public class VistaMensual extends VistaCalendario {
 
 
 			    stack.setOnMouseClicked(VistaMensual::sus);
+			    // stack.setOnAction();
 			    // setGraphic(new HBox());
                             setGraphic(stack);
                             setText("");
@@ -169,12 +172,27 @@ public class VistaMensual extends VistaCalendario {
         return listView;
     }
 
-    public static void sus(MouseEvent event){
+    public static String sus(MouseEvent event){
 	System.out.println(event);
 	System.out.println(event.getSource());
 	System.out.println(event.getSource().getClass());
-	System.out.println(event.getTarget());
-	System.out.println("SUSU");
+	String idPreParseo = event.getTarget().toString();
+	// var idPreParseo2 = idPreParseo.split("text=");
+	// System.out.println(idPreParseo2[0]);
+	// System.out.println(idPreParseo2[1]);
+	idPreParseo = idPreParseo.substring(idPreParseo.indexOf("text=") + 6);
+	idPreParseo = idPreParseo.substring(0, idPreParseo.indexOf("\""));
+	// var crear = new CreadorActividad(this, idPreParseo);
+	// System.out.println(this.modelo);
+	// this.modelo
+	return idPreParseo;
+
+	// System.out.println();
+	// System.out.println(idPreParseo.substring(idPreParseo.lastIndexOf("text") + 1));
+	// // System.out.println(idPreParseo);
+	// // modelo.getID();
+	
+	// System.out.println("SUSU");
     }
 
 }

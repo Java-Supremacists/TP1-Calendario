@@ -4,8 +4,10 @@ import java.util.List;
 
 public abstract class VistaCalendario {
     protected final FlowPane escenaActual;
-    public VistaCalendario(FlowPane pantalla) {
+    protected Calendario modelo;
+    public VistaCalendario(FlowPane pantalla, Calendario modelo) {
         escenaActual = pantalla;
+	this.modelo = modelo;
     }
     public abstract void ponermeAMi(FlowPane eliminar);
     public abstract String actualizarVista(LocalDateTime fecha);

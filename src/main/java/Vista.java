@@ -45,9 +45,9 @@ public class Vista {
         //guardamos atributos
         controlador = controller;
         this.modelo = modelo;
-        estrategiasCargadas.add(0,new VistaDiaria(pantalla));
-        estrategiasCargadas.add(1,new VistaSemanal(pantalla));
-        estrategiasCargadas.add(2,new VistaMensual(pantalla));
+        estrategiasCargadas.add(0,new VistaDiaria(pantalla, modelo));
+        estrategiasCargadas.add(1,new VistaSemanal(pantalla, modelo));
+        estrategiasCargadas.add(2,new VistaMensual(pantalla, modelo));
         strategy = estrategiasCargadas.get(1);
         strategy.ponermeAMi(escenarioVacioInicial);
         this.escena = new Scene(pantalla,854,480); //creamos la escena
