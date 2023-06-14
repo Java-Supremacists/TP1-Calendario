@@ -104,7 +104,7 @@ public class InterfazGrafica extends Application {
         System.out.println("Generando xml");
         System.out.println(archivoGuardado);
         //nada de guardar por ahora
-        //this.xmlManejador.generateXml(this.modelo, "Calendario", new FileOutputStream(archivoGuardado));
+        // this.xmlManejador.generateXml(this.modelo, "Calendario", new FileOutputStream(archivoGuardado));
 
     }
 

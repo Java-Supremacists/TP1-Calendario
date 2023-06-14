@@ -84,7 +84,7 @@ public class VistaMensual extends VistaCalendario {
                 var hijo = (VBox) e;
                 var listaHijos = hijo.getChildren();//primer elemento el dia y el segundo es la fecha y sino solo unicamente la fecha
                 listaHijos.removeIf(i -> !i.getClass().equals(Label.class)); //remuevo lo de adentro del Vbox excepto las fechas
-                ListView<String> agregar = listaFormal();//creo la lista formal
+                ListView<Activities> agregar = listaFormal();//creo la lista formal
                 if (hacerVisual!=null) {
                     for (Activities act : hacerVisual) {
                         try {
@@ -92,7 +92,8 @@ public class VistaMensual extends VistaCalendario {
                             var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
                             if (dia.getDayOfMonth() == diaActividadComienza) {
 
-                                agregar.getItems().add(casteado.getTitulo() + "赦" + String.valueOf(casteado.getID()));
+                                // agregar.getItems().add(casteado.getTitulo() + "赦" + String.valueOf(casteado.getID()));
+				agregar.getItems().add((Activities)casteado);
                             }
                         }
                         catch (ClassCastException errorJavaXD) {
@@ -100,7 +101,7 @@ public class VistaMensual extends VistaCalendario {
                             var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
                             if (dia.getDayOfMonth() == diaActividadComienza) {
 
-                                agregar.getItems().add(casteado.getTitulo() + "赦" + String.valueOf(casteado.getID()));
+				agregar.getItems().add((Activities)casteado);
                             }
                         }
                     }
@@ -120,36 +121,38 @@ public class VistaMensual extends VistaCalendario {
                              (int) (green * 255),
                              (int) (blue * 255));
     }
-    public ListView<String> listaFormal() {
+    public ListView<Activities> listaFormal() {
 	// this.modelo;
 	// this.modelo.obtenerTarea(5);
-        ListView<String> listView = new ListView<>();
+        ListView<Activities> listView = new ListView<>();
         listView.setCellFactory(new Callback<>() {
-            public ListCell<String> call(ListView<String> listView) {
+            public ListCell<Activities> call(ListView<Activities> listView) {
                 return new ListCell<>() {
-                    protected void updateItem(String texto, boolean celdaVacia) {
+                    protected void updateItem(Activities texto, boolean celdaVacia) {
                         super.updateItem(texto, celdaVacia);
                         if (celdaVacia || texto == null) {
                             setText(null);
                             setGraphic(null);
                         } else {
                             // Crear un punto de color a la izquierda del texto
-			    var partido = texto.split("赦");
+			    // var partido = texto.split("赦");
                             Circle bulletPoint = new Circle(9, Color.web(getRandomColor()));
 
                             // Crear un contenedor para el punto de color y el texto
-			    var nombre = new Label(partido[0]);
+			    // var nombre = new Label(partido[0]);
+			    var nombre = new Label(texto.getTitulo());
                             HBox hbox = new HBox(bulletPoint, nombre);
                             hbox.setSpacing(10);
 
 			    //TODO: Activar esto y rezar
-			    hbox.setDisable(true);
+			    hbox.setDisable(false);
 
 
 			    // En este stack esta el invicible
-			    var id = new Label(partido[1]);
+			    var id = new Label(String.valueOf(texto.getID()));
 			    id.setOpacity(0);
 			    var stack = new StackPane(hbox, id);
+			    // var stack = new StackPane(hbox);
 
 
 			    stack.setOnMouseClicked(VistaMensual::sus);
@@ -157,11 +160,11 @@ public class VistaMensual extends VistaCalendario {
 			    // setGraphic(new HBox());
                             setGraphic(stack);
                             // Agrega una acción al hacer clic en la celda
-                            setOnMouseClicked(event -> {
+                            // setOnMouseClicked(event -> {
                                 
-                            });
+                            // });
 
-                            setGraphic(hbox);
+                            // setGraphic(hbox);
                             setText("");
 			    System.out.println("EYEYEYEYYE");
                         }
