@@ -68,7 +68,7 @@ public class CreadorActividad {
 
     private ArrayList<Plazo> listaPlazos;
 
-    public CreadorActividad(Calendario modelo, InterfazGrafica interfazGrafica) {
+    public CreadorActividad(Calendario modelo) {
         this.modelo = modelo;
 
         this.listaPlazos = new ArrayList<>();
