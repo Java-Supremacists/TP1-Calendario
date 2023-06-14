@@ -3,18 +3,16 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.Month;
 
 public class InterfazGrafica extends Application {
     private final Calendario modelo = new Calendario();
-    private ControlerXml xmlManejador;
+    private final ControlerXml xmlManejador = new ControlerXml();
     private final String archivoGuardado = System.getProperty("user.dir") + "/archivoGuardado";
     private LocalDateTime fechaActual;
     @Override
@@ -95,13 +93,12 @@ public class InterfazGrafica extends Application {
     public static LocalDateTime primerDiaDelMes(int year, Month mes) {
         return LocalDateTime.of(year,mes,1,0,0);
     }
-
     @Override
     public void stop () throws FileNotFoundException {
 	System.out.println("Generando xml");
 	System.out.println(archivoGuardado);
-
-	xmlManejador.generateXml(this.modelo, "Calendario", new FileOutputStream(archivoGuardado));
+    //nada de guardar por ahora
+	//xmlManejador.generateXml(this.modelo, "Calendario", new FileOutputStream(archivoGuardado));
 
     }
 

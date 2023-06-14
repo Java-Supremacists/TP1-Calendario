@@ -1,25 +1,13 @@
-import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.SplitMenuButton;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 
-import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Function;
-
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 
 public class CreadorActividad {
 
@@ -108,6 +96,7 @@ public class CreadorActividad {
         this.espacioElegirFecha.setValue(LocalDate.now());
         // this.relojImagen.setGraphic(new ImageView(new Image("alarma.png")));
     }
+
 
     public void ponerNombre(ActionEvent event) {
         this.nombreEvento = this.espacioNombre.getText();

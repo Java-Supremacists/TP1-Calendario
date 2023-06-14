@@ -67,9 +67,6 @@ public class Vista {
         return tipoDeVisualizacion.getValue();
     }
     public void actualizarVistaCalendario(LocalDateTime primerDia) {
-        //HAY UN ERROR PARA ARREGLAR ACA EN STRATEGY
-        //Actualizar las grillas segun si va una semana/día/mes antes o después del actual
-        //implementar aca para facilitar la actualizacion de los días facilmente
         String months;
         months = strategy.actualizarVista(primerDia);
         LocalDateTime entre = primerDia.minusDays(1);
@@ -85,9 +82,7 @@ public class Vista {
                 termina = primerDia.plusMonths(1);
             }
         }
-	System.out.println("ACA HAY ALGO SUS");
         strategy.visualizarActividades(modelo.actividadesEnRango(entre,termina),primerDia);
-        // strategy.visualizarActividades(modelo.activitiesEnRango(entre,termina),primerDia);
         mesDelCalendario.setText(months);
     }
     public void cambiarVistaCalendario(ActionEvent event){
