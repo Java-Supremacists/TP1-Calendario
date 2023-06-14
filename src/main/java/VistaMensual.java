@@ -151,7 +151,6 @@ public class VistaMensual extends VistaCalendario {
 			    // var stack = new StackPane(hbox);
 
 
-			    // stack.setOnMouseClicked(VistaMensual::sus);
 			    var ssos = new VisualizadorActividad(texto);
 			    stack.setOnMouseClicked(x -> ssos.start());
 			    // stack.setOnAction();
@@ -172,36 +171,4 @@ public class VistaMensual extends VistaCalendario {
         });
         return listView;
     }
-
-    public static String sus(MouseEvent event){
-	System.out.println(event);
-	System.out.println(event.getSource());
-	System.out.println(event.getSource().getClass());
-	String idPreParseo = event.getTarget().toString();
-	// var idPreParseo2 = idPreParseo.split("text=");
-	// System.out.println(idPreParseo2[0]);
-	// System.out.println(idPreParseo2[1]);
-	idPreParseo = idPreParseo.substring(idPreParseo.indexOf("text=") + 6);
-	idPreParseo = idPreParseo.substring(0, idPreParseo.indexOf("\""));
-	// var crear = new CreadorActividad(this, idPreParseo);
-	// System.out.println(this.modelo);
-
-// 	// var cre = new CreadorActividad();
-// 	try {
-// 	cre.start();
-// 	}
-// 	catch (Exception e) {
-// 	    e.printStackTrace(System.out);
-// 	    }
-	// this.modelo
-	return idPreParseo;
-
-	// System.out.println();
-	// System.out.println(idPreParseo.substring(idPreParseo.lastIndexOf("text") + 1));
-	// // System.out.println(idPreParseo);
-	// // modelo.getID();
-
-	// System.out.println("SUSU");
-    }
-
 }
