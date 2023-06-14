@@ -2,6 +2,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -38,8 +39,14 @@ public class VisualizadorActividad {
     @FXML
     private Button botonCrear;
 
-    // @FXML
-    // private Text textoFrecuenciaDiaria;
+    @FXML
+    private Text texto;
+    @FXML
+    private Text textoFrecuenciaDiaria;
+    @FXML
+    private Text separadorDos;
+    @FXML
+    private Text separadorUno;
 
     @FXML
     private TextField espacioFrecuencia;
@@ -102,6 +109,8 @@ public class VisualizadorActividad {
         this.espacioMinutoFin.setText(String.valueOf(this.act.cuandoTermina().getMinute()));
         this.espacioSegundoFin.setText(String.valueOf(this.act.cuandoTermina().getSecond()));
 
+	this.texto.setText("Evento");
+
 	if (this.act.esDiaEntero()) {
 	    this.espacioEsDiaCompleto.setSelected(true);
 	}
@@ -111,6 +120,11 @@ public class VisualizadorActividad {
 	this.espacioMinutoFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
 	this.espacioSegundoFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
 	// this.textoFrecuenciaDiaria.setStyle("-fx-text-fill: white; -fx-background-color: white");
+	this.textoFrecuenciaDiaria.setFill(Color.WHITE);
+	this.separadorUno.setFill(Color.WHITE);
+	this.separadorDos.setFill(Color.WHITE);
+	this.espacioFrecuencia.setStyle("-fx-text-fill: white; -fx-background-color: white");
+	this.texto.setText("Tarea");
 	}
 
 	}
