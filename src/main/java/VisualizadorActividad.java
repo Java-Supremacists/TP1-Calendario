@@ -96,8 +96,10 @@ public class VisualizadorActividad {
         this.espacioHoraFin.setText(String.valueOf(this.act.cuandoTermina().getHour()));
         this.espacioMinutoFin.setText(String.valueOf(this.act.cuandoTermina().getMinute()));
         this.espacioSegundoFin.setText(String.valueOf(this.act.cuandoTermina().getSecond()));
+	this.espacioSegundoFin.setDisable(true);
+	// this.espacioSegundoFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
 
-        this.espacioElegirFecha.setValue(LocalDate.now());
+        this.espacioElegirFecha.setValue(this.act.cuandoTermina().toLocalDate());
 	}
 	catch (Exception e) {
 	    System.out.println(e);
