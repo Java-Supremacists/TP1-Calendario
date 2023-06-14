@@ -102,6 +102,10 @@ public class VisualizadorActividad {
         this.espacioMinutoFin.setText(String.valueOf(this.act.cuandoTermina().getMinute()));
         this.espacioSegundoFin.setText(String.valueOf(this.act.cuandoTermina().getSecond()));
 
+	if (this.act.esDiaEntero()) {
+	    this.espacioEsDiaCompleto.setSelected(true);
+	}
+
 	if (this.act.cuandoEmpieza().equals(this.act.cuandoTermina())){
 	this.espacioHoraFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
 	this.espacioMinutoFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
