@@ -77,7 +77,8 @@ public class VisualizadorActividad {
 
     public void start() {
 	try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("crearActividad.fxml"));
+        // FXMLLoader loader = new FXMLLoader(getClass().getResource("visualizadorActividad.fxml"));
+	FXMLLoader loader = new FXMLLoader(getClass().getResource("visualizarActividad.fxml"));
         loader.setController(this);
         Stage stageCrearEvento = loader.load();
         stageCrearEvento.setTitle("Creando evento");
@@ -95,6 +96,7 @@ public class VisualizadorActividad {
 	}
 	catch (Exception e) {
 	    System.out.println(e);
+	    e.printStackTrace(System.out);
 	}
         // this.relojImagen.setGraphic(new ImageView(new Image("alarma.png")));
     }
@@ -245,18 +247,18 @@ public class VisualizadorActividad {
         this.modelo.longTareasYEventos();
     }
 
-    public void elegirAlarma() {
-        System.out.println("clicl");
-        var elegirAlarma = new ElegirAlarma(this);
+    // public void elegirAlarma() {
+    //     System.out.println("clicl");
+    //     var elegirAlarma = new ElegirAlarma(this);
 
-        try {
-            elegirAlarma.start();
-        }
-        catch (Exception e) {
-            e.printStackTrace(System.out);
-        }
+    //     try {
+    //         elegirAlarma.start();
+    //     }
+    //     catch (Exception e) {
+    //         e.printStackTrace(System.out);
+    //     }
 
-    }
+    // }
 
     public void anadirAlarma(String plazoElegidoPorUsuario) {
         Plazo plazoParaAnadir;

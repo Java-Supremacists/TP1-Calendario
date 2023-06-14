@@ -156,7 +156,8 @@ public class VistaMensual extends VistaCalendario {
 
 
 			    // stack.setOnMouseClicked(VistaMensual::sus);
-			    stack.setOnMouseClicked(VistaMensual::sus);
+			    var ssos = new VisualizadorActividad(texto);
+			    stack.setOnMouseClicked(x -> ssos.start());
 			    // stack.setOnAction();
 			    // setGraphic(new HBox());
                             setGraphic(stack);
