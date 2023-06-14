@@ -179,7 +179,7 @@ public class CreadorActividad {
     }
 
     public void ponerMinutoFin(ActionEvent event) {
-        var horaFinal = this.configurarUnidadDeTiempo(this.espacioMinutoFin, 59, this.comienzoEvento.getMinute());
+        var horaFinal = this.configurarUnidadDeTiempo(this.espacioMinutoFin, 59, 0);
         this.finEvento = this.finEvento.withMinute(horaFinal);
 
         System.out.println(this.finEvento);
@@ -193,7 +193,7 @@ public class CreadorActividad {
     }
 
     public void ponerSegundoFin(ActionEvent event) {
-        var horaFinal = this.configurarUnidadDeTiempo(this.espacioSegundoFin, 59, this.comienzoEvento.getSecond());
+        var horaFinal = this.configurarUnidadDeTiempo(this.espacioSegundoFin, 59, 0);
         this.finEvento = this.finEvento.withSecond(horaFinal);
 
         System.out.println(this.finEvento);
