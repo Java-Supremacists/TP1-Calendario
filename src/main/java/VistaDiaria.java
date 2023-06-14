@@ -18,8 +18,8 @@ public class VistaDiaria extends VistaCalendario {
     private GridPane grillaDiaxHora;
     @FXML
     private GridPane grillaConElDia;
-    public VistaDiaria(FlowPane pantalla) throws IOException {
-        super(pantalla);
+    public VistaDiaria(FlowPane pantalla, Calendario modelo) throws IOException {
+        super(pantalla, modelo);
         FXMLLoader loader1 = new FXMLLoader(getClass().getResource("diaria.fxml"));
         loader1.setController(this);
         loader1.load();

@@ -35,15 +35,15 @@ public class Calendario implements XmlGuardador {
         System.out.println("Cantidad de eventos: " + this.listaEventos.size());
         System.out.println("Cantidad de tareas: " + this.listaTareas.size());
     }
-    public List<Activities> actividadesEnRango(LocalDateTime entreEste, LocalDateTime yEste){
+    public List<Activities> actividadesEnRango(LocalDateTime entreEste, LocalDateTime yEste) {
         List<Activities> devolver = new ArrayList<>();
-        for (Tarea t : listaTareas.keySet()){
-            if (t.cuandoEmpieza().isAfter(entreEste) && yEste.isAfter(t.cuandoEmpieza())){
+        for (Tarea t : listaTareas.keySet()) {
+            if (t.cuandoEmpieza().isAfter(entreEste) && yEste.isAfter(t.cuandoEmpieza())) {
                 devolver.add(t);
             }
         }
-        for (Evento ev : listaEventos.keySet()){
-            if (ev.cuandoEmpieza().isAfter(entreEste) && yEste.isAfter(ev.cuandoEmpieza())){
+        for (Evento ev : listaEventos.keySet()) {
+            if (ev.cuandoEmpieza().isAfter(entreEste) && yEste.isAfter(ev.cuandoEmpieza())) {
                 devolver.add(ev);
             }
         }
@@ -284,7 +284,7 @@ public class Calendario implements XmlGuardador {
 
 
     public ArrayList<Activities> activitiesEnRango(LocalDateTime comienzo, LocalDateTime fin) {
-	System.out.println("OTRA IMPLEMENTACION");
+        System.out.println("OTRA IMPLEMENTACION");
         var listaEventosEnRango = new ArrayList<Activities>();
 
         long cantDias = comienzo.until(fin, ChronoUnit.DAYS);
@@ -295,8 +295,8 @@ public class Calendario implements XmlGuardador {
                 diaAChequear = diaAChequear.plusDays(1);
                 if (t.caeElDia(diaAChequear)) {
                     listaEventosEnRango.add(t);
-		    System.out.println("TITULO DE LA TAREA QUE VOY A ANADIR");
-		    System.out.println(t.getTitulo());
+                    System.out.println("TITULO DE LA TAREA QUE VOY A ANADIR");
+                    System.out.println(t.getTitulo());
                     break;
                 }
             }
@@ -308,8 +308,8 @@ public class Calendario implements XmlGuardador {
                 diaAChequear = diaAChequear.plusDays(1);
                 if (e.caeElDia(diaAChequear)) {
                     listaEventosEnRango.add(e);
-		    System.out.println("TITULO DE LA EVENTO QUE VOY A ANADIR");
-		    System.out.println(e.getTitulo());
+                    System.out.println("TITULO DE LA EVENTO QUE VOY A ANADIR");
+                    System.out.println(e.getTitulo());
                     break;
                 }
             }

@@ -1,14 +1,18 @@
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Callback;
+
+import java.awt.Button;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -19,8 +23,8 @@ public class VistaMensual extends VistaCalendario {
     private FlowPane escenaPorMes;
     @FXML
     private GridPane grillaDelMes;
-    public VistaMensual(FlowPane pantalla) throws IOException {
-        super(pantalla);
+    public VistaMensual(FlowPane pantalla, Calendario modelo) throws IOException {
+        super(pantalla, modelo);
         FXMLLoader loader1 = new FXMLLoader(getClass().getResource("mensual.fxml"));
         loader1.setController(this);
         loader1.load();
@@ -72,31 +76,57 @@ public class VistaMensual extends VistaCalendario {
         var dia = fechaInicio;
         var mes = fechaInicio.getMonth();
         for (Node e : grillaDelMes.getChildren()) {
-            if (!dia.getMonth().equals(mes)){break;}
-            if (e.getClass().equals(VBox.class)){
+            if (!dia.getMonth().equals(mes)) {
+                break;
+            }
+            if (e.getClass().equals(VBox.class)) {
                 //e siempre va a ser una VBox
                 var hijo = (VBox) e;
                 var listaHijos = hijo.getChildren();//primer elemento el dia y el segundo es la fecha y sino solo unicamente la fecha
                 listaHijos.removeIf(i -> !i.getClass().equals(Label.class)); //remuevo lo de adentro del Vbox excepto las fechas
                 ListView<String> agregar = listaFormal();//creo la lista formal
                 if (hacerVisual!=null) {
-                    for (Activities act : hacerVisual){
+                    for (Activities act : hacerVisual) {
                         try {
                             var casteado = (Tarea) act;
                             var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
-                            if (dia.getDayOfMonth() == diaActividadComienza){
-                                agregar.getItems().add(casteado.getTitulo());
+                            if (dia.getDayOfMonth() == diaActividadComienza) {
+
+                                agregar.getItems().add(casteado.getTitulo() + "赦" + String.valueOf(casteado.getID()));
+				// agregar.getItems().add(new Button());
                             }
-                        } catch (ClassCastException errorJavaXD) {
+                        }
+                        catch (ClassCastException errorJavaXD) {
                             var casteado = (Evento) act;
                             var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
-                            if (dia.getDayOfMonth() == diaActividadComienza){
-                                agregar.getItems().add(casteado.getTitulo());
+                            if (dia.getDayOfMonth() == diaActividadComienza) {
+
+                                agregar.getItems().add(casteado.getTitulo() + "赦" + String.valueOf(casteado.getID()));
                             }
-			            }
+                        }
+		    //@Facu esto lo que estaba antes, lo dejo por las dudas
+                    // for (Activities act : hacerVisual){
+                    //     try {
+                    //         var casteado = (Tarea) act;
+                    //         var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
+                    //         if (dia.getDayOfMonth() == diaActividadComienza){
+                    //             agregar.getItems().add(casteado.getTitulo());
+                    //         }
+                    //     } catch (ClassCastException errorJavaXD) {
+                    //         var casteado = (Evento) act;
+                    //         var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
+                    //         if (dia.getDayOfMonth() == diaActividadComienza){
+                    //             agregar.getItems().add(casteado.getTitulo());
+                    //         }
+			            // }
                     }
                 }
                 listaHijos.add(agregar); //añado las listas formales
+		// listaHijos.setAll(this::sus);j
+		// listaHijos.setAll(System::out.println("SUS"));
+		// listaHijos.setAll();
+
+		// listaHijos.set
                 dia = dia.plusDays(1);
             }
         }
@@ -107,11 +137,13 @@ public class VistaMensual extends VistaCalendario {
         double green = Math.random();
         double blue = Math.random();
         return String.format("#%02X%02X%02X",
-                (int) (red * 255),
-                (int) (green * 255),
-                (int) (blue * 255));
+                             (int) (red * 255),
+                             (int) (green * 255),
+                             (int) (blue * 255));
     }
-    public static ListView<String> listaFormal(){
+    public ListView<String> listaFormal() {
+	// this.modelo;
+	this.modelo.obtenerTarea(5);
         ListView<String> listView = new ListView<>();
         listView.setCellFactory(new Callback<>() {
             public ListCell<String> call(ListView<String> listView) {
@@ -123,12 +155,28 @@ public class VistaMensual extends VistaCalendario {
                             setGraphic(null);
                         } else {
                             // Crear un punto de color a la izquierda del texto
+			    var partido = texto.split("赦");
                             Circle bulletPoint = new Circle(9, Color.web(getRandomColor()));
 
                             // Crear un contenedor para el punto de color y el texto
-                            HBox hbox = new HBox(bulletPoint, new Label(texto));
+			    var nombre = new Label(partido[0]);
+                            HBox hbox = new HBox(bulletPoint, nombre);
                             hbox.setSpacing(10);
 
+			    //TODO: Activar esto y rezar
+			    hbox.setDisable(true);
+
+
+			    // En este stack esta el invicible
+			    var id = new Label(partido[1]);
+			    id.setOpacity(0);
+			    var stack = new StackPane(hbox, id);
+
+
+			    stack.setOnMouseClicked(VistaMensual::sus);
+			    // stack.setOnAction();
+			    // setGraphic(new HBox());
+                            setGraphic(stack);
                             // Agrega una acción al hacer clic en la celda
                             setOnMouseClicked(event -> {
                                 
@@ -136,6 +184,7 @@ public class VistaMensual extends VistaCalendario {
 
                             setGraphic(hbox);
                             setText("");
+			    System.out.println("EYEYEYEYYE");
                         }
                     }
                 };
@@ -143,4 +192,28 @@ public class VistaMensual extends VistaCalendario {
         });
         return listView;
     }
+
+    public static String sus(MouseEvent event){
+	System.out.println(event);
+	System.out.println(event.getSource());
+	System.out.println(event.getSource().getClass());
+	String idPreParseo = event.getTarget().toString();
+	// var idPreParseo2 = idPreParseo.split("text=");
+	// System.out.println(idPreParseo2[0]);
+	// System.out.println(idPreParseo2[1]);
+	idPreParseo = idPreParseo.substring(idPreParseo.indexOf("text=") + 6);
+	idPreParseo = idPreParseo.substring(0, idPreParseo.indexOf("\""));
+	// var crear = new CreadorActividad(this, idPreParseo);
+	// System.out.println(this.modelo);
+	// this.modelo
+	return idPreParseo;
+
+	// System.out.println();
+	// System.out.println(idPreParseo.substring(idPreParseo.lastIndexOf("text") + 1));
+	// // System.out.println(idPreParseo);
+	// // modelo.getID();
+	
+	// System.out.println("SUSU");
+    }
+
 }
