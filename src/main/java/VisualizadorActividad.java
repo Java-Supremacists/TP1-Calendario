@@ -101,7 +101,6 @@ public class VisualizadorActividad {
         this.espacioHoraFin.setText(String.valueOf(this.act.cuandoTermina().getHour()));
         this.espacioMinutoFin.setText(String.valueOf(this.act.cuandoTermina().getMinute()));
         this.espacioSegundoFin.setText(String.valueOf(this.act.cuandoTermina().getSecond()));
-	this.espacioSegundoFin.setDisable(true);
 
 	if (this.act.cuandoEmpieza().equals(this.act.cuandoTermina())){
 	this.espacioHoraFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
