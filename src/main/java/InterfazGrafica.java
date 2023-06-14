@@ -1,26 +1,18 @@
 import javafx.animation.AnimationTimer;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.HashMap;
 
 public class InterfazGrafica extends Application {
     private final Calendario modelo = new Calendario();
-
     private ControlerXml xmlManejador;
     private final String archivoGuardado = System.getProperty("user.dir") + "/archivoGuardado";
-
-//     private HashMap<Integer, TareaGui> hashTareas = new HashMap<>();
-
     private LocalDateTime fechaActual;
     @Override
     public void start(Stage stage) throws Exception {
