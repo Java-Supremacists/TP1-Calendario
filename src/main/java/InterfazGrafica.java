@@ -9,19 +9,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.HashMap;
 
 public class InterfazGrafica extends Application {
     private final Calendario modelo = new Calendario();
-
     private ControlerXml xmlManejador;
     private final String archivoGuardado = System.getProperty("user.dir") + "/archivoGuardado";
-
-//     private HashMap<Integer, TareaGui> hashTareas = new HashMap<>();
-
     private LocalDateTime fechaActual;
     @Override
     public void start(Stage stage) throws Exception {
@@ -112,10 +111,5 @@ public class InterfazGrafica extends Application {
         this.xmlManejador.generateXml(this.modelo, "Calendario", new FileOutputStream(archivoGuardado));
 
     }
-
-    // public void anadirTarea(int hashTarea, TareaGui tareaGui) {
-    // this.hashTareas.put(hashTarea, tareaGui);
-    // }
-
 
 }

@@ -86,6 +86,7 @@ public class VistaMensual extends VistaCalendario {
                 listaHijos.removeIf(i -> !i.getClass().equals(Label.class)); //remuevo lo de adentro del Vbox excepto las fechas
                 ListView<String> agregar = listaFormal();//creo la lista formal
                 if (hacerVisual!=null) {
+<<<<<<< HEAD
                     for (Activities act : hacerVisual) {
                         try {
                             var casteado = (Tarea) act;
@@ -104,6 +105,22 @@ public class VistaMensual extends VistaCalendario {
                                 agregar.getItems().add(casteado.getTitulo() + "赦" + String.valueOf(casteado.getID()));
                             }
                         }
+=======
+                    for (Activities act : hacerVisual){
+                        try {
+                            var casteado = (Tarea) act;
+                            var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
+                            if (dia.getDayOfMonth() == diaActividadComienza){
+                                agregar.getItems().add(casteado.getTitulo());
+                            }
+                        } catch (ClassCastException errorJavaXD) {
+                            var casteado = (Evento) act;
+                            var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
+                            if (dia.getDayOfMonth() == diaActividadComienza){
+                                agregar.getItems().add(casteado.getTitulo());
+                            }
+			            }
+>>>>>>> FacuAnda
                     }
                 }
                 listaHijos.add(agregar); //añado las listas formales
@@ -148,6 +165,7 @@ public class VistaMensual extends VistaCalendario {
                             HBox hbox = new HBox(bulletPoint, nombre);
                             hbox.setSpacing(10);
 
+<<<<<<< HEAD
 			    //TODO: Activar esto y rezar
 			    hbox.setDisable(true);
 
@@ -162,6 +180,15 @@ public class VistaMensual extends VistaCalendario {
 			    // stack.setOnAction();
 			    // setGraphic(new HBox());
                             setGraphic(stack);
+=======
+                            // Agrega una acción al hacer clic en la celda
+                            setOnMouseClicked(event -> {
+                                // Aquí puedes abrir otra pantalla o realizar cualquier acción deseada
+                                //System.out.println("Celda seleccionada: " + item.getNombre());
+                            });
+
+                            setGraphic(hbox);
+>>>>>>> FacuAnda
                             setText("");
 			    System.out.println("EYEYEYEYYE");
                         }
