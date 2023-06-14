@@ -147,10 +147,11 @@ public class CreadorActividad {
         espacioUnidad.setStyle(numeroBoton.getColorBoton());
 
         Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), horaMaxima);
-        //No podemos tener eventos que finalicen antes de que empiecen
-        if (horaEstablecida < horaMinima) {
-            horaEstablecida = horaMinima;
-        }
+
+        // No podemos tener eventos que finalicen antes de que empiecen
+         if (horaEstablecida < horaMinima) {
+             horaEstablecida = horaMinima;
+         }
         espacioUnidad.setText(String.valueOf(horaEstablecida));
 
         return horaEstablecida;
@@ -167,7 +168,7 @@ public class CreadorActividad {
         var horaFinal = this.configurarUnidadDeTiempo(this.espacioHoraFin, 23, this.comienzoEvento.getHour());
         this.finEvento = this.finEvento.withHour(horaFinal);
 
-        System.out.println(this.comienzoEvento);
+        System.out.println(this.finEvento);
     }
 
     public void ponerMinuto(ActionEvent event) {
@@ -181,7 +182,7 @@ public class CreadorActividad {
         var horaFinal = this.configurarUnidadDeTiempo(this.espacioMinutoFin, 59, this.comienzoEvento.getMinute());
         this.finEvento = this.finEvento.withMinute(horaFinal);
 
-        System.out.println(this.comienzoEvento);
+        System.out.println(this.finEvento);
     }
 
     public void ponerSegundo(ActionEvent event) {
@@ -195,7 +196,7 @@ public class CreadorActividad {
         var horaFinal = this.configurarUnidadDeTiempo(this.espacioSegundoFin, 59, this.comienzoEvento.getSecond());
         this.finEvento = this.finEvento.withSecond(horaFinal);
 
-        System.out.println(this.comienzoEvento);
+        System.out.println(this.finEvento);
     }
 
     public void ponerTipoActividadTarea(ActionEvent event) {

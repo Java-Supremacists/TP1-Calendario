@@ -59,6 +59,8 @@ public class VisualizadorActividad {
     private MenuButton espacioTipoActividad;
     private String tipoActividad = "Evento";
 
+    private Activities act;
+
     @FXML
     private Button relojImagen;
 
@@ -69,6 +71,7 @@ public class VisualizadorActividad {
     private ArrayList<Plazo> listaPlazos;
 
     public VisualizadorActividad(Activities act) {
+	this.act = act;
     }
 
     // public Scene getScene() {
@@ -77,20 +80,22 @@ public class VisualizadorActividad {
 
     public void start() {
 	try {
-        // FXMLLoader loader = new FXMLLoader(getClass().getResource("visualizadorActividad.fxml"));
 	FXMLLoader loader = new FXMLLoader(getClass().getResource("visualizarActividad.fxml"));
         loader.setController(this);
         Stage stageCrearEvento = loader.load();
-        stageCrearEvento.setTitle("Creando evento");
+        stageCrearEvento.setTitle("Mostrando evento");
         stageCrearEvento.show();
 
-        this.espacioHora.setText(String.valueOf(comienzoEvento.getHour()));
-        this.espacioMinuto.setText(String.valueOf(comienzoEvento.getMinute()));
-        this.espacioSegundo.setText(String.valueOf(comienzoEvento.getSecond()));
+	this.espacioNombre.setText(this.act.getTitulo());
+	this.espacioDescripcion.setText(this.act.getDescripcion());
 
-        this.espacioHoraFin.setText(String.valueOf(finEvento.getHour()));
-        this.espacioMinutoFin.setText(String.valueOf(finEvento.getMinute()));
-        this.espacioSegundoFin.setText(String.valueOf(finEvento.getSecond()));
+        this.espacioHora.setText(String.valueOf(this.act.cuandoEmpieza().getHour()));
+        this.espacioMinuto.setText(String.valueOf(this.act.cuandoEmpieza().getMinute()));
+        this.espacioSegundo.setText(String.valueOf(this.act.cuandoEmpieza().getSecond()));
+
+        this.espacioHoraFin.setText(String.valueOf(this.act.cuandoTermina().getHour()));
+        this.espacioMinutoFin.setText(String.valueOf(this.act.cuandoTermina().getMinute()));
+        this.espacioSegundoFin.setText(String.valueOf(this.act.cuandoTermina().getSecond()));
 
         this.espacioElegirFecha.setValue(LocalDate.now());
 	}
@@ -171,7 +176,7 @@ public class VisualizadorActividad {
         var horaFinal = this.configurarUnidadDeTiempo(this.espacioHoraFin, 23, this.comienzoEvento.getHour());
         this.finEvento = this.finEvento.withHour(horaFinal);
 
-        System.out.println(this.comienzoEvento);
+        System.out.println(this.finEvento);
     }
 
     public void ponerMinuto(ActionEvent event) {
@@ -185,7 +190,7 @@ public class VisualizadorActividad {
         var horaFinal = this.configurarUnidadDeTiempo(this.espacioMinutoFin, 59, this.comienzoEvento.getMinute());
         this.finEvento = this.finEvento.withMinute(horaFinal);
 
-        System.out.println(this.comienzoEvento);
+        System.out.println(this.finEvento);
     }
 
     public void ponerSegundo(ActionEvent event) {
@@ -199,7 +204,7 @@ public class VisualizadorActividad {
         var horaFinal = this.configurarUnidadDeTiempo(this.espacioSegundoFin, 59, this.comienzoEvento.getSecond());
         this.finEvento = this.finEvento.withSecond(horaFinal);
 
-        System.out.println(this.comienzoEvento);
+        System.out.println(this.finEvento);
     }
 
     public void ponerTipoActividadTarea(ActionEvent event) {
