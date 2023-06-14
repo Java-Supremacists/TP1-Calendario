@@ -155,6 +155,7 @@ public class VistaMensual extends VistaCalendario {
 			    // var stack = new StackPane(hbox);
 
 
+			    // stack.setOnMouseClicked(VistaMensual::sus);
 			    stack.setOnMouseClicked(VistaMensual::sus);
 			    // stack.setOnAction();
 			    // setGraphic(new HBox());
@@ -188,13 +189,13 @@ public class VistaMensual extends VistaCalendario {
 	// var crear = new CreadorActividad(this, idPreParseo);
 	// System.out.println(this.modelo);
 
-	var cre = new CreadorActividad();
-	try {
-	cre.start();
-	}
-	catch (Exception e) {
-	    e.printStackTrace(System.out);
-	    }
+// 	// var cre = new CreadorActividad();
+// 	try {
+// 	cre.start();
+// 	}
+// 	catch (Exception e) {
+// 	    e.printStackTrace(System.out);
+// 	    }
 	// this.modelo
 	return idPreParseo;
 

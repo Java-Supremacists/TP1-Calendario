@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class CreadorActividad {
+public class VisualizadorActividad {
 
     // private Scene escena;
 
@@ -68,17 +68,15 @@ public class CreadorActividad {
 
     private ArrayList<Plazo> listaPlazos;
 
-    public CreadorActividad(Calendario modelo) {
-        this.modelo = modelo;
-
-        this.listaPlazos = new ArrayList<>();
+    public VisualizadorActividad(Activities act) {
     }
 
     // public Scene getScene() {
     //     return this.escena;
     // }
 
-    public void start() throws Exception {
+    public void start() {
+	try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("crearActividad.fxml"));
         loader.setController(this);
         Stage stageCrearEvento = loader.load();
@@ -94,6 +92,10 @@ public class CreadorActividad {
         this.espacioSegundoFin.setText(String.valueOf(finEvento.getSecond()));
 
         this.espacioElegirFecha.setValue(LocalDate.now());
+	}
+	catch (Exception e) {
+	    System.out.println(e);
+	}
         // this.relojImagen.setGraphic(new ImageView(new Image("alarma.png")));
     }
 
