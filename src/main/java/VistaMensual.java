@@ -122,7 +122,7 @@ public class VistaMensual extends VistaCalendario {
     }
     public ListView<String> listaFormal() {
 	// this.modelo;
-	this.modelo.obtenerTarea(5);
+	// this.modelo.obtenerTarea(5);
         ListView<String> listView = new ListView<>();
         listView.setCellFactory(new Callback<>() {
             public ListCell<String> call(ListView<String> listView) {
