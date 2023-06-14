@@ -22,10 +22,9 @@ public class InterfazGrafica extends Application {
     private LocalDateTime fechaActual;
     @Override
     public void start(Stage stage) throws Exception {
-        this.xmlManejador = new ControlerXml();
 
 	var archivoExiste = new File(this.archivoGuardado);
-	if (archivoExiste.exists() == true) {
+	if (archivoExiste.exists()) {
         this.xmlManejador.cargarXml(this.modelo, new FileInputStream(archivoGuardado));
 	}
 
