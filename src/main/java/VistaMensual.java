@@ -81,28 +81,19 @@ public class VistaMensual extends VistaCalendario {
                 ListView<String> agregar = listaFormal();//creo la lista formal
                 if (hacerVisual!=null) {
                     for (Activities act : hacerVisual){
-			try {
-			    var casteado = (Tarea) act;
-			    var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
-			    if (dia.getDayOfMonth() == diaActividadComienza){
-				// agregar.getItems().add("Aca iria el texto del evento o tarea");
-				// System.out.println(((Evento) act).getDescripcion());
-				agregar.getItems().add(casteado.getTitulo());
-				// agregar.getItems().add(act.getDescripcion());
-			}
-			}
-			catch (ClassCastException errorJavaXD) {
-			    var casteado = (Evento) act;
-			    var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
-			    if (dia.getDayOfMonth() == diaActividadComienza){
-				// agregar.getItems().add("Aca iria el texto del evento o tarea");
-				// System.out.println(((Evento) act).getDescripcion());
-				System.out.println("ARREGLAME ESTA");
-				System.out.println(casteado.getTitulo());
-				agregar.getItems().add(casteado.getTitulo());
-				// agregar.getItems().add(act.getDescripcion());
-			}
-			}
+                        try {
+                            var casteado = (Tarea) act;
+                            var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
+                            if (dia.getDayOfMonth() == diaActividadComienza){
+                                agregar.getItems().add(casteado.getTitulo());
+                            }
+                        } catch (ClassCastException errorJavaXD) {
+                            var casteado = (Evento) act;
+                            var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
+                            if (dia.getDayOfMonth() == diaActividadComienza){
+                                agregar.getItems().add(casteado.getTitulo());
+                            }
+			            }
                     }
                 }
                 listaHijos.add(agregar); //añado las listas formales
@@ -137,6 +128,12 @@ public class VistaMensual extends VistaCalendario {
                             // Crear un contenedor para el punto de color y el texto
                             HBox hbox = new HBox(bulletPoint, new Label(texto));
                             hbox.setSpacing(10);
+
+                            // Agrega una acción al hacer clic en la celda
+                            setOnMouseClicked(event -> {
+                                // Aquí puedes abrir otra pantalla o realizar cualquier acción deseada
+                                //System.out.println("Celda seleccionada: " + item.getNombre());
+                            });
 
                             setGraphic(hbox);
                             setText("");

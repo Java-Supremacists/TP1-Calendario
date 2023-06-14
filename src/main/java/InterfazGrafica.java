@@ -24,8 +24,8 @@ public class InterfazGrafica extends Application {
     private LocalDateTime fechaActual;
     @Override
     public void start(Stage stage) throws Exception {
-        this.xmlManejador = new ControlerXml();
-	this.xmlManejador.cargarXml(this.modelo, new FileInputStream(archivoGuardado));
+        //this.xmlManejador = new ControlerXml();
+	    //this.xmlManejador.cargarXml(this.modelo, new FileInputStream(archivoGuardado));
 
         var vista = new Vista(this, this.modelo); //por defecto viene con una vista semanal
         fechaActual = domingoAnteriorCercano(LocalDateTime.now());
@@ -104,13 +104,8 @@ public class InterfazGrafica extends Application {
 	System.out.println("Generando xml");
 	System.out.println(archivoGuardado);
 
-	xmlManejador.generateXml(this.modelo, "Calendario", new FileOutputStream(archivoGuardado));
+	//xmlManejador.generateXml(this.modelo, "Calendario", new FileOutputStream(archivoGuardado));
 
     }
-
-    // public void anadirTarea(int hashTarea, TareaGui tareaGui) {
-    // this.hashTareas.put(hashTarea, tareaGui);
-    // }
-
 
 }
