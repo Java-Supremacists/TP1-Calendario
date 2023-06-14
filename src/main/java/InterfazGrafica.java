@@ -23,10 +23,10 @@ public class InterfazGrafica extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-	var archivoExiste = new File(this.archivoGuardado);
-	if (archivoExiste.exists()) {
-        this.xmlManejador.cargarXml(this.modelo, new FileInputStream(archivoGuardado));
-	}
+        var archivoExiste = new File(this.archivoGuardado);
+        if (archivoExiste.exists()) {
+            this.xmlManejador.cargarXml(this.modelo, new FileInputStream(archivoGuardado));
+        }
 
         var vista = new Vista(this, this.modelo); //por defecto viene con una vista semanal
         fechaActual = domingoAnteriorCercano(LocalDateTime.now());

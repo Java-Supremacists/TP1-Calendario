@@ -7,7 +7,7 @@ public abstract class VistaCalendario {
     protected Calendario modelo;
     public VistaCalendario(FlowPane pantalla, Calendario modelo) {
         escenaActual = pantalla;
-	this.modelo = modelo;
+        this.modelo = modelo;
     }
     public abstract void ponermeAMi(FlowPane eliminar);
     public abstract String actualizarVista(LocalDateTime fecha);

@@ -82,7 +82,7 @@ public class VisualizadorActividad {
     private ArrayList<Plazo> listaPlazos;
 
     public VisualizadorActividad(Activities act) {
-	this.act = act;
+        this.act = act;
     }
 
     // public Scene getScene() {
@@ -90,48 +90,48 @@ public class VisualizadorActividad {
     // }
 
     public void start() {
-	try {
-	FXMLLoader loader = new FXMLLoader(getClass().getResource("visualizarActividad.fxml"));
-        loader.setController(this);
-        Stage stageCrearEvento = loader.load();
-        stageCrearEvento.setTitle("Mostrando evento");
-        stageCrearEvento.show();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("visualizarActividad.fxml"));
+            loader.setController(this);
+            Stage stageCrearEvento = loader.load();
+            stageCrearEvento.setTitle("Mostrando evento");
+            stageCrearEvento.show();
 
-	this.espacioNombre.setText(this.act.getTitulo());
-	this.espacioDescripcion.setText(this.act.getDescripcion());
+            this.espacioNombre.setText(this.act.getTitulo());
+            this.espacioDescripcion.setText(this.act.getDescripcion());
 
-        this.espacioHora.setText(String.valueOf(this.act.cuandoEmpieza().getHour()));
-        this.espacioMinuto.setText(String.valueOf(this.act.cuandoEmpieza().getMinute()));
-        this.espacioSegundo.setText(String.valueOf(this.act.cuandoEmpieza().getSecond()));
-        this.espacioElegirFecha.setValue(this.act.cuandoTermina().toLocalDate());
+            this.espacioHora.setText(String.valueOf(this.act.cuandoEmpieza().getHour()));
+            this.espacioMinuto.setText(String.valueOf(this.act.cuandoEmpieza().getMinute()));
+            this.espacioSegundo.setText(String.valueOf(this.act.cuandoEmpieza().getSecond()));
+            this.espacioElegirFecha.setValue(this.act.cuandoTermina().toLocalDate());
 
-        this.espacioHoraFin.setText(String.valueOf(this.act.cuandoTermina().getHour()));
-        this.espacioMinutoFin.setText(String.valueOf(this.act.cuandoTermina().getMinute()));
-        this.espacioSegundoFin.setText(String.valueOf(this.act.cuandoTermina().getSecond()));
+            this.espacioHoraFin.setText(String.valueOf(this.act.cuandoTermina().getHour()));
+            this.espacioMinutoFin.setText(String.valueOf(this.act.cuandoTermina().getMinute()));
+            this.espacioSegundoFin.setText(String.valueOf(this.act.cuandoTermina().getSecond()));
 
-	this.texto.setText("Evento");
+            this.texto.setText("Evento");
 
-	if (this.act.esDiaEntero()) {
-	    this.espacioEsDiaCompleto.setSelected(true);
-	}
+            if (this.act.esDiaEntero()) {
+                this.espacioEsDiaCompleto.setSelected(true);
+            }
 
-	if (this.act.cuandoEmpieza().equals(this.act.cuandoTermina())){
-	this.espacioHoraFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
-	this.espacioMinutoFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
-	this.espacioSegundoFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
-	// this.textoFrecuenciaDiaria.setStyle("-fx-text-fill: white; -fx-background-color: white");
-	this.textoFrecuenciaDiaria.setFill(Color.WHITE);
-	this.separadorUno.setFill(Color.WHITE);
-	this.separadorDos.setFill(Color.WHITE);
-	this.espacioFrecuencia.setStyle("-fx-text-fill: white; -fx-background-color: white");
-	this.texto.setText("Tarea");
-	}
+            if (this.act.cuandoEmpieza().equals(this.act.cuandoTermina())) {
+                this.espacioHoraFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
+                this.espacioMinutoFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
+                this.espacioSegundoFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
+                // this.textoFrecuenciaDiaria.setStyle("-fx-text-fill: white; -fx-background-color: white");
+                this.textoFrecuenciaDiaria.setFill(Color.WHITE);
+                this.separadorUno.setFill(Color.WHITE);
+                this.separadorDos.setFill(Color.WHITE);
+                this.espacioFrecuencia.setStyle("-fx-text-fill: white; -fx-background-color: white");
+                this.texto.setText("Tarea");
+            }
 
-	}
-	catch (Exception e) {
-	    System.out.println(e);
-	    e.printStackTrace(System.out);
-	}
+        }
+        catch (Exception e) {
+            System.out.println(e);
+            e.printStackTrace(System.out);
+        }
         // this.relojImagen.setGraphic(new ImageView(new Image("alarma.png")));
     }
 

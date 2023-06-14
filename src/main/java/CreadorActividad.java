@@ -149,9 +149,9 @@ public class CreadorActividad {
         Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), horaMaxima);
 
         // No podemos tener eventos que finalicen antes de que empiecen
-         if (horaEstablecida < horaMinima) {
-             horaEstablecida = horaMinima;
-         }
+        if (horaEstablecida < horaMinima) {
+            horaEstablecida = horaMinima;
+        }
         espacioUnidad.setText(String.valueOf(horaEstablecida));
 
         return horaEstablecida;

@@ -93,7 +93,7 @@ public class VistaMensual extends VistaCalendario {
                             if (dia.getDayOfMonth() == diaActividadComienza) {
 
                                 // agregar.getItems().add(casteado.getTitulo() + "赦" + String.valueOf(casteado.getID()));
-				agregar.getItems().add((Activities)casteado);
+                                agregar.getItems().add((Activities)casteado);
                             }
                         }
                         catch (ClassCastException errorJavaXD) {
@@ -101,7 +101,7 @@ public class VistaMensual extends VistaCalendario {
                             var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
                             if (dia.getDayOfMonth() == diaActividadComienza) {
 
-				agregar.getItems().add((Activities)casteado);
+                                agregar.getItems().add((Activities)casteado);
                             }
                         }
                     }
@@ -122,8 +122,8 @@ public class VistaMensual extends VistaCalendario {
                              (int) (blue * 255));
     }
     public ListView<Activities> listaFormal() {
-	// this.modelo;
-	// this.modelo.obtenerTarea(5);
+        // this.modelo;
+        // this.modelo.obtenerTarea(5);
         ListView<Activities> listView = new ListView<>();
         listView.setCellFactory(new Callback<>() {
             public ListCell<Activities> call(ListView<Activities> listView) {
@@ -135,35 +135,35 @@ public class VistaMensual extends VistaCalendario {
                             setGraphic(null);
                         } else {
                             // Crear un punto de color a la izquierda del texto
-			    // var partido = texto.split("赦");
+                            // var partido = texto.split("赦");
                             Circle bulletPoint = new Circle(9, Color.web(getRandomColor()));
 
                             // Crear un contenedor para el punto de color y el texto
-			    // var nombre = new Label(partido[0]);
-			    var nombre = new Label(texto.getTitulo());
+                            // var nombre = new Label(partido[0]);
+                            var nombre = new Label(texto.getTitulo());
                             HBox hbox = new HBox(bulletPoint, nombre);
                             hbox.setSpacing(10);
 
-			    // En este stack esta el invicible
-			    var id = new Label(String.valueOf(texto.toString()));
-			    id.setOpacity(0);
-			    var stack = new StackPane(hbox, id);
-			    // var stack = new StackPane(hbox);
+                            // En este stack esta el invicible
+                            var id = new Label(String.valueOf(texto.toString()));
+                            id.setOpacity(0);
+                            var stack = new StackPane(hbox, id);
+                            // var stack = new StackPane(hbox);
 
 
-			    var ssos = new VisualizadorActividad(texto);
-			    stack.setOnMouseClicked(x -> ssos.start());
-			    // stack.setOnAction();
-			    // setGraphic(new HBox());
+                            var ssos = new VisualizadorActividad(texto);
+                            stack.setOnMouseClicked(x -> ssos.start());
+                            // stack.setOnAction();
+                            // setGraphic(new HBox());
                             setGraphic(stack);
                             // Agrega una acción al hacer clic en la celda
                             // setOnMouseClicked(event -> {
-                                
+
                             // });
 
                             // setGraphic(hbox);
                             // setText(texto.toString());
-			    System.out.println("EYEYEYEYYE");
+                            System.out.println("EYEYEYEYYE");
                         }
                     }
                 };
