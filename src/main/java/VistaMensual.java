@@ -144,10 +144,6 @@ public class VistaMensual extends VistaCalendario {
                             HBox hbox = new HBox(bulletPoint, nombre);
                             hbox.setSpacing(10);
 
-			    //TODO: Activar esto y rezar
-			    hbox.setDisable(false);
-
-
 			    // En este stack esta el invicible
 			    var id = new Label(String.valueOf(texto.toString()));
 			    id.setOpacity(0);
