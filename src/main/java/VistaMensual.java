@@ -149,7 +149,7 @@ public class VistaMensual extends VistaCalendario {
 
 
 			    // En este stack esta el invicible
-			    var id = new Label(String.valueOf(texto.getID()));
+			    var id = new Label(String.valueOf(texto.toString()));
 			    id.setOpacity(0);
 			    var stack = new StackPane(hbox, id);
 			    // var stack = new StackPane(hbox);
@@ -165,7 +165,7 @@ public class VistaMensual extends VistaCalendario {
                             // });
 
                             // setGraphic(hbox);
-                            setText("");
+                            // setText(texto.toString());
 			    System.out.println("EYEYEYEYYE");
                         }
                     }
@@ -187,6 +187,14 @@ public class VistaMensual extends VistaCalendario {
 	idPreParseo = idPreParseo.substring(0, idPreParseo.indexOf("\""));
 	// var crear = new CreadorActividad(this, idPreParseo);
 	// System.out.println(this.modelo);
+
+	var cre = new CreadorActividad();
+	try {
+	cre.start();
+	}
+	catch (Exception e) {
+	    e.printStackTrace(System.out);
+	    }
 	// this.modelo
 	return idPreParseo;
 

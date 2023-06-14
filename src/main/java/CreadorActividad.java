@@ -68,6 +68,8 @@ public class CreadorActividad {
 
     private ArrayList<Plazo> listaPlazos;
 
+    public CreadorActividad() {
+    }
     public CreadorActividad(Calendario modelo) {
         this.modelo = modelo;
 
