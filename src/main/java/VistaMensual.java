@@ -179,8 +179,7 @@ public class VistaMensual extends VistaCalendario {
                             setGraphic(stack);
                             // Agrega una acción al hacer clic en la celda
                             setOnMouseClicked(event -> {
-                                // Aquí puedes abrir otra pantalla o realizar cualquier acción deseada
-                                //System.out.println("Celda seleccionada: " + item.getNombre());
+                                
                             });
 
                             setGraphic(hbox);
