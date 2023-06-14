@@ -19,7 +19,7 @@
                <TextField fx:id="espacioDescripcion" focusTraversable="false" layoutX="40.0" layoutY="49.0" mouseTransparent="true" text="Descripcion" />
                <DatePicker fx:id="espacioElegirFecha" focusTraversable="false" layoutX="17.0" layoutY="122.0" mouseTransparent="true" prefHeight="24.0" prefWidth="110.0" promptText="Insertar fecha" />
                <CheckBox fx:id="espacioEsDiaCompleto" focusTraversable="false" layoutX="142.0" layoutY="125.0" mnemonicParsing="false" mouseTransparent="true" text="Dia Entero" />
-               <Text layoutX="14.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frecuencia diaria:" />
+               <Text fx:id="textoFrecuenciaDiaria" layoutX="14.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frecuencia diaria:" />
                <TextField fx:id="espacioFrecuencia" focusTraversable="false" layoutX="153.0" layoutY="265.0" mouseTransparent="true" prefHeight="24.0" prefWidth="71.0" text="0" />
                <TextField fx:id="espacioMinuto" focusTraversable="false" layoutX="109.0" layoutY="160.0" mouseTransparent="true" prefHeight="24.0" prefWidth="35.0" text="00" />
                <TextField fx:id="espacioHora" focusTraversable="false" layoutX="52.0" layoutY="160.0" mouseTransparent="true" prefHeight="24.0" prefWidth="35.0" text="00" />
