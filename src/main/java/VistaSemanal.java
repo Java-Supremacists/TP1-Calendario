@@ -71,42 +71,30 @@ public class VistaSemanal extends VistaCalendario {
         vaciarGrilla();
         for (int i = 1; i<8;i++){
             for (int j = 0; j<24;j++){
-                grillaDiasxHorarios.add(new GridPane(1,1),i,j);
-            }
-        }
-        int numChildren = grillaDiasxHorarios.getChildren().size();
-        for (int i = 0; i < numChildren; i++) {
-            var hijo = grillaDiasxHorarios.getChildren().get(i);
-            var columnIndex = GridPane.getColumnIndex(hijo);
-            var rowIndex = GridPane.getRowIndex(hijo);
-            //Hay un error aca, no funca
-            if (hacerVisual== null){return;}
-            for (Activities act : hacerVisual){
-                var comienza = act.cuandoEmpieza();
-                var termina = act.cuandoTermina();
-                var inicio = comienza.getHour();
-                var finaliza = comienza.getHour();
-                var dia = comienza.getDayOfWeek().getValue() % 7 + 1;
-                if (dia == columnIndex && inicio == rowIndex){
-                    Paint color = Color.web(VistaMensual.getRandomColor());
-                    var rectanguloColorido = new Rectangle(115,40,color);
-                    if (comienza.equals(termina)){
-                        //tarea
-                        var grilla = (GridPane) hijo;
-                        if (grilla.getColumnCount() == grilla.getChildren().size()){
-                            grilla.addColumn(grilla.getColumnCount(),rectanguloColorido);
-                        }else {
-                            grilla.add(rectanguloColorido,grilla.getColumnCount(),1);
+                var celda = new VBox();
+                grillaDiasxHorarios.add(celda,i,j);
+                if (hacerVisual== null){continue;}
+                for (Activities act : hacerVisual){
+                    var comienza = act.cuandoEmpieza();
+                    var termina = act.cuandoTermina();
+                    var inicio = comienza.getHour();
+                    var finaliza = comienza.getHour();
+                    var dia = comienza.getDayOfWeek().getValue() % 7 + 1;
+                    if (dia == i && inicio <= j){
+                        Paint color = Color.web(VistaMensual.getRandomColor());
+                        var rectanguloColorido = new Rectangle(115,40,color);
+                        if (comienza.equals(termina) && inicio == j){
+                            //tarea
+                            celda.getChildren().add(rectanguloColorido);
+                        } else if (!comienza.equals(termina)) {
+                            //evento
+                            celda.getChildren().add(rectanguloColorido);
                         }
-                    }else {
-                        //evento
                     }
-                }
 
+                }
             }
         }
-
-
     }
     private void vaciarGrilla() {
         grillaDiasxHorarios.getChildren().removeIf(e -> !e.getClass().equals(Label.class));
