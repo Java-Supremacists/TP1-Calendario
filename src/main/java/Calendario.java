@@ -49,12 +49,14 @@ public class Calendario implements XmlGuardador {
         }
         return devolver;
     }
-    public List<LocalDateTime> alarmasDeActividad(int ID){
+    public List<LocalDateTime> alarmasDeActividad(int ID) {
         var alarma = this.obtenerAlarma(ID);
-        if (alarma==null){return null;}
+        if (alarma==null) {
+            return null;
+        }
         return alarma.getAlarmas();
     }
-    protected Alarmas obtenerAlarma(int ID){
+    protected Alarmas obtenerAlarma(int ID) {
         for (Evento e: listaEventos.keySet()) {
             if (e.getID() == ID) {
                 return listaEventos.get(e);

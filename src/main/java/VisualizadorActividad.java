@@ -58,7 +58,7 @@ public class VisualizadorActividad {
 
     public VisualizadorActividad(Activities act, Calendario modelo) {
         this.act = act;
-	this.modelo = modelo;
+        this.modelo = modelo;
     }
 
     public void start() {
@@ -85,27 +85,27 @@ public class VisualizadorActividad {
                 this.espacioEsDiaCompleto.setSelected(true);
             }
 
-	    //Tarea
+            //Tarea
             if (this.act.cuandoEmpieza().equals(this.act.cuandoTermina())) {
                 this.espacioHoraFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
                 this.espacioMinutoFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
                 this.textoFrecuenciaDiaria.setFill(Color.WHITE);
                 this.espacioFrecuencia.setStyle("-fx-text-fill: white; -fx-background-color: white");
-		try {
-		    if (((Tarea)act).estaCompleta() == true) {
-			this.tareaTerminado.setSelected(true);
-		    }
-		}
-		catch (ClassCastException e) {
-		}
+                try {
+                    if (((Tarea)act).estaCompleta() == true) {
+                        this.tareaTerminado.setSelected(true);
+                    }
+                }
+                catch (ClassCastException e) {
+                }
 
             }
-	    //Evento
-	    else {
-		this.tareaTerminado.setStyle("-fx-text-fill: white; -fx-background-color: white");
-		this.tareaTerminado.setDisable(true);
-		this.tareaTerminado.setOpacity(0);
-	    }
+            //Evento
+            else {
+                this.tareaTerminado.setStyle("-fx-text-fill: white; -fx-background-color: white");
+                this.tareaTerminado.setDisable(true);
+                this.tareaTerminado.setOpacity(0);
+            }
 
         }
         catch (Exception e) {
@@ -116,8 +116,8 @@ public class VisualizadorActividad {
     }
 
     public void marcarTareaCompleta(ActionEvent event) {
-	this.modelo.modificarTareaCompletarODescompletar(this.act.getID());
-	System.out.println("SUS");
+        this.modelo.modificarTareaCompletarODescompletar(this.act.getID());
+        System.out.println("SUS");
     }
 
 

@@ -66,9 +66,9 @@ public class InterfazGrafica extends Application {
             public void handle(long l) {
                 var horaActual = LocalDateTime.now();
                 var siguienteAlarma = modelo.proximaAlarma();
-		if (siguienteAlarma == null) {
-		    return;
-		}
+                if (siguienteAlarma == null) {
+                    return;
+                }
                 if (horaActual.getYear()== siguienteAlarma.getYear() && horaActual.getMonth()== siguienteAlarma.getMonth() && horaActual.getDayOfMonth()== siguienteAlarma.getDayOfMonth() && horaActual.getHour()== siguienteAlarma.getHour() && horaActual.getMinute()== siguienteAlarma.getMinute() ) {
                     //supergroncho para que entre JAJJAJAJA
                     //if (horaActual.equals(siguienteAlarma)) {
@@ -76,10 +76,10 @@ public class InterfazGrafica extends Application {
                     var alerta = new Alert(Alert.AlertType.INFORMATION);
                     List<Activities> actividadesSonando = modelo.sonarAlarmas();
                     StringBuilder texto = new StringBuilder("La/s Actividades siguientes estan sonando por las siguientes alarmas:\n");
-                    for (Activities act : actividadesSonando){
+                    for (Activities act : actividadesSonando) {
                         texto.append(act.getTitulo());
                         texto.append(": \n");
-                        for (LocalDateTime alarmas : modelo.alarmasDeActividad(act.getID())){
+                        for (LocalDateTime alarmas : modelo.alarmasDeActividad(act.getID())) {
                             texto.append(alarmas.toString());
                             texto.append(" - ");
                         }
