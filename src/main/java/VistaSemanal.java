@@ -1,15 +1,18 @@
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -69,29 +72,45 @@ public class VistaSemanal extends VistaCalendario {
     @Override
     public void visualizarActividades(List<Activities> hacerVisual,LocalDateTime fechaInicioSemana) {
         vaciarGrilla();
-        for (int i = 1; i<8;i++){
-            for (int j = 0; j<24;j++){
-                var celda = new VBox();
-                grillaDiasxHorarios.add(celda,i,j);
-                if (hacerVisual== null){continue;}
-                for (Activities act : hacerVisual){
-                    var comienza = act.cuandoEmpieza();
-                    var termina = act.cuandoTermina();
-                    var inicio = comienza.getHour();
-                    var finaliza = comienza.getHour();
-                    var dia = comienza.getDayOfWeek().getValue() % 7 + 1;
-                    if (dia == i && inicio <= j){
-                        Paint color = Color.web(VistaMensual.getRandomColor());
-                        var rectanguloColorido = new Rectangle(115,40,color);
-                        if (comienza.equals(termina) && inicio == j){
-                            //tarea
-                            celda.getChildren().add(rectanguloColorido);
-                        } else if (!comienza.equals(termina)) {
-                            //evento
-                            celda.getChildren().add(rectanguloColorido);
-                        }
-                    }
+        for (int i = 1; i <8; i++){
+            for (int k = 0; k <24; k++){
+                var celda = new HBox();
+                celda.setAlignment(Pos.CENTER_RIGHT);
+                grillaDiasxHorarios.add(celda,i, k);
+            }
 
+        }
+        if (hacerVisual== null){return;}
+        for (int j = 1; j <8 ; j++ ){
+            int finalJ = j;
+            var listaPorColumna = hacerVisual.stream().filter(c->c.cuandoEmpieza().getDayOfWeek().getValue() % 7 + 1 == finalJ).toList();
+            for (Activities act : listaPorColumna){
+                var inicio = act.cuandoEmpieza().getHour();
+                var finaliza = act.cuandoTermina().getHour();
+                Paint color = Color.web(VistaMensual.getRandomColor());
+                for (Node e : grillaDiasxHorarios.getChildren()) {
+                    if (!e.getClass().equals(HBox.class)){continue;}
+                    Integer row = GridPane.getRowIndex(e);
+                    Integer column = GridPane.getColumnIndex(e);
+                    if (row != null && column != null && column == finalJ && inicio <= row && row <= finaliza) {
+                        var hijo = (HBox) e;
+                        var rectangulo = new Rectangle((double) 115 / listaPorColumna.size(), 40, color);
+                        rectangulo.setOnMouseClicked(mouseEvent -> {
+                            var vbox = new VBox();
+                            vbox.setAlignment(Pos.CENTER);
+                            if (act.cuandoEmpieza().equals(act.cuandoTermina())){
+                                var tarea = (Tarea) act;
+                                vbox.getChildren().addAll(new Label(tarea.getTitulo()),new Label(tarea.getDescripcion(),new Label(tarea.cuandoEmpieza().toString(),new Label(tarea.cuandoTermina().toString()))));
+                            }else {
+                                var evento = (Evento) act;
+                                vbox.getChildren().addAll(new Label(evento.getTitulo()),new Label(evento.getDescripcion()));
+                            }
+                            var stage = new Stage();
+                            stage.setScene(new Scene(vbox,331,249));
+                            stage.show();
+                        });
+                        hijo.getChildren().add(rectangulo);
+                    }
                 }
             }
         }
