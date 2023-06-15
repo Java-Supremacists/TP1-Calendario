@@ -40,7 +40,6 @@ public class ElegirAlarma {
     public void elegirAlarmaDeTipo(ActionEvent event) {
         var item = (MenuItem) event.getSource();
         var idItem = item.getId();
-        System.out.println(item.getId());
         this.padre.anadirAlarma(idItem);
     }
 }

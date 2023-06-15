@@ -83,7 +83,6 @@ public class CreadorActividad {
     }
 
     public CreadorActividad(Activities act, Calendario modelo) {
-        System.out.println(act.getTitulo());
         this.nombreEvento = act.getTitulo();
         this.descripcionEvento = act.getDescripcion();
         this.esDiaCompletoEvento = act.esDiaEntero();
@@ -171,22 +170,18 @@ public class CreadorActividad {
 
     public void ponerNombre(ActionEvent event) {
         this.nombreEvento = this.espacioNombre.getText();
-        System.out.println(this.nombreEvento);
     }
 
     public void ponerDescripcion(ActionEvent event) {
         this.descripcionEvento = this.espacioDescripcion.getText();
-        System.out.println(this.descripcionEvento);
     }
 
     public void ponerEsDiaCompleto(ActionEvent event) {
         this.esDiaCompletoEvento = this.espacioEsDiaCompleto.isSelected();
-        System.out.println(this.esDiaCompletoEvento);
     }
 
     public void ponerFecha(ActionEvent event) {
         this.fechaEvento = this.espacioElegirFecha.getValue();
-        System.out.println(this.fechaEvento);
     }
 
     public void ponerFrecuencia(ActionEvent event) {
@@ -195,7 +190,6 @@ public class CreadorActividad {
 
         this.frecuenciaDiariaEvento = numeroBoton.getNumeroBoton();
         this.espacioFrecuencia.setText(String.valueOf(this.frecuenciaDiariaEvento));
-        System.out.println(this.frecuenciaDiariaEvento);
     }
 
     private Integer noTeMePases(Integer horaAChequear, Integer horaMaxima) {
@@ -232,28 +226,24 @@ public class CreadorActividad {
         var horaFinal = this.configurarUnidadDeTiempo(this.espacioHora, 23, 0);
         this.comienzoEvento = this.comienzoEvento.withHour(horaFinal);
 
-        System.out.println(this.comienzoEvento);
     }
 
     public void ponerHoraFin(ActionEvent event) {
         var horaFinal = this.configurarUnidadDeTiempo(this.espacioHoraFin, 23, this.comienzoEvento.getHour());
         this.finEvento = this.finEvento.withHour(horaFinal);
 
-        System.out.println(this.finEvento);
     }
 
     public void ponerMinuto(ActionEvent event) {
         var horaFinal = this.configurarUnidadDeTiempo(this.espacioMinuto, 59, 0);
         this.comienzoEvento = this.comienzoEvento.withMinute(horaFinal);
 
-        System.out.println(this.comienzoEvento);
     }
 
     public void ponerMinutoFin(ActionEvent event) {
         var horaFinal = this.configurarUnidadDeTiempo(this.espacioMinutoFin, 59, 0);
         this.finEvento = this.finEvento.withMinute(horaFinal);
 
-        System.out.println(this.finEvento);
     }
 
     public void ponerTipoActividadTarea(ActionEvent event) {
@@ -285,7 +275,6 @@ public class CreadorActividad {
         //Google calendar tampoco te deja configurar segundos
         this.comienzoEvento = this.comienzoEvento.withSecond(0);
         this.comienzoEvento = this.comienzoEvento.withNano(0);
-        System.out.println(this.comienzoEvento);
 
         LocalDateTime fechaComienzo = this.comienzoEvento.atDate(this.fechaEvento);
 
@@ -299,7 +288,6 @@ public class CreadorActividad {
         else {
             this.finEvento = this.finEvento.withSecond(0);
             this.finEvento = this.finEvento.withNano(0);
-            System.out.println(this.finEvento);
 
             LocalDateTime fechaFin = this.finEvento.atDate(this.fechaEvento);
 
@@ -311,7 +299,6 @@ public class CreadorActividad {
                 this.modelo.modificarActividadAgregarAlarma(idEvento, plazo);
             }
         }
-        System.out.println(idEvento);
 
 
         // var tareaGrafica = new TareaGui(idEvento);
@@ -322,7 +309,6 @@ public class CreadorActividad {
     }
 
     public void actualizarEvento(ActionEvent event) {
-        System.out.println("Ya existe");
         var id = this.act.getID();
         this.modelo.modificarActividadNombre(id, this.nombreEvento);
         this.modelo.modificarActividadDescripcion(id, this.descripcionEvento);
@@ -331,7 +317,6 @@ public class CreadorActividad {
     }
 
     public void elegirAlarma() {
-        System.out.println("clicl");
         var elegirAlarma = new ElegirAlarma(this);
 
         try {
@@ -354,31 +339,25 @@ public class CreadorActividad {
 
         switch (plazoElegidoPorUsuario) {
         case "1 dia antes":
-            System.out.println("1 dia antes");
             plazoParaAnadir = Plazo.DIAANTES;
             break;
         case "1 hora antes":
-            System.out.println("1 hora antes");
             plazoParaAnadir = Plazo.HORAANTES;
             break;
 
         case "30 mins antes":
-            System.out.println("30 mins antes");
             plazoParaAnadir = Plazo.MEDIAHORAANTES;
             break;
 
         case "15 mins antes":
-            System.out.println("15 mins antes");
             plazoParaAnadir = Plazo.QUINCEMINUTOSANTES;
             break;
 
         case "10 mins antes":
-            System.out.println("10 mins antes");
             plazoParaAnadir = Plazo.DIEZMINUTOSANTES;
             break;
 
         case "5 mins antes":
-            System.out.println("5 mins antes");
             plazoParaAnadir = Plazo.CINCOMINUTOSANTES;
             break;
         }
@@ -387,11 +366,9 @@ public class CreadorActividad {
             return;
         }
         this.listaPlazos.add(plazoParaAnadir);
-        System.out.println(this.listaPlazos.size());
     }
 
     public void marcarTareaCompleta(ActionEvent event) {
         this.modelo.modificarTareaCompletarODescompletar(this.act.getID());
-        System.out.println("SUS");
     }
 }
