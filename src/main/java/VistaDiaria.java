@@ -67,36 +67,38 @@ public class VistaDiaria extends VistaCalendario {
             celda.setAlignment(Pos.CENTER_RIGHT);
             grillaDiaxHora.add(celda,1, i);
         }
-        if (hacerVisual== null){return;}
-        var listaDeLasFechasHoy = hacerVisual.stream().filter(j-> j.cuandoEmpieza().getDayOfMonth() == fechaHoy.getDayOfMonth()).toList();
-        for (Activities act : listaDeLasFechasHoy){
-            var inicio = act.cuandoEmpieza().getHour();
-            var finaliza = act.cuandoTermina().getHour();
-            Paint color = Color.web(VistaMensual.getRandomColor());
-            for (Node e : grillaDiaxHora.getChildren()) {
-                if (!e.getClass().equals(HBox.class)){continue;}
-                Integer row = GridPane.getRowIndex(e);
-                if (row != null && inicio <= row && row <= finaliza) {
-                    var hijo = (HBox) e;
-                    var rectangulo = new Rectangle((double) 800 / listaDeLasFechasHoy.size(), 40, color);
-                    rectangulo.setOnMouseClicked(mouseEvent -> {
-                        var vbox = new VBox();
-                        vbox.setAlignment(Pos.CENTER);
-                        if (act.cuandoEmpieza().equals(act.cuandoTermina())){
-                            var tarea = (Tarea) act;
-                             vbox.getChildren().addAll(new Label(tarea.getTitulo()),new Label(tarea.getDescripcion(),new Label(tarea.cuandoEmpieza().toString(),new Label(tarea.cuandoTermina().toString()))));
-                        }else {
-                            var evento = (Evento) act;
-                            vbox.getChildren().addAll(new Label(evento.getTitulo()),new Label(evento.getDescripcion()));
-                        }
-                        var stage = new Stage();
-                        stage.setScene(new Scene(vbox,331,249));
-                        stage.show();
-                    });
-                    hijo.getChildren().add(rectangulo);
+        for (int i = 0; i <24; i++){
+            if (hacerVisual== null){return;}
+            int finalI = i;
+            var listaDeLasFechasHoy = hacerVisual.stream().filter(j-> j.cuandoEmpieza().getDayOfMonth() == fechaHoy.getDayOfMonth() && j.cuandoEmpieza().getHour() <= finalI && finalI <= j.cuandoTermina().getHour()).toList();
+            for (Activities act : listaDeLasFechasHoy){
+                Paint color = Color.web(VistaMensual.getRandomColor());
+                for (Node e : grillaDiaxHora.getChildren()) {
+                    if (!e.getClass().equals(HBox.class)){continue;}
+                    Integer row = GridPane.getRowIndex(e);
+                    if (row != null && row == finalI) {
+                        var hijo = (HBox) e;
+                        var rectangulo = new Rectangle((double) 800 / listaDeLasFechasHoy.size(), 40, color);
+                        rectangulo.setOnMouseClicked(mouseEvent -> {
+                            var vbox = new VBox();
+                            vbox.setAlignment(Pos.CENTER);
+                            if (act.cuandoEmpieza().equals(act.cuandoTermina())){
+                                var tarea = (Tarea) act;
+                                vbox.getChildren().addAll(new Label(tarea.getTitulo()),new Label(tarea.getDescripcion(),new Label(tarea.cuandoEmpieza().toString(),new Label(tarea.cuandoTermina().toString()))));
+                            }else {
+                                var evento = (Evento) act;
+                                vbox.getChildren().addAll(new Label(evento.getTitulo()),new Label(evento.getDescripcion()));
+                            }
+                            var stage = new Stage();
+                            stage.setScene(new Scene(vbox,331,249));
+                            stage.show();
+                        });
+                        hijo.getChildren().add(rectangulo);
+                    }
                 }
             }
         }
+
 
     }
     private void vaciarGrilla() {
