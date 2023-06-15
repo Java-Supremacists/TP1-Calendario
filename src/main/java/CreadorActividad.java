@@ -55,11 +55,16 @@ public class CreadorActividad {
     @FXML
     private Button relojImagen;
 
+    @FXML
+    private CheckBox tareaTerminado;
+
     //Le pongo un valor por defecto. Esto tambien es asi en google calendar
     private LocalTime comienzoEvento;
     private LocalTime finEvento;
 
     private ArrayList<Plazo> listaPlazos;
+
+    private Activities act;
 
     public CreadorActividad(Calendario modelo) {
 	this.nombreEvento = "Nombre default";
@@ -72,19 +77,36 @@ public class CreadorActividad {
 	this.finEvento = comienzoEvento.plusHours(1);
 
 
-
         this.modelo = modelo;
 
         this.listaPlazos = new ArrayList<>();
     }
 
     public CreadorActividad(Activities act, Calendario modelo) {
+	this.nombreEvento = act.getTitulo();
+	this.descripcionEvento = act.getDescripcion();
+	this.esDiaCompletoEvento = act.esDiaEntero();
+	this.fechaEvento = act.cuandoEmpieza().toLocalDate();
+	this.frecuenciaDiariaEvento = 0;
+	if (act.cuandoEmpieza().equals(act.cuandoTermina())) {
+	    this.tipoActividad = "Tarea";
+	}
+	else {
+	    this.tipoActividad = "Evento";
+	}
+	// this.espacioTipoActividad.setDisable(true);
+	// this.tipoActividad.setStyle("-fx-text-fill: white; -fx-background-color: white");
+	this.comienzoEvento = act.cuandoEmpieza().toLocalTime();
+	this.finEvento = act.cuandoTermina().toLocalTime();
+
         this.modelo = modelo;
+	this.act = act;
 
         this.listaPlazos = new ArrayList<>();
     }
 
-    public void start() throws Exception {
+    public void start() {
+	try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("crearActividad.fxml"));
         loader.setController(this);
         Stage stageCrearEvento = loader.load();
@@ -98,6 +120,38 @@ public class CreadorActividad {
         this.espacioMinutoFin.setText(String.valueOf(finEvento.getMinute()));
 
         this.espacioElegirFecha.setValue(LocalDate.now());
+	if (this.act == null) {
+	this.tareaTerminado.setStyle("-fx-text-fill: white; -fx-background-color: white");
+	this.tareaTerminado.setDisable(true);
+	this.tareaTerminado.setOpacity(0);
+	}
+
+	//Estamos modificando una actividad ya existente
+	else {
+
+	    //Queremos sacar la ventanita de visualizacion en ambas
+	    this.espacioTipoActividad.setStyle("-fx-text-fill: white; -fx-background-color: white");
+	    this.espacioTipoActividad.setDisable(true);
+	    this.espacioTipoActividad.setOpacity(0);
+
+	    // Evento
+	    if (this.act.cuandoEmpieza() != this.act.cuandoTermina()) {
+	this.tareaTerminado.setStyle("-fx-text-fill: white; -fx-background-color: white");
+	this.tareaTerminado.setDisable(true);
+	this.tareaTerminado.setOpacity(0);
+	}
+	//Tarea
+	else {
+		    if (((Tarea)act).estaCompleta() == true) {
+			this.tareaTerminado.setSelected(true);
+		    }
+
+	}
+	}
+	}
+	catch (Exception e) {
+            e.printStackTrace(System.out);
+	}
     }
 
 
@@ -203,6 +257,15 @@ public class CreadorActividad {
     }
 
     public void crearEvento(ActionEvent event) {
+	if (this.act == null) {
+	    this.guardarEventoNuevo(event);
+	}
+	else {
+	    actualizarEvento(event);
+	}
+    }
+
+    public void guardarEventoNuevo(ActionEvent event) {
 	//Le ponemos todos los segundos y milisegundos a 0 para evitar problemas
 	//con las alarmas y tener todo mas redondo
 	//Google calendar tampoco te deja configurar segundos
@@ -241,6 +304,12 @@ public class CreadorActividad {
         // this.interfazGrafica.anadirTarea(idEvento, tareaGrafica);
 
         this.modelo.longTareasYEventos();
+
+    }
+
+    public void actualizarEvento(ActionEvent event) {
+	System.out.println("Ya existe");
+
     }
 
     public void elegirAlarma() {
@@ -301,5 +370,10 @@ public class CreadorActividad {
         }
         this.listaPlazos.add(plazoParaAnadir);
         System.out.println(this.listaPlazos.size());
+    }
+
+    public void marcarTareaCompleta(ActionEvent event) {
+	this.modelo.modificarTareaCompletarODescompletar(this.act.getID());
+	System.out.println("SUS");
     }
 }

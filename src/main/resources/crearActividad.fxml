@@ -54,6 +54,11 @@
                      <Font size="35.0" />
                   </font>
                </Text>
+               <CheckBox fx:id="tareaTerminado" layoutX="54.0" layoutY="85.0" mnemonicParsing="false" onAction="#marcarTareaCompleta" prefHeight="37.0" prefWidth="152.0" text="Terminada" textAlignment="CENTER">
+                  <font>
+                     <Font size="21.0" />
+                  </font>
+               </CheckBox>
             </children></AnchorPane>
         </Scene>
     </scene>
