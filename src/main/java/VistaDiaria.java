@@ -67,7 +67,7 @@ public class VistaDiaria extends VistaCalendario {
         }
         if (hacerVisual== null){return;}
         for (Activities act : hacerVisual){
-            Paint color = Color.web(VistaMensual.getRandomColor());
+            Paint color = Color.web(GeneradorDeColores.getColorFromId(act.getID()));
             var inicia = act.cuandoEmpieza().getHour();
             var termina = act.cuandoTermina().getHour();
             for (Node e : grillaDiaxHora.getChildren()) {
