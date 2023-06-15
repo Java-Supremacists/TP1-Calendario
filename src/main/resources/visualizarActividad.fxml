@@ -17,8 +17,8 @@
             <children>
                <TextField fx:id="espacioNombre" focusTraversable="false" layoutX="39.0" layoutY="14.0" mouseTransparent="true" text="Nombre" />
                <TextField fx:id="espacioDescripcion" focusTraversable="false" layoutX="40.0" layoutY="49.0" mouseTransparent="true" text="Descripcion" />
-               <DatePicker fx:id="espacioElegirFecha" focusTraversable="false" layoutX="17.0" layoutY="122.0" mouseTransparent="true" prefHeight="24.0" prefWidth="110.0" promptText="Insertar fecha" />
-               <CheckBox fx:id="espacioEsDiaCompleto" focusTraversable="false" layoutX="142.0" layoutY="125.0" mnemonicParsing="false" mouseTransparent="true" text="Dia Entero" />
+               <DatePicker fx:id="espacioElegirFecha" focusTraversable="false" layoutX="17.0" layoutY="124.0" mouseTransparent="true" prefHeight="24.0" prefWidth="110.0" promptText="Insertar fecha" />
+               <CheckBox fx:id="espacioEsDiaCompleto" focusTraversable="false" layoutX="142.0" layoutY="127.0" mnemonicParsing="false" mouseTransparent="true" text="Dia Entero" />
                <Text fx:id="textoFrecuenciaDiaria" layoutX="14.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frecuencia diaria:" />
                <TextField fx:id="espacioFrecuencia" focusTraversable="false" layoutX="153.0" layoutY="265.0" mouseTransparent="true" prefHeight="24.0" prefWidth="71.0" text="0" />
                <TextField fx:id="espacioMinuto" focusTraversable="false" layoutX="77.0" layoutY="170.0" mouseTransparent="true" prefHeight="24.0" prefWidth="35.0" text="00" />
@@ -40,17 +40,17 @@
                      <Font size="14.0" />
                   </font>
                </Button>
-               <Text fx:id="texto" layoutX="96.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER">
-                  <font>
-                     <Font size="26.0" />
-                  </font>
-               </Text>
                <Text layoutX="124.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
                   <font>
                      <Font size="35.0" />
                   </font>
                </Text>
+               <CheckBox fx:id="tareaTerminado" layoutX="54.0" layoutY="85.0" mnemonicParsing="false" onAction="#marcarTareaCompleta" prefHeight="37.0" prefWidth="152.0" text="Terminada" textAlignment="CENTER">
+                  <font>
+                     <Font size="21.0" />
+                  </font>
+               </CheckBox>
             </children></AnchorPane>
         </Scene>
     </scene>
-</Stage>
+</Stage>
