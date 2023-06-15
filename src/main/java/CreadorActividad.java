@@ -136,7 +136,18 @@ public class CreadorActividad {
                 this.espacioTipoActividad.setDisable(true);
                 this.espacioTipoActividad.setOpacity(0);
 
+		//Ponemos la infomacion que ya sabemos de la actividad
 		this.espacioNombre.setText(this.act.getTitulo());
+		this.espacioDescripcion.setText(this.act.getDescripcion());
+		this.espacioEsDiaCompleto.setSelected(this.esDiaCompletoEvento);
+		this.espacioElegirFecha.setValue(this.act.cuandoEmpieza().toLocalDate());
+
+		this.espacioHora.setText(String.valueOf(this.act.cuandoEmpieza().getHour()));
+		this.espacioMinuto.setText(String.valueOf(this.act.cuandoEmpieza().getMinute()));
+
+		this.espacioHoraFin.setText(String.valueOf(this.act.cuandoTermina().getHour()));
+		this.espacioMinutoFin.setText(String.valueOf(this.act.cuandoTermina().getMinute()));
+
                 // Evento
                 if (this.act.cuandoEmpieza() != this.act.cuandoTermina()) {
                     this.tareaTerminado.setStyle("-fx-text-fill: white; -fx-background-color: white");
@@ -315,6 +326,7 @@ public class CreadorActividad {
 	var id = this.act.getID();
 	this.modelo.modificarActividadNombre(id, this.nombreEvento);
 	this.modelo.modificarActividadDescripcion(id, this.descripcionEvento);
+	this.modelo.modificarEventoPlazoTemporal(id, this.comienzoEvento.atDate(this.fechaEvento), this.finEvento.atDate(this.fechaEvento));
 
     }
 
