@@ -37,6 +37,11 @@ public class Alarmas implements XmlGuardador {
     public int size() {
         return alarmas.size();
     }
+    public List<LocalDateTime> getAlarmas(){
+        HashSet<LocalDateTime> devolver = new HashSet<>(alarmas);
+        devolver.addAll(alarmasYaSonadas);
+        return devolver.stream().toList();
+    }
     public void actualizarAlarmas(long cantidadDiasASumar) {
         if (cantidadDiasASumar != 0 && alarmas.size()==0 && mantenerAlarmas) {
             for (LocalDateTime alarm : alarmasYaSonadas) {

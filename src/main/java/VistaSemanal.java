@@ -1,11 +1,19 @@
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -64,6 +72,50 @@ public class VistaSemanal extends VistaCalendario {
     @Override
     public void visualizarActividades(List<Activities> hacerVisual,LocalDateTime fechaInicioSemana) {
         vaciarGrilla();
+        for (int i = 1; i <8; i++){
+            for (int k = 0; k <24; k++){
+                var celda = new HBox();
+                celda.setAlignment(Pos.CENTER_RIGHT);
+                grillaDiasxHorarios.add(celda,i, k);
+            }
+
+        }
+        if (hacerVisual== null){return;}
+        for (int j = 1; j <8 ; j++ ){
+            for (int k = 0; k <24; k++){
+                int finalJ = j;
+                int finalK = k;
+                var listaPorColumna = hacerVisual.stream().filter(c-> (c.cuandoEmpieza().getDayOfWeek().getValue() % 7 + 1 == finalJ)&& (c.cuandoEmpieza().getHour() <= finalK) && (finalK <= c.cuandoTermina().getHour())).toList();
+                for (Activities act : listaPorColumna){
+                    Paint color = Color.web(VistaMensual.getRandomColor());
+                    for (Node e : grillaDiasxHorarios.getChildren()) {
+                        if (!e.getClass().equals(HBox.class)){continue;}
+                        Integer row = GridPane.getRowIndex(e);
+                        Integer column = GridPane.getColumnIndex(e);
+                        if (row != null && column != null && column == finalJ && row == finalK) {
+                            var hijo = (HBox) e;
+                            var rectangulo = new Rectangle((double) 115 / listaPorColumna.size(), 40, color);
+                            rectangulo.setOnMouseClicked(mouseEvent -> {
+                                var vbox = new VBox();
+                                vbox.setAlignment(Pos.CENTER);
+                                if (act.cuandoEmpieza().equals(act.cuandoTermina())){
+                                    var tarea = (Tarea) act;
+                                    vbox.getChildren().addAll(new Label(tarea.getTitulo()),new Label(tarea.getDescripcion(),new Label(tarea.cuandoEmpieza().toString(),new Label(tarea.cuandoTermina().toString()))));
+                                }else {
+                                    var evento = (Evento) act;
+                                    vbox.getChildren().addAll(new Label(evento.getTitulo()),new Label(evento.getDescripcion()));
+                                }
+                                var stage = new Stage();
+                                stage.setScene(new Scene(vbox,331,249));
+                                stage.show();
+                            });
+                            hijo.getChildren().add(rectangulo);
+                        }
+                    }
+                }
+            }
+
+        }
     }
     private void vaciarGrilla() {
         grillaDiasxHorarios.getChildren().removeIf(e -> !e.getClass().equals(Label.class));

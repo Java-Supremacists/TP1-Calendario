@@ -1,19 +1,13 @@
 import javafx.animation.AnimationTimer;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.List;
 
 public class InterfazGrafica extends Application {
     private final Calendario modelo = new Calendario();
@@ -23,10 +17,10 @@ public class InterfazGrafica extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        var archivoExiste = new File(this.archivoGuardado);
+        /*var archivoExiste = new File(this.archivoGuardado);
         if (archivoExiste.exists()) {
             this.xmlManejador.cargarXml(this.modelo, new FileInputStream(archivoGuardado));
-        }
+        }*/
 
         var vista = new Vista(this, this.modelo); //por defecto viene con una vista semanal
         fechaActual = domingoAnteriorCercano(LocalDateTime.now());
@@ -71,9 +65,22 @@ public class InterfazGrafica extends Application {
             @Override
             public void handle(long l) {
                 var horaActual = LocalDateTime.now();
-                if (horaActual.equals(modelo.proximaAlarma())) {
+                var siguienteAlarma = modelo.proximaAlarma();
+                if (horaActual.equals(siguienteAlarma)) {
                     var alerta = new Alert(Alert.AlertType.INFORMATION);
-                    alerta.setContentText("Esta Es la alarma del evento.......");
+                    List<Activities> actividadesSonando = modelo.sonarAlarmas();
+                    StringBuilder texto = new StringBuilder("La/s Actividades siguientes estan sonando por las siguientes alarmas:\n");
+                    for (Activities act : actividadesSonando){
+                        texto.append(act.getTitulo());
+                        texto.append(": \n");
+                        for (LocalDateTime alarmas : modelo.alarmasDeActividad(act.getID())){
+                            texto.append(alarmas.toString());
+                            texto.append(" - ");
+                        }
+                        texto.append("\n");
+                    }
+
+                    alerta.setContentText(texto.toString());
                     alerta.show();
                     //Alert alertaPosible2 = new Alert(Alert.AlertType.NONE, "Esta Es la alarma del evento......", ButtonType.OK);
                     //alertaPosible2.show();
