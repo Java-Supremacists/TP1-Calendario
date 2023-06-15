@@ -83,6 +83,7 @@ public class CreadorActividad {
     }
 
     public CreadorActividad(Activities act, Calendario modelo) {
+	System.out.println(act.getTitulo());
         this.nombreEvento = act.getTitulo();
         this.descripcionEvento = act.getDescripcion();
         this.esDiaCompletoEvento = act.esDiaEntero();
@@ -120,6 +121,7 @@ public class CreadorActividad {
             this.espacioMinutoFin.setText(String.valueOf(finEvento.getMinute()));
 
             this.espacioElegirFecha.setValue(LocalDate.now());
+
             if (this.act == null) {
                 this.tareaTerminado.setStyle("-fx-text-fill: white; -fx-background-color: white");
                 this.tareaTerminado.setDisable(true);
@@ -134,6 +136,7 @@ public class CreadorActividad {
                 this.espacioTipoActividad.setDisable(true);
                 this.espacioTipoActividad.setOpacity(0);
 
+		this.espacioNombre.setText(this.act.getTitulo());
                 // Evento
                 if (this.act.cuandoEmpieza() != this.act.cuandoTermina()) {
                     this.tareaTerminado.setStyle("-fx-text-fill: white; -fx-background-color: white");
@@ -309,6 +312,9 @@ public class CreadorActividad {
 
     public void actualizarEvento(ActionEvent event) {
         System.out.println("Ya existe");
+	var id = this.act.getID();
+	this.modelo.modificarActividadNombre(id, this.nombreEvento);
+	this.modelo.modificarActividadDescripcion(id, this.descripcionEvento);
 
     }
 
