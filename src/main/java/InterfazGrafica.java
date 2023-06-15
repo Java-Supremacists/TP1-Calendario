@@ -66,7 +66,10 @@ public class InterfazGrafica extends Application {
             public void handle(long l) {
                 var horaActual = LocalDateTime.now();
                 var siguienteAlarma = modelo.proximaAlarma();
-                if (horaActual.equals(siguienteAlarma)) {
+                if (horaActual.getYear()== siguienteAlarma.getYear() && horaActual.getMonth()== siguienteAlarma.getMonth() && horaActual.getDayOfMonth()== siguienteAlarma.getDayOfMonth() && horaActual.getHour()== siguienteAlarma.getHour() && horaActual.getMinute()== siguienteAlarma.getMinute() ) {
+                    //supergroncho para que entre JAJJAJAJA
+                    //if (horaActual.equals(siguienteAlarma)) {
+                    //funciona pero no logra entrar aca porque tienen q ser exactamente iguales y no lo aguanta
                     var alerta = new Alert(Alert.AlertType.INFORMATION);
                     List<Activities> actividadesSonando = modelo.sonarAlarmas();
                     StringBuilder texto = new StringBuilder("La/s Actividades siguientes estan sonando por las siguientes alarmas:\n");
