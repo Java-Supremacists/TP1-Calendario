@@ -116,7 +116,7 @@ public class CreadorActividad {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("crearActividad.fxml"));
             loader.setController(this);
             Stage stageCrearEvento = loader.load();
-	    this.stage = stageCrearEvento;
+            this.stage = stageCrearEvento;
             stageCrearEvento.setTitle("Creando evento");
             stageCrearEvento.show();
 
@@ -384,15 +384,15 @@ public class CreadorActividad {
 
     public void borrar(ActionEvent event) {
 
-    // Evento
-    if (this.act.cuandoEmpieza() != this.act.cuandoTermina()) {
-	this.modelo.eliminarEvento(this.act.getID());
-    }
-    //Tarea
-    else {
-	this.modelo.eliminarTarea(this.act.getID());
-    }
-    this.stage.close();
+        // Evento
+        if (this.act.cuandoEmpieza() != this.act.cuandoTermina()) {
+            this.modelo.eliminarEvento(this.act.getID());
+        }
+        //Tarea
+        else {
+            this.modelo.eliminarTarea(this.act.getID());
+        }
+        this.stage.close();
     }
 
 }
