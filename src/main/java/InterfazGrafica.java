@@ -92,8 +92,6 @@ public class InterfazGrafica extends Application {
 
                     alerta.setContentText(texto.toString());
                     alerta.show();
-                    //Alert alertaPosible2 = new Alert(Alert.AlertType.NONE, "Esta Es la alarma del evento......", ButtonType.OK);
-                    //alertaPosible2.show();
                 }
             }
         };

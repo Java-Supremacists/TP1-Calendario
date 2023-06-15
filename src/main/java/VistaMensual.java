@@ -92,7 +92,6 @@ public class VistaMensual extends VistaCalendario {
                             var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
                             if (dia.getDayOfMonth() == diaActividadComienza) {
 
-                                // agregar.getItems().add(casteado.getTitulo() + "赦" + String.valueOf(casteado.getID()));
                                 agregar.getItems().add((Activities)casteado);
                             }
                         }
@@ -114,8 +113,6 @@ public class VistaMensual extends VistaCalendario {
     }
 
     public ListView<Activities> listaFormal() {
-        // this.modelo;
-        // this.modelo.obtenerTarea(5);
         ListView<Activities> listView = new ListView<>();
         listView.setCellFactory(new Callback<>() {
             public ListCell<Activities> call(ListView<Activities> listView) {

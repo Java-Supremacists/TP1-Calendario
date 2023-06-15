@@ -58,7 +58,6 @@ public class Vista {
         tipoDeVisualizacion.setValue("Semana");
         tipoDeVisualizacion.setOnAction(this::cambiarVistaCalendario);
         botonCrearActividad.setOnAction(this::crearActividad);
-        // botonCrearActividad.getItems().addAll(actividades);
     }
     public Scene getScene() {
         return this.escena;
