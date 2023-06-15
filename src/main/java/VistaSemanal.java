@@ -110,7 +110,8 @@ public class VistaSemanal extends VistaCalendario {
                         if (row != null && inicia <= row && row <= termina) {
                             rectangulo = new Rectangle((double) 115 / listaPorColumna.size(), 40, color);
                             rectangulo.setOnMouseClicked(mouseEvent -> {
-                                var visualizador = new VisualizadorActividad(act);
+                                // var visualizador = new VisualizadorActividad(act);
+                                var visualizador = new CreadorActividad(act, this.modelo);
                                 visualizador.start();
                             });
                         } else {
