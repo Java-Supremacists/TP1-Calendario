@@ -84,7 +84,7 @@ public class VistaMensual extends VistaCalendario {
                 var hijo = (VBox) e;
                 var listaHijos = hijo.getChildren();//primer elemento el dia y el segundo es la fecha y sino solo unicamente la fecha
                 listaHijos.removeIf(i -> !i.getClass().equals(Label.class)); //remuevo lo de adentro del Vbox excepto las fechas
-                ListView<String> agregar = listaFormal();//creo la lista formal
+                ListView<Activities> agregar = listaFormal();//creo la lista formal
                 if (hacerVisual!=null) {
                     for (Activities act : hacerVisual) {
                         try {
@@ -92,7 +92,8 @@ public class VistaMensual extends VistaCalendario {
                             var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
                             if (dia.getDayOfMonth() == diaActividadComienza) {
 
-                                agregar.getItems().add(casteado.getTitulo() + "赦" + String.valueOf(casteado.getID()));
+                                // agregar.getItems().add(casteado.getTitulo() + "赦" + String.valueOf(casteado.getID()));
+                                agregar.getItems().add((Activities)casteado);
                             }
                         }
                         catch (ClassCastException errorJavaXD) {
@@ -100,7 +101,7 @@ public class VistaMensual extends VistaCalendario {
                             var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
                             if (dia.getDayOfMonth() == diaActividadComienza) {
 
-                                agregar.getItems().add(casteado.getTitulo() + "赦" + String.valueOf(casteado.getID()));
+                                agregar.getItems().add((Activities)casteado);
                             }
                         }
                     }
@@ -120,50 +121,49 @@ public class VistaMensual extends VistaCalendario {
                              (int) (green * 255),
                              (int) (blue * 255));
     }
-    public ListView<String> listaFormal() {
-	// this.modelo;
-	this.modelo.obtenerTarea(5);
-        ListView<String> listView = new ListView<>();
+    public ListView<Activities> listaFormal() {
+        // this.modelo;
+        // this.modelo.obtenerTarea(5);
+        ListView<Activities> listView = new ListView<>();
         listView.setCellFactory(new Callback<>() {
-            public ListCell<String> call(ListView<String> listView) {
+            public ListCell<Activities> call(ListView<Activities> listView) {
                 return new ListCell<>() {
-                    protected void updateItem(String texto, boolean celdaVacia) {
+                    protected void updateItem(Activities texto, boolean celdaVacia) {
                         super.updateItem(texto, celdaVacia);
                         if (celdaVacia || texto == null) {
                             setText(null);
                             setGraphic(null);
                         } else {
                             // Crear un punto de color a la izquierda del texto
-			    var partido = texto.split("赦");
+                            // var partido = texto.split("赦");
                             Circle bulletPoint = new Circle(9, Color.web(getRandomColor()));
 
                             // Crear un contenedor para el punto de color y el texto
-			    var nombre = new Label(partido[0]);
+                            // var nombre = new Label(partido[0]);
+                            var nombre = new Label(texto.getTitulo());
                             HBox hbox = new HBox(bulletPoint, nombre);
                             hbox.setSpacing(10);
 
-			    //TODO: Activar esto y rezar
-			    hbox.setDisable(true);
+                            // En este stack esta el invicible
+                            var id = new Label(String.valueOf(texto.toString()));
+                            id.setOpacity(0);
+                            var stack = new StackPane(hbox, id);
+                            // var stack = new StackPane(hbox);
 
 
-			    // En este stack esta el invicible
-			    var id = new Label(partido[1]);
-			    id.setOpacity(0);
-			    var stack = new StackPane(hbox, id);
-
-
-			    stack.setOnMouseClicked(VistaMensual::sus);
-			    // stack.setOnAction();
-			    // setGraphic(new HBox());
+                            var ssos = new VisualizadorActividad(texto);
+                            stack.setOnMouseClicked(x -> ssos.start());
+                            // stack.setOnAction();
+                            // setGraphic(new HBox());
                             setGraphic(stack);
                             // Agrega una acción al hacer clic en la celda
-                            setOnMouseClicked(event -> {
-                                
-                            });
+                            // setOnMouseClicked(event -> {
 
-                            setGraphic(hbox);
-                            setText("");
-			    System.out.println("EYEYEYEYYE");
+                            // });
+
+                            // setGraphic(hbox);
+                            // setText(texto.toString());
+                            System.out.println("EYEYEYEYYE");
                         }
                     }
                 };
@@ -171,28 +171,4 @@ public class VistaMensual extends VistaCalendario {
         });
         return listView;
     }
-
-    public static String sus(MouseEvent event){
-	System.out.println(event);
-	System.out.println(event.getSource());
-	System.out.println(event.getSource().getClass());
-	String idPreParseo = event.getTarget().toString();
-	// var idPreParseo2 = idPreParseo.split("text=");
-	// System.out.println(idPreParseo2[0]);
-	// System.out.println(idPreParseo2[1]);
-	idPreParseo = idPreParseo.substring(idPreParseo.indexOf("text=") + 6);
-	idPreParseo = idPreParseo.substring(0, idPreParseo.indexOf("\""));
-	// var crear = new CreadorActividad(this, idPreParseo);
-	// System.out.println(this.modelo);
-	// this.modelo
-	return idPreParseo;
-
-	// System.out.println();
-	// System.out.println(idPreParseo.substring(idPreParseo.lastIndexOf("text") + 1));
-	// // System.out.println(idPreParseo);
-	// // modelo.getID();
-
-	// System.out.println("SUSU");
-    }
-
 }

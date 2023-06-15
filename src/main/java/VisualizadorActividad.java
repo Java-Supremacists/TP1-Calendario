@@ -2,6 +2,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -9,7 +11,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class CreadorActividad {
+public class VisualizadorActividad {
 
     // private Scene escena;
 
@@ -38,6 +40,15 @@ public class CreadorActividad {
     private Button botonCrear;
 
     @FXML
+    private Text texto;
+    @FXML
+    private Text textoFrecuenciaDiaria;
+    @FXML
+    private Text separadorDos;
+    @FXML
+    private Text separadorUno;
+
+    @FXML
     private TextField espacioFrecuencia;
     private Integer frecuenciaDiariaEvento = 0;
 
@@ -59,6 +70,8 @@ public class CreadorActividad {
     private MenuButton espacioTipoActividad;
     private String tipoActividad = "Evento";
 
+    private Activities act;
+
     @FXML
     private Button relojImagen;
 
@@ -68,32 +81,57 @@ public class CreadorActividad {
 
     private ArrayList<Plazo> listaPlazos;
 
-    public CreadorActividad(Calendario modelo) {
-        this.modelo = modelo;
-
-        this.listaPlazos = new ArrayList<>();
+    public VisualizadorActividad(Activities act) {
+        this.act = act;
     }
 
     // public Scene getScene() {
     //     return this.escena;
     // }
 
-    public void start() throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("crearActividad.fxml"));
-        loader.setController(this);
-        Stage stageCrearEvento = loader.load();
-        stageCrearEvento.setTitle("Creando evento");
-        stageCrearEvento.show();
+    public void start() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("visualizarActividad.fxml"));
+            loader.setController(this);
+            Stage stageCrearEvento = loader.load();
+            stageCrearEvento.setTitle("Mostrando evento");
+            stageCrearEvento.show();
 
-        this.espacioHora.setText(String.valueOf(comienzoEvento.getHour()));
-        this.espacioMinuto.setText(String.valueOf(comienzoEvento.getMinute()));
-        this.espacioSegundo.setText(String.valueOf(comienzoEvento.getSecond()));
+            this.espacioNombre.setText(this.act.getTitulo());
+            this.espacioDescripcion.setText(this.act.getDescripcion());
 
-        this.espacioHoraFin.setText(String.valueOf(finEvento.getHour()));
-        this.espacioMinutoFin.setText(String.valueOf(finEvento.getMinute()));
-        this.espacioSegundoFin.setText(String.valueOf(finEvento.getSecond()));
+            this.espacioHora.setText(String.valueOf(this.act.cuandoEmpieza().getHour()));
+            this.espacioMinuto.setText(String.valueOf(this.act.cuandoEmpieza().getMinute()));
+            this.espacioSegundo.setText(String.valueOf(this.act.cuandoEmpieza().getSecond()));
+            this.espacioElegirFecha.setValue(this.act.cuandoTermina().toLocalDate());
 
-        this.espacioElegirFecha.setValue(LocalDate.now());
+            this.espacioHoraFin.setText(String.valueOf(this.act.cuandoTermina().getHour()));
+            this.espacioMinutoFin.setText(String.valueOf(this.act.cuandoTermina().getMinute()));
+            this.espacioSegundoFin.setText(String.valueOf(this.act.cuandoTermina().getSecond()));
+
+            this.texto.setText("Evento");
+
+            if (this.act.esDiaEntero()) {
+                this.espacioEsDiaCompleto.setSelected(true);
+            }
+
+            if (this.act.cuandoEmpieza().equals(this.act.cuandoTermina())) {
+                this.espacioHoraFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
+                this.espacioMinutoFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
+                this.espacioSegundoFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
+                // this.textoFrecuenciaDiaria.setStyle("-fx-text-fill: white; -fx-background-color: white");
+                this.textoFrecuenciaDiaria.setFill(Color.WHITE);
+                this.separadorUno.setFill(Color.WHITE);
+                this.separadorDos.setFill(Color.WHITE);
+                this.espacioFrecuencia.setStyle("-fx-text-fill: white; -fx-background-color: white");
+                this.texto.setText("Tarea");
+            }
+
+        }
+        catch (Exception e) {
+            System.out.println(e);
+            e.printStackTrace(System.out);
+        }
         // this.relojImagen.setGraphic(new ImageView(new Image("alarma.png")));
     }
 
@@ -147,8 +185,7 @@ public class CreadorActividad {
         espacioUnidad.setStyle(numeroBoton.getColorBoton());
 
         Integer horaEstablecida = noTeMePases(numeroBoton.getNumeroBoton(), horaMaxima);
-
-        // No podemos tener eventos que finalicen antes de que empiecen
+        //No podemos tener eventos que finalicen antes de que empiecen
         if (horaEstablecida < horaMinima) {
             horaEstablecida = horaMinima;
         }
@@ -179,7 +216,7 @@ public class CreadorActividad {
     }
 
     public void ponerMinutoFin(ActionEvent event) {
-        var horaFinal = this.configurarUnidadDeTiempo(this.espacioMinutoFin, 59, 0);
+        var horaFinal = this.configurarUnidadDeTiempo(this.espacioMinutoFin, 59, this.comienzoEvento.getMinute());
         this.finEvento = this.finEvento.withMinute(horaFinal);
 
         System.out.println(this.finEvento);
@@ -193,7 +230,7 @@ public class CreadorActividad {
     }
 
     public void ponerSegundoFin(ActionEvent event) {
-        var horaFinal = this.configurarUnidadDeTiempo(this.espacioSegundoFin, 59, 0);
+        var horaFinal = this.configurarUnidadDeTiempo(this.espacioSegundoFin, 59, this.comienzoEvento.getSecond());
         this.finEvento = this.finEvento.withSecond(horaFinal);
 
         System.out.println(this.finEvento);
@@ -244,18 +281,18 @@ public class CreadorActividad {
         this.modelo.longTareasYEventos();
     }
 
-    public void elegirAlarma() {
-        System.out.println("clicl");
-        var elegirAlarma = new ElegirAlarma(this);
+    // public void elegirAlarma() {
+    //     System.out.println("clicl");
+    //     var elegirAlarma = new ElegirAlarma(this);
 
-        try {
-            elegirAlarma.start();
-        }
-        catch (Exception e) {
-            e.printStackTrace(System.out);
-        }
+    //     try {
+    //         elegirAlarma.start();
+    //     }
+    //     catch (Exception e) {
+    //         e.printStackTrace(System.out);
+    //     }
 
-    }
+    // }
 
     public void anadirAlarma(String plazoElegidoPorUsuario) {
         Plazo plazoParaAnadir;

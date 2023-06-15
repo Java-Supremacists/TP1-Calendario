@@ -25,6 +25,8 @@ public class ElegirAlarma {
         this.padre = padre;
     }
 
+
+
     public void start() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("elegirAlarma.fxml"));
         loader.setController(this);
