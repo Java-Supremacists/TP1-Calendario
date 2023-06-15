@@ -11,10 +11,7 @@ import java.util.ArrayList;
 
 public class CreadorActividad {
 
-    // private Scene escena;
-
     private Calendario modelo;
-    // private InterfazGrafica interfazGrafica;
 
     @FXML
     private TextField espacioNombre;
@@ -45,15 +42,11 @@ public class CreadorActividad {
     private TextField espacioHora;
     @FXML
     private TextField espacioMinuto;
-    @FXML
-    private TextField espacioSegundo;
 
     @FXML
     private TextField espacioHoraFin;
     @FXML
     private TextField espacioMinutoFin;
-    @FXML
-    private TextField espacioSegundoFin;
 
     @FXML
     private MenuButton espacioTipoActividad;
@@ -74,10 +67,6 @@ public class CreadorActividad {
         this.listaPlazos = new ArrayList<>();
     }
 
-    // public Scene getScene() {
-    //     return this.escena;
-    // }
-
     public void start() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("crearActividad.fxml"));
         loader.setController(this);
@@ -87,14 +76,11 @@ public class CreadorActividad {
 
         this.espacioHora.setText(String.valueOf(comienzoEvento.getHour()));
         this.espacioMinuto.setText(String.valueOf(comienzoEvento.getMinute()));
-        this.espacioSegundo.setText(String.valueOf(comienzoEvento.getSecond()));
 
         this.espacioHoraFin.setText(String.valueOf(finEvento.getHour()));
         this.espacioMinutoFin.setText(String.valueOf(finEvento.getMinute()));
-        this.espacioSegundoFin.setText(String.valueOf(finEvento.getSecond()));
 
         this.espacioElegirFecha.setValue(LocalDate.now());
-        // this.relojImagen.setGraphic(new ImageView(new Image("alarma.png")));
     }
 
 
@@ -185,27 +171,11 @@ public class CreadorActividad {
         System.out.println(this.finEvento);
     }
 
-    public void ponerSegundo(ActionEvent event) {
-        var horaFinal = this.configurarUnidadDeTiempo(this.espacioSegundo, 59, 0);
-        this.comienzoEvento = this.comienzoEvento.withSecond(horaFinal);
-
-        System.out.println(this.comienzoEvento);
-    }
-
-    public void ponerSegundoFin(ActionEvent event) {
-        var horaFinal = this.configurarUnidadDeTiempo(this.espacioSegundoFin, 59, 0);
-        this.finEvento = this.finEvento.withSecond(horaFinal);
-
-        System.out.println(this.finEvento);
-    }
-
     public void ponerTipoActividadTarea(ActionEvent event) {
         this.tipoActividad = "Tarea";
         this.espacioTipoActividad.setText("Tarea");
         this.espacioHoraFin.setDisable(true);
         this.espacioMinutoFin.setDisable(true);
-        this.espacioSegundoFin.setDisable(true);
-        this.espacioFrecuencia.setDisable(true);
     }
 
     public void ponerTipoActividadEvento(ActionEvent event) {
@@ -213,8 +183,6 @@ public class CreadorActividad {
         this.espacioTipoActividad.setText("Evento");
         this.espacioHoraFin.setDisable(false);
         this.espacioMinutoFin.setDisable(false);
-        this.espacioSegundoFin.setDisable(false);
-        this.espacioFrecuencia.setDisable(false);
     }
 
     public void crearEvento(ActionEvent event) {
