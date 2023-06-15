@@ -80,10 +80,12 @@ public class VisualizadorActividad {
             this.espacioMinutoFin.setText(String.valueOf(this.act.cuandoTermina().getMinute()));
 
 
+
             if (this.act.esDiaEntero()) {
                 this.espacioEsDiaCompleto.setSelected(true);
             }
 
+	    //Tarea
             if (this.act.cuandoEmpieza().equals(this.act.cuandoTermina())) {
                 this.espacioHoraFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
                 this.espacioMinutoFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
@@ -91,7 +93,6 @@ public class VisualizadorActividad {
                 this.espacioFrecuencia.setStyle("-fx-text-fill: white; -fx-background-color: white");
 		try {
 		    if (((Tarea)act).estaCompleta() == true) {
-		    // if (this.modelo.estaCompletaTarea(act.getID()){
 			this.tareaTerminado.setSelected(true);
 		    }
 		}
@@ -99,6 +100,12 @@ public class VisualizadorActividad {
 		}
 
             }
+	    //Evento
+	    else {
+		this.tareaTerminado.setStyle("-fx-text-fill: white; -fx-background-color: white");
+		this.tareaTerminado.setDisable(true);
+		this.tareaTerminado.setOpacity(0);
+	    }
 
         }
         catch (Exception e) {
