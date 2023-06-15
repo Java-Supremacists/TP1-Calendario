@@ -83,7 +83,7 @@ public class CreadorActividad {
     }
 
     public CreadorActividad(Activities act, Calendario modelo) {
-	System.out.println(act.getTitulo());
+        System.out.println(act.getTitulo());
         this.nombreEvento = act.getTitulo();
         this.descripcionEvento = act.getDescripcion();
         this.esDiaCompletoEvento = act.esDiaEntero();
@@ -136,17 +136,17 @@ public class CreadorActividad {
                 this.espacioTipoActividad.setDisable(true);
                 this.espacioTipoActividad.setOpacity(0);
 
-		//Ponemos la infomacion que ya sabemos de la actividad
-		this.espacioNombre.setText(this.act.getTitulo());
-		this.espacioDescripcion.setText(this.act.getDescripcion());
-		this.espacioEsDiaCompleto.setSelected(this.esDiaCompletoEvento);
-		this.espacioElegirFecha.setValue(this.act.cuandoEmpieza().toLocalDate());
+                //Ponemos la infomacion que ya sabemos de la actividad
+                this.espacioNombre.setText(this.act.getTitulo());
+                this.espacioDescripcion.setText(this.act.getDescripcion());
+                this.espacioEsDiaCompleto.setSelected(this.esDiaCompletoEvento);
+                this.espacioElegirFecha.setValue(this.act.cuandoEmpieza().toLocalDate());
 
-		this.espacioHora.setText(String.valueOf(this.act.cuandoEmpieza().getHour()));
-		this.espacioMinuto.setText(String.valueOf(this.act.cuandoEmpieza().getMinute()));
+                this.espacioHora.setText(String.valueOf(this.act.cuandoEmpieza().getHour()));
+                this.espacioMinuto.setText(String.valueOf(this.act.cuandoEmpieza().getMinute()));
 
-		this.espacioHoraFin.setText(String.valueOf(this.act.cuandoTermina().getHour()));
-		this.espacioMinutoFin.setText(String.valueOf(this.act.cuandoTermina().getMinute()));
+                this.espacioHoraFin.setText(String.valueOf(this.act.cuandoTermina().getHour()));
+                this.espacioMinutoFin.setText(String.valueOf(this.act.cuandoTermina().getMinute()));
 
                 // Evento
                 if (this.act.cuandoEmpieza() != this.act.cuandoTermina()) {
@@ -323,10 +323,10 @@ public class CreadorActividad {
 
     public void actualizarEvento(ActionEvent event) {
         System.out.println("Ya existe");
-	var id = this.act.getID();
-	this.modelo.modificarActividadNombre(id, this.nombreEvento);
-	this.modelo.modificarActividadDescripcion(id, this.descripcionEvento);
-	this.modelo.modificarEventoPlazoTemporal(id, this.comienzoEvento.atDate(this.fechaEvento), this.finEvento.atDate(this.fechaEvento));
+        var id = this.act.getID();
+        this.modelo.modificarActividadNombre(id, this.nombreEvento);
+        this.modelo.modificarActividadDescripcion(id, this.descripcionEvento);
+        this.modelo.modificarEventoPlazoTemporal(id, this.comienzoEvento.atDate(this.fechaEvento), this.finEvento.atDate(this.fechaEvento));
 
     }
 
