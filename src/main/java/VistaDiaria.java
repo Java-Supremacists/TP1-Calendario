@@ -64,37 +64,39 @@ public class VistaDiaria extends VistaCalendario {
         vaciarGrilla();
         for (int i = 0; i <24; i++){
             var celda = new HBox();
-            celda.setAlignment(Pos.CENTER_RIGHT);
+            celda.setAlignment(Pos.CENTER_LEFT);
             grillaDiaxHora.add(celda,1, i);
         }
-        for (int i = 0; i <24; i++){
-            if (hacerVisual== null){return;}
-            int finalI = i;
-            var listaDeLasFechasHoy = hacerVisual.stream().filter(j-> j.cuandoEmpieza().getDayOfMonth() == fechaHoy.getDayOfMonth() && j.cuandoEmpieza().getHour() <= finalI && finalI <= j.cuandoTermina().getHour()).toList();
-            for (Activities act : listaDeLasFechasHoy){
-                Paint color = Color.web(VistaMensual.getRandomColor());
-                for (Node e : grillaDiaxHora.getChildren()) {
-                    if (!e.getClass().equals(HBox.class)){continue;}
-                    Integer row = GridPane.getRowIndex(e);
-                    if (row != null && row == finalI) {
-                        var hijo = (HBox) e;
-                        var rectangulo = new Rectangle((double) 800 / listaDeLasFechasHoy.size(), 40, color);
-                        rectangulo.setOnMouseClicked(mouseEvent -> {
-                            var vbox = new VBox();
-                            vbox.setAlignment(Pos.CENTER);
-                            if (act.cuandoEmpieza().equals(act.cuandoTermina())){
-                                var tarea = (Tarea) act;
-                                vbox.getChildren().addAll(new Label(tarea.getTitulo()),new Label(tarea.getDescripcion(),new Label(tarea.cuandoEmpieza().toString(),new Label(tarea.cuandoTermina().toString()))));
-                            }else {
-                                var evento = (Evento) act;
-                                vbox.getChildren().addAll(new Label(evento.getTitulo()),new Label(evento.getDescripcion()));
-                            }
-                            var stage = new Stage();
-                            stage.setScene(new Scene(vbox,331,249));
-                            stage.show();
-                        });
-                        hijo.getChildren().add(rectangulo);
-                    }
+        if (hacerVisual== null){return;}
+        for (Activities act : hacerVisual){
+            Paint color = Color.web(VistaMensual.getRandomColor());
+            var inicia = act.cuandoEmpieza().getHour();
+            var termina = act.cuandoTermina().getHour();
+            for (Node e : grillaDiaxHora.getChildren()) {
+                if (!e.getClass().equals(HBox.class)){continue;}
+                Integer row = GridPane.getRowIndex(e);
+                if (row != null &&  inicia <= row && row <= termina) {
+                    var hijo = (HBox) e;
+                    var rectangulo = new Rectangle((double) 800 / hacerVisual.size(), 40, color);
+                    rectangulo.setOnMouseClicked(mouseEvent -> {
+                        var vbox = new VBox();
+                        vbox.setAlignment(Pos.CENTER);
+                        if (act.cuandoEmpieza().equals(act.cuandoTermina())){
+                            var tarea = (Tarea) act;
+                            vbox.getChildren().addAll(new Label(tarea.getTitulo()),new Label(tarea.getDescripcion(),new Label(tarea.cuandoEmpieza().toString(),new Label(tarea.cuandoTermina().toString()))));
+                        }else {
+                            var evento = (Evento) act;
+                            vbox.getChildren().addAll(new Label(evento.getTitulo()),new Label(evento.getDescripcion()));
+                        }
+                        var stage = new Stage();
+                        stage.setScene(new Scene(vbox,331,249));
+                        stage.show();
+                    });
+                    hijo.getChildren().add(rectangulo);
+                }else {
+                    var hijo = (HBox) e;
+                    var rectangulo = new Rectangle((double) 800 / hacerVisual.size(), 40, Color.WHITE);
+                    hijo.getChildren().add(rectangulo);
                 }
             }
         }
