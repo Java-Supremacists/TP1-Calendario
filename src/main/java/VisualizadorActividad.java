@@ -56,15 +56,11 @@ public class VisualizadorActividad {
     private TextField espacioHora;
     @FXML
     private TextField espacioMinuto;
-    @FXML
-    private TextField espacioSegundo;
 
     @FXML
     private TextField espacioHoraFin;
     @FXML
     private TextField espacioMinutoFin;
-    @FXML
-    private TextField espacioSegundoFin;
 
     @FXML
     private MenuButton espacioTipoActividad;
@@ -102,12 +98,10 @@ public class VisualizadorActividad {
 
             this.espacioHora.setText(String.valueOf(this.act.cuandoEmpieza().getHour()));
             this.espacioMinuto.setText(String.valueOf(this.act.cuandoEmpieza().getMinute()));
-            this.espacioSegundo.setText(String.valueOf(this.act.cuandoEmpieza().getSecond()));
             this.espacioElegirFecha.setValue(this.act.cuandoTermina().toLocalDate());
 
             this.espacioHoraFin.setText(String.valueOf(this.act.cuandoTermina().getHour()));
             this.espacioMinutoFin.setText(String.valueOf(this.act.cuandoTermina().getMinute()));
-            this.espacioSegundoFin.setText(String.valueOf(this.act.cuandoTermina().getSecond()));
 
             this.texto.setText("Evento");
 
@@ -118,7 +112,6 @@ public class VisualizadorActividad {
             if (this.act.cuandoEmpieza().equals(this.act.cuandoTermina())) {
                 this.espacioHoraFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
                 this.espacioMinutoFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
-                this.espacioSegundoFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
                 // this.textoFrecuenciaDiaria.setStyle("-fx-text-fill: white; -fx-background-color: white");
                 this.textoFrecuenciaDiaria.setFill(Color.WHITE);
                 this.separadorUno.setFill(Color.WHITE);
@@ -222,26 +215,11 @@ public class VisualizadorActividad {
         System.out.println(this.finEvento);
     }
 
-    public void ponerSegundo(ActionEvent event) {
-        var horaFinal = this.configurarUnidadDeTiempo(this.espacioSegundo, 59, 0);
-        this.comienzoEvento = this.comienzoEvento.withSecond(horaFinal);
-
-        System.out.println(this.comienzoEvento);
-    }
-
-    public void ponerSegundoFin(ActionEvent event) {
-        var horaFinal = this.configurarUnidadDeTiempo(this.espacioSegundoFin, 59, this.comienzoEvento.getSecond());
-        this.finEvento = this.finEvento.withSecond(horaFinal);
-
-        System.out.println(this.finEvento);
-    }
-
     public void ponerTipoActividadTarea(ActionEvent event) {
         this.tipoActividad = "Tarea";
         this.espacioTipoActividad.setText("Tarea");
         this.espacioHoraFin.setDisable(true);
         this.espacioMinutoFin.setDisable(true);
-        this.espacioSegundoFin.setDisable(true);
         this.espacioFrecuencia.setDisable(true);
     }
 
@@ -250,7 +228,6 @@ public class VisualizadorActividad {
         this.espacioTipoActividad.setText("Evento");
         this.espacioHoraFin.setDisable(false);
         this.espacioMinutoFin.setDisable(false);
-        this.espacioSegundoFin.setDisable(false);
         this.espacioFrecuencia.setDisable(false);
     }
 
@@ -280,19 +257,6 @@ public class VisualizadorActividad {
 
         this.modelo.longTareasYEventos();
     }
-
-    // public void elegirAlarma() {
-    //     System.out.println("clicl");
-    //     var elegirAlarma = new ElegirAlarma(this);
-
-    //     try {
-    //         elegirAlarma.start();
-    //     }
-    //     catch (Exception e) {
-    //         e.printStackTrace(System.out);
-    //     }
-
-    // }
 
     public void anadirAlarma(String plazoElegidoPorUsuario) {
         Plazo plazoParaAnadir;

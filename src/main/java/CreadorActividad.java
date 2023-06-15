@@ -191,6 +191,7 @@ public class CreadorActividad {
 	//Google calendar tampoco te deja configurar segundos
 	this.comienzoEvento = this.comienzoEvento.withSecond(0);
 	this.comienzoEvento = this.comienzoEvento.withNano(0);
+	System.out.println(this.comienzoEvento);
 
         LocalDateTime fechaComienzo = this.comienzoEvento.atDate(this.fechaEvento);
 
@@ -204,6 +205,7 @@ public class CreadorActividad {
         else {
 	    this.finEvento = this.finEvento.withSecond(0);
 	    this.finEvento = this.finEvento.withNano(0);
+	    System.out.println(this.finEvento);
 
             LocalDateTime fechaFin = this.finEvento.atDate(this.fechaEvento);
 
