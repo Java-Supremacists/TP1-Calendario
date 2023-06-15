@@ -87,7 +87,7 @@ public class VistaSemanal extends VistaCalendario {
             for (Activities act : listaPorColumna) {
                 var inicia = act.cuandoEmpieza().getHour();
                 var termina = act.cuandoTermina().getHour();
-                Paint color = Color.web(VistaMensual.getRandomColor());
+                Paint color = Color.web(GeneradorDeColores.getColorFromId(act.getID()));
                 for (Node e : grillaDiasxHorarios.getChildren()) {
                     if (!e.getClass().equals(HBox.class)) {continue;}
                     Integer row = GridPane.getRowIndex(e);
@@ -98,8 +98,8 @@ public class VistaSemanal extends VistaCalendario {
                         if (row != null && inicia <= row && row <= termina) {
                             rectangulo = new Rectangle((double) 115 / listaPorColumna.size(), 40, color);
                             rectangulo.setOnMouseClicked(mouseEvent -> {
-                                var ssos = new VisualizadorActividad(act);
-                                ssos.start();
+                                var visualizador = new VisualizadorActividad(act);
+                                visualizador.start();
                             });
                         } else {
                             rectangulo = new Rectangle((double) 115 / listaPorColumna.size(), 40, Color.WHITE);
