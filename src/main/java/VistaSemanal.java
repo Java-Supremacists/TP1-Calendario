@@ -3,7 +3,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -12,7 +11,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -100,18 +98,8 @@ public class VistaSemanal extends VistaCalendario {
                         if (row != null && inicia <= row && row <= termina) {
                             rectangulo = new Rectangle((double) 115 / listaPorColumna.size(), 40, color);
                             rectangulo.setOnMouseClicked(mouseEvent -> {
-                                var vbox = new VBox();
-                                vbox.setAlignment(Pos.CENTER);
-                                if (act.cuandoEmpieza().equals(act.cuandoTermina())) {
-                                    var tarea = (Tarea) act;
-                                    vbox.getChildren().addAll(new Label(tarea.getTitulo()), new Label(tarea.getDescripcion(), new Label(tarea.cuandoEmpieza().toString(), new Label(tarea.cuandoTermina().toString()))));
-                                } else {
-                                    var evento = (Evento) act;
-                                    vbox.getChildren().addAll(new Label(evento.getTitulo()), new Label(evento.getDescripcion()));
-                                }
-                                var stage = new Stage();
-                                stage.setScene(new Scene(vbox, 331, 249));
-                                stage.show();
+                                var ssos = new VisualizadorActividad(act);
+                                ssos.start();
                             });
                         } else {
                             rectangulo = new Rectangle((double) 115 / listaPorColumna.size(), 40, Color.WHITE);
