@@ -74,7 +74,7 @@ public class InterfazGrafica extends Application {
                     return;
                 }
                 if (horaActual.getYear()== siguienteAlarma.getYear() && horaActual.getMonth()== siguienteAlarma.getMonth() && horaActual.getDayOfMonth()== siguienteAlarma.getDayOfMonth() && horaActual.getHour()== siguienteAlarma.getHour() && horaActual.getMinute()== siguienteAlarma.getMinute() ) {
-                    //supergroncho para que entre JAJJAJAJA
+                    //superpeculiar para que entre JAJJAJAJA
                     //if (horaActual.equals(siguienteAlarma)) {
                     //funciona pero no logra entrar aca porque tienen q ser exactamente iguales y no lo aguanta
                     var alerta = new Alert(Alert.AlertType.INFORMATION);
