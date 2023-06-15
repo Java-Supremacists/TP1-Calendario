@@ -17,6 +17,7 @@
         <Scene>
             <AnchorPane prefHeight="319.0" prefWidth="249.0">
             <children>
+               <Button fx:id="borrador" layoutX="219.0" layoutY="2.0" mnemonicParsing="false" onAction="#borrar" prefHeight="28.0" prefWidth="29.0" text="B" textFill="RED" />
                <TextField fx:id="espacioNombre" layoutX="39.0" layoutY="14.0" onAction="#ponerNombre" text="Nombre" />
                <TextField fx:id="espacioDescripcion" layoutX="40.0" layoutY="49.0" onAction="#ponerDescripcion" text="Descripcion" />
                <DatePicker fx:id="espacioElegirFecha" layoutX="17.0" layoutY="122.0" onAction="#ponerFecha" prefHeight="24.0" prefWidth="110.0" promptText="Insertar fecha" />

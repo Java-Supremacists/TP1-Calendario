@@ -14,6 +14,9 @@ public class CreadorActividad {
     private Calendario modelo;
 
     @FXML
+    private Stage stage;
+
+    @FXML
     private TextField espacioNombre;
     private String nombreEvento;
 
@@ -33,6 +36,9 @@ public class CreadorActividad {
 
     @FXML
     private Button botonCrear;
+
+    @FXML
+    private Button borrador;
 
     @FXML
     private TextField espacioFrecuencia;
@@ -110,6 +116,7 @@ public class CreadorActividad {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("crearActividad.fxml"));
             loader.setController(this);
             Stage stageCrearEvento = loader.load();
+	    this.stage = stageCrearEvento;
             stageCrearEvento.setTitle("Creando evento");
             stageCrearEvento.show();
 
@@ -125,6 +132,9 @@ public class CreadorActividad {
                 this.tareaTerminado.setStyle("-fx-text-fill: white; -fx-background-color: white");
                 this.tareaTerminado.setDisable(true);
                 this.tareaTerminado.setOpacity(0);
+                this.borrador.setStyle("-fx-text-fill: white; -fx-background-color: white");
+                this.borrador.setDisable(true);
+                this.borrador.setOpacity(0);
             }
 
             //Estamos modificando una actividad ya existente
@@ -371,4 +381,18 @@ public class CreadorActividad {
     public void marcarTareaCompleta(ActionEvent event) {
         this.modelo.modificarTareaCompletarODescompletar(this.act.getID());
     }
+
+    public void borrar(ActionEvent event) {
+
+    // Evento
+    if (this.act.cuandoEmpieza() != this.act.cuandoTermina()) {
+	this.modelo.eliminarEvento(this.act.getID());
+    }
+    //Tarea
+    else {
+	this.modelo.eliminarTarea(this.act.getID());
+    }
+    this.stage.close();
+    }
+
 }

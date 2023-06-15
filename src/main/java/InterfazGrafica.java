@@ -119,7 +119,6 @@ public class InterfazGrafica extends Application {
     @Override
     public void stop () throws FileNotFoundException {
         System.out.println("Generando xml");
-        System.out.println(archivoGuardado);
         this.xmlManejador.generateXml(this.modelo, "Calendario", new FileOutputStream(archivoGuardado));
 
     }

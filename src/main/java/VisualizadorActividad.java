@@ -118,5 +118,8 @@ public class VisualizadorActividad {
         this.modelo.modificarTareaCompletarODescompletar(this.act.getID());
     }
 
+    public void borrar(ActionEvent event) {
+    }
+
 
 }
