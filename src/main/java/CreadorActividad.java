@@ -15,28 +15,28 @@ public class CreadorActividad {
 
     @FXML
     private TextField espacioNombre;
-    private String nombreEvento = "Nombre default";
+    private String nombreEvento;
 
     @FXML
     private TextField espacioDescripcion;
-    private String descripcionEvento = "Descripcion Default";
+    private String descripcionEvento;
 
     @FXML
     private CheckBox espacioEsDiaCompleto;
     //Tiene como valor predeterminado falso. Si el usuario no dice nada
     //entonces asumimos que NO es de dia completo
-    private Boolean esDiaCompletoEvento = false;
+    private Boolean esDiaCompletoEvento;
 
     @FXML
     private DatePicker espacioElegirFecha;
-    private LocalDate fechaEvento = LocalDate.now();
+    private LocalDate fechaEvento;
 
     @FXML
     private Button botonCrear;
 
     @FXML
     private TextField espacioFrecuencia;
-    private Integer frecuenciaDiariaEvento = 0;
+    private Integer frecuenciaDiariaEvento;
 
     @FXML
     private TextField espacioHora;
@@ -50,18 +50,35 @@ public class CreadorActividad {
 
     @FXML
     private MenuButton espacioTipoActividad;
-    private String tipoActividad = "Evento";
+    private String tipoActividad;
 
     @FXML
     private Button relojImagen;
 
     //Le pongo un valor por defecto. Esto tambien es asi en google calendar
-    private LocalTime comienzoEvento = LocalTime.now();
-    private LocalTime finEvento = comienzoEvento.plusHours(1);
+    private LocalTime comienzoEvento;
+    private LocalTime finEvento;
 
     private ArrayList<Plazo> listaPlazos;
 
     public CreadorActividad(Calendario modelo) {
+	this.nombreEvento = "Nombre default";
+	this.descripcionEvento = "Descripcion Default";
+	this.esDiaCompletoEvento = false;
+	this.fechaEvento = LocalDate.now();
+	this.frecuenciaDiariaEvento = 0;
+	this.tipoActividad = "Evento";
+	this.comienzoEvento = LocalTime.now();
+	this.finEvento = comienzoEvento.plusHours(1);
+
+
+
+        this.modelo = modelo;
+
+        this.listaPlazos = new ArrayList<>();
+    }
+
+    public CreadorActividad(Activities act, Calendario modelo) {
         this.modelo = modelo;
 
         this.listaPlazos = new ArrayList<>();
