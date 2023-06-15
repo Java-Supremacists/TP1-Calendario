@@ -109,7 +109,6 @@ public class VisualizadorActividad {
 
         }
         catch (Exception e) {
-            System.out.println(e);
             e.printStackTrace(System.out);
         }
 
@@ -117,7 +116,6 @@ public class VisualizadorActividad {
 
     public void marcarTareaCompleta(ActionEvent event) {
         this.modelo.modificarTareaCompletarODescompletar(this.act.getID());
-        System.out.println("SUS");
     }
 
 

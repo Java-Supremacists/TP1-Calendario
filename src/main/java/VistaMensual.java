@@ -127,12 +127,9 @@ public class VistaMensual extends VistaCalendario {
                             setGraphic(null);
                         } else {
                             // Crear un punto de color a la izquierda del texto
-                            // var partido = texto.split("赦");
-                            // Circle bulletPoint = new Circle(9, Color.web(getRandomColor()));
                             Circle bulletPoint = new Circle(9, Color.web(GeneradorDeColores.getColorFromId(texto.getID())));
 
                             // Crear un contenedor para el punto de color y el texto
-                            // var nombre = new Label(partido[0]);
                             var nombre = new Label(texto.getTitulo());
                             HBox hbox = new HBox(bulletPoint, nombre);
                             hbox.setSpacing(10);
@@ -141,22 +138,9 @@ public class VistaMensual extends VistaCalendario {
                             var id = new Label(String.valueOf(texto.toString()));
                             id.setOpacity(0);
                             var stack = new StackPane(hbox, id);
-                            // var stack = new StackPane(hbox);
-
-
                             var visualizador = new VisualizadorActividad(texto);
                             stack.setOnMouseClicked(x -> visualizador.start());
-                            // stack.setOnAction();
-                            // setGraphic(new HBox());
                             setGraphic(stack);
-                            // Agrega una acción al hacer clic en la celda
-                            // setOnMouseClicked(event -> {
-
-                            // });
-
-                            // setGraphic(hbox);
-                            // setText(texto.toString());
-                            System.out.println("EYEYEYEYYE");
                         }
                     }
                 };

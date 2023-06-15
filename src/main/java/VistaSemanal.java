@@ -96,14 +96,6 @@ public class VistaSemanal extends VistaCalendario {
                     }
                     Integer row = GridPane.getRowIndex(e);
                     Integer column = GridPane.getColumnIndex(e);
-                    System.out.println("Fila");
-                    System.out.println(row);
-                    System.out.println("Columna");
-                    System.out.println(column);
-                    // if (act.caeElDia(fechaInicioSemana) == false) {
-                    // System.out.println("AMONGUS");
-                    // return;
-                    // }
                     if (column != null && column == finalJ) {
                         var hijo = (HBox) e;
                         Rectangle rectangulo;
