@@ -78,8 +78,8 @@ public class VistaDiaria extends VistaCalendario {
                 if (row != null &&  inicia <= row && row <= termina) {
                     rectangulo = new Rectangle((double) 800 / hacerVisual.size(), 40, color);
                     rectangulo.setOnMouseClicked(mouseEvent -> {
-                        var ssos = new VisualizadorActividad(act);
-                        ssos.start();
+                        var visualizador = new VisualizadorActividad(act);
+                        visualizador.start();
                     });
                 }else {
                     rectangulo = new Rectangle((double) 800 / hacerVisual.size(), 40, Color.WHITE);
