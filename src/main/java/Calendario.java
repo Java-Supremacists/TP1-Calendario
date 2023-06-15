@@ -49,6 +49,24 @@ public class Calendario implements XmlGuardador {
         }
         return devolver;
     }
+    public List<LocalDateTime> alarmasDeActividad(int ID){
+        var alarma = this.obtenerAlarma(ID);
+        if (alarma==null){return null;}
+        return alarma.getAlarmas();
+    }
+    protected Alarmas obtenerAlarma(int ID){
+        for (Evento e: listaEventos.keySet()) {
+            if (e.getID() == ID) {
+                return listaEventos.get(e);
+            }
+        }
+        for (Tarea t: listaTareas.keySet()) {
+            if (t.getID() == ID) {
+                return listaTareas.get(t);
+            }
+        }
+        return null;
+    }
     public int crearEvento(LocalDateTime arranque, LocalDateTime termina) {
         Evento nuevoEvento = new Evento(arranque,termina);
         //Por defecto asume que el evento se va a repetir una unica vez
