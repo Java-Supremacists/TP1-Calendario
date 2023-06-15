@@ -95,9 +95,10 @@ public class VistaSemanal extends VistaCalendario {
                     Integer row = GridPane.getRowIndex(e);
                     Integer column = GridPane.getColumnIndex(e);
                     if (column != null && column == finalJ){
+                        var hijo = (HBox) e;
+                        Rectangle rectangulo;
                         if (row != null && inicia <= row && row <= termina) {
-                            var hijo = (HBox) e;
-                            var rectangulo = new Rectangle((double) 115 / listaPorColumna.size(), 40, color);
+                            rectangulo = new Rectangle((double) 115 / listaPorColumna.size(), 40, color);
                             rectangulo.setOnMouseClicked(mouseEvent -> {
                                 var vbox = new VBox();
                                 vbox.setAlignment(Pos.CENTER);
@@ -112,12 +113,10 @@ public class VistaSemanal extends VistaCalendario {
                                 stage.setScene(new Scene(vbox, 331, 249));
                                 stage.show();
                             });
-                            hijo.getChildren().add(rectangulo);
                         } else {
-                            var hijo = (HBox) e;
-                            var rectangulo = new Rectangle((double) 115 / listaPorColumna.size(), 40, Color.WHITE);
-                            hijo.getChildren().add(rectangulo);
+                            rectangulo = new Rectangle((double) 115 / listaPorColumna.size(), 40, Color.WHITE);
                         }
+                        hijo.getChildren().add(rectangulo);
                     }
 
                 }

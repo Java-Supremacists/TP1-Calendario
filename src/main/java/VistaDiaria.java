@@ -75,9 +75,10 @@ public class VistaDiaria extends VistaCalendario {
             for (Node e : grillaDiaxHora.getChildren()) {
                 if (!e.getClass().equals(HBox.class)){continue;}
                 Integer row = GridPane.getRowIndex(e);
+                var hijo = (HBox) e;
+                Rectangle rectangulo;
                 if (row != null &&  inicia <= row && row <= termina) {
-                    var hijo = (HBox) e;
-                    var rectangulo = new Rectangle((double) 800 / hacerVisual.size(), 40, color);
+                    rectangulo = new Rectangle((double) 800 / hacerVisual.size(), 40, color);
                     rectangulo.setOnMouseClicked(mouseEvent -> {
                         var vbox = new VBox();
                         vbox.setAlignment(Pos.CENTER);
@@ -92,12 +93,10 @@ public class VistaDiaria extends VistaCalendario {
                         stage.setScene(new Scene(vbox,331,249));
                         stage.show();
                     });
-                    hijo.getChildren().add(rectangulo);
                 }else {
-                    var hijo = (HBox) e;
-                    var rectangulo = new Rectangle((double) 800 / hacerVisual.size(), 40, Color.WHITE);
-                    hijo.getChildren().add(rectangulo);
+                    rectangulo = new Rectangle((double) 800 / hacerVisual.size(), 40, Color.WHITE);
                 }
+                hijo.getChildren().add(rectangulo);
             }
         }
 
