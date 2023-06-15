@@ -66,6 +66,9 @@ public class InterfazGrafica extends Application {
             public void handle(long l) {
                 var horaActual = LocalDateTime.now();
                 var siguienteAlarma = modelo.proximaAlarma();
+		if (siguienteAlarma == null) {
+		    return;
+		}
                 if (horaActual.getYear()== siguienteAlarma.getYear() && horaActual.getMonth()== siguienteAlarma.getMonth() && horaActual.getDayOfMonth()== siguienteAlarma.getDayOfMonth() && horaActual.getHour()== siguienteAlarma.getHour() && horaActual.getMinute()== siguienteAlarma.getMinute() ) {
                     //supergroncho para que entre JAJJAJAJA
                     //if (horaActual.equals(siguienteAlarma)) {
