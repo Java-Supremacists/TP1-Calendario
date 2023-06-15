@@ -186,6 +186,12 @@ public class CreadorActividad {
     }
 
     public void crearEvento(ActionEvent event) {
+	//Le ponemos todos los segundos y milisegundos a 0 para evitar problemas
+	//con las alarmas y tener todo mas redondo
+	//Google calendar tampoco te deja configurar segundos
+	this.comienzoEvento = this.comienzoEvento.withSecond(0);
+	this.comienzoEvento = this.comienzoEvento.withNano(0);
+
         LocalDateTime fechaComienzo = this.comienzoEvento.atDate(this.fechaEvento);
 
         int idEvento;
@@ -196,9 +202,15 @@ public class CreadorActividad {
             }
         }
         else {
+	    this.finEvento = this.finEvento.withSecond(0);
+	    this.finEvento = this.finEvento.withNano(0);
+
             LocalDateTime fechaFin = this.finEvento.atDate(this.fechaEvento);
+
             idEvento = this.modelo.crearEvento(this.nombreEvento, this.descripcionEvento, this.esDiaCompletoEvento, fechaComienzo, fechaFin);
+
             this.modelo.modificarEventoFrecuencia(idEvento, new FrecuenciaDiaria(this.frecuenciaDiariaEvento, new RepeticionInfinita()));
+
             for (Plazo plazo : this.listaPlazos) {
                 this.modelo.modificarActividadAgregarAlarma(idEvento, plazo);
             }
