@@ -3,7 +3,6 @@ import javafx.scene.control.TextField;
 /**
  * EstadoBoton
  * Esta clase solo existe porque java no nos deja devolver dos valores de distinto tipo.
- * Gracias por nada POO >:(
  */
 public class EstadoBoton {
     private String colorBoton;

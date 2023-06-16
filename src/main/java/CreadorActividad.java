@@ -100,8 +100,6 @@ public class CreadorActividad {
         else {
             this.tipoActividad = "Evento";
         }
-        // this.espacioTipoActividad.setDisable(true);
-        // this.tipoActividad.setStyle("-fx-text-fill: white; -fx-background-color: white");
         this.comienzoEvento = act.cuandoEmpieza().toLocalTime();
         this.finEvento = act.cuandoTermina().toLocalTime();
 
@@ -309,10 +307,6 @@ public class CreadorActividad {
                 this.modelo.modificarActividadAgregarAlarma(idEvento, plazo);
             }
         }
-
-
-        // var tareaGrafica = new TareaGui(idEvento);
-        // this.interfazGrafica.anadirTarea(idEvento, tareaGrafica);
 
         this.modelo.longTareasYEventos();
 
