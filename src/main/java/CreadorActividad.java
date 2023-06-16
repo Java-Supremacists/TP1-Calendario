@@ -308,8 +308,6 @@ public class CreadorActividad {
             }
         }
 
-        this.modelo.longTareasYEventos();
-
     }
 
     public void actualizarEvento(ActionEvent event) {
