@@ -88,17 +88,21 @@ public class VistaSemanal extends VistaCalendario {
                 var inicia = act.cuandoEmpieza().getHour();
                 var termina = act.cuandoTermina().getHour();
                 Paint color = Color.web(GeneradorDeColores.getColorFromId(act.getID()));
+                //Aca iteramos por cada uno de los nodos de la visualizacion.
+                //Va asi: (0,1), (1,1), (2,1), (3,1), etc
                 for (Node e : grillaDiasxHorarios.getChildren()) {
-                    if (!e.getClass().equals(HBox.class)) {continue;}
+                    if (!e.getClass().equals(HBox.class)) {
+                        continue;
+                    }
                     Integer row = GridPane.getRowIndex(e);
                     Integer column = GridPane.getColumnIndex(e);
-                    if (column != null && column == finalJ){
+                    if (column != null && column == finalJ) {
                         var hijo = (HBox) e;
                         Rectangle rectangulo;
                         if (row != null && inicia <= row && row <= termina) {
                             rectangulo = new Rectangle((double) 115 / listaPorColumna.size(), 40, color);
                             rectangulo.setOnMouseClicked(mouseEvent -> {
-                                var visualizador = new VisualizadorActividad(act);
+                                var visualizador = new CreadorActividad(act, this.modelo);
                                 visualizador.start();
                             });
                         } else {

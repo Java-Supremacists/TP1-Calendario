@@ -58,7 +58,6 @@ public class Vista {
         tipoDeVisualizacion.setValue("Semana");
         tipoDeVisualizacion.setOnAction(this::cambiarVistaCalendario);
         botonCrearActividad.setOnAction(this::crearActividad);
-        // botonCrearActividad.getItems().addAll(actividades);
     }
     public Scene getScene() {
         return this.escena;
@@ -82,7 +81,6 @@ public class Vista {
                             termina = primerDia.plusMonths(1);
                         }
                     }
-        System.out.println("ACA HAY ALGO SUS");
         strategy.visualizarActividades(modelo.actividadesEnRango(entre,termina),primerDia);
         mesDelCalendario.setText(months);
     }
@@ -121,7 +119,7 @@ public class Vista {
         visualizacionPosterior.setOnAction(evento);
     }
     public void crearActividad(ActionEvent evento) {
-        var crearActividad = new CreadorActividad(this.modelo);
+        var crearActividad = new CreadorActividad(this.modelo, this, this.controlador.getFechaActual());
         try {
             crearActividad.start();
         }

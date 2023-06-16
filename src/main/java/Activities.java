@@ -34,6 +34,9 @@ public abstract class Activities implements XmlGuardador {
     public String getTitulo() {
         return name;
     }
+
+    public abstract boolean caeElDia(LocalDateTime fechaAchequear);
+
     public int getID() {
         return ID;
     }

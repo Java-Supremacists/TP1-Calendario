@@ -3,7 +3,11 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -17,10 +21,10 @@ public class InterfazGrafica extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        /*var archivoExiste = new File(this.archivoGuardado);
+        var archivoExiste = new File(this.archivoGuardado);
         if (archivoExiste.exists()) {
             this.xmlManejador.cargarXml(this.modelo, new FileInputStream(archivoGuardado));
-        }*/
+        }
 
         var vista = new Vista(this, this.modelo); //por defecto viene con una vista semanal
         fechaActual = domingoAnteriorCercano(LocalDateTime.now());
@@ -66,20 +70,20 @@ public class InterfazGrafica extends Application {
             public void handle(long l) {
                 var horaActual = LocalDateTime.now();
                 var siguienteAlarma = modelo.proximaAlarma();
-		if (siguienteAlarma == null) {
-		    return;
-		}
+                if (siguienteAlarma == null) {
+                    return;
+                }
                 if (horaActual.getYear()== siguienteAlarma.getYear() && horaActual.getMonth()== siguienteAlarma.getMonth() && horaActual.getDayOfMonth()== siguienteAlarma.getDayOfMonth() && horaActual.getHour()== siguienteAlarma.getHour() && horaActual.getMinute()== siguienteAlarma.getMinute() ) {
-                    //supergroncho para que entre JAJJAJAJA
+                    //superpeculiar para que entre JAJJAJAJA
                     //if (horaActual.equals(siguienteAlarma)) {
                     //funciona pero no logra entrar aca porque tienen q ser exactamente iguales y no lo aguanta
                     var alerta = new Alert(Alert.AlertType.INFORMATION);
                     List<Activities> actividadesSonando = modelo.sonarAlarmas();
                     StringBuilder texto = new StringBuilder("La/s Actividades siguientes estan sonando por las siguientes alarmas:\n");
-                    for (Activities act : actividadesSonando){
+                    for (Activities act : actividadesSonando) {
                         texto.append(act.getTitulo());
                         texto.append(": \n");
-                        for (LocalDateTime alarmas : modelo.alarmasDeActividad(act.getID())){
+                        for (LocalDateTime alarmas : modelo.alarmasDeActividad(act.getID())) {
                             texto.append(alarmas.toString());
                             texto.append(" - ");
                         }
@@ -88,8 +92,6 @@ public class InterfazGrafica extends Application {
 
                     alerta.setContentText(texto.toString());
                     alerta.show();
-                    //Alert alertaPosible2 = new Alert(Alert.AlertType.NONE, "Esta Es la alarma del evento......", ButtonType.OK);
-                    //alertaPosible2.show();
                 }
             }
         };
@@ -115,9 +117,7 @@ public class InterfazGrafica extends Application {
     @Override
     public void stop () throws FileNotFoundException {
         System.out.println("Generando xml");
-        System.out.println(archivoGuardado);
-        //nada de guardar por ahora
-        // this.xmlManejador.generateXml(this.modelo, "Calendario", new FileOutputStream(archivoGuardado));
+        this.xmlManejador.generateXml(this.modelo, "Calendario", new FileOutputStream(archivoGuardado));
 
     }
 

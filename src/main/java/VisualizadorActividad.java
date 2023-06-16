@@ -1,3 +1,4 @@
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -25,13 +26,7 @@ public class VisualizadorActividad {
     private Button botonCrear;
 
     @FXML
-    private Text texto;
-    @FXML
     private Text textoFrecuenciaDiaria;
-    @FXML
-    private Text separadorDos;
-    @FXML
-    private Text separadorUno;
 
     @FXML
     private TextField espacioFrecuencia;
@@ -49,6 +44,9 @@ public class VisualizadorActividad {
     @FXML
     private MenuButton espacioTipoActividad;
 
+    @FXML
+    private CheckBox tareaTerminado;
+
     private Activities act;
 
     @FXML
@@ -56,6 +54,11 @@ public class VisualizadorActividad {
 
     public VisualizadorActividad(Activities act) {
         this.act = act;
+    }
+
+    public VisualizadorActividad(Activities act, Calendario modelo) {
+        this.act = act;
+        this.modelo = modelo;
     }
 
     public void start() {
@@ -76,30 +79,45 @@ public class VisualizadorActividad {
             this.espacioHoraFin.setText(String.valueOf(this.act.cuandoTermina().getHour()));
             this.espacioMinutoFin.setText(String.valueOf(this.act.cuandoTermina().getMinute()));
 
-            this.texto.setText("Evento");
+
 
             if (this.act.esDiaEntero()) {
                 this.espacioEsDiaCompleto.setSelected(true);
             }
 
+            //Tarea
             if (this.act.cuandoEmpieza().equals(this.act.cuandoTermina())) {
                 this.espacioHoraFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
                 this.espacioMinutoFin.setStyle("-fx-text-fill: white; -fx-background-color: white");
-                // this.textoFrecuenciaDiaria.setStyle("-fx-text-fill: white; -fx-background-color: white");
                 this.textoFrecuenciaDiaria.setFill(Color.WHITE);
-                this.separadorUno.setFill(Color.WHITE);
-                this.separadorDos.setFill(Color.WHITE);
                 this.espacioFrecuencia.setStyle("-fx-text-fill: white; -fx-background-color: white");
-                this.texto.setText("Tarea");
+                try {
+                    if (((Tarea)act).estaCompleta() == true) {
+                        this.tareaTerminado.setSelected(true);
+                    }
+                }
+                catch (ClassCastException e) {
+                }
+
+            }
+            //Evento
+            else {
+                this.tareaTerminado.setStyle("-fx-text-fill: white; -fx-background-color: white");
+                this.tareaTerminado.setDisable(true);
+                this.tareaTerminado.setOpacity(0);
             }
 
         }
         catch (Exception e) {
-            System.out.println(e);
             e.printStackTrace(System.out);
         }
-        // this.relojImagen.setGraphic(new ImageView(new Image("alarma.png")));
+
     }
+
+    public void marcarTareaCompleta(ActionEvent event) {
+        this.modelo.modificarTareaCompletarODescompletar(this.act.getID());
+    }
+
 
 
 }

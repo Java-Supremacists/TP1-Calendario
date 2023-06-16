@@ -60,28 +60,32 @@ public class VistaDiaria extends VistaCalendario {
     @Override
     public void visualizarActividades(List<Activities> hacerVisual,LocalDateTime fechaHoy) {
         vaciarGrilla();
-        for (int i = 0; i <24; i++){
+        for (int i = 0; i <24; i++) {
             var celda = new HBox();
             celda.setAlignment(Pos.CENTER_LEFT);
             grillaDiaxHora.add(celda,1, i);
         }
-        if (hacerVisual== null){return;}
-        for (Activities act : hacerVisual){
+        if (hacerVisual== null) {
+            return;
+        }
+        for (Activities act : hacerVisual) {
             Paint color = Color.web(GeneradorDeColores.getColorFromId(act.getID()));
             var inicia = act.cuandoEmpieza().getHour();
             var termina = act.cuandoTermina().getHour();
             for (Node e : grillaDiaxHora.getChildren()) {
-                if (!e.getClass().equals(HBox.class)){continue;}
+                if (!e.getClass().equals(HBox.class)) {
+                    continue;
+                }
                 Integer row = GridPane.getRowIndex(e);
                 var hijo = (HBox) e;
                 Rectangle rectangulo;
                 if (row != null &&  inicia <= row && row <= termina) {
                     rectangulo = new Rectangle((double) 800 / hacerVisual.size(), 40, color);
                     rectangulo.setOnMouseClicked(mouseEvent -> {
-                        var visualizador = new VisualizadorActividad(act);
+                        var visualizador = new CreadorActividad(act, this.modelo);
                         visualizador.start();
                     });
-                }else {
+                } else {
                     rectangulo = new Rectangle((double) 800 / hacerVisual.size(), 40, Color.WHITE);
                 }
                 hijo.getChildren().add(rectangulo);
