@@ -72,7 +72,12 @@ public class CreadorActividad {
 
     private Activities act;
 
-    public CreadorActividad(Calendario modelo) {
+    private Vista vista;
+    private LocalDateTime fechaActual;
+
+    private VistaCalendario vistaCalendario;
+
+    public CreadorActividad(Calendario modelo, Vista vista, LocalDateTime fechaActual) {
         this.nombreEvento = "Nombre default";
         this.descripcionEvento = "Descripcion Default";
         this.esDiaCompletoEvento = false;
@@ -82,6 +87,9 @@ public class CreadorActividad {
         this.comienzoEvento = LocalTime.now();
         this.finEvento = comienzoEvento.plusHours(1);
 
+
+	this.vista = vista;
+	this.fechaActual = fechaActual;
 
         this.modelo = modelo;
 
@@ -307,6 +315,8 @@ public class CreadorActividad {
                 this.modelo.modificarActividadAgregarAlarma(idEvento, plazo);
             }
         }
+
+	this.vista.actualizarVistaCalendario(this.fechaActual);
 
     }
 
