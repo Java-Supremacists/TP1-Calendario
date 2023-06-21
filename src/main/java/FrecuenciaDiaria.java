@@ -31,11 +31,18 @@ public class FrecuenciaDiaria implements Frecuencia {
             //que caiga el dia que me piden
         }
 
-	System.out.println();
+
         //Se fija cuantos dias hay hasta el dia pasado como argumento
         long cantDiasHastaDiaPedido = fechaComienzo.toLocalDate().until(diaEspecifico.toLocalDate(), ChronoUnit.DAYS);
-	System.out.println("cantDiasHastaDiaPedido");
-	System.out.println(cantDiasHastaDiaPedido);
+	// System.out.println();
+	// System.out.println("fechaComienzo");
+	// System.out.println(fechaComienzo);
+	// System.out.println("diaEspecifico");
+	// System.out.println(diaEspecifico);
+	// System.out.println("cantDiasHastaDiaPedido");
+	// System.out.println(cantDiasHastaDiaPedido);
+	// System.out.println("this.cadaCuantosDias");
+	// System.out.println(this.cadaCuantosDias);
         if (cantDiasHastaDiaPedido < 0) {
             return false; //Si es negativo, no puede caer
         }

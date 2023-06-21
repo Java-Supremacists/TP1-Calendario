@@ -73,20 +73,27 @@ public class VistaMensual extends VistaCalendario {
     }
     @Override
     public void visualizarActividades(List<Activities> hacerVisual,LocalDateTime fechaInicio) {
+	// System.out.println("Empieza el mes");
+	// System.out.println(fechaInicio);
         var dia = fechaInicio;
+	dia = dia.withHour(23);
         var mes = fechaInicio.getMonth();
         for (Node e : grillaDelMes.getChildren()) {
             if (!dia.getMonth().equals(mes)) {
+		// System.out.println("I BREAK");
                 break;
             }
             if (e.getClass().equals(VBox.class)) {
+		// System.out.println("Entro al if");
                 //e siempre va a ser una VBox
                 var hijo = (VBox) e;
                 var listaHijos = hijo.getChildren();//primer elemento el dia y el segundo es la fecha y sino solo unicamente la fecha
                 listaHijos.removeIf(i -> !i.getClass().equals(Label.class)); //remuevo lo de adentro del Vbox excepto las fechas
                 ListView<Activities> agregar = listaFormal();//creo la lista formal
                 if (hacerVisual!=null) {
+		    // System.out.println("entro al segundo if");
                     for (Activities act : hacerVisual) {
+			// System.out.println("Entro al for");
                         try {
                             var casteado = (Tarea) act;
                             var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
@@ -96,14 +103,13 @@ public class VistaMensual extends VistaCalendario {
                             }
                         }
                         catch (ClassCastException errorJavaXD) {
-			    System.out.println();
-			    System.out.println(dia);
+			    // System.out.println();
+			    // System.out.println("ESTE ES EL DIA DEL MES");
+			    // System.out.println(dia);
                             var casteado = (Evento) act;
-                            var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
-                            // if (dia.getDayOfMonth() == diaActividadComienza) {
 			    var caeONoCae = casteado.caeElDia(dia);
-			    System.out.println(caeONoCae);
-                            if (caeONoCae) {
+			    // System.out.println(caeONoCae);
+                            if (caeONoCae == true) {
                                 agregar.getItems().add((Activities)casteado);
                             }
                         }
