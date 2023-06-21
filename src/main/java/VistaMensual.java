@@ -96,10 +96,14 @@ public class VistaMensual extends VistaCalendario {
                             }
                         }
                         catch (ClassCastException errorJavaXD) {
+			    System.out.println();
+			    System.out.println(dia);
                             var casteado = (Evento) act;
                             var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
-                            if (dia.getDayOfMonth() == diaActividadComienza) {
-
+                            // if (dia.getDayOfMonth() == diaActividadComienza) {
+			    var caeONoCae = casteado.caeElDia(dia);
+			    System.out.println(caeONoCae);
+                            if (caeONoCae) {
                                 agregar.getItems().add((Activities)casteado);
                             }
                         }
