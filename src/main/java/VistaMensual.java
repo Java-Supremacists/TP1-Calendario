@@ -74,6 +74,7 @@ public class VistaMensual extends VistaCalendario {
     @Override
     public void visualizarActividades(List<Activities> hacerVisual,LocalDateTime fechaInicio) {
         var dia = fechaInicio;
+	dia = dia.withHour(23);
         var mes = fechaInicio.getMonth();
         for (Node e : grillaDelMes.getChildren()) {
             if (!dia.getMonth().equals(mes)) {
@@ -97,9 +98,8 @@ public class VistaMensual extends VistaCalendario {
                         }
                         catch (ClassCastException errorJavaXD) {
                             var casteado = (Evento) act;
-                            var diaActividadComienza = casteado.cuandoEmpieza().getDayOfMonth();
-                            if (dia.getDayOfMonth() == diaActividadComienza) {
-
+			    var caeONoCae = casteado.caeElDia(dia);
+                            if (caeONoCae == true) {
                                 agregar.getItems().add((Activities)casteado);
                             }
                         }
