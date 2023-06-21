@@ -82,6 +82,7 @@ public class VistaSemanal extends VistaCalendario {
             return;
         }
         for (int j = 1; j < 8; j++) {
+	    var fechaHoy = fechaInicioSemana;
             int finalJ = j;
             var listaPorColumna = hacerVisual.stream().filter(c -> c.cuandoEmpieza().getDayOfWeek().getValue() % 7 + 1 == finalJ).toList();
             for (Activities act : listaPorColumna) {
@@ -96,7 +97,8 @@ public class VistaSemanal extends VistaCalendario {
                     }
                     Integer row = GridPane.getRowIndex(e);
                     Integer column = GridPane.getColumnIndex(e);
-                    if (column != null && column == finalJ) {
+
+                    if (column != null && act.caeElDia(fechaHoy.plusDays(column - 1)) == true) {
                         var hijo = (HBox) e;
                         Rectangle rectangulo;
                         if (row != null && inicia <= row && row <= termina) {
