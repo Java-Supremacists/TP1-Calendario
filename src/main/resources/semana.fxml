@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<FlowPane fx:id="escenaPorSemana" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="430.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <Pane fx:id="barraSuperiorDiaria" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="854.0">
+      <GridPane fx:id="grillaDeDiasFijos" gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.5" prefHeight="50.0" prefWidth="838.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="50.0" valignment="CENTER" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <Label opacity="0.0" prefHeight="40.0" prefWidth="40.0" text="12 Pm" />
+         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+            <Label text="SUNDAY" textAlignment="CENTER" />
+            <Label fx:id="diaDomingo" text="Label" textAlignment="CENTER" />
+         </VBox>
+         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
+            <Label text="MONDAY" textAlignment="CENTER" />
+            <Label fx:id="diaLunes" text="Label" textAlignment="CENTER" />
+         </VBox>
+         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="3">
+            <Label text="TUESDAY" textAlignment="CENTER" />
+            <Label fx:id="diaMartes" text="Label" textAlignment="CENTER" />
+         </VBox>
+         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="36.0" GridPane.columnIndex="4">
+            <Label text="WEDNESDAY" textAlignment="CENTER" />
+            <Label fx:id="diaMiercoles" text="Label" textAlignment="CENTER" />
+         </VBox>
+         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="5">
+            <Label text="THURSDAY" textAlignment="CENTER" />
+            <Label fx:id="diaJueves" text="Label" textAlignment="CENTER" />
+         </VBox>
+         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="6">
+            <Label text="FRYDAY" textAlignment="CENTER" />
+            <Label fx:id="diaViernes" text="Label" textAlignment="CENTER" />
+         </VBox>
+         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="7">
+            <Label text="SATURDAY" textAlignment="CENTER" />
+            <Label fx:id="diaSabado" text="Label" textAlignment="CENTER" />
+         </VBox>
+      </GridPane>
+   </Pane>
+   <ScrollPane fx:id="escroleoDeGrilla" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="380.0" prefWidth="854.0">
+      <GridPane fx:id="grillaDiasxHorarios" gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.65" prefWidth="838.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <Label opacity="0.0" prefHeight="40.0" text="Label" textAlignment="CENTER" />
+         <Label prefHeight="40.0" text="1 Am" textAlignment="CENTER" GridPane.rowIndex="1" />
+         <Label prefHeight="40.0" text="2 Am" textAlignment="CENTER" GridPane.rowIndex="2" />
+         <Label prefHeight="40.0" text="3 Am" textAlignment="CENTER" GridPane.rowIndex="3" />
+         <Label prefHeight="40.0" text="4 Am" textAlignment="CENTER" GridPane.rowIndex="4" />
+         <Label prefHeight="40.0" text="5 Am" textAlignment="CENTER" GridPane.rowIndex="5" />
+         <Label prefHeight="40.0" text="6 Am" textAlignment="CENTER" GridPane.rowIndex="6" />
+         <Label prefHeight="40.0" text="7 Am" textAlignment="CENTER" GridPane.rowIndex="7" />
+         <Label prefHeight="40.0" text="8 Am" textAlignment="CENTER" GridPane.rowIndex="8" />
+         <Label prefHeight="40.0" text="9 Am" textAlignment="CENTER" GridPane.rowIndex="9" />
+         <Label prefHeight="40.0" text="10 Am" textAlignment="CENTER" GridPane.rowIndex="10" />
+         <Label prefHeight="40.0" text="11 Am" textAlignment="CENTER" GridPane.rowIndex="11" />
+         <Label prefHeight="40.0" text="12 Pm" textAlignment="CENTER" GridPane.rowIndex="12" />
+         <Label prefHeight="40.0" text="1 Pm" textAlignment="CENTER" GridPane.rowIndex="13" />
+         <Label prefHeight="40.0" text="2 Pm" textAlignment="CENTER" GridPane.rowIndex="14" />
+         <Label prefHeight="40.0" text="3 Pm" textAlignment="CENTER" GridPane.rowIndex="15" />
+         <Label prefHeight="40.0" text="4 Pm" textAlignment="CENTER" GridPane.rowIndex="16" />
+         <Label prefHeight="40.0" text="5 Pm" textAlignment="CENTER" GridPane.rowIndex="17" />
+         <Label prefHeight="40.0" text="6 Pm" textAlignment="CENTER" GridPane.rowIndex="18" />
+         <Label prefHeight="40.0" text="7 Pm" textAlignment="CENTER" GridPane.rowIndex="19" />
+         <Label prefHeight="40.0" text="8 Pm" textAlignment="CENTER" GridPane.rowIndex="20" />
+         <Label prefHeight="40.0" text="9 Pm" textAlignment="CENTER" GridPane.rowIndex="21" />
+         <Label prefHeight="40.0" text="10 Pm" textAlignment="CENTER" GridPane.rowIndex="22" />
+         <Label prefHeight="40.0" text="11 Pm" textAlignment="CENTER" GridPane.rowIndex="23" />
+         <Label opacity="0.0" prefHeight="40.0" text="Label" textAlignment="CENTER" GridPane.rowIndex="24" />
+      </GridPane>
+   </ScrollPane>
+</FlowPane>

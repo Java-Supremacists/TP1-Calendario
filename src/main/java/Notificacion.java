@@ -4,7 +4,6 @@ public class Notificacion {
         remitente = usuario;
     }
     public void send(String nombre,String descripcion) {
-        remitente.alertar(nombre, descripcion);
         //Notificacion por mensaje en pantalla de bloqueo
     }
 }

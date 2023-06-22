@@ -1,13 +1,14 @@
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import java.time.LocalDateTime;
-import java.util.List;
 
-public abstract class Activities {
+public abstract class Activities implements XmlGuardador {
     //--------- Atributos ---------
 
     protected String name;
     protected String description;
-    protected final Alarmas alarm = new Alarmas();
     protected boolean esDiaCompleto;
+    protected int ID = this.hashCode();
 
     //--------- Atributos ---------
 
@@ -30,14 +31,14 @@ public abstract class Activities {
 
     public abstract LocalDateTime cuandoTermina();
     public abstract LocalDateTime cuandoEmpieza();
-    public LocalDateTime ultimaAlarma() {
-        if (alarm.quedanAlarmas()) {
-            return alarm.primerAlarmaASonar();
-        }
-        return null;
-    }
     public String getTitulo() {
         return name;
+    }
+
+    public abstract boolean caeElDia(LocalDateTime fechaAchequear);
+
+    public int getID() {
+        return ID;
     }
     public String getDescripcion() {
         return description;
@@ -54,15 +55,39 @@ public abstract class Activities {
     public void setEsDiaCompleto(boolean esDiaCompleto) {
         this.esDiaCompleto = esDiaCompleto;
     }
-    public void agregarAlarma(LocalDateTime alarmaNueva) {
-        this.alarm.agregarAlarma(alarmaNueva);
-    }
-    public void agregarAlarmas(List<LocalDateTime> alarmasNuevas) {
-        this.alarm.agregarAlarma(alarmasNuevas);
-    }
-    public void eliminarAlarma(LocalDateTime alarmaNueva) {
-        this.alarm.eliminarAlarma(alarmaNueva);
-    }
+    public void guardar(Element estructura, Document doc) {
+        Element nombreActividad = doc.createElement("Nombre");
+        nombreActividad.appendChild(doc.createTextNode(name));
+        estructura.appendChild(nombreActividad);
 
+        Element descripcionActividad = doc.createElement("Descripcion");
+        descripcionActividad.appendChild(doc.createTextNode(description));
+        estructura.appendChild(descripcionActividad);
+
+        Element esDiaCompletoLaActividad = doc.createElement("DeDiaCompleto");
+        esDiaCompletoLaActividad.appendChild(doc.createTextNode("%b".formatted(esDiaCompleto)));
+        estructura.appendChild(esDiaCompletoLaActividad);
+
+        Element idDelObjeto = doc.createElement("IDE");
+        idDelObjeto.appendChild(doc.createTextNode("%d".formatted(ID)));
+        estructura.appendChild(idDelObjeto);
+    }
+    @Override
+    public void cargar(Element Actividad) {
+        var hijosActividad = Actividad.getChildNodes();
+        for (int i=0; i<hijosActividad.getLength(); i++) {
+            var hijoDeLaLista = hijosActividad.item(i);
+            var propioDeElementos = hijoDeLaLista.getAttributes();
+            if (propioDeElementos!=null) {
+                var elementoInterno = (Element) hijoDeLaLista;
+                switch (elementoInterno.getTagName()) {
+                case "Nombre" -> this.name = elementoInterno.getTextContent();
+                case "Descripcion" -> this.description = elementoInterno.getTextContent();
+                case "DeDiaCompleto" -> this.esDiaCompleto = elementoInterno.getTextContent().startsWith("t");
+                case "IDE" -> this.ID = Integer.parseInt(elementoInterno.getTextContent());
+                }
+            }
+        }
+    }
     //--------- Metodos ---------
 }

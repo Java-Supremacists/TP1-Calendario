@@ -1,4 +1,8 @@
 import java.time.temporal.ChronoUnit; //Libreria para formatear dias en LocalDateTime
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import java.time.LocalDateTime;
 import java.lang.Math;
 /**
@@ -27,12 +31,22 @@ public class FrecuenciaDiaria implements Frecuencia {
             //que caiga el dia que me piden
         }
 
+
         //Se fija cuantos dias hay hasta el dia pasado como argumento
-        long cantDiasHastaDiaPedido = fechaComienzo.until(diaEspecifico, ChronoUnit.DAYS);
+        long cantDiasHastaDiaPedido = fechaComienzo.toLocalDate().until(diaEspecifico.toLocalDate(), ChronoUnit.DAYS);
         if (cantDiasHastaDiaPedido < 0) {
             return false; //Si es negativo, no puede caer
         }
 
+	if (this.cadaCuantosDias == 0) {
+	    var esElMismoDia = fechaComienzo.toLocalDate().equals(diaEspecifico.toLocalDate());
+	    if (esElMismoDia == true) {
+		return true;
+	    }
+	    else {
+		return false;
+	    }
+	}
         //True: El evento tiene una "aparicion" ese dia. False: no.
         boolean eventoCaeElDiaPedidio = (cantDiasHastaDiaPedido % this.cadaCuantosDias == 0);
         return eventoCaeElDiaPedidio;
@@ -57,6 +71,22 @@ public class FrecuenciaDiaria implements Frecuencia {
         LocalDateTime proximoEvento = inicioEvento.plusDays(cantidadRepsHastaProxEvento * this.cadaCuantosDias);
 
         return proximoEvento;
+    }
+
+    @Override
+    public void guardar(Element estructura, Document doc) {
+        Element Frecuencia = doc.createElement("FrecuenciaDiaria");
+        Frecuencia.appendChild(doc.createTextNode(String.valueOf(this.cadaCuantosDias)));
+        estructura.appendChild(Frecuencia);
+
+        this.repeticion.guardar(estructura, doc);
+
+    }
+
+    @Override
+    public void cambiarRepeticion(Repeticion repeticion) {
+        this.repeticion = repeticion;
+
     }
 
 }
