@@ -32,11 +32,43 @@ public class Calendario implements XmlGuardador {
     //Funcion de debugeo. No es parte del contrato de la funcion.
     //En la version final no va a estar
     public void longTareasYEventos() {
-        System.out.println("Cantidad de eventos: " + String.valueOf(this.listaEventos.size()));
-        System.out.println("Cantidad de tareas: " + String.valueOf(this.listaTareas.size()));
+        System.out.println("Cantidad de eventos: " + this.listaEventos.size());
+        System.out.println("Cantidad de tareas: " + this.listaTareas.size());
     }
-
-
+    public List<Activities> actividadesEnRango(LocalDateTime entreEste, LocalDateTime yEste) {
+        List<Activities> devolver = new ArrayList<>();
+        for (Tarea t : listaTareas.keySet()) {
+            if (t.cuandoEmpieza().isAfter(entreEste) && yEste.isAfter(t.cuandoEmpieza())) {
+                devolver.add(t);
+            }
+        }
+        for (Evento ev : listaEventos.keySet()) {
+            if (ev.cuandoEmpieza().isAfter(entreEste) && yEste.isAfter(ev.cuandoEmpieza())) {
+                devolver.add(ev);
+            }
+        }
+        return devolver;
+    }
+    public List<LocalDateTime> alarmasDeActividad(int ID) {
+        var alarma = this.obtenerAlarma(ID);
+        if (alarma==null) {
+            return null;
+        }
+        return alarma.getAlarmas();
+    }
+    protected Alarmas obtenerAlarma(int ID) {
+        for (Evento e: listaEventos.keySet()) {
+            if (e.getID() == ID) {
+                return listaEventos.get(e);
+            }
+        }
+        for (Tarea t: listaTareas.keySet()) {
+            if (t.getID() == ID) {
+                return listaTareas.get(t);
+            }
+        }
+        return null;
+    }
     public int crearEvento(LocalDateTime arranque, LocalDateTime termina) {
         Evento nuevoEvento = new Evento(arranque,termina);
         //Por defecto asume que el evento se va a repetir una unica vez
@@ -269,6 +301,37 @@ public class Calendario implements XmlGuardador {
         }
         return listaEventosEnRango;
     }
+
+
+    public ArrayList<Activities> activitiesEnRango(LocalDateTime comienzo, LocalDateTime fin) {
+        var listaEventosEnRango = new ArrayList<Activities>();
+
+        long cantDias = comienzo.until(fin, ChronoUnit.DAYS);
+        for (Tarea t :listaTareas.keySet()) {
+            LocalDateTime diaAChequear = comienzo;
+            //Chequeo todos los días que hay entre comienzo y fin
+            for (int i = 0 ; i < cantDias ; i++ ) {
+                diaAChequear = diaAChequear.plusDays(1);
+                if (t.caeElDia(diaAChequear)) {
+                    listaEventosEnRango.add(t);
+                    break;
+                }
+            }
+        }
+        for (Evento e :listaEventos.keySet()) {
+            LocalDateTime diaAChequear = comienzo;
+            //Chequeo todos los días que hay entre comienzo y fin
+            for (int i = 0 ; i < cantDias ; i++ ) {
+                diaAChequear = diaAChequear.plusDays(1);
+                if (e.caeElDia(diaAChequear)) {
+                    listaEventosEnRango.add(e);
+                    break;
+                }
+            }
+        }
+        return listaEventosEnRango;
+    }
+
     public void guardar(Element calendario, Document doc) {
         for (Evento ev : listaEventos.keySet()) {
             Alarmas r = listaEventos.get(ev);

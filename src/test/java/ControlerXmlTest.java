@@ -31,8 +31,27 @@ public class ControlerXmlTest {
         assertEquals(ev1.cuandoEmpieza(),ev2.cuandoEmpieza());
         assertEquals(ev1.cuandoTermina(),ev2.cuandoTermina());
         assertNotEquals(ev1,ev2);
-    }
 
+
+
+        var ev3 = new Evento("Evento1","Esta es la descripcion a cargar",true,inicia,termina);
+        //Fabri aca mete la implementacion para agregar una frecuencia de cierto tipo
+        var ev4 = new Evento(null,null);
+        archivo = new ByteArrayOutputStream();
+
+
+        xmlManejador.generateXml(ev3,"Evento",archivo);
+        cargarArchivo = new ByteArrayInputStream(archivo.toByteArray());
+        xmlManejador.cargarXml(ev4,cargarArchivo);
+
+
+        assertEquals(ev3.getTitulo(),ev4.getTitulo());
+        assertEquals(ev3.getDescripcion(),ev4.getDescripcion());
+        assertEquals(ev3.esDiaEntero(),ev4.esDiaEntero());
+        assertEquals(ev3.cuandoEmpieza(),ev4.cuandoEmpieza());
+        assertEquals(ev3.cuandoTermina(),ev4.cuandoTermina());
+        assertNotEquals(ev3,ev4);
+    }
     @Test
     public void testConGuardadoDeTareas() {
         var termina = LocalDateTime.of(2023,5,19,20,0);
@@ -53,11 +72,9 @@ public class ControlerXmlTest {
         assertEquals(tarea1.cuandoEmpieza(),tarea2.cuandoEmpieza());
         assertNotEquals(tarea1,tarea2);
     }
-
-
     @Test
     public void testConGuardadoDeAlarmas() {
-        var alarm1 = new Alarmas(true,null);
+        var alarm1 = new Alarmas(true);
         var alarm2 = new Alarmas();
         List<LocalDateTime> array = new ArrayList<>();
         for (int i = 1; i < 13; i++) {
@@ -152,9 +169,9 @@ public class ControlerXmlTest {
 
 
         var termina1 = LocalDateTime.of(2023,5,19,20,0);
-	
+
         int ID1 = calendario1.crearTarea("Tarea1","Descripcion1",true,termina1);
-	calendario1.modificarActividadEsDiaEntero(ID1, true);
+        calendario1.modificarActividadEsDiaEntero(ID1, true);
 
         ByteArrayOutputStream archivo = new ByteArrayOutputStream();
         var xmlManejador = new ControlerXml();
@@ -177,9 +194,9 @@ public class ControlerXmlTest {
 
         var inicia1 = LocalDateTime.of(2023,5,19,10,30);
         var termina1 = LocalDateTime.of(2023,5,19,20,0);
-	
+
         int ID1 = calendario1.crearEvento("Evento1","Descripcion1",true,inicia1, termina1);
-	calendario1.modificarActividadEsDiaEntero(ID1, true);
+        calendario1.modificarActividadEsDiaEntero(ID1, true);
 
         ByteArrayOutputStream archivo = new ByteArrayOutputStream();
         var xmlManejador = new ControlerXml();
@@ -201,11 +218,11 @@ public class ControlerXmlTest {
 
 
         var termina1 = LocalDateTime.of(2023,5,19,20,0);
-	
+
         int ID1 = calendario1.crearTarea("Tarea1","Completada",true,termina1);
         int ID2 = calendario1.crearTarea("Tarea2","No completada",true,termina1);
 
-	calendario1.modificarTareaCompletarODescompletar(ID1);
+        calendario1.modificarTareaCompletarODescompletar(ID1);
 
         ByteArrayOutputStream archivo = new ByteArrayOutputStream();
         var xmlManejador = new ControlerXml();

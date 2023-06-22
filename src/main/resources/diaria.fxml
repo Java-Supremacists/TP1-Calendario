@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<FlowPane fx:id="escenaPorDia" nodeOrientation="LEFT_TO_RIGHT" prefHeight="430.0" prefWidth="854.0"
+          xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="854.0">
+      <GridPane fx:id="grillaConElDia" alignment="CENTER_LEFT" gridLinesVisible="true"
+                maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT"
+                opacity="0.65" prefHeight="50.0" prefWidth="854.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity"/>
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308"/>
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES"/>
+         </rowConstraints>
+         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.0"
+                prefHeight="40.0" prefWidth="40.0" text="12 pm"/>
+         <VBox fx:id="panelConElDia" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308"
+               maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0"
+               prefWidth="100.0" GridPane.columnIndex="1">
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308"
+                   maxWidth="-Infinity" prefHeight="20.0" prefWidth="100.0" text="DIA" textAlignment="CENTER"/>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308"
+                   maxWidth="-Infinity" prefHeight="20.0" prefWidth="100.0" text="NumeroDeDia"
+                   textAlignment="CENTER"/>
+         </VBox>
+      </GridPane>
+   </Pane>
+   <ScrollPane fx:id="ScrollGrillaDiaxHora" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+               nodeOrientation="LEFT_TO_RIGHT" prefHeight="380.0" prefWidth="854.0">
+      <GridPane fx:id="grillaDiaxHora" gridLinesVisible="true" opacity="0.65" prefWidth="838.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity"/>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308"/>
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES"/>
+         </rowConstraints>
+         <Label opacity="0.0" prefHeight="40.0" text="Label"/>
+         <Label prefHeight="40.0" text="1 Am" GridPane.rowIndex="1"/>
+         <Label prefHeight="40.0" text="2 Am" GridPane.rowIndex="2"/>
+         <Label prefHeight="40.0" text="3 Am" GridPane.rowIndex="3"/>
+         <Label prefHeight="40.0" text="4 Am" GridPane.rowIndex="4"/>
+         <Label prefHeight="40.0" text="5 Am" GridPane.rowIndex="5"/>
+         <Label prefHeight="40.0" text="6 Am" GridPane.rowIndex="6"/>
+         <Label prefHeight="40.0" text="7 Am" GridPane.rowIndex="7"/>
+         <Label prefHeight="40.0" text="8 Am" GridPane.rowIndex="8"/>
+         <Label prefHeight="40.0" text="9 Am" GridPane.rowIndex="9"/>
+         <Label prefHeight="40.0" text="10 Am" GridPane.rowIndex="10"/>
+         <Label prefHeight="40.0" text="11 Am" GridPane.rowIndex="11"/>
+         <Label prefHeight="40.0" text="12 Pm" GridPane.rowIndex="12"/>
+         <Label prefHeight="40.0" text="1 Pm" GridPane.rowIndex="13"/>
+         <Label prefHeight="40.0" text="2 Pm" GridPane.rowIndex="14"/>
+         <Label prefHeight="40.0" text="3 Pm" GridPane.rowIndex="15"/>
+         <Label prefHeight="40.0" text="4 Pm" GridPane.rowIndex="16"/>
+         <Label prefHeight="40.0" text="5 Pm" GridPane.rowIndex="17"/>
+         <Label prefHeight="40.0" text="6 Pm" GridPane.rowIndex="18"/>
+         <Label prefHeight="40.0" text="7 Pm" GridPane.rowIndex="19"/>
+         <Label prefHeight="40.0" text="8 Pm" GridPane.rowIndex="20"/>
+         <Label prefHeight="40.0" text="9 Pm" GridPane.rowIndex="21"/>
+         <Label prefHeight="40.0" text="10 Pm" GridPane.rowIndex="22"/>
+         <Label prefHeight="40.0" text="11 Pm" GridPane.rowIndex="23"/>
+         <Label opacity="0.0" prefHeight="40.0" text="Label" GridPane.rowIndex="24"/>
+      </GridPane>
+   </ScrollPane>
+</FlowPane>

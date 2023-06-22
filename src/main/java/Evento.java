@@ -42,6 +42,7 @@ public class Evento extends Activities {
     public LocalDateTime cuandoTermina() {
         return this.terminaActual;
     }
+    @Override
     public boolean caeElDia(LocalDateTime diaEspecifico) {
         //Averiguo si la frecuencia hace que el evento caiga el día pedido
         return this.frecuencia.dadoComienzoCaeElDia(this.arranquePrincipio, diaEspecifico);

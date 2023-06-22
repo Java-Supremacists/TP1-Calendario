@@ -8,7 +8,7 @@ public class AlarmasTest {
     @Test
     public void CrearAlarmaVacia() {
         Alarmas a1 = new Alarmas();
-        Alarmas a2 = new Alarmas(true,null);
+        Alarmas a2 = new Alarmas(true);
 
         assertFalse(a1.existeAlarma(null));
         assertFalse(a1.repiteLasAlarmas());
@@ -25,7 +25,7 @@ public class AlarmasTest {
     @Test
     public void AlarmaConNull() {
         Alarmas a1 = new Alarmas();
-        Alarmas a2 = new Alarmas(true,null);
+        Alarmas a2 = new Alarmas(true);
 
         a1.agregarAlarma((LocalDateTime) null);
         assertFalse(a1.existeAlarma(null));
@@ -85,7 +85,7 @@ public class AlarmasTest {
     @Test
     public void AgregarUnaAlarmaPruebaCompleta() {
         Alarmas a1 = new Alarmas();
-        Alarmas a2 = new Alarmas(true,null);
+        Alarmas a2 = new Alarmas(true);
         LocalDateTime agregar = LocalDateTime.of(2023,4,24,23,59);
 
         a1.agregarAlarma(agregar);
@@ -111,7 +111,7 @@ public class AlarmasTest {
     @Test
     public void AgregarArrayVacio() {
         Alarmas a1 = new Alarmas();
-        Alarmas a2 = new Alarmas(true,null);
+        Alarmas a2 = new Alarmas(true);
         ArrayList<LocalDateTime> array = new ArrayList<>();
 
         a1.agregarAlarma(array);
@@ -128,7 +128,7 @@ public class AlarmasTest {
     @Test
     public void AgregarArrayAlarmasCompleto() {
         Alarmas a1 = new Alarmas();
-        Alarmas a2 = new Alarmas(true,null);
+        Alarmas a2 = new Alarmas(true);
         ArrayList<LocalDateTime> array = new ArrayList<>();
         LocalDateTime agregar;
 
@@ -150,7 +150,7 @@ public class AlarmasTest {
     @Test
     public void AgregarAlarmasIdenticas() {
         Alarmas a1 = new Alarmas();
-        Alarmas a2 = new Alarmas(true,null);
+        Alarmas a2 = new Alarmas(true);
         LocalDateTime agregar = LocalDateTime.of(2023,4,24,23,59);
         for (int i = 0 ; i < 100 ; i++ ) {
             a1.agregarAlarma(agregar);
@@ -163,7 +163,7 @@ public class AlarmasTest {
     @Test
     public void AgregarMuchasAlarmasPruebaCompleta() {
         Alarmas a1 = new Alarmas();
-        Alarmas a2 = new Alarmas(true,null);
+        Alarmas a2 = new Alarmas(true);
         LocalDateTime agregar;
         for (int i = 0 ; i < 1000 ; i++ ) {
             agregar = LocalDateTime.of(3022-i,4,24,23,59);
